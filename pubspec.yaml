@@ -37,6 +37,7 @@ dependencies:
   responsive_framework: 
   riverpod_annotation: ^3.0.0-dev.3
   settings_ui: 
+  speech_to_text: 
   url_launcher: 
   uuid: 
   version: 
