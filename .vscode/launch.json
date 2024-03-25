@@ -11,7 +11,7 @@
             "flutterMode": "debug",
             "program": "lib/main.dart",
             "args": [
-                "--dart-define-from-file=dart_defines/dev.json"
+                "--dart-define-from-file=scripts/dart_defines/dev.json"
             ]
         },
         {
@@ -21,7 +21,7 @@
             "flutterMode": "release",
             "program": "lib/main.dart",
             "args": [
-                "--dart-define-from-file=dart_defines/dev.json"
+                "--dart-define-from-file=scripts/dart_defines/dev.json"
             ]
         },
         {
@@ -31,7 +31,7 @@
             "flutterMode": "debug",
             "program": "lib/main.dart",
             "args": [
-                "--dart-define-from-file=dart_defines/prod.json"
+                "--dart-define-from-file=scripts/dart_defines/prod.json"
             ]
         },
         {
@@ -41,7 +41,7 @@
             "flutterMode": "debug",
             "program": "lib/main.dart",
             "args": [
-                "--dart-define-from-file=dart_defines/prod.json"
+                "--dart-define-from-file=scripts/dart_defines/prod.json"
             ]
         },
         {
@@ -51,7 +51,7 @@
             "flutterMode": "release",
             "program": "lib/main.dart",
             "args": [
-                "--dart-define-from-file=dart_defines/prod.json"
+                "--dart-define-from-file=scripts/dart_defines/prod.json"
             ]
         }
     ]
