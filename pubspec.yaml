@@ -13,6 +13,7 @@ dependencies:
   collection: 
   dynamic_color: 
   envied: 
+  flame: ^1.16.0
   flutter:
     sdk: flutter
   flutter_hooks: 
