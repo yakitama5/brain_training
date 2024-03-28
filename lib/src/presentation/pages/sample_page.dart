@@ -1,4 +1,4 @@
-import 'package:brain_training/src/presentation/pages/colored_word/pages/colored_word_page.dart';
+import 'package:brain_training/src/presentation/pages/colored_word/colored_word_page.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';

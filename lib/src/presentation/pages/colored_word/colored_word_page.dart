@@ -9,7 +9,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import '../components/mixed_colored_word_text.dart';
+import 'components/mixed_colored_word_text.dart';
 
 class ColoredWordPage extends HookConsumerWidget {
   ColoredWordPage({super.key});
