@@ -11,6 +11,7 @@ dependencies:
   adaptive_dialog: 
   cached_network_image: 
   collection: 
+  convex_bottom_bar: ^3.2.0
   dynamic_color: 
   envied: 
   flame: ^1.16.0
