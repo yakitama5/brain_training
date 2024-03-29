@@ -19,7 +19,7 @@ class NavigatorPage extends HookWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: StyleProvider(
-        style: Style(),
+        style: _Style(),
         child: ConvexAppBar(
           style: TabStyle.fixedCircle,
           height: 80,
@@ -97,7 +97,7 @@ class _ConvexTabItem extends StatelessWidget {
   }
 }
 
-class Style extends StyleHook {
+class _Style extends StyleHook {
   @override
   double get activeIconSize => 24;
 
