@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:nested/nested.dart';
 
 import '../../../domain/training/value_object/training_type.dart';
+import '../training/components/training_card.dart';
 
 class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
@@ -32,10 +33,7 @@ class HomePage extends HookConsumerWidget {
                   child: Column(
                     children: TrainingType.values
                         .map(
-                          (e) => TrainingCard(
-                            trainingType: e,
-                            done: e == TrainingType.addMinus,
-                          ),
+                          (e) => TrainingCard(trainingType: e),
                         )
                         .toList(),
                   ),
@@ -173,98 +171,6 @@ class HomePane extends SingleChildStatelessWidget {
         ),
         const Gap(8),
         child,
-      ],
-    );
-  }
-}
-
-class TrainingCard extends StatelessWidget {
-  const TrainingCard({
-    super.key,
-    required this.trainingType,
-    required this.done,
-  });
-
-  final TrainingType trainingType;
-  final bool done;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final ts = Theme.of(context).textTheme;
-
-    final subhead = done ? '今日のスコア' : '今日の脳トレを始めましょう';
-
-    return FilledCard(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: cs.primary,
-              ),
-              const Gap(16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    trainingType.title,
-                    style: ts.titleMedium,
-                  ),
-                  Text(
-                    subhead,
-                    style: ts.bodyMedium,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const Gap(24),
-          if (!done)
-            WidthFillBox(
-              child: FilledButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-                label: const Text('測定'),
-              ),
-            ),
-          if (done)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                LabelIcon(iconData: Icons.score, label: '横綱級'),
-                LabelIcon(iconData: Icons.sports_score, label: '15点'),
-              ],
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class LabelIcon extends StatelessWidget {
-  const LabelIcon({super.key, required this.iconData, required this.label});
-
-  final IconData iconData;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final ts = Theme.of(context).textTheme;
-
-    return Column(
-      children: [
-        Icon(
-          iconData,
-          color: cs.primary,
-          size: 32,
-        ),
-        const Gap(16),
-        Text(
-          label,
-          style: ts.titleLarge,
-        ),
       ],
     );
   }
