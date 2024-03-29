@@ -1,4 +1,4 @@
-import 'package:brain_training/src/presentation/pages/home/home_page.dart';
+import 'package:brain_training/src/presentation/pages/analytics/analytics_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -21,5 +21,6 @@ class AnalyticsRouteData extends GoRouteData {
   static const path = '/analytics';
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const HomePage();
+  Widget build(BuildContext context, GoRouterState state) =>
+      const AnalyticsPage();
 }
