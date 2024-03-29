@@ -3,6 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:nested/nested.dart';
 
 import '../../../domain/training/value_object/training_type.dart';
@@ -23,38 +25,19 @@ class HomePage extends HookConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      '3/25 土曜日',
-                      style: ts.headlineMedium,
-                    ),
-                    const Gap(8),
-                    Icon(
-                      Icons.sunny,
-                      size: 32,
-                      color: cs.primary,
-                    ),
-                  ],
-                ),
+                Callender(dateTime: DateTime.now()),
                 const Gap(24),
-                const HomePane(
+                HomePane(
                   label: '今日の状況',
                   child: Column(
-                    children: [
-                      TrainingCard(
-                        trainingType: TrainingType.coloredWord,
-                        done: false,
-                      ),
-                      TrainingCard(
-                        trainingType: TrainingType.themeShiritori,
-                        done: false,
-                      ),
-                      TrainingCard(
-                        trainingType: TrainingType.addMinus,
-                        done: true,
-                      ),
-                    ],
+                    children: TrainingType.values
+                        .map(
+                          (e) => TrainingCard(
+                            trainingType: e,
+                            done: e == TrainingType.addMinus,
+                          ),
+                        )
+                        .toList(),
                   ),
                 ),
                 const Gap(32),
@@ -134,6 +117,36 @@ class HomePage extends HookConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Callender extends StatelessWidget {
+  const Callender({super.key, required this.dateTime});
+
+  final DateTime dateTime;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final ts = Theme.of(context).textTheme;
+
+    initializeDateFormatting('ja');
+    final format = DateFormat('M/dd EEEE', 'ja');
+
+    return Row(
+      children: [
+        Text(
+          format.format(dateTime),
+          style: ts.headlineMedium,
+        ),
+        const Gap(8),
+        Icon(
+          Icons.sunny,
+          size: 32,
+          color: cs.primary,
+        ),
+      ],
     );
   }
 }
