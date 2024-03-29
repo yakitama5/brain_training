@@ -10,6 +10,7 @@ environment:
 dependencies:
   adaptive_dialog: 
   cached_network_image: 
+  carousel_slider: 
   collection: 
   convex_bottom_bar: ^3.2.0
   dynamic_color: 
@@ -33,7 +34,7 @@ dependencies:
   json_serializable: 
   logger: 
   lottie: 
-  m3_carousel: 
+  # m3_carousel: 
   material_color_utilities: 
   material_design_icons_flutter: 
   nested: 
@@ -65,8 +66,8 @@ flutter:
   uses-material-design: true
 
   # Assets & Fonts
-  assets:
-    - assets/images/
+  # assets:
+  #   - assets/images/
     # - assets/lottie/
   # fonts:
   #   - family: CustomIcons

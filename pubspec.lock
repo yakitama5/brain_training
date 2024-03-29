@@ -169,6 +169,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      sha256: "9c695cc963bf1d04a47bd6021f68befce8970bcd61d24938e1fb0918cf5d9c42"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   characters:
     dependency: transitive
     description:
@@ -797,14 +805,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
-  m3_carousel:
-    dependency: "direct main"
-    description:
-      name: m3_carousel
-      sha256: "9610787fe93ba3212f8dd2346ff47fdb5d9d91211c4a288c57493de07fa0e4af"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.2"
   macos_ui:
     dependency: transitive
     description:
