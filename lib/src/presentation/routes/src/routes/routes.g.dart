@@ -18,6 +18,20 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           path: '/',
           factory: $RootRouteDataExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: '/tutorial',
+          factory: $ColoredWordTutorialRouteDataExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'select',
+              factory: $ColoredWordSelectRouteDataExtension._fromState,
+            ),
+          ],
+        ),
+        GoRouteData.$route(
+          path: '/home/colored_word/:answerType',
+          factory: $ColoredWordRouteDataExtension._fromState,
+        ),
         StatefulShellRouteData.$route(
           restorationScopeId: BottomNavitorShellRouteData.$restorationScopeId,
           factory: $BottomNavitorShellRouteDataExtension._fromState,
@@ -88,6 +102,68 @@ extension $RootRouteDataExtension on RootRouteData {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+extension $ColoredWordTutorialRouteDataExtension
+    on ColoredWordTutorialRouteData {
+  static ColoredWordTutorialRouteData _fromState(GoRouterState state) =>
+      const ColoredWordTutorialRouteData();
+
+  String get location => GoRouteData.$location(
+        '/tutorial',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ColoredWordSelectRouteDataExtension on ColoredWordSelectRouteData {
+  static ColoredWordSelectRouteData _fromState(GoRouterState state) =>
+      const ColoredWordSelectRouteData();
+
+  String get location => GoRouteData.$location(
+        '/tutorial/select',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ColoredWordRouteDataExtension on ColoredWordRouteData {
+  static ColoredWordRouteData _fromState(GoRouterState state) =>
+      ColoredWordRouteData(
+        _$AnswerTypeEnumMap._$fromName(state.pathParameters['answerType']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/colored_word/${Uri.encodeComponent(_$AnswerTypeEnumMap[answerType]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+const _$AnswerTypeEnumMap = {
+  AnswerType.voice: 'voice',
+  AnswerType.list: 'list',
+};
 
 extension $BottomNavitorShellRouteDataExtension on BottomNavitorShellRouteData {
   static BottomNavitorShellRouteData _fromState(GoRouterState state) =>
@@ -181,4 +257,9 @@ extension $SettingsRouteDataExtension on SettingsRouteData {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
 }

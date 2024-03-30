@@ -23,8 +23,13 @@ class MixedColoredWordText extends HookWidget {
     };
 
     final textTheme = Theme.of(context).textTheme;
-    final style = textTheme.displayLarge
-        ?.merge(TextStyle(color: coloredWord.color.color, fontSize: 120));
+    final style = textTheme.displayLarge?.merge(
+      TextStyle(
+        color: coloredWord.color.color,
+        fontSize: 120,
+        fontWeight: FontWeight.bold,
+      ),
+    );
 
     return Text(
       word,

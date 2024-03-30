@@ -1,3 +1,4 @@
+import 'package:brain_training/src/presentation/routes/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -82,12 +83,25 @@ class TrainingCard extends StatelessWidget {
           switch (cardType) {
             TrainingCardType.home ||
             TrainingCardType.trainingDetail =>
-              const _TrainingButton(),
+              _TrainingButton(
+                onPressed: () => onTraining(context),
+              ),
             TrainingCardType.done => const _Score(),
           },
         ],
       ),
     );
+  }
+
+  void onTraining(BuildContext context) {
+    switch (trainingType) {
+      case TrainingType.coloredWord:
+        const ColoredWordTutorialRouteData().push<void>(context);
+        return;
+      case TrainingType.themeShiritori:
+      case TrainingType.addMinus:
+        return;
+    }
   }
 }
 
@@ -123,12 +137,14 @@ class _IconWithLabel extends StatelessWidget {
 }
 
 class _TrainingButton extends StatelessWidget {
-  const _TrainingButton();
+  const _TrainingButton({required this.onPressed});
+
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) => WidthFillBox(
         child: FilledButton.icon(
-          onPressed: () {},
+          onPressed: onPressed,
           icon: const Icon(Icons.add),
           label: const Text('測定'),
         ),
