@@ -120,7 +120,9 @@ class ColoredWordRouteData extends GoRouteData {
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
       MaterialPage(
-        child: ColoredWordPage(),
+        child: ColoredWordPage(
+          answerType: answerType,
+        ),
         fullscreenDialog: true,
       );
 }

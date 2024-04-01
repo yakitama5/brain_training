@@ -6,63 +6,25 @@ import 'package:brain_training/app/domain/read_color/value_object/colored_word.d
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../../domain/training/entity/training_result.dart';
+import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
+import '../training/components/count_down.dart';
 import 'components/mixed_colored_word_text.dart';
 
 class ColoredWordPage extends HookConsumerWidget {
-  ColoredWordPage({super.key});
+  const ColoredWordPage({super.key, required this.answerType});
 
-  static const _duration = Duration(milliseconds: 100);
-
-  final SpeechToText speech = SpeechToText();
-  final Stopwatch stopwatch = Stopwatch();
+  final AnswerType answerType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final word = useState(_createMixedWord());
-    final correct = useState(0);
-    final questions = useState(0);
-    final ms = useState(TrainingType.coloredWord.limitMillSecond);
-
-    void updateStopWatch() {
-      ms.value = TrainingType.coloredWord.limitMillSecond -
-          stopwatch.elapsed.inMilliseconds;
-
-      if (ms.value <= 0) {
-        TrainingResultRouteData(
-          ColoredWordResult(
-            correct: correct.value,
-            questions: questions.value,
-          ),
-        ).go(context);
-        stopwatch.stop();
-        return;
-      }
-
-      if (stopwatch.isRunning) {
-        Timer(_duration, updateStopWatch);
-      }
-    }
-
-    useEffect(
-      () {
-        // onListen((result) {
-        // text.value = result.recognizedWords;
-        // });
-        // return speech.cancel;
-
-        stopwatch.start();
-        Timer(_duration, updateStopWatch);
-        return stopwatch.reset;
-        // return null;
-      },
-      [speech, stopwatch],
-    );
+    final completedCountDown = useState(false);
 
     return Scaffold(
       appBar: AppBar(
@@ -73,66 +35,109 @@ class ColoredWordPage extends HookConsumerWidget {
         ),
         title: const Text('色当てクイズ'),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Expanded(
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: GaugeChart(
-                    value: 100 -
-                        ms.value /
-                            TrainingType.coloredWord.limitMillSecond *
-                            100,
-                    radius: 56,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 6,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 64, bottom: 80),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MixedColoredWordText(coloredWord: word.value),
-                      // Button版
-                      Column(
-                        children: ColoredWord.values
-                            .map(
-                              (e) => Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 16,
-                                  right: 16,
-                                  bottom: 8,
-                                ),
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  child: OutlinedButton(
-                                    onPressed: () {
-                                      if (word.value.color == e) {
-                                        correct.value++;
-                                      }
-                                      questions.value++;
-                                      word.value = _createMixedWord();
-                                      stopwatch.start();
-                                      Timer(_duration, updateStopWatch);
-                                    },
-                                    child: Text(e.hiragana),
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+      body: completedCountDown.value
+          ? PlayPage(answerType: answerType)
+          : CountDown(
+              initialSecond: 3,
+              onEnd: () => completedCountDown.value = true,
+            ),
+    );
+  }
+}
+
+class PlayPage extends HookWidget {
+  PlayPage({super.key, required this.answerType});
+
+  static const _timerDuration = Duration(milliseconds: 100);
+
+  final AnswerType answerType;
+  final Stopwatch stopwatch = Stopwatch();
+
+  @override
+  Widget build(BuildContext context) {
+    final word = useState(_createMixedWord());
+    final correct = useState(0);
+    final questions = useState(0);
+    final ms = useState(TrainingType.coloredWord.limitMillSecond);
+
+    void updateStopWatch() {
+      ms.value = TrainingType.coloredWord.limitMillSecond -
+          stopwatch.elapsed.inMilliseconds;
+
+      // 終了時
+      if (ms.value <= 0) {
+        stopwatch.stop();
+
+        TrainingResultRouteData(
+          ColoredWordResult(
+            correct: correct.value,
+            questions: questions.value,
           ),
+        ).go(context);
+        return;
+      }
+
+      if (stopwatch.isRunning) {
+        Timer(_timerDuration, updateStopWatch);
+      }
+    }
+
+    void onAnswered(ColoredWord answer) {
+      if (word.value.color == answer) {
+        correct.value++;
+      }
+      questions.value++;
+      word.value = _createMixedWord();
+      stopwatch.start();
+      Timer(
+        _timerDuration,
+        updateStopWatch,
+      );
+    }
+
+    useEffect(
+      () {
+        stopwatch.start();
+        Timer(_timerDuration, updateStopWatch);
+        return stopwatch.reset;
+      },
+      [stopwatch],
+    );
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(
+              child: Align(
+                alignment: Alignment.topRight,
+                child: GaugeChart(
+                  value: 100 -
+                      ms.value / TrainingType.coloredWord.limitMillSecond * 100,
+                  radius: 56,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 6,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 64, bottom: 80),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    MixedColoredWordText(coloredWord: word.value),
+
+                    // 回答エリア
+                    switch (answerType) {
+                      AnswerType.voice => VoiceAnswer(onAnswered: onAnswered),
+                      AnswerType.list => ListAnswer(onAnswered: onAnswered),
+                    },
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -144,6 +149,60 @@ class ColoredWordPage extends HookConsumerWidget {
     return MixedColoredWord(
       color: ColoredWord.values[Random().nextInt(max)],
       word: ColoredWord.values[Random().nextInt(max)],
+    );
+  }
+}
+
+class ListAnswer extends StatelessWidget {
+  const ListAnswer({super.key, required this.onAnswered});
+
+  final void Function(ColoredWord answer) onAnswered;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: ColoredWord.values
+          .map(
+            (e) => Padding(
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: 8,
+              ),
+              child: SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  onPressed: () => onAnswered(e),
+                  child: Text(e.hiragana),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
+class VoiceAnswer extends StatelessWidget {
+  VoiceAnswer({super.key, required this.onAnswered});
+
+  final void Function(ColoredWord answer) onAnswered;
+
+  final SpeechToText speech = SpeechToText();
+
+  @override
+  Widget build(BuildContext context) {
+    final ts = Theme.of(context).textTheme;
+
+    return Column(
+      children: [
+        const Icon(
+          Icons.mic,
+          size: 92,
+        ),
+        const Gap(12),
+        Text('声で回答して下さい', style: ts.headlineMedium),
+      ],
     );
   }
 
