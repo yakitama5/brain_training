@@ -32,6 +32,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           path: '/home/colored_word/:answerType',
           factory: $ColoredWordRouteDataExtension._fromState,
         ),
+        GoRouteData.$route(
+          path: '/training_result/:trainingType',
+          factory: $TrainingResultRouteDataExtension._fromState,
+        ),
         StatefulShellRouteData.$route(
           restorationScopeId: BottomNavitorShellRouteData.$restorationScopeId,
           factory: $BottomNavitorShellRouteDataExtension._fromState,
@@ -163,6 +167,35 @@ extension $ColoredWordRouteDataExtension on ColoredWordRouteData {
 const _$AnswerTypeEnumMap = {
   AnswerType.voice: 'voice',
   AnswerType.list: 'list',
+};
+
+extension $TrainingResultRouteDataExtension on TrainingResultRouteData {
+  static TrainingResultRouteData _fromState(GoRouterState state) =>
+      TrainingResultRouteData(
+        _$TrainingTypeEnumMap._$fromName(state.pathParameters['trainingType']!),
+        $extra: state.extra as TrainingResult?,
+      );
+
+  String get location => GoRouteData.$location(
+        '/training_result/${Uri.encodeComponent(_$TrainingTypeEnumMap[trainingType]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location, extra: $extra);
+
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: $extra);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: $extra);
+
+  void replace(BuildContext context) =>
+      context.replace(location, extra: $extra);
+}
+
+const _$TrainingTypeEnumMap = {
+  TrainingType.coloredWord: 'colored-word',
+  TrainingType.themeShiritori: 'theme-shiritori',
+  TrainingType.addMinus: 'add-minus',
 };
 
 extension $BottomNavitorShellRouteDataExtension on BottomNavitorShellRouteData {

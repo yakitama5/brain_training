@@ -1,4 +1,5 @@
 import 'package:brain_training/src/domain/training/value_object/answer_type.dart';
+import 'package:brain_training/src/domain/training/value_object/training_type.dart';
 import 'package:brain_training/src/presentation/pages/colored_word/colored_word_page.dart';
 import 'package:brain_training/src/presentation/routes/src/routes/analytics_branch.dart';
 import 'package:brain_training/src/presentation/routes/src/routes/break_branch.dart';
@@ -6,7 +7,9 @@ import 'package:brain_training/src/presentation/routes/src/routes/home_branch.da
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../application/model/training/training_result.dart';
 import '../../../pages/training/answer_selection_page.dart';
+import '../../../pages/training/training_result_page.dart';
 import '../../../pages/training/training_tutorial_page.dart';
 import 'navigator_page.dart';
 import 'settings_branch.dart';
@@ -28,6 +31,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
       ],
     ),
     TypedGoRoute<ColoredWordRouteData>(path: ColoredWordRouteData.path),
+    TypedGoRoute<TrainingResultRouteData>(path: TrainingResultRouteData.path),
     TypedStatefulShellRoute<BottomNavitorShellRouteData>(
       branches: [
         homeBranch,
@@ -119,5 +123,19 @@ class ColoredWordRouteData extends GoRouteData {
       MaterialPage(
         child: ColoredWordPage(),
         fullscreenDialog: true,
+      );
+}
+
+class TrainingResultRouteData extends GoRouteData {
+  const TrainingResultRouteData(this.trainingType, {this.$extra});
+
+  static const path = '/training_result/:trainingType';
+  final TrainingResult? $extra;
+  final TrainingType trainingType;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => TrainingResultPage(
+        trainingType: trainingType,
+        trainingResult: $extra,
       );
 }
