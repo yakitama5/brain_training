@@ -29,8 +29,6 @@ class TrainingCard extends StatelessWidget {
         cardType: TrainingCardType.trainingDetail,
       );
 
-  bool get _isHome => cardType == TrainingCardType.home;
-  bool get _isDone => cardType == TrainingCardType.done;
   bool get _isDetail => cardType == TrainingCardType.trainingDetail;
 
   final TrainingType trainingType;
