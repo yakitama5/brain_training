@@ -1,13 +1,17 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:brain_training/src/application/model/training/training_result.dart';
 import 'package:brain_training/src/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/src/domain/read_color/value_object/colored_word.dart';
+import 'package:brain_training/src/presentation/routes/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../../domain/training/value_object/training_type.dart';
+import '../../components/importer.dart';
 import 'components/mixed_colored_word_text.dart';
 
 class ColoredWordPage extends HookConsumerWidget {
@@ -22,11 +26,25 @@ class ColoredWordPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final word = useState(_createMixedWord());
     final correct = useState(0);
-    final incorrect = useState(0);
-    final seconds = useState(30);
+    final questions = useState(0);
+    final ms = useState(TrainingType.coloredWord.limitMillSecond);
 
     void updateStopWatch() {
-      seconds.value = 30 - stopwatch.elapsed.inSeconds;
+      ms.value = TrainingType.coloredWord.limitMillSecond -
+          stopwatch.elapsed.inMilliseconds;
+
+      if (ms.value <= 0) {
+        TrainingResultRouteData(
+          TrainingType.coloredWord,
+          $extra: TrainingResult(
+            correct: correct.value,
+            quesLength: questions.value,
+          ),
+        ).go(context);
+        stopwatch.stop();
+        return;
+      }
+
       if (stopwatch.isRunning) {
         Timer(_duration, updateStopWatch);
       }
@@ -39,10 +57,10 @@ class ColoredWordPage extends HookConsumerWidget {
         // });
         // return speech.cancel;
 
-        // stopwatch.start();
-        // Timer(_duration, updateStopWatch);
-        // return stopwatch.reset;
-        return null;
+        stopwatch.start();
+        Timer(_duration, updateStopWatch);
+        return stopwatch.reset;
+        // return null;
       },
       [speech, stopwatch],
     );
@@ -50,6 +68,10 @@ class ColoredWordPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {},
+        ),
         title: const Text('色当てクイズ'),
       ),
       body: SafeArea(
@@ -57,13 +79,15 @@ class ColoredWordPage extends HookConsumerWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 child: Align(
                   alignment: Alignment.topRight,
-                  child: SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: ColoredBox(color: Colors.red),
+                  child: GaugeChart(
+                    value: 100 -
+                        ms.value /
+                            TrainingType.coloredWord.limitMillSecond *
+                            100,
+                    radius: 56,
                   ),
                 ),
               ),
@@ -91,11 +115,9 @@ class ColoredWordPage extends HookConsumerWidget {
                                     onPressed: () {
                                       if (word.value.color == e) {
                                         correct.value++;
-                                        word.value = _createMixedWord();
-                                      } else {
-                                        incorrect.value++;
-                                        word.value = _createMixedWord();
                                       }
+                                      questions.value++;
+                                      word.value = _createMixedWord();
                                       stopwatch.start();
                                       Timer(_duration, updateStopWatch);
                                     },
