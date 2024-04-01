@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'src/app.dart';
-import 'src/application/state/initial_location_provider.dart';
+import 'app/app.dart';
+import 'app/application/state/initial_location_provider.dart';
 
 void main() {
   // Flutter Initialize
