@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:brain_training/app/application/model/training/training_result.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
 import 'components/mixed_colored_word_text.dart';
@@ -35,10 +35,9 @@ class ColoredWordPage extends HookConsumerWidget {
 
       if (ms.value <= 0) {
         TrainingResultRouteData(
-          TrainingType.coloredWord,
-          $extra: TrainingResult(
+          ColoredWordResult(
             correct: correct.value,
-            quesLength: questions.value,
+            questions: questions.value,
           ),
         ).go(context);
         stopwatch.stop();

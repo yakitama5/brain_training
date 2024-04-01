@@ -33,7 +33,7 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           factory: $ColoredWordRouteDataExtension._fromState,
         ),
         GoRouteData.$route(
-          path: '/training_result/:trainingType',
+          path: '/training_result',
           factory: $TrainingResultRouteDataExtension._fromState,
         ),
         StatefulShellRouteData.$route(
@@ -172,12 +172,11 @@ const _$AnswerTypeEnumMap = {
 extension $TrainingResultRouteDataExtension on TrainingResultRouteData {
   static TrainingResultRouteData _fromState(GoRouterState state) =>
       TrainingResultRouteData(
-        _$TrainingTypeEnumMap._$fromName(state.pathParameters['trainingType']!),
-        $extra: state.extra as TrainingResult?,
+        state.extra as TrainingResult,
       );
 
   String get location => GoRouteData.$location(
-        '/training_result/${Uri.encodeComponent(_$TrainingTypeEnumMap[trainingType]!)}',
+        '/training_result',
       );
 
   void go(BuildContext context) => context.go(location, extra: $extra);
@@ -191,12 +190,6 @@ extension $TrainingResultRouteDataExtension on TrainingResultRouteData {
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
 }
-
-const _$TrainingTypeEnumMap = {
-  TrainingType.coloredWord: 'colored-word',
-  TrainingType.themeShiritori: 'theme-shiritori',
-  TrainingType.addMinus: 'add-minus',
-};
 
 extension $BottomNavitorShellRouteDataExtension on BottomNavitorShellRouteData {
   static BottomNavitorShellRouteData _fromState(GoRouterState state) =>

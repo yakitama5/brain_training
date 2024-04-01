@@ -1,5 +1,4 @@
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
-import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:brain_training/app/presentation/pages/colored_word/colored_word_page.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/analytics_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/break_branch.dart';
@@ -7,7 +6,7 @@ import 'package:brain_training/app/presentation/routes/src/routes/home_branch.da
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../application/model/training/training_result.dart';
+import '../../../../domain/training/entity/training_result.dart';
 import '../../../pages/training/answer_selection_page.dart';
 import '../../../pages/training/training_result_page.dart';
 import '../../../pages/training/training_tutorial_page.dart';
@@ -127,15 +126,13 @@ class ColoredWordRouteData extends GoRouteData {
 }
 
 class TrainingResultRouteData extends GoRouteData {
-  const TrainingResultRouteData(this.trainingType, {this.$extra});
+  const TrainingResultRouteData(this.$extra);
 
-  static const path = '/training_result/:trainingType';
-  final TrainingResult? $extra;
-  final TrainingType trainingType;
+  static const path = '/training_result';
+  final TrainingResult $extra;
 
   @override
   Widget build(BuildContext context, GoRouterState state) => TrainingResultPage(
-        trainingType: trainingType,
-        trainingResult: $extra,
+        result: $extra,
       );
 }
