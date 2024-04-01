@@ -26,6 +26,7 @@ dependencies:
     sdk: flutter
   freezed_annotation: 
   gap: 
+  gauge_indicator: 
   go_router: ^13.2.1
   google_fonts: 
   hooks_riverpod: ^3.0.0-dev.3
@@ -69,10 +70,10 @@ flutter:
   # assets:
   #   - assets/images/
     # - assets/lottie/
-  # fonts:
-  #   - family: CustomIcons
-  #     fonts:
-  #       - asset: assets/icons/CustomIcons.ttf
+  fonts:
+    - family: CustomIcons
+      fonts:
+        - asset: assets/icons/CustomIcons.ttf
   #   - family: Murecho
   #     fonts:
   #       - asset: assets/fonts/Murecho-VariableFont_wght.ttf
