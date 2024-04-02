@@ -4,13 +4,13 @@ import 'dart:math';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
-import 'package:brain_training/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../../application/state/speech_to_text_provider.dart';
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
@@ -184,7 +184,7 @@ class ListAnswer extends StatelessWidget {
   }
 }
 
-class VoiceAnswer extends HookWidget {
+class VoiceAnswer extends HookConsumerWidget {
   VoiceAnswer({super.key, required this.onAnswered});
 
   final void Function(ColoredWord answer) onAnswered;
@@ -192,19 +192,20 @@ class VoiceAnswer extends HookWidget {
   final SpeechToText speech = SpeechToText();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final ts = Theme.of(context).textTheme;
+    final stt = ref.watch(sTTProvider);
 
     useEffect(
       () {
-        speech.initialize();
-        return null;
+        stt.startListening();
+        // speech.initialize();
+        // return null;
         // onListen((result) {
         //   logger.d(result.alternates.map((e) => e.recognizedWords).join(','));
         // });
-        // return null;
+        return null;
       },
-      [speech],
     );
 
     return Column(
@@ -215,6 +216,7 @@ class VoiceAnswer extends HookWidget {
         ),
         const Gap(12),
         Text('声で回答して下さい', style: ts.headlineMedium),
+        Text(stt.speechToText.lastRecognizedWords, style: ts.headlineMedium),
       ],
     );
   }
@@ -223,6 +225,7 @@ class VoiceAnswer extends HookWidget {
     await speech.initialize();
     await speech.listen(
       onResult: onResult,
+      listenFor: const Duration(seconds: 60),
     );
   }
 }

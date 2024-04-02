@@ -1,3 +1,4 @@
+import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -98,6 +99,7 @@ class TrainingCard extends StatelessWidget {
         return;
       case TrainingType.themeShiritori:
       case TrainingType.addMinus:
+        const SampleRouteData().go(context);
         return;
     }
   }
