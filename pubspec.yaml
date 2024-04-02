@@ -35,6 +35,7 @@ dependencies:
   gauge_indicator: 
   go_router: ^13.2.1
   google_fonts: 
+  google_sign_in: 
   hooks_riverpod: ^3.0.0-dev.3
   image_picker: 
   intl: 
