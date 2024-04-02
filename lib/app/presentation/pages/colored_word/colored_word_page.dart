@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
+import 'package:brain_training/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -183,7 +184,7 @@ class ListAnswer extends StatelessWidget {
   }
 }
 
-class VoiceAnswer extends StatelessWidget {
+class VoiceAnswer extends HookWidget {
   VoiceAnswer({super.key, required this.onAnswered});
 
   final void Function(ColoredWord answer) onAnswered;
@@ -193,6 +194,18 @@ class VoiceAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ts = Theme.of(context).textTheme;
+
+    useEffect(
+      () {
+        speech.initialize();
+        return null;
+        // onListen((result) {
+        //   logger.d(result.alternates.map((e) => e.recognizedWords).join(','));
+        // });
+        // return null;
+      },
+      [speech],
+    );
 
     return Column(
       children: [
