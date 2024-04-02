@@ -11,11 +11,17 @@ dependencies:
   adaptive_dialog: 
   cached_network_image: 
   carousel_slider: 
+  cloud_firestore: 
   collection: 
   convex_bottom_bar: ^3.2.0
   dynamic_color: 
   envied: 
-  flame: ^1.16.0
+  firebase_analytics: 
+  firebase_app_check: 
+  firebase_auth: 
+  firebase_core: 
+  firebase_crashlytics: 
+  firebase_remote_config: 
   flutter:
     sdk: flutter
   flutter_hooks: 
