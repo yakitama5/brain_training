@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../domain/training/entity/training_result.dart';
+import '../../../pages/settings/onboard_page.dart';
 import '../../../pages/training/answer_selection_page.dart';
 import '../../../pages/training/training_result_page.dart';
 import '../../../pages/training/training_tutorial_page.dart';
@@ -21,6 +22,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 @TypedShellRoute<BaseShellSrouteData>(
   routes: [
     TypedGoRoute<RootRouteData>(path: RootRouteData.path),
+    TypedGoRoute<OnboardRouteData>(path: OnboardRouteData.path),
     TypedGoRoute<ColoredWordTutorialRouteData>(
       path: ColoredWordTutorialRouteData.path,
       routes: [
@@ -137,4 +139,14 @@ class TrainingResultRouteData extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => TrainingResultPage(
         result: $extra,
       );
+}
+
+class OnboardRouteData extends GoRouteData {
+  const OnboardRouteData();
+
+  static const path = '/onboard';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const OnboardPage();
 }

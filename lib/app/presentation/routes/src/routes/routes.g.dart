@@ -19,6 +19,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           factory: $RootRouteDataExtension._fromState,
         ),
         GoRouteData.$route(
+          path: '/onboard',
+          factory: $OnboardRouteDataExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: '/tutorial',
           factory: $ColoredWordTutorialRouteDataExtension._fromState,
           routes: [
@@ -83,6 +87,12 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                 GoRouteData.$route(
                   path: '/settings',
                   factory: $SettingsRouteDataExtension._fromState,
+                  routes: [
+                    GoRouteData.$route(
+                      path: 'account',
+                      factory: $SettingsAccountRouteDataExtension._fromState,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -101,6 +111,24 @@ extension $RootRouteDataExtension on RootRouteData {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $OnboardRouteDataExtension on OnboardRouteData {
+  static OnboardRouteData _fromState(GoRouterState state) =>
+      const OnboardRouteData();
+
+  String get location => GoRouteData.$location(
+        '/onboard',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -297,6 +325,24 @@ extension $SettingsRouteDataExtension on SettingsRouteData {
 
   String get location => GoRouteData.$location(
         '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsAccountRouteDataExtension on SettingsAccountRouteData {
+  static SettingsAccountRouteData _fromState(GoRouterState state) =>
+      const SettingsAccountRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/account',
       );
 
   void go(BuildContext context) => context.go(location);

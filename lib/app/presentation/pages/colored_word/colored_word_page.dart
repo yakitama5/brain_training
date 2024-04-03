@@ -199,11 +199,6 @@ class VoiceAnswer extends HookConsumerWidget {
     useEffect(
       () {
         stt.startListening();
-        // speech.initialize();
-        // return null;
-        // onListen((result) {
-        //   logger.d(result.alternates.map((e) => e.recognizedWords).join(','));
-        // });
         return null;
       },
     );
