@@ -12,10 +12,14 @@ import 'app/domain/user/interface/user_repository.dart';
 import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
 import 'firebase_options.dart';
 import 'firebase_options_dev.dart' as dev;
+import 'i18n/strings.g.dart';
 
 void main() async {
   // Flutter Initialize
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Slang
+  LocaleSettings.useDeviceLocale();
 
   // Flavor に応じた FirebaseOptions を準備する
   final firebaseOptions = switch (appConfig.flavor) {
@@ -45,7 +49,9 @@ void main() async {
         // Firebase
         userRepositoryProvider.overrideWith(FirebaseUserRepository.new),
       ],
-      child: const App(),
+      child: TranslationProvider(
+        child: const App(),
+      ),
     ),
   );
 }

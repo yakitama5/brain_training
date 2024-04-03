@@ -1,7 +1,9 @@
 import 'package:brain_training/app/application/state/loading_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../i18n/strings.g.dart';
 import 'presentation/components/importer.dart';
 import 'presentation/routes/src/routes/router.dart';
 
@@ -27,6 +29,11 @@ class App extends HookConsumerWidget {
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
+
+      // Slang
+      locale: TranslationProvider.of(context).flutterLocale, // use provider
+      supportedLocales: AppLocaleUtils.supportedLocales,
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
 
       // アプリ全体のスクロール制御を変更
       scrollBehavior: ScrollConfiguration.of(context)

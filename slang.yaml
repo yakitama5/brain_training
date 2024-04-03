@@ -1,0 +1,3 @@
+input_directory: assets/i18n
+output_directory: lib/i18n
+translate_var: i18n
