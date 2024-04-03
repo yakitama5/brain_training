@@ -49,6 +49,8 @@ dependencies:
   responsive_framework: 
   riverpod_annotation: ^3.0.0-dev.3
   settings_ui: 
+  slang: 
+  slang_flutter: 
   speech_to_text: 
   url_launcher: 
   uuid: 
@@ -68,6 +70,7 @@ dev_dependencies:
   pedantic_mono: 
   riverpod_generator: ^3.0.0-dev.11
   riverpod_lint: ^3.0.0-dev.4
+  slang_build_runner: 
 
 flutter:
   # generate: true
