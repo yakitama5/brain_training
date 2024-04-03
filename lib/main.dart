@@ -8,6 +8,8 @@ import 'app/app.dart';
 import 'app/application/config/app_config.dart';
 import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
+import 'app/domain/user/interface/user_repository.dart';
+import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
 import 'firebase_options.dart';
 import 'firebase_options_dev.dart' as dev;
 
@@ -38,6 +40,10 @@ void main() async {
       overrides: [
         // 初期ロケーションの設定
         initialLocationProvider.overrideWith((ref) => '/home'),
+
+        // インフラ層のDI
+        // Firebase
+        userRepositoryProvider.overrideWith(FirebaseUserRepository.new),
       ],
       child: const App(),
     ),
