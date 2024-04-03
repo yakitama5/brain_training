@@ -56,6 +56,7 @@ class HomePage extends HookConsumerWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                // TODO(yakitama5): テスト値の設定
                                 Text(
                                   '6/7',
                                   style: ts.bodyLarge?.merge(
@@ -95,6 +96,7 @@ class HomePage extends HookConsumerWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(16),
                             child: Text(
+                              // TODO(yakitama5): テスト値の設定
                               'label$index',
                               style: TextStyle(color: cs.onPrimary),
                             ),
