@@ -23,7 +23,7 @@ class SamplePage extends HookConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('hojge'),
+          Text(text.value),
           FilledButton(
             onPressed: () async {
               await speech.initialize(
@@ -37,6 +37,12 @@ class SamplePage extends HookConsumerWidget {
               await startListening(text, enableListening);
             },
             child: const Text('Record'),
+          ),
+          FilledButton(
+            onPressed: () async {
+              await stopListening(enableListening);
+            },
+            child: const Text('stop'),
           ),
         ],
       ),
@@ -63,8 +69,8 @@ class SamplePage extends HookConsumerWidget {
     ValueNotifier<bool> enableListening,
   ) async {
     if (speech.isAvailable) {
-      await speech.stop();
       enableListening.value = false;
+      await speech.stop();
     }
   }
 
