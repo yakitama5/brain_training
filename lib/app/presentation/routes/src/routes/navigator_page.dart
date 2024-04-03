@@ -1,4 +1,5 @@
 import 'package:brain_training/app/presentation/theme/src/color_scheme_extension.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -26,18 +27,18 @@ class NavigatorPage extends HookWidget {
           backgroundColor: colorScheme.surfaceContainer,
           color: colorScheme.onSurfaceVariant,
           activeColor: colorScheme.onSurfaceVariant,
-          items: const [
+          items: [
             TabItem(
               activeIcon: Icons.home,
               icon: Icons.home_outlined,
-              title: 'ホーム',
+              title: i18n.common.navigationDestination.home,
             ),
             TabItem(
               activeIcon: Icons.analytics,
               icon: Icons.analytics_outlined,
-              title: 'ふりかえり',
+              title: i18n.common.navigationDestination.analytics,
             ),
-            TabItem(
+            const TabItem(
               activeIcon: _ConvexTabItem(active: true),
               icon: _ConvexTabItem(),
               isIconBlend: false,
@@ -45,12 +46,12 @@ class NavigatorPage extends HookWidget {
             TabItem(
               activeIcon: Icons.coffee,
               icon: Icons.coffee_outlined,
-              title: 'いきぬき',
+              title: i18n.common.navigationDestination.coffeBreak,
             ),
             TabItem(
               activeIcon: Icons.settings,
               icon: Icons.settings_outlined,
-              title: 'せってい',
+              title: i18n.common.navigationDestination.settings,
             ),
           ],
           onTap: (index) {
@@ -87,9 +88,9 @@ class _ConvexTabItem extends StatelessWidget {
             color: colorScheme.primary,
             size: 40,
           ),
-          const Text(
-            '脳トレ',
-            style: TextStyle(fontSize: 12),
+          Text(
+            i18n.common.navigationDestination.training,
+            style: const TextStyle(fontSize: 12),
           ),
         ],
       ),

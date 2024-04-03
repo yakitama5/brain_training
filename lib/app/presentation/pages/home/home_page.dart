@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:nested/nested.dart';
 
+import '../../../../i18n/strings.g.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../training/components/training_card.dart';
 
@@ -29,7 +30,7 @@ class HomePage extends HookConsumerWidget {
                 Callender(dateTime: DateTime.now()),
                 const Gap(24),
                 HomePane(
-                  label: '今日の状況',
+                  label: i18n.home.todayStatus,
                   child: Column(
                     children: TrainingType.values
                         .map(
@@ -40,13 +41,13 @@ class HomePage extends HookConsumerWidget {
                 ),
                 const Gap(32),
                 HomePane(
-                  label: '今週の状況',
+                  label: i18n.home.thisWeekStatus,
                   child: FilledCard(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '毎日のトレーニング',
+                          i18n.home.dailyTraining,
                           style: ts.titleMedium,
                         ),
                         const Gap(24),
@@ -65,7 +66,7 @@ class HomePage extends HookConsumerWidget {
                                   ),
                                 ),
                                 Text(
-                                  '達成',
+                                  i18n.home.completed,
                                   style: ts.labelSmall?.merge(
                                     TextStyle(color: cs.surfaceTint),
                                   ),
@@ -81,7 +82,7 @@ class HomePage extends HookConsumerWidget {
                 ),
                 const Gap(32),
                 HomePane(
-                  label: '今日のニュース',
+                  label: i18n.home.todayNews,
                   child: CarouselSlider(
                     items: List.generate(
                       5,
@@ -128,9 +129,11 @@ class Callender extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final ts = Theme.of(context).textTheme;
+    final languageCode =
+        LocaleSettings.currentLocale.flutterLocale.languageCode;
 
-    initializeDateFormatting('ja');
-    final format = DateFormat('M/dd EEEE', 'ja');
+    initializeDateFormatting(languageCode);
+    final format = DateFormat('M/d EEEE', languageCode);
 
     return Row(
       children: [

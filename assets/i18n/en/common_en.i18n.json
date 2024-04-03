@@ -1,0 +1,11 @@
+{
+    "save": "Save",
+    "navigationDestination": {
+        "home": "Home",
+        "analytics": "Analytics",
+        "training": "Training",
+        "coffeBreak": "Break",
+        "settings": "Settings"
+    },
+    "start": "Start!"
+}

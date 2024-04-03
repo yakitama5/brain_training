@@ -1,0 +1,11 @@
+{
+    "save": "保存",
+    "navigationDestination": {
+        "home": "ホーム",
+        "analytics": "ふりかえり",
+        "training": "脳トレ",
+        "coffeBreak": "いきぬき",
+        "settings": "せってい"
+    },
+    "start": "スタート！"
+}

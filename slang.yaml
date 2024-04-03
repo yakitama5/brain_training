@@ -1,3 +1,12 @@
+fallback_strategy: base_locale
 input_directory: assets/i18n
 output_directory: lib/i18n
 translate_var: i18n
+namespaces: true
+
+# Config
+imports:
+  - 'package:brain_training/app/domain/training/value_object/training_type.dart'
+contexts:
+  TrainingType:
+    generate_enum: false

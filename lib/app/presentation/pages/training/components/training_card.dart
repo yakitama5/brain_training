@@ -1,5 +1,6 @@
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -41,9 +42,10 @@ class TrainingCard extends StatelessWidget {
     final ts = Theme.of(context).textTheme;
 
     final subhead = switch (cardType) {
-      TrainingCardType.home => '今日の脳トレを始めましょう',
-      TrainingCardType.done => '今日のスコア',
-      TrainingCardType.trainingDetail => trainingType.subhead,
+      TrainingCardType.home => i18n.training.trainingCard.inviteSubhead,
+      TrainingCardType.done => i18n.training.trainingCard.doneSubhead,
+      TrainingCardType.trainingDetail =>
+        i18n.training.trainingCard.subhead(context: trainingType),
     };
 
     return FilledCard(
@@ -59,7 +61,7 @@ class TrainingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    trainingType.title,
+                    i18n.training.trainingCard.title(context: trainingType),
                     style: ts.titleMedium,
                   ),
                   Text(
@@ -75,7 +77,7 @@ class TrainingCard extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                trainingType.description,
+                i18n.training.trainingCard.description(context: trainingType),
                 style: ts.bodyMedium,
               ),
             ),
@@ -146,7 +148,7 @@ class _TrainingButton extends StatelessWidget {
         child: FilledButton.icon(
           onPressed: onPressed,
           icon: const Icon(Icons.add),
-          label: const Text('測定'),
+          label: Text(i18n.training.trainingCard.start),
         ),
       );
 }

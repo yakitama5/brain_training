@@ -4,13 +4,14 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 8 (4 per locale)
+/// Strings: 54 (27 per locale)
 ///
-/// Built on 2024-04-03 at 06:45 UTC
+/// Built on 2024-04-03 at 07:40 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:flutter/widgets.dart';
 import 'package:slang/builder/model/node.dart';
 import 'package:slang_flutter/slang_flutter.dart';
@@ -148,24 +149,108 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
-	String hello({required Object name}) => 'Hello ${name}';
-	String get save => 'Save';
-	late final _StringsLoginEn login = _StringsLoginEn._(_root);
+	late final _StringsCommonEn common = _StringsCommonEn._(_root);
+	late final _StringsHomeEn home = _StringsHomeEn._(_root);
+	late final _StringsTrainingEn training = _StringsTrainingEn._(_root);
 }
 
-// Path: login
-class _StringsLoginEn {
-	_StringsLoginEn._(this._root);
+// Path: common
+class _StringsCommonEn {
+	_StringsCommonEn._(this._root);
 
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get success => 'Logged in successfully';
-	String get fail => 'Logged in failed';
+	String get save => 'Save';
+	late final _StringsCommonNavigationDestinationEn navigationDestination = _StringsCommonNavigationDestinationEn._(_root);
+	String get start => 'Start!';
+}
+
+// Path: home
+class _StringsHomeEn {
+	_StringsHomeEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get todayStatus => 'Today';
+	String get todayNews => 'News';
+	String get thisWeekStatus => 'This Week';
+	String get dailyTraining => 'Daily';
+	String get completed => 'Completed';
+}
+
+// Path: training
+class _StringsTrainingEn {
+	_StringsTrainingEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get menu => 'Menu';
+	String get doneMenu => 'Done';
+	late final _StringsTrainingTrainingCardEn trainingCard = _StringsTrainingTrainingCardEn._(_root);
+	String get tutorial => 'Tutorial';
+}
+
+// Path: common.navigationDestination
+class _StringsCommonNavigationDestinationEn {
+	_StringsCommonNavigationDestinationEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get home => 'Home';
+	String get analytics => 'Analytics';
+	String get training => 'Training';
+	String get coffeBreak => 'Break';
+	String get settings => 'Settings';
+}
+
+// Path: training.trainingCard
+class _StringsTrainingTrainingCardEn {
+	_StringsTrainingTrainingCardEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String title({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return 'Colored Word';
+			case TrainingType.themeShiritori:
+				return 'Shiritori';
+			case TrainingType.addMinus:
+				return 'Add Minus';
+		}
+	}
+	String get inviteSubhead => 'Let\'s Training!';
+	String get doneSubhead => 'Today Score';
+	String subhead({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '30 Seconds';
+			case TrainingType.themeShiritori:
+				return '5 Minuts';
+			case TrainingType.addMinus:
+				return '60 Seconds';
+		}
+	}
+	String description({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+			case TrainingType.themeShiritori:
+				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+			case TrainingType.addMinus:
+				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+		}
+	}
+	String get start => 'Start';
 }
 
 // Path: <root>
-class _StringsJa implements Translations {
+class _StringsJa extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
 	/// Constructing via the enum [AppLocale.build] is preferred.
 	_StringsJa.build({Map<String, Node>? overrides, PluralResolver? cardinalResolver, PluralResolver? ordinalResolver})
@@ -175,7 +260,9 @@ class _StringsJa implements Translations {
 		    overrides: overrides ?? {},
 		    cardinalResolver: cardinalResolver,
 		    ordinalResolver: ordinalResolver,
-		  ) {
+		  ),
+		  super.build(cardinalResolver: cardinalResolver, ordinalResolver: ordinalResolver) {
+		super.$meta.setFlatMapFunction($meta.getTranslation); // copy base translations to super.$meta
 		$meta.setFlatMapFunction(_flatMapFunction);
 	}
 
@@ -183,25 +270,109 @@ class _StringsJa implements Translations {
 	@override final TranslationMetadata<AppLocale, Translations> $meta;
 
 	/// Access flat map
-	@override dynamic operator[](String key) => $meta.getTranslation(key);
+	@override dynamic operator[](String key) => $meta.getTranslation(key) ?? super.$meta.getTranslation(key);
 
 	@override late final _StringsJa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String hello({required Object name}) => 'ようこそ ${name}';
-	@override String get save => '保存';
-	@override late final _StringsLoginJa login = _StringsLoginJa._(_root);
+	@override late final _StringsCommonJa common = _StringsCommonJa._(_root);
+	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
+	@override late final _StringsTrainingJa training = _StringsTrainingJa._(_root);
 }
 
-// Path: login
-class _StringsLoginJa implements _StringsLoginEn {
-	_StringsLoginJa._(this._root);
+// Path: common
+class _StringsCommonJa extends _StringsCommonEn {
+	_StringsCommonJa._(_StringsJa root) : this._root = root, super._(root);
 
 	@override final _StringsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get success => 'ログイン成功';
-	@override String get fail => 'ログイン失敗';
+	@override String get save => '保存';
+	@override late final _StringsCommonNavigationDestinationJa navigationDestination = _StringsCommonNavigationDestinationJa._(_root);
+	@override String get start => 'スタート！';
+}
+
+// Path: home
+class _StringsHomeJa extends _StringsHomeEn {
+	_StringsHomeJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get todayStatus => '今日の状況';
+	@override String get todayNews => '今日のニュース';
+	@override String get thisWeekStatus => '今週の状況';
+	@override String get dailyTraining => '毎日のトレーニング';
+	@override String get completed => '達成';
+}
+
+// Path: training
+class _StringsTrainingJa extends _StringsTrainingEn {
+	_StringsTrainingJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get menu => '脳トレメニュー';
+	@override String get doneMenu => '実施済のトレーニング';
+	@override late final _StringsTrainingTrainingCardJa trainingCard = _StringsTrainingTrainingCardJa._(_root);
+	@override String get tutorial => 'チュートリアル';
+}
+
+// Path: common.navigationDestination
+class _StringsCommonNavigationDestinationJa extends _StringsCommonNavigationDestinationEn {
+	_StringsCommonNavigationDestinationJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'ホーム';
+	@override String get analytics => 'ふりかえり';
+	@override String get training => '脳トレ';
+	@override String get coffeBreak => 'いきぬき';
+	@override String get settings => 'せってい';
+}
+
+// Path: training.trainingCard
+class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
+	_StringsTrainingTrainingCardJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String title({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '色当てクイズ';
+			case TrainingType.themeShiritori:
+				return 'お題しりとり';
+			case TrainingType.addMinus:
+				return 'タスヒク';
+		}
+	}
+	@override String get inviteSubhead => '今日の脳トレを始めましょう';
+	@override String get doneSubhead => '今日のスコア';
+	@override String subhead({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '所要時間：30秒';
+			case TrainingType.themeShiritori:
+				return '所要時間：5分';
+			case TrainingType.addMinus:
+				return '所要時間：60秒';
+		}
+	}
+	@override String description({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+			case TrainingType.themeShiritori:
+				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+			case TrainingType.addMinus:
+				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+		}
+	}
+	@override String get start => '測定';
 }
 
 /// Flat map(s) containing all translations.
@@ -210,10 +381,54 @@ class _StringsLoginJa implements _StringsLoginEn {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'Hello ${name}';
-			case 'save': return 'Save';
-			case 'login.success': return 'Logged in successfully';
-			case 'login.fail': return 'Logged in failed';
+			case 'common.save': return 'Save';
+			case 'common.navigationDestination.home': return 'Home';
+			case 'common.navigationDestination.analytics': return 'Analytics';
+			case 'common.navigationDestination.training': return 'Training';
+			case 'common.navigationDestination.coffeBreak': return 'Break';
+			case 'common.navigationDestination.settings': return 'Settings';
+			case 'common.start': return 'Start!';
+			case 'home.todayStatus': return 'Today';
+			case 'home.todayNews': return 'News';
+			case 'home.thisWeekStatus': return 'This Week';
+			case 'home.dailyTraining': return 'Daily';
+			case 'home.completed': return 'Completed';
+			case 'training.menu': return 'Menu';
+			case 'training.doneMenu': return 'Done';
+			case 'training.trainingCard.title': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return 'Colored Word';
+					case TrainingType.themeShiritori:
+						return 'Shiritori';
+					case TrainingType.addMinus:
+						return 'Add Minus';
+				}
+			};
+			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
+			case 'training.trainingCard.doneSubhead': return 'Today Score';
+			case 'training.trainingCard.subhead': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '30 Seconds';
+					case TrainingType.themeShiritori:
+						return '5 Minuts';
+					case TrainingType.addMinus:
+						return '60 Seconds';
+				}
+			};
+			case 'training.trainingCard.description': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+					case TrainingType.themeShiritori:
+						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+					case TrainingType.addMinus:
+						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+				}
+			};
+			case 'training.trainingCard.start': return 'Start';
+			case 'training.tutorial': return 'Tutorial';
 			default: return null;
 		}
 	}
@@ -222,10 +437,54 @@ extension on Translations {
 extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'hello': return ({required Object name}) => 'ようこそ ${name}';
-			case 'save': return '保存';
-			case 'login.success': return 'ログイン成功';
-			case 'login.fail': return 'ログイン失敗';
+			case 'common.save': return '保存';
+			case 'common.navigationDestination.home': return 'ホーム';
+			case 'common.navigationDestination.analytics': return 'ふりかえり';
+			case 'common.navigationDestination.training': return '脳トレ';
+			case 'common.navigationDestination.coffeBreak': return 'いきぬき';
+			case 'common.navigationDestination.settings': return 'せってい';
+			case 'common.start': return 'スタート！';
+			case 'home.todayStatus': return '今日の状況';
+			case 'home.todayNews': return '今日のニュース';
+			case 'home.thisWeekStatus': return '今週の状況';
+			case 'home.dailyTraining': return '毎日のトレーニング';
+			case 'home.completed': return '達成';
+			case 'training.menu': return '脳トレメニュー';
+			case 'training.doneMenu': return '実施済のトレーニング';
+			case 'training.trainingCard.title': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '色当てクイズ';
+					case TrainingType.themeShiritori:
+						return 'お題しりとり';
+					case TrainingType.addMinus:
+						return 'タスヒク';
+				}
+			};
+			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
+			case 'training.trainingCard.doneSubhead': return '今日のスコア';
+			case 'training.trainingCard.subhead': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '所要時間：30秒';
+					case TrainingType.themeShiritori:
+						return '所要時間：5分';
+					case TrainingType.addMinus:
+						return '所要時間：60秒';
+				}
+			};
+			case 'training.trainingCard.description': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+					case TrainingType.themeShiritori:
+						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+					case TrainingType.addMinus:
+						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+				}
+			};
+			case 'training.trainingCard.start': return '測定';
+			case 'training.tutorial': return 'チュートリアル';
 			default: return null;
 		}
 	}

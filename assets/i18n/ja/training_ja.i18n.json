@@ -1,0 +1,25 @@
+{
+    "menu": "脳トレメニュー",
+    "doneMenu": "実施済のトレーニング",
+    "trainingCard": {
+        "title(context=TrainingType)": {
+            "coloredWord": "色当てクイズ",
+            "themeShiritori": "お題しりとり",
+            "addMinus": "タスヒク"
+        },
+        "inviteSubhead": "今日の脳トレを始めましょう",
+        "doneSubhead": "今日のスコア",
+        "subhead(context=TrainingType)": {
+            "coloredWord": "所要時間：30秒",
+            "themeShiritori": "所要時間：5分",
+            "addMinus": "所要時間：60秒"
+        },
+        "description(context=TrainingType)": {
+            "coloredWord": "4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する",
+            "themeShiritori": "選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する",
+            "addMinus": "選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する"
+        },
+        "start": "測定"
+    },
+    "tutorial": "チュートリアル"
+}
