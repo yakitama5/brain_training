@@ -64,7 +64,6 @@ env.dev.g.dart
 firebase_options.dart
 firebase_options_dev.dart
 firebase_app_id_file.json
-*.rules
 
 # FVM Version Cache
 .fvm/
