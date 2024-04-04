@@ -9,10 +9,13 @@ imports:
   - 'package:brain_training/app/domain/training/value_object/training_type.dart'
   - 'package:brain_training/app/domain/training/value_object/result_rank.dart'
   - 'package:brain_training/app/domain/training/value_object/rank_category.dart'
+  - 'package:brain_training/app/domain/training/value_object/answer_type.dart'
 contexts:
   TrainingType:
     generate_enum: false
   ResultRank:
     generate_enum: false
   RankCategory:
+    generate_enum: false
+  AnswerType:
     generate_enum: false

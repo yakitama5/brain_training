@@ -4,13 +4,14 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 106 (53 per locale)
+/// Strings: 114 (57 per locale)
 ///
-/// Built on 2024-04-04 at 05:29 UTC
+/// Built on 2024-04-04 at 05:37 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
+import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
 import 'package:brain_training/app/domain/training/value_object/training_type.dart';
@@ -206,6 +207,7 @@ class _StringsTrainingEn {
 	String get menu => 'Menu';
 	String get doneMenu => 'Done';
 	late final _StringsTrainingTrainingTypeEn trainingType = _StringsTrainingTrainingTypeEn._(_root);
+	late final _StringsTrainingAnswerSelectionEn answerSelection = _StringsTrainingAnswerSelectionEn._(_root);
 	late final _StringsTrainingTrainingCardEn trainingCard = _StringsTrainingTrainingCardEn._(_root);
 	late final _StringsTrainingResultEn result = _StringsTrainingResultEn._(_root);
 	String get tutorial => 'Tutorial';
@@ -284,6 +286,25 @@ class _StringsTrainingTrainingTypeEn {
 				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
 		}
 	}
+}
+
+// Path: training.answerSelection
+class _StringsTrainingAnswerSelectionEn {
+	_StringsTrainingAnswerSelectionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Answer selection';
+	String process({required AnswerType context}) {
+		switch (context) {
+			case AnswerType.voice:
+				return 'Voice';
+			case AnswerType.list:
+				return 'Select';
+		}
+	}
+	String recommended({required String answerType}) => '(Recommended)${answerType}';
 }
 
 // Path: training.trainingCard
@@ -463,6 +484,7 @@ class _StringsTrainingJa extends _StringsTrainingEn {
 	@override String get doneMenu => '実施済のトレーニング';
 	@override late final _StringsTrainingTrainingTypeJa trainingType = _StringsTrainingTrainingTypeJa._(_root);
 	@override late final _StringsTrainingTrainingCardJa trainingCard = _StringsTrainingTrainingCardJa._(_root);
+	@override late final _StringsTrainingAnswerSelectionJa answerSelection = _StringsTrainingAnswerSelectionJa._(_root);
 	@override late final _StringsTrainingResultJa result = _StringsTrainingResultJa._(_root);
 	@override String get tutorial => 'チュートリアル';
 }
@@ -530,6 +552,25 @@ class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
 	@override String get inviteSubhead => '今日の脳トレを始めましょう';
 	@override String get doneSubhead => '今日のスコア';
 	@override String get start => '測定';
+}
+
+// Path: training.answerSelection
+class _StringsTrainingAnswerSelectionJa extends _StringsTrainingAnswerSelectionEn {
+	_StringsTrainingAnswerSelectionJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '回答方法';
+	@override String process({required AnswerType context}) {
+		switch (context) {
+			case AnswerType.voice:
+				return '声で回答する';
+			case AnswerType.list:
+				return '選択肢から回答する';
+		}
+	}
+	@override String recommended({required String answerType}) => '(おすすめ)${answerType}';
 }
 
 // Path: training.result
@@ -674,6 +715,16 @@ extension on Translations {
 						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
 				}
 			};
+			case 'training.answerSelection.title': return 'Answer selection';
+			case 'training.answerSelection.process': return ({required AnswerType context}) {
+				switch (context) {
+					case AnswerType.voice:
+						return 'Voice';
+					case AnswerType.list:
+						return 'Select';
+				}
+			};
+			case 'training.answerSelection.recommended': return ({required String answerType}) => '(Recommended)${answerType}';
 			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
 			case 'training.trainingCard.doneSubhead': return 'Today Score';
 			case 'training.trainingCard.start': return 'Start';
@@ -790,6 +841,16 @@ extension on _StringsJa {
 			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
 			case 'training.trainingCard.doneSubhead': return '今日のスコア';
 			case 'training.trainingCard.start': return '測定';
+			case 'training.answerSelection.title': return '回答方法';
+			case 'training.answerSelection.process': return ({required AnswerType context}) {
+				switch (context) {
+					case AnswerType.voice:
+						return '声で回答する';
+					case AnswerType.list:
+						return '選択肢から回答する';
+				}
+			};
+			case 'training.answerSelection.recommended': return ({required String answerType}) => '(おすすめ)${answerType}';
 			case 'training.result.scoreCard.title': return '評価';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
 				switch (context) {

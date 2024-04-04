@@ -18,6 +18,14 @@
             "addMinus": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer"
         }
     },
+    "answerSelection": {
+        "title": "Answer selection",
+        "process(context=AnswerType)": {
+            "voice": "Voice",
+            "list": "Select"
+        },
+        "recommended": "(Recommended)${answerType: String}"
+    },
     "trainingCard": {
         "inviteSubhead": "Let's Training!",
         "doneSubhead": "Today Score",

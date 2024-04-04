@@ -1,5 +1,6 @@
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,7 +18,7 @@ class AnswerSelectionPage extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('回答方法'),
+        title: Text(i18n.training.answerSelection.title),
       ),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
@@ -35,7 +36,7 @@ class AnswerSelectionPage extends HookConsumerWidget {
               ),
               const Gap(16),
               Text(
-                item.text,
+                i18n.training.answerSelection.process(context: item),
                 style: ts.titleLarge,
               ),
             ],

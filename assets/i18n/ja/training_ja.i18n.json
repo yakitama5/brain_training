@@ -23,6 +23,14 @@
         "doneSubhead": "今日のスコア",
         "start": "測定"
     },
+    "answerSelection": {
+        "title": "回答方法",
+        "process(context=AnswerType)": {
+            "voice": "声で回答する",
+            "list": "選択肢から回答する"
+        },
+        "recommended": "(おすすめ)${answerType: String}"
+    },
     "result": {
         "scoreCard": {
             "title": "評価"
