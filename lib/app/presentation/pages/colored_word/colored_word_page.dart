@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
-import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,68 +15,72 @@ import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
-import '../training/components/training_play_widget.dart';
+import '../../routes/src/routes/routes.dart';
+import '../training/components/count_down.dart';
 import 'components/mixed_colored_word_text.dart';
 
-class ColoredWordPage extends TrainingPlayWidget {
-  ColoredWordPage({super.key, required this.answerType});
-
-  static const _timerDuration = Duration(milliseconds: 100);
+class ColoredWordPage extends HookConsumerWidget {
+  const ColoredWordPage({super.key, required this.answerType});
 
   final AnswerType answerType;
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final completedCountDown = useState(false);
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {},
+        ),
+        title: Text(
+          i18n.training.trainingCard.title(context: TrainingType.coloredWord),
+        ),
+      ),
+      body: completedCountDown.value
+          ? PlayPage(answerType: answerType)
+          : CountDown(
+              initialSecond: 3,
+              onEnd: () => completedCountDown.value = true,
+            ),
+    );
+  }
+}
+
+class PlayPage extends HookWidget {
+  PlayPage({super.key, required this.answerType});
+
+  static const interval = Duration(milliseconds: 100);
+
+  final AnswerType answerType;
   final Stopwatch stopwatch = Stopwatch();
+  final int limit = TrainingType.coloredWord.limitMillSecond;
 
   @override
-  String get title =>
-      i18n.training.trainingCard.title(context: TrainingType.coloredWord);
+  Widget build(BuildContext context) {
+    // 内部関数のためリビルドは不要
+    final correct = useRef(0);
+    final questions = useRef(0);
 
-  @override
-  Widget buildPlayPage(BuildContext context, WidgetRef ref) {
     final word = useState(_createMixedWord());
-    final correct = useState(0);
-    final questions = useState(0);
-    final ms = useState(TrainingType.coloredWord.limitMillSecond);
-
-    void updateStopWatch() {
-      ms.value = TrainingType.coloredWord.limitMillSecond -
-          stopwatch.elapsed.inMilliseconds;
-
-      // 終了時
-      if (ms.value <= 0) {
-        stopwatch.stop();
-
-        TrainingResultRouteData(
-          ColoredWordResult(
-            correct: correct.value,
-            questions: questions.value,
-          ),
-        ).go(context);
-        return;
-      }
-
-      if (stopwatch.isRunning) {
-        Timer(_timerDuration, updateStopWatch);
-      }
-    }
-
-    void onAnswered(ColoredWord answer) {
-      if (word.value.color == answer) {
-        correct.value++;
-      }
-      questions.value++;
-      word.value = _createMixedWord();
-      stopwatch.start();
-      Timer(
-        _timerDuration,
-        updateStopWatch,
-      );
-    }
+    final ms = useState(0);
 
     useEffect(
       () {
         stopwatch.start();
-        Timer(_timerDuration, updateStopWatch);
+        Timer(
+          interval,
+          () => updateStopWatch(ms, () {
+            TrainingResultRouteData(
+              ColoredWordResult(
+                correct: correct.value,
+                questions: questions.value,
+              ),
+            ).go(context);
+          }),
+        );
         return stopwatch.reset;
       },
       [stopwatch],
@@ -92,8 +95,7 @@ class ColoredWordPage extends TrainingPlayWidget {
               child: Align(
                 alignment: Alignment.topRight,
                 child: GaugeChart(
-                  value: 100 -
-                      ms.value / TrainingType.coloredWord.limitMillSecond * 100,
+                  value: ms.value / limit * 100,
                   radius: 56,
                 ),
               ),
@@ -109,8 +111,14 @@ class ColoredWordPage extends TrainingPlayWidget {
 
                     // 回答エリア
                     switch (answerType) {
-                      AnswerType.voice => VoiceAnswer(onAnswered: onAnswered),
-                      AnswerType.list => ListAnswer(onAnswered: onAnswered),
+                      AnswerType.voice => VoiceAnswer(
+                          onAnswered: (answer) =>
+                              onAnswered(answer, word, questions, correct),
+                        ),
+                      AnswerType.list => ListAnswer(
+                          onAnswered: (answer) =>
+                              onAnswered(answer, word, questions, correct),
+                        ),
                     },
                   ],
                 ),
@@ -120,6 +128,34 @@ class ColoredWordPage extends TrainingPlayWidget {
         ),
       ),
     );
+  }
+
+  void updateStopWatch(ValueNotifier<int> ms, void Function() onEnd) {
+    ms.value = stopwatch.elapsed.inMilliseconds;
+
+    // 終了時
+    if (ms.value >= limit) {
+      stopwatch.stop();
+      onEnd();
+      return;
+    }
+
+    if (stopwatch.isRunning) {
+      Timer(interval, () => updateStopWatch(ms, onEnd));
+    }
+  }
+
+  void onAnswered(
+    ColoredWord answer,
+    ValueNotifier<MixedColoredWord> word,
+    ObjectRef<int> questions,
+    ObjectRef<int> correct,
+  ) {
+    if (word.value.color == answer) {
+      correct.value++;
+    }
+    questions.value++;
+    word.value = _createMixedWord();
   }
 
   MixedColoredWord _createMixedWord() {
