@@ -12,6 +12,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../../application/state/speech_to_text_provider.dart';
 import '../../../domain/training/entity/training_result.dart';
+import '../../../domain/training/value_object/answer_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
@@ -60,14 +61,13 @@ class PlayPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-
     // 内部関数のためリビルドは不要
     final correct = useRef(0);
     final questions = useRef(0);
 
     final word = useState(_createMixedWord());
     final ms = useState(0);
+    final answerResult = useState<AnswerResult?>(null);
 
     useEffect(
       () {
@@ -104,26 +104,32 @@ class PlayPage extends HookWidget {
               padding: const EdgeInsets.only(top: 120),
               child: Column(
                 children: [
-                  // TODO(yakitama5): 正解or不正解の表示から作っていくこと
-                  // const Icon(
-                  //   Icons.circle_outlined,
-                  //   size: 80,
-                  //   color: Colors.blue,
-                  // ),
-                  const Gap(80),
+                  // 正誤表示
+                  _AnswerResult(result: answerResult.value),
 
+                  // 色付き文字
                   MixedColoredWordText(coloredWord: word.value),
                   const Gap(80),
 
-                  // 回答エリア
+                  // 回答方法
                   switch (answerType) {
                     AnswerType.voice => VoiceAnswer(
-                        onAnswered: (answer) =>
-                            onAnswered(answer, word, questions, correct),
+                        onAnswered: (answer) => onAnswered(
+                          answer,
+                          word,
+                          questions,
+                          correct,
+                          answerResult,
+                        ),
                       ),
                     AnswerType.list => ListAnswer(
-                        onAnswered: (answer) =>
-                            onAnswered(answer, word, questions, correct),
+                        onAnswered: (answer) => onAnswered(
+                          answer,
+                          word,
+                          questions,
+                          correct,
+                          answerResult,
+                        ),
                       ),
                   },
                 ],
@@ -156,10 +162,15 @@ class PlayPage extends HookWidget {
     ValueNotifier<MixedColoredWord> word,
     ObjectRef<int> questions,
     ObjectRef<int> correct,
+    ValueNotifier<AnswerResult?> answerResult,
   ) {
+    // TODO(yakitama5): 効果音を再生すること
     final isCorrect = word.value.color == answer;
     if (isCorrect) {
       correct.value++;
+      answerResult.value = AnswerResult.correct;
+    } else {
+      answerResult.value = AnswerResult.incorrect;
     }
     questions.value++;
     word.value = _createMixedWord();
@@ -243,5 +254,32 @@ class VoiceAnswer extends HookConsumerWidget {
       onResult: onResult,
       listenFor: const Duration(seconds: 60),
     );
+  }
+}
+
+class _AnswerResult extends StatelessWidget {
+  const _AnswerResult({required this.result});
+
+  static const _size = 80.0;
+
+  final AnswerResult? result;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return switch (result) {
+      AnswerResult.correct => Icon(
+          Icons.circle_outlined,
+          size: _size,
+          color: cs.outline,
+        ),
+      AnswerResult.incorrect => Icon(
+          Icons.close,
+          size: _size,
+          color: cs.outline,
+        ),
+      _ => const Gap(_size),
+    };
   }
 }
