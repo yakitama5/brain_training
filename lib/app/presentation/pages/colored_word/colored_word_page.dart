@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -15,47 +16,24 @@ import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
-import '../training/components/count_down.dart';
+import '../training/components/training_play_widget.dart';
 import 'components/mixed_colored_word_text.dart';
 
-class ColoredWordPage extends HookConsumerWidget {
-  const ColoredWordPage({super.key, required this.answerType});
-
-  final AnswerType answerType;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final completedCountDown = useState(false);
-
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {},
-        ),
-        title: const Text('色当てクイズ'),
-      ),
-      body: completedCountDown.value
-          ? PlayPage(answerType: answerType)
-          : CountDown(
-              initialSecond: 3,
-              onEnd: () => completedCountDown.value = true,
-            ),
-    );
-  }
-}
-
-class PlayPage extends HookWidget {
-  PlayPage({super.key, required this.answerType});
+class ColoredWordPage extends TrainingPlayWidget {
+  ColoredWordPage({super.key, required this.answerType});
 
   static const _timerDuration = Duration(milliseconds: 100);
 
   final AnswerType answerType;
+
   final Stopwatch stopwatch = Stopwatch();
 
   @override
-  Widget build(BuildContext context) {
+  String get title =>
+      i18n.training.trainingCard.title(context: TrainingType.coloredWord);
+
+  @override
+  Widget buildPlayPage(BuildContext context, WidgetRef ref) {
     final word = useState(_createMixedWord());
     final correct = useState(0);
     final questions = useState(0);

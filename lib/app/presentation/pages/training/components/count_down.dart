@@ -6,7 +6,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../../../../../gen/assets.gen.dart';
 
-class CountDown extends HookWidget {
+class CountDown extends StatelessWidget {
   CountDown({
     super.key,
     required this.initialSecond,
@@ -22,52 +22,60 @@ class CountDown extends HookWidget {
   final endPlayer = AudioPlayer();
 
   @override
-  Widget build(BuildContext context) {
-    final ts = Theme.of(context).textTheme;
-    final sec = useState(initialSecond);
+  Widget build(BuildContext context) => FutureBuilder(
+        future: loadAssetsSound(),
+        builder: (context, snapshot) => switch (snapshot.connectionState) {
+          ConnectionState.done => HookBuilder(
+              builder: (context) {
+                final ts = Theme.of(context).textTheme;
+                final seconds = useState(initialSecond);
 
-    void updateCountDown() {
-      sec.value--;
+                useEffect(
+                  () {
+                    // 初回再生とカウントダウンの開始
+                    countPlayer.play();
+                    Timer(_duration, () => updateCountDown(seconds));
 
-      if (sec.value <= 0) {
-        endPlayer.play();
+                    // 音が途切れるため、`dispose`は行わない
+                    return null;
+                  },
+                  [countPlayer, endPlayer],
+                );
 
-        if (onEnd != null) {
-          onEnd!();
-        }
-        return;
-      }
+                return Center(
+                  child: Text(
+                    '${seconds.value}',
+                    style: ts.displayLarge,
+                  ),
+                );
+              },
+            ),
+          _ => const Center(child: CircularProgressIndicator.adaptive()),
+        },
+      );
 
-      countPlayer
-        ..seek(Duration.zero)
-        ..play();
-      Timer(_duration, updateCountDown);
-    }
-
-    useEffect(
-      () {
-        initialSoundTimer(updateCountDown);
-
-        // 音が途切れるため、`dispose`は行わない
-        return null;
-      },
-      [countPlayer, endPlayer],
-    );
-
-    return Center(
-      child: Text(
-        '${sec.value}',
-        style: ts.displayLarge,
-      ),
-    );
-  }
-
-  Future<void> initialSoundTimer(void Function() fuga) async {
-    // 効果音の読み込み
+  /// 効果音の読み込み
+  Future<void> loadAssetsSound() async {
     await countPlayer.setAsset(Assets.sounds.countdownCount);
     await endPlayer.setAsset(Assets.sounds.countdownEnd);
+  }
 
-    unawaited(countPlayer.play());
-    Timer(_duration, fuga);
+  // カウントダウンの更新
+  void updateCountDown(ValueNotifier<int> seconds) {
+    seconds.value--;
+
+    if (seconds.value <= 0) {
+      endPlayer.play();
+
+      if (onEnd != null) {
+        onEnd!();
+      }
+      return;
+    }
+
+    countPlayer
+      ..seek(Duration.zero)
+      ..play();
+    Timer(_duration, () => updateCountDown(seconds));
   }
 }
