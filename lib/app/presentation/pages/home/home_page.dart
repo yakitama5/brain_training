@@ -16,8 +16,8 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cs = Theme.of(context).colorScheme;
     final ts = Theme.of(context).textTheme;
+    final cs = Theme.of(context).colorScheme;
 
     return Scaffold(
       body: SafeArea(

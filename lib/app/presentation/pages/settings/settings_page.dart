@@ -1,5 +1,6 @@
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/app/presentation/theme/importer.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -18,17 +19,17 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('せってい'),
+        title: Text(i18n.settings.title),
       ),
       body: ThemedSettingsList(
         sections: [
           SettingsSection(
-            title: const Text('アカウント'),
+            title: Text(i18n.settings.list.account.head),
             tiles: [
               SettingsTile.navigation(
                 leading: const Icon(Icons.link),
                 trailing: trailing,
-                title: const Text('アカウント'),
+                title: Text(i18n.settings.list.account.account),
                 onPressed: _onAccount,
               ),
             ],

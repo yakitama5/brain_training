@@ -1,6 +1,7 @@
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -58,18 +59,19 @@ class ScoreCard extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              '評価',
+              i18n.training.result.scoreCard.title,
               style: ts.headlineMedium,
             ),
             const Gap(16),
             const Icon(
+              // TODO(yakitama5): 表示形式は後から切り替える
               CustomIcons.sumo,
               size: 92,
             ),
             const Gap(8),
             // TODO(yakitama5): 表示形式は後から切り替える
             Text(
-              rank.sumo,
+              i18n.training.result.rank.sumo(context: rank),
               style: ts.displayMedium,
             ),
           ],
@@ -91,7 +93,7 @@ class ScoreDetail extends StatelessWidget {
     return Column(
       children: [
         Text(
-          '${result.score}点',
+          i18n.training.result.score(points: result.score),
           style: ts.displayMedium,
         ),
         const Gap(16),
@@ -103,7 +105,7 @@ class ScoreDetail extends StatelessWidget {
         WidthFillBox(
           child: FilledButton(
             onPressed: () => const HomeRouteData().go(context),
-            child: const Text('終了'),
+            child: Text(i18n.common.end),
           ),
         ),
       ],
@@ -124,7 +126,7 @@ class ColoredWordScoreDetail extends StatelessWidget {
     return Column(
       children: [
         Text(
-          '${result.questions}問',
+          i18n.training.result.questions(qeustions: result.questions),
           style: ts.headlineMedium,
         ),
         const Gap(16),
@@ -134,7 +136,7 @@ class ColoredWordScoreDetail extends StatelessWidget {
         ),
         const Gap(16),
         Text(
-          '正答率：${rate.round()}%',
+          i18n.training.result.correctRate(rate: rate.round()),
           style: ts.headlineMedium,
         ),
       ],
