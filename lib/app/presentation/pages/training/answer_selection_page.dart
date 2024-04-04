@@ -59,6 +59,11 @@ class AnswerSelectionPage extends HookConsumerWidget {
   }
 
   void _onTap(BuildContext context, AnswerType answerType) {
+    switch (answerType) {
+      case AnswerType.voice:
+      // TODO(yakitama5): ここで権限確認を入れて、なければ何もしない
+      case AnswerType.list:
+    }
     ColoredWordRouteData(answerType).go(context);
   }
 }

@@ -60,6 +60,8 @@ class PlayPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
     // 内部関数のためリビルドは不要
     final correct = useRef(0);
     final questions = useRef(0);
@@ -89,39 +91,42 @@ class PlayPage extends HookWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: Align(
-                alignment: Alignment.topRight,
-                child: GaugeChart(
-                  value: ms.value / limit * 100,
-                  radius: 56,
-                ),
+            Align(
+              alignment: Alignment.topRight,
+              child: GaugeChart(
+                value: ms.value / limit * 100,
+                radius: 56,
               ),
             ),
-            Expanded(
-              flex: 6,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 64, bottom: 80),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MixedColoredWordText(coloredWord: word.value),
+            Padding(
+              padding: const EdgeInsets.only(top: 120),
+              child: Column(
+                children: [
+                  // TODO(yakitama5): 正解or不正解の表示から作っていくこと
+                  // const Icon(
+                  //   Icons.circle_outlined,
+                  //   size: 80,
+                  //   color: Colors.blue,
+                  // ),
+                  const Gap(80),
 
-                    // 回答エリア
-                    switch (answerType) {
-                      AnswerType.voice => VoiceAnswer(
-                          onAnswered: (answer) =>
-                              onAnswered(answer, word, questions, correct),
-                        ),
-                      AnswerType.list => ListAnswer(
-                          onAnswered: (answer) =>
-                              onAnswered(answer, word, questions, correct),
-                        ),
-                    },
-                  ],
-                ),
+                  MixedColoredWordText(coloredWord: word.value),
+                  const Gap(80),
+
+                  // 回答エリア
+                  switch (answerType) {
+                    AnswerType.voice => VoiceAnswer(
+                        onAnswered: (answer) =>
+                            onAnswered(answer, word, questions, correct),
+                      ),
+                    AnswerType.list => ListAnswer(
+                        onAnswered: (answer) =>
+                            onAnswered(answer, word, questions, correct),
+                      ),
+                  },
+                ],
               ),
             ),
           ],
@@ -136,7 +141,8 @@ class PlayPage extends HookWidget {
     // 終了時
     if (ms.value >= limit) {
       stopwatch.stop();
-      onEnd();
+      // TODO(yakitama5): テスト
+      // onEnd();
       return;
     }
 
@@ -151,7 +157,8 @@ class PlayPage extends HookWidget {
     ObjectRef<int> questions,
     ObjectRef<int> correct,
   ) {
-    if (word.value.color == answer) {
+    final isCorrect = word.value.color == answer;
+    if (isCorrect) {
       correct.value++;
     }
     questions.value++;
