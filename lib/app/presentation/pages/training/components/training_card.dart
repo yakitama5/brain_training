@@ -45,7 +45,7 @@ class TrainingCard extends StatelessWidget {
       TrainingCardType.home => i18n.training.trainingCard.inviteSubhead,
       TrainingCardType.done => i18n.training.trainingCard.doneSubhead,
       TrainingCardType.trainingDetail =>
-        i18n.training.trainingCard.subhead(context: trainingType),
+        i18n.training.trainingType.timeRequired(context: trainingType),
     };
 
     return FilledCard(
@@ -61,7 +61,7 @@ class TrainingCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    i18n.training.trainingCard.title(context: trainingType),
+                    i18n.training.trainingType.title(context: trainingType),
                     style: ts.titleMedium,
                   ),
                   Text(
@@ -77,7 +77,7 @@ class TrainingCard extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Text(
-                i18n.training.trainingCard.description(context: trainingType),
+                i18n.training.trainingType.description(context: trainingType),
                 style: ts.bodyMedium,
               ),
             ),

@@ -1,15 +1,13 @@
 {
     "menu": "Menu",
     "doneMenu": "Done",
-    "trainingCard": {
+    "trainingType": {
         "title(context=TrainingType)": {
             "coloredWord": "Colored Word",
             "themeShiritori": "Shiritori",
             "addMinus": "Add Minus"
         },
-        "inviteSubhead": "Let's Training!",
-        "doneSubhead": "Today Score",
-        "subhead(context=TrainingType)": {
+        "timeRequired(context=TrainingType)": {
             "coloredWord": "30 Seconds",
             "themeShiritori": "5 Minuts",
             "addMinus": "60 Seconds"
@@ -18,7 +16,11 @@
             "coloredWord": "Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options",
             "themeShiritori": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer",
             "addMinus": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer"
-        },
+        }
+    },
+    "trainingCard": {
+        "inviteSubhead": "Let's Training!",
+        "doneSubhead": "Today Score",
         "start": "Start"
     },
     "result": {

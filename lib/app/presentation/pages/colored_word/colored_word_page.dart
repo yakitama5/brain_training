@@ -36,7 +36,7 @@ class ColoredWordPage extends HookConsumerWidget {
           onPressed: () {},
         ),
         title: Text(
-          i18n.training.trainingCard.title(context: TrainingType.coloredWord),
+          i18n.training.trainingType.title(context: TrainingType.coloredWord),
         ),
       ),
       body: completedCountDown.value

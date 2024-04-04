@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 106 (53 per locale)
 ///
-/// Built on 2024-04-04 at 01:34 UTC
+/// Built on 2024-04-04 at 05:29 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -205,6 +205,7 @@ class _StringsTrainingEn {
 	// Translations
 	String get menu => 'Menu';
 	String get doneMenu => 'Done';
+	late final _StringsTrainingTrainingTypeEn trainingType = _StringsTrainingTrainingTypeEn._(_root);
 	late final _StringsTrainingTrainingCardEn trainingCard = _StringsTrainingTrainingCardEn._(_root);
 	late final _StringsTrainingResultEn result = _StringsTrainingResultEn._(_root);
 	String get tutorial => 'Tutorial';
@@ -246,9 +247,9 @@ class _StringsSettingsAccountEn {
 	String get leave => '退会';
 }
 
-// Path: training.trainingCard
-class _StringsTrainingTrainingCardEn {
-	_StringsTrainingTrainingCardEn._(this._root);
+// Path: training.trainingType
+class _StringsTrainingTrainingTypeEn {
+	_StringsTrainingTrainingTypeEn._(this._root);
 
 	final Translations _root; // ignore: unused_field
 
@@ -263,9 +264,7 @@ class _StringsTrainingTrainingCardEn {
 				return 'Add Minus';
 		}
 	}
-	String get inviteSubhead => 'Let\'s Training!';
-	String get doneSubhead => 'Today Score';
-	String subhead({required TrainingType context}) {
+	String timeRequired({required TrainingType context}) {
 		switch (context) {
 			case TrainingType.coloredWord:
 				return '30 Seconds';
@@ -285,6 +284,17 @@ class _StringsTrainingTrainingCardEn {
 				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
 		}
 	}
+}
+
+// Path: training.trainingCard
+class _StringsTrainingTrainingCardEn {
+	_StringsTrainingTrainingCardEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get inviteSubhead => 'Let\'s Training!';
+	String get doneSubhead => 'Today Score';
 	String get start => 'Start';
 }
 
@@ -451,6 +461,7 @@ class _StringsTrainingJa extends _StringsTrainingEn {
 	// Translations
 	@override String get menu => '脳トレメニュー';
 	@override String get doneMenu => '実施済のトレーニング';
+	@override late final _StringsTrainingTrainingTypeJa trainingType = _StringsTrainingTrainingTypeJa._(_root);
 	@override late final _StringsTrainingTrainingCardJa trainingCard = _StringsTrainingTrainingCardJa._(_root);
 	@override late final _StringsTrainingResultJa result = _StringsTrainingResultJa._(_root);
 	@override String get tutorial => 'チュートリアル';
@@ -470,9 +481,9 @@ class _StringsCommonNavigationDestinationJa extends _StringsCommonNavigationDest
 	@override String get settings => '設定';
 }
 
-// Path: training.trainingCard
-class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
-	_StringsTrainingTrainingCardJa._(_StringsJa root) : this._root = root, super._(root);
+// Path: training.trainingType
+class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
+	_StringsTrainingTrainingTypeJa._(_StringsJa root) : this._root = root, super._(root);
 
 	@override final _StringsJa _root; // ignore: unused_field
 
@@ -487,9 +498,7 @@ class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
 				return 'タスヒク';
 		}
 	}
-	@override String get inviteSubhead => '今日の脳トレを始めましょう';
-	@override String get doneSubhead => '今日のスコア';
-	@override String subhead({required TrainingType context}) {
+	@override String timeRequired({required TrainingType context}) {
 		switch (context) {
 			case TrainingType.coloredWord:
 				return '所要時間：30秒';
@@ -509,6 +518,17 @@ class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
 				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
 		}
 	}
+}
+
+// Path: training.trainingCard
+class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
+	_StringsTrainingTrainingCardJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get inviteSubhead => '今日の脳トレを始めましょう';
+	@override String get doneSubhead => '今日のスコア';
 	@override String get start => '測定';
 }
 
@@ -624,7 +644,7 @@ extension on Translations {
 			case 'settings.account.leave': return '退会';
 			case 'training.menu': return 'Menu';
 			case 'training.doneMenu': return 'Done';
-			case 'training.trainingCard.title': return ({required TrainingType context}) {
+			case 'training.trainingType.title': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return 'Colored Word';
@@ -634,9 +654,7 @@ extension on Translations {
 						return 'Add Minus';
 				}
 			};
-			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
-			case 'training.trainingCard.doneSubhead': return 'Today Score';
-			case 'training.trainingCard.subhead': return ({required TrainingType context}) {
+			case 'training.trainingType.timeRequired': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return '30 Seconds';
@@ -646,7 +664,7 @@ extension on Translations {
 						return '60 Seconds';
 				}
 			};
-			case 'training.trainingCard.description': return ({required TrainingType context}) {
+			case 'training.trainingType.description': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
@@ -656,6 +674,8 @@ extension on Translations {
 						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
 				}
 			};
+			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
+			case 'training.trainingCard.doneSubhead': return 'Today Score';
 			case 'training.trainingCard.start': return 'Start';
 			case 'training.result.scoreCard.title': return 'Score';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
@@ -737,7 +757,7 @@ extension on _StringsJa {
 			case 'home.completed': return '達成';
 			case 'training.menu': return '脳トレメニュー';
 			case 'training.doneMenu': return '実施済のトレーニング';
-			case 'training.trainingCard.title': return ({required TrainingType context}) {
+			case 'training.trainingType.title': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return '色当てクイズ';
@@ -747,9 +767,7 @@ extension on _StringsJa {
 						return 'タスヒク';
 				}
 			};
-			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
-			case 'training.trainingCard.doneSubhead': return '今日のスコア';
-			case 'training.trainingCard.subhead': return ({required TrainingType context}) {
+			case 'training.trainingType.timeRequired': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return '所要時間：30秒';
@@ -759,7 +777,7 @@ extension on _StringsJa {
 						return '所要時間：60秒';
 				}
 			};
-			case 'training.trainingCard.description': return ({required TrainingType context}) {
+			case 'training.trainingType.description': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
 						return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
@@ -769,6 +787,8 @@ extension on _StringsJa {
 						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
 				}
 			};
+			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
+			case 'training.trainingCard.doneSubhead': return '今日のスコア';
 			case 'training.trainingCard.start': return '測定';
 			case 'training.result.scoreCard.title': return '評価';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
