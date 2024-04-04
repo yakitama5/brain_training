@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:just_audio/just_audio.dart';
+
+import '../../../../../gen/assets.gen.dart';
 
 class CountDown extends HookWidget {
   CountDown({
@@ -15,36 +18,40 @@ class CountDown extends HookWidget {
   final int initialSecond;
   final VoidCallback? onEnd;
 
-  final Stopwatch stopwatch = Stopwatch();
+  final countPlayer = AudioPlayer();
+  final endPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
     final ts = Theme.of(context).textTheme;
     final sec = useState(initialSecond);
 
-    void updateStopWatch() {
-      sec.value = initialSecond - stopwatch.elapsed.inSeconds;
+    void updateCountDown() {
+      sec.value--;
 
       if (sec.value <= 0) {
-        stopwatch.stop();
+        endPlayer.play();
+
         if (onEnd != null) {
           onEnd!();
         }
         return;
       }
 
-      if (stopwatch.isRunning) {
-        Timer(_duration, updateStopWatch);
-      }
+      countPlayer
+        ..seek(Duration.zero)
+        ..play();
+      Timer(_duration, updateCountDown);
     }
 
     useEffect(
       () {
-        stopwatch.start();
-        Timer(_duration, updateStopWatch);
-        return stopwatch.reset;
+        initialSoundTimer(updateCountDown);
+
+        // 音が途切れるため、`dispose`は行わない
+        return null;
       },
-      [stopwatch],
+      [countPlayer, endPlayer],
     );
 
     return Center(
@@ -53,5 +60,14 @@ class CountDown extends HookWidget {
         style: ts.displayLarge,
       ),
     );
+  }
+
+  Future<void> initialSoundTimer(void Function() fuga) async {
+    // 効果音の読み込み
+    await countPlayer.setAsset(Assets.sounds.countdownCount);
+    await endPlayer.setAsset(Assets.sounds.countdownEnd);
+
+    unawaited(countPlayer.play());
+    Timer(_duration, fuga);
   }
 }
