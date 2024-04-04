@@ -21,5 +21,41 @@
         },
         "start": "Start"
     },
+    "result": {
+        "scoreCard": {
+            "title": "Score"
+        },
+        "rank": {
+            "normal(context=ResultRank)": {
+                "excellent": "Eexcellent!!!",
+                "great": "Great!",
+                "good": "Good",
+                "average": "Average",
+                "poor": "Poor..."
+            },
+            "sumo(context=ResultRank)": {
+                "excellent": "Yokozuna!!!",
+                "great": "Ozeki!",
+                "good": "Sekiwake",
+                "average": "Maegashira",
+                "poor": "Non-banzuke..."
+            },
+            "royal(context=ResultRank)": {
+                "excellent": "Prince",
+                "great": "Marquess",
+                "good": "Earl",
+                "average": "Viscount",
+                "poor": "Baron"
+            }
+        },
+        "category(context=RankCategory)": {
+            "normal": "English",
+            "sumo": "Sumo",
+            "royal": "Royal"
+        },
+        "questions": "${qeustions: int} qeustions",
+        "score": "${points: int} points",
+        "correctRate": "Correct rate: ${rate: int}%"
+    },
     "tutorial": "Tutorial"
 }

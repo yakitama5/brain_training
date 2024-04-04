@@ -21,5 +21,41 @@
         },
         "start": "測定"
     },
+    "result": {
+        "scoreCard": {
+            "title": "評価"
+        },
+        "rank": {
+            "normal(context=ResultRank)": {
+                "excellent": "Eexcellent!!!",
+                "great": "Great!",
+                "good": "Good",
+                "average": "Average",
+                "poor": "Poor..."
+            },
+            "sumo(context=ResultRank)": {
+                "excellent": "横綱級",
+                "great": "大関級",
+                "good": "関脇級",
+                "average": "前頭級",
+                "poor": "番付外"
+            },
+            "royal(context=ResultRank)": {
+                "excellent": "公爵",
+                "great": "侯爵",
+                "good": "伯爵",
+                "average": "子爵",
+                "poor": "男爵"
+            }
+        },
+        "category(context=RankCategory)": {
+            "normal": "英語",
+            "sumo": "相撲",
+            "royal": "爵位"
+        },
+        "questions": "${qeustions: int}問",
+        "score": "${points: int}点",
+        "correctRate": "正答率：${rate: int}%"
+    },
     "tutorial": "チュートリアル"
 }

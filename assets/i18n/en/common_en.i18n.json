@@ -7,5 +7,6 @@
         "coffeBreak": "Break",
         "settings": "Settings"
     },
-    "start": "Start!"
+    "start": "Start!",
+    "end": "End"
 }

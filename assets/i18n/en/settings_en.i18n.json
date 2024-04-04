@@ -1,0 +1,14 @@
+{
+    "title": "Settings",
+    "list": {
+        "account": {
+            "head": "Account",
+            "account": "Account"
+        }
+    },
+    "account": {
+        "accountLink": "Account link",
+        "other": "Other",
+        "leave": "Leave"
+    }
+}

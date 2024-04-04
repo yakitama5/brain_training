@@ -2,10 +2,11 @@
     "save": "保存",
     "navigationDestination": {
         "home": "ホーム",
-        "analytics": "ふりかえり",
+        "analytics": "振り返り",
         "training": "脳トレ",
-        "coffeBreak": "いきぬき",
-        "settings": "せってい"
+        "coffeBreak": "息抜き",
+        "settings": "設定"
     },
-    "start": "スタート！"
+    "start": "スタート！",
+    "end": "終了"
 }

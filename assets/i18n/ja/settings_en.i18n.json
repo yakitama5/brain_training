@@ -1,0 +1,14 @@
+{
+    "title": "設定",
+    "list": {
+        "account": {
+            "head": "アカウント",
+            "account": "アカウント"
+        }
+    },
+    "account": {
+        "accountLink": "アカウント連携",
+        "other": "その他",
+        "leave": "退会"
+    }
+}
