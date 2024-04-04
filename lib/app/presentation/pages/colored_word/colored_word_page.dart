@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:brain_training/app/application/usecase/training/state/correct_sound_player_provider.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -8,8 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../../../gen/assets.gen.dart';
 import '../../../application/state/speech_to_text_provider.dart';
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_result.dart';
@@ -29,28 +32,33 @@ class ColoredWordPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final completedCountDown = useState(false);
 
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () {},
-        ),
-        title: Text(
-          i18n.training.trainingType.title(context: TrainingType.coloredWord),
-        ),
-      ),
-      body: completedCountDown.value
-          ? PlayPage(answerType: answerType)
-          : CountDown(
-              initialSecond: 3,
-              onEnd: () => completedCountDown.value = true,
+    return ref.watch(correctSoundPlayerProvider).when(
+          data: (_) => Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              leading: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {},
+              ),
+              title: Text(
+                i18n.training.trainingType
+                    .title(context: TrainingType.coloredWord),
+              ),
             ),
-    );
+            body: completedCountDown.value
+                ? PlayPage(answerType: answerType)
+                : CountDown(
+                    initialSecond: 3,
+                    onEnd: () => completedCountDown.value = true,
+                  ),
+          ),
+          error: (_, __) => const SizedBox.shrink(),
+          loading: () => const SizedBox.shrink(),
+        );
   }
 }
 
-class PlayPage extends HookWidget {
+class PlayPage extends HookConsumerWidget {
   PlayPage({super.key, required this.answerType});
 
   static const interval = Duration(milliseconds: 100);
@@ -58,9 +66,13 @@ class PlayPage extends HookWidget {
   final AnswerType answerType;
   final Stopwatch stopwatch = Stopwatch();
   final int limit = TrainingType.coloredWord.limitMillSecond;
+  final AudioPlayer correctSoundPlayer = AudioPlayer()
+    ..setAsset(Assets.sounds.quizCorrect);
+  final AudioPlayer incorrectSoundPlayer = AudioPlayer()
+    ..setAsset(Assets.sounds.quizIncorrect);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // 内部関数のためリビルドは不要
     final correct = useRef(0);
     final questions = useRef(0);
@@ -147,8 +159,7 @@ class PlayPage extends HookWidget {
     // 終了時
     if (ms.value >= limit) {
       stopwatch.stop();
-      // TODO(yakitama5): テスト
-      // onEnd();
+      onEnd();
       return;
     }
 
@@ -164,14 +175,20 @@ class PlayPage extends HookWidget {
     ObjectRef<int> correct,
     ValueNotifier<AnswerResult?> answerResult,
   ) {
-    // TODO(yakitama5): 効果音を再生すること
     final isCorrect = word.value.color == answer;
+    late final AudioPlayer? player;
     if (isCorrect) {
       correct.value++;
       answerResult.value = AnswerResult.correct;
+      player = correctSoundPlayer;
     } else {
       answerResult.value = AnswerResult.incorrect;
+      player = incorrectSoundPlayer;
     }
+
+    player
+      ..seek(Duration.zero)
+      ..play();
     questions.value++;
     word.value = _createMixedWord();
   }
