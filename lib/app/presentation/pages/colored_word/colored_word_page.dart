@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:brain_training/app/application/usecase/training/state/correct_sound_player_provider.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -32,29 +31,27 @@ class ColoredWordPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final completedCountDown = useState(false);
 
-    return ref.watch(correctSoundPlayerProvider).when(
-          data: (_) => Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {},
-              ),
-              title: Text(
-                i18n.training.trainingType
-                    .title(context: TrainingType.coloredWord),
-              ),
-            ),
-            body: completedCountDown.value
-                ? PlayPage(answerType: answerType)
-                : CountDown(
-                    initialSecond: 3,
-                    onEnd: () => completedCountDown.value = true,
-                  ),
+    return Theme(
+      data: Theme.of(context).copyWith(brightness: Brightness.light),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {},
           ),
-          error: (_, __) => const SizedBox.shrink(),
-          loading: () => const SizedBox.shrink(),
-        );
+          title: Text(
+            i18n.training.trainingType.title(context: TrainingType.coloredWord),
+          ),
+        ),
+        body: completedCountDown.value
+            ? PlayPage(answerType: answerType)
+            : CountDown(
+                initialSecond: 3,
+                onEnd: () => completedCountDown.value = true,
+              ),
+      ),
+    );
   }
 }
 

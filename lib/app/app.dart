@@ -38,6 +38,10 @@ class App extends HookConsumerWidget {
       // アプリ全体のスクロール制御を変更
       scrollBehavior: ScrollConfiguration.of(context)
           .copyWith(physics: const BouncingScrollPhysics()),
+
+      // テーマ設定
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
     );
   }
 }
