@@ -15,6 +15,7 @@ class FirestoreColoredWordResultModel with _$FirestoreColoredWordResultModel {
     required int correct,
     required int questions,
     required int correctRate,
+    @timestampKey DateTime? doneAt,
     @timestampKey DateTime? createdAt,
     @timestampKey DateTime? updatedAt,
   }) = _FirestoreColoredWordResultModel;

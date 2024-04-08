@@ -15,6 +15,7 @@ _$FirestoreColoredWordResultModelImpl
           correct: json['correct'] as int,
           questions: json['questions'] as int,
           correctRate: json['correctRate'] as int,
+          doneAt: dateFromTimestampValue(json['doneAt']),
           createdAt: dateFromTimestampValue(json['createdAt']),
           updatedAt: dateFromTimestampValue(json['updatedAt']),
         );
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$FirestoreColoredWordResultModelImplToJson(
       'correct': instance.correct,
       'questions': instance.questions,
       'correctRate': instance.correctRate,
+      'doneAt': timestampFromDateValue(instance.doneAt),
       'createdAt': timestampFromDateValue(instance.createdAt),
       'updatedAt': timestampFromDateValue(instance.updatedAt),
     };

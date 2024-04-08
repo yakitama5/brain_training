@@ -13,7 +13,7 @@ TrainingRepository trainingRepository(TrainingRepositoryRef ref) =>
 /// 脳トレ結果に関するリポジトリ
 abstract class TrainingRepository {
   /// 日毎の実施状況サマリを取得する
-  Stream<TrainingDailySummary> fetchDailySummary({
+  Stream<TrainingDailySummary?> fetchDailySummary({
     required String userId,
     required DateTime date,
   });
@@ -26,5 +26,6 @@ abstract class TrainingRepository {
     required int correct,
     required int questions,
     required int correctRate,
+    required DateTime doneAt,
   });
 }

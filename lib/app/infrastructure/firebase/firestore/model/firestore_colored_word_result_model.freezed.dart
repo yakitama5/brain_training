@@ -28,6 +28,8 @@ mixin _$FirestoreColoredWordResultModel {
   int get questions => throw _privateConstructorUsedError;
   int get correctRate => throw _privateConstructorUsedError;
   @timestampKey
+  DateTime? get doneAt => throw _privateConstructorUsedError;
+  @timestampKey
   DateTime? get createdAt => throw _privateConstructorUsedError;
   @timestampKey
   DateTime? get updatedAt => throw _privateConstructorUsedError;
@@ -53,6 +55,7 @@ abstract class $FirestoreColoredWordResultModelCopyWith<$Res> {
       int correct,
       int questions,
       int correctRate,
+      @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
       @timestampKey DateTime? updatedAt});
 }
@@ -77,6 +80,7 @@ class _$FirestoreColoredWordResultModelCopyWithImpl<$Res,
     Object? correct = null,
     Object? questions = null,
     Object? correctRate = null,
+    Object? doneAt = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -105,6 +109,10 @@ class _$FirestoreColoredWordResultModelCopyWithImpl<$Res,
           ? _value.correctRate
           : correctRate // ignore: cast_nullable_to_non_nullable
               as int,
+      doneAt: freezed == doneAt
+          ? _value.doneAt
+          : doneAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -133,6 +141,7 @@ abstract class _$$FirestoreColoredWordResultModelImplCopyWith<$Res>
       int correct,
       int questions,
       int correctRate,
+      @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
       @timestampKey DateTime? updatedAt});
 }
@@ -156,6 +165,7 @@ class __$$FirestoreColoredWordResultModelImplCopyWithImpl<$Res>
     Object? correct = null,
     Object? questions = null,
     Object? correctRate = null,
+    Object? doneAt = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -184,6 +194,10 @@ class __$$FirestoreColoredWordResultModelImplCopyWithImpl<$Res>
           ? _value.correctRate
           : correctRate // ignore: cast_nullable_to_non_nullable
               as int,
+      doneAt: freezed == doneAt
+          ? _value.doneAt
+          : doneAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -207,6 +221,7 @@ class _$FirestoreColoredWordResultModelImpl
       required this.correct,
       required this.questions,
       required this.correctRate,
+      @timestampKey this.doneAt,
       @timestampKey this.createdAt,
       @timestampKey this.updatedAt});
 
@@ -228,6 +243,9 @@ class _$FirestoreColoredWordResultModelImpl
   final int correctRate;
   @override
   @timestampKey
+  final DateTime? doneAt;
+  @override
+  @timestampKey
   final DateTime? createdAt;
   @override
   @timestampKey
@@ -235,7 +253,7 @@ class _$FirestoreColoredWordResultModelImpl
 
   @override
   String toString() {
-    return 'FirestoreColoredWordResultModel(id: $id, score: $score, rank: $rank, correct: $correct, questions: $questions, correctRate: $correctRate, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'FirestoreColoredWordResultModel(id: $id, score: $score, rank: $rank, correct: $correct, questions: $questions, correctRate: $correctRate, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -251,6 +269,7 @@ class _$FirestoreColoredWordResultModelImpl
                 other.questions == questions) &&
             (identical(other.correctRate, correctRate) ||
                 other.correctRate == correctRate) &&
+            (identical(other.doneAt, doneAt) || other.doneAt == doneAt) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -260,7 +279,7 @@ class _$FirestoreColoredWordResultModelImpl
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, score, rank, correct,
-      questions, correctRate, createdAt, updatedAt);
+      questions, correctRate, doneAt, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -287,6 +306,7 @@ abstract class _FirestoreColoredWordResultModel
           required final int correct,
           required final int questions,
           required final int correctRate,
+          @timestampKey final DateTime? doneAt,
           @timestampKey final DateTime? createdAt,
           @timestampKey final DateTime? updatedAt}) =
       _$FirestoreColoredWordResultModelImpl;
@@ -306,6 +326,9 @@ abstract class _FirestoreColoredWordResultModel
   int get questions;
   @override
   int get correctRate;
+  @override
+  @timestampKey
+  DateTime? get doneAt;
   @override
   @timestampKey
   DateTime? get createdAt;

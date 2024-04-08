@@ -7,7 +7,7 @@ part of 'firestore_training_daily_summary_provider.dart';
 // **************************************************************************
 
 String _$trainingDailySummaryCollectionHash() =>
-    r'7b86fa3f018ca2cca2a7c28db962268b3a3cb320';
+    r'8fae1eb24b394d438d1d591b310fe0c49b8093e9';
 
 /// Copied from Dart SDK
 class _SystemHash {
