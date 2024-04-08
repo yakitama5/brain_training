@@ -1,3 +1,5 @@
+import 'package:brain_training/app/domain/training/interface/training_repository.dart';
+import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -48,6 +50,7 @@ void main() async {
         // インフラ層のDI
         // Firebase
         userRepositoryProvider.overrideWith(FirebaseUserRepository.new),
+        trainingRepositoryProvider.overrideWith(FirebaseTrainingRepository.new),
       ],
       child: TranslationProvider(
         child: const App(),

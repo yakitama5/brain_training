@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'training_daily_summary.dart';
+part of 'firestore_training_daily_summary_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,27 +14,39 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+FirestoreTrainingDailySummaryModel _$FirestoreTrainingDailySummaryModelFromJson(
+    Map<String, dynamic> json) {
+  return _FirestoreTrainingDailySummaryModel.fromJson(json);
+}
+
 /// @nodoc
-mixin _$TrainingDailySummary {
+mixin _$FirestoreTrainingDailySummaryModel {
   String get id => throw _privateConstructorUsedError;
   int? get coloredWordScore => throw _privateConstructorUsedError;
   int? get themeShiritoriScore => throw _privateConstructorUsedError;
   int? get addMinusScore => throw _privateConstructorUsedError;
   int get doneCount => throw _privateConstructorUsedError;
-  DateTime get doneAt => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime get updatedAt => throw _privateConstructorUsedError;
+  @timestampKey
+  DateTime? get doneAt => throw _privateConstructorUsedError;
+  @timestampKey
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @timestampKey
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TrainingDailySummaryCopyWith<TrainingDailySummary> get copyWith =>
-      throw _privateConstructorUsedError;
+  $FirestoreTrainingDailySummaryModelCopyWith<
+          FirestoreTrainingDailySummaryModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrainingDailySummaryCopyWith<$Res> {
-  factory $TrainingDailySummaryCopyWith(TrainingDailySummary value,
-          $Res Function(TrainingDailySummary) then) =
-      _$TrainingDailySummaryCopyWithImpl<$Res, TrainingDailySummary>;
+abstract class $FirestoreTrainingDailySummaryModelCopyWith<$Res> {
+  factory $FirestoreTrainingDailySummaryModelCopyWith(
+          FirestoreTrainingDailySummaryModel value,
+          $Res Function(FirestoreTrainingDailySummaryModel) then) =
+      _$FirestoreTrainingDailySummaryModelCopyWithImpl<$Res,
+          FirestoreTrainingDailySummaryModel>;
   @useResult
   $Res call(
       {String id,
@@ -42,16 +54,16 @@ abstract class $TrainingDailySummaryCopyWith<$Res> {
       int? themeShiritoriScore,
       int? addMinusScore,
       int doneCount,
-      DateTime doneAt,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @timestampKey DateTime? doneAt,
+      @timestampKey DateTime? createdAt,
+      @timestampKey DateTime? updatedAt});
 }
 
 /// @nodoc
-class _$TrainingDailySummaryCopyWithImpl<$Res,
-        $Val extends TrainingDailySummary>
-    implements $TrainingDailySummaryCopyWith<$Res> {
-  _$TrainingDailySummaryCopyWithImpl(this._value, this._then);
+class _$FirestoreTrainingDailySummaryModelCopyWithImpl<$Res,
+        $Val extends FirestoreTrainingDailySummaryModel>
+    implements $FirestoreTrainingDailySummaryModelCopyWith<$Res> {
+  _$FirestoreTrainingDailySummaryModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -66,9 +78,9 @@ class _$TrainingDailySummaryCopyWithImpl<$Res,
     Object? themeShiritoriScore = freezed,
     Object? addMinusScore = freezed,
     Object? doneCount = null,
-    Object? doneAt = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? doneAt = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -91,28 +103,29 @@ class _$TrainingDailySummaryCopyWithImpl<$Res,
           ? _value.doneCount
           : doneCount // ignore: cast_nullable_to_non_nullable
               as int,
-      doneAt: null == doneAt
+      doneAt: freezed == doneAt
           ? _value.doneAt
           : doneAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: null == createdAt
+              as DateTime?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$TrainingDailySummaryImplCopyWith<$Res>
-    implements $TrainingDailySummaryCopyWith<$Res> {
-  factory _$$TrainingDailySummaryImplCopyWith(_$TrainingDailySummaryImpl value,
-          $Res Function(_$TrainingDailySummaryImpl) then) =
-      __$$TrainingDailySummaryImplCopyWithImpl<$Res>;
+abstract class _$$FirestoreTrainingDailySummaryModelImplCopyWith<$Res>
+    implements $FirestoreTrainingDailySummaryModelCopyWith<$Res> {
+  factory _$$FirestoreTrainingDailySummaryModelImplCopyWith(
+          _$FirestoreTrainingDailySummaryModelImpl value,
+          $Res Function(_$FirestoreTrainingDailySummaryModelImpl) then) =
+      __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -121,17 +134,19 @@ abstract class _$$TrainingDailySummaryImplCopyWith<$Res>
       int? themeShiritoriScore,
       int? addMinusScore,
       int doneCount,
-      DateTime doneAt,
-      DateTime createdAt,
-      DateTime updatedAt});
+      @timestampKey DateTime? doneAt,
+      @timestampKey DateTime? createdAt,
+      @timestampKey DateTime? updatedAt});
 }
 
 /// @nodoc
-class __$$TrainingDailySummaryImplCopyWithImpl<$Res>
-    extends _$TrainingDailySummaryCopyWithImpl<$Res, _$TrainingDailySummaryImpl>
-    implements _$$TrainingDailySummaryImplCopyWith<$Res> {
-  __$$TrainingDailySummaryImplCopyWithImpl(_$TrainingDailySummaryImpl _value,
-      $Res Function(_$TrainingDailySummaryImpl) _then)
+class __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl<$Res>
+    extends _$FirestoreTrainingDailySummaryModelCopyWithImpl<$Res,
+        _$FirestoreTrainingDailySummaryModelImpl>
+    implements _$$FirestoreTrainingDailySummaryModelImplCopyWith<$Res> {
+  __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl(
+      _$FirestoreTrainingDailySummaryModelImpl _value,
+      $Res Function(_$FirestoreTrainingDailySummaryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -142,11 +157,11 @@ class __$$TrainingDailySummaryImplCopyWithImpl<$Res>
     Object? themeShiritoriScore = freezed,
     Object? addMinusScore = freezed,
     Object? doneCount = null,
-    Object? doneAt = null,
-    Object? createdAt = null,
-    Object? updatedAt = null,
+    Object? doneAt = freezed,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
-    return _then(_$TrainingDailySummaryImpl(
+    return _then(_$FirestoreTrainingDailySummaryModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -167,34 +182,39 @@ class __$$TrainingDailySummaryImplCopyWithImpl<$Res>
           ? _value.doneCount
           : doneCount // ignore: cast_nullable_to_non_nullable
               as int,
-      doneAt: null == doneAt
+      doneAt: freezed == doneAt
           ? _value.doneAt
           : doneAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      createdAt: null == createdAt
+              as DateTime?,
+      createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updatedAt: null == updatedAt
+              as DateTime?,
+      updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
-
-class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
-  const _$TrainingDailySummaryImpl(
+@JsonSerializable()
+class _$FirestoreTrainingDailySummaryModelImpl
+    implements _FirestoreTrainingDailySummaryModel {
+  const _$FirestoreTrainingDailySummaryModelImpl(
       {required this.id,
       this.coloredWordScore,
       this.themeShiritoriScore,
       this.addMinusScore,
       this.doneCount = 0,
-      required this.doneAt,
-      required this.createdAt,
-      required this.updatedAt});
+      @timestampKey this.doneAt,
+      @timestampKey this.createdAt,
+      @timestampKey this.updatedAt});
+
+  factory _$FirestoreTrainingDailySummaryModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$FirestoreTrainingDailySummaryModelImplFromJson(json);
 
   @override
   final String id;
@@ -208,22 +228,25 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
   @JsonKey()
   final int doneCount;
   @override
-  final DateTime doneAt;
+  @timestampKey
+  final DateTime? doneAt;
   @override
-  final DateTime createdAt;
+  @timestampKey
+  final DateTime? createdAt;
   @override
-  final DateTime updatedAt;
+  @timestampKey
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'TrainingDailySummary(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, addMinusScore: $addMinusScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'FirestoreTrainingDailySummaryModel(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, addMinusScore: $addMinusScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TrainingDailySummaryImpl &&
+            other is _$FirestoreTrainingDailySummaryModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.coloredWordScore, coloredWordScore) ||
                 other.coloredWordScore == coloredWordScore) &&
@@ -240,6 +263,7 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
                 other.updatedAt == updatedAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -255,22 +279,35 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TrainingDailySummaryImplCopyWith<_$TrainingDailySummaryImpl>
-      get copyWith =>
-          __$$TrainingDailySummaryImplCopyWithImpl<_$TrainingDailySummaryImpl>(
-              this, _$identity);
+  _$$FirestoreTrainingDailySummaryModelImplCopyWith<
+          _$FirestoreTrainingDailySummaryModelImpl>
+      get copyWith => __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl<
+          _$FirestoreTrainingDailySummaryModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FirestoreTrainingDailySummaryModelImplToJson(
+      this,
+    );
+  }
 }
 
-abstract class _TrainingDailySummary implements TrainingDailySummary {
-  const factory _TrainingDailySummary(
-      {required final String id,
-      final int? coloredWordScore,
-      final int? themeShiritoriScore,
-      final int? addMinusScore,
-      final int doneCount,
-      required final DateTime doneAt,
-      required final DateTime createdAt,
-      required final DateTime updatedAt}) = _$TrainingDailySummaryImpl;
+abstract class _FirestoreTrainingDailySummaryModel
+    implements FirestoreTrainingDailySummaryModel {
+  const factory _FirestoreTrainingDailySummaryModel(
+          {required final String id,
+          final int? coloredWordScore,
+          final int? themeShiritoriScore,
+          final int? addMinusScore,
+          final int doneCount,
+          @timestampKey final DateTime? doneAt,
+          @timestampKey final DateTime? createdAt,
+          @timestampKey final DateTime? updatedAt}) =
+      _$FirestoreTrainingDailySummaryModelImpl;
+
+  factory _FirestoreTrainingDailySummaryModel.fromJson(
+          Map<String, dynamic> json) =
+      _$FirestoreTrainingDailySummaryModelImpl.fromJson;
 
   @override
   String get id;
@@ -283,13 +320,17 @@ abstract class _TrainingDailySummary implements TrainingDailySummary {
   @override
   int get doneCount;
   @override
-  DateTime get doneAt;
+  @timestampKey
+  DateTime? get doneAt;
   @override
-  DateTime get createdAt;
+  @timestampKey
+  DateTime? get createdAt;
   @override
-  DateTime get updatedAt;
+  @timestampKey
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$TrainingDailySummaryImplCopyWith<_$TrainingDailySummaryImpl>
+  _$$FirestoreTrainingDailySummaryModelImplCopyWith<
+          _$FirestoreTrainingDailySummaryModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

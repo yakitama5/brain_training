@@ -11,5 +11,7 @@ class TrainingDailySummary with _$TrainingDailySummary {
     int? addMinusScore,
     @Default(0) int doneCount,
     required DateTime doneAt,
+    required DateTime createdAt,
+    required DateTime updatedAt,
   }) = _TrainingDailySummary;
 }

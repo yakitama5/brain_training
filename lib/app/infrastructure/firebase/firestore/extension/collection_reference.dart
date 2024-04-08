@@ -7,4 +7,8 @@ extension FirebaseFirestoreX on FirebaseFirestore {
   CollectionReference dusersRef() => collection('_dusers');
   CollectionReference fcmTokensRef(String userId) =>
       usersRef().doc(userId).collection('fcmTokens');
+  CollectionReference coloredWordResultsRef(String userId) =>
+      usersRef().doc(userId).collection('coloredWordResults');
+  CollectionReference trainingDailySummaryRef(String userId) =>
+      usersRef().doc(userId).collection('trainingDailySummaries');
 }
