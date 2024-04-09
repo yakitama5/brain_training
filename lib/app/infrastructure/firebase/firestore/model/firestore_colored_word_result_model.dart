@@ -1,6 +1,7 @@
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../../domain/training/entity/training_result.dart';
 import '../converter/json_key.dart';
 
 part 'firestore_colored_word_result_model.freezed.dart';
@@ -22,4 +23,16 @@ class FirestoreColoredWordResultModel with _$FirestoreColoredWordResultModel {
 
   factory FirestoreColoredWordResultModel.fromJson(Map<String, dynamic> json) =>
       _$FirestoreColoredWordResultModelFromJson(json);
+}
+
+extension FirestoreColoredWordResultModelX on FirestoreColoredWordResultModel {
+  /// ドメイン層への変換
+  ColoredWordResult toDomainModel() => ColoredWordResult(
+        correct: correct,
+        questions: questions,
+      );
+
+  /// `FieldValue`による更新が保留中か否か
+  bool get fieldValuePending =>
+      doneAt == null || createdAt == null || updatedAt == null;
 }

@@ -1,4 +1,5 @@
 import 'package:brain_training/app/domain/training/entity/training_daily_summary.dart';
+import 'package:brain_training/app/domain/training/entity/training_result.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,7 +14,13 @@ TrainingRepository trainingRepository(TrainingRepositoryRef ref) =>
 /// 脳トレ結果に関するリポジトリ
 abstract class TrainingRepository {
   /// 日毎の実施状況サマリを取得する
-  Stream<TrainingDailySummary?> fetchDailySummary({
+  Stream<TrainingDailySummary?> fetchDailySummaryByDate({
+    required String userId,
+    required DateTime date,
+  });
+
+  /// 日毎の実施状況サマリを取得する
+  Stream<ColoredWordResult?> fetchColoredWordResultByDate({
     required String userId,
     required DateTime date,
   });

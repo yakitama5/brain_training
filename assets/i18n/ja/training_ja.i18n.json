@@ -67,5 +67,19 @@
         "score": "${points: int}点",
         "correctRate": "正答率：${rate: int}%"
     },
-    "tutorial": "チュートリアル"
+    "tutorial": "チュートリアル",
+    "coloredWord": {
+        "displayWord(context=ColoredWord)": {
+            "black": "くろ",
+            "red": "あか",
+            "blue": "あお",
+            "green": "みどり"
+        },
+        "readWord(context=ColoredWord)": {
+            "black": "くろ",
+            "red": "あか",
+            "blue": "あお",
+            "green": "みどり"
+        }
+    }
 }

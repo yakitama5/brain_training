@@ -4,13 +4,14 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 114 (57 per locale)
+/// Strings: 130 (65 per locale)
 ///
-/// Built on 2024-04-04 at 05:37 UTC
+/// Built on 2024-04-09 at 07:14 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
+import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
@@ -211,6 +212,7 @@ class _StringsTrainingEn {
 	late final _StringsTrainingTrainingCardEn trainingCard = _StringsTrainingTrainingCardEn._(_root);
 	late final _StringsTrainingResultEn result = _StringsTrainingResultEn._(_root);
 	String get tutorial => 'Tutorial';
+	late final _StringsTrainingColoredWordEn coloredWord = _StringsTrainingColoredWordEn._(_root);
 }
 
 // Path: common.navigationDestination
@@ -341,6 +343,39 @@ class _StringsTrainingResultEn {
 	String questions({required int qeustions}) => '${qeustions} qeustions';
 	String score({required int points}) => '${points} points';
 	String correctRate({required int rate}) => 'Correct rate: ${rate}%';
+}
+
+// Path: training.coloredWord
+class _StringsTrainingColoredWordEn {
+	_StringsTrainingColoredWordEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String displayWord({required ColoredWord context}) {
+		switch (context) {
+			case ColoredWord.black:
+				return 'Black';
+			case ColoredWord.red:
+				return 'Red';
+			case ColoredWord.blue:
+				return 'Blue';
+			case ColoredWord.green:
+				return 'Green';
+		}
+	}
+	String readWord({required ColoredWord context}) {
+		switch (context) {
+			case ColoredWord.black:
+				return 'Black';
+			case ColoredWord.red:
+				return 'Red';
+			case ColoredWord.blue:
+				return 'Blue';
+			case ColoredWord.green:
+				return 'Green';
+		}
+	}
 }
 
 // Path: settings.list.account
@@ -487,6 +522,7 @@ class _StringsTrainingJa extends _StringsTrainingEn {
 	@override late final _StringsTrainingAnswerSelectionJa answerSelection = _StringsTrainingAnswerSelectionJa._(_root);
 	@override late final _StringsTrainingResultJa result = _StringsTrainingResultJa._(_root);
 	@override String get tutorial => 'チュートリアル';
+	@override late final _StringsTrainingColoredWordJa coloredWord = _StringsTrainingColoredWordJa._(_root);
 }
 
 // Path: common.navigationDestination
@@ -595,6 +631,39 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 	@override String questions({required int qeustions}) => '${qeustions}問';
 	@override String score({required int points}) => '${points}点';
 	@override String correctRate({required int rate}) => '正答率：${rate}%';
+}
+
+// Path: training.coloredWord
+class _StringsTrainingColoredWordJa extends _StringsTrainingColoredWordEn {
+	_StringsTrainingColoredWordJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String displayWord({required ColoredWord context}) {
+		switch (context) {
+			case ColoredWord.black:
+				return 'くろ';
+			case ColoredWord.red:
+				return 'あか';
+			case ColoredWord.blue:
+				return 'あお';
+			case ColoredWord.green:
+				return 'みどり';
+		}
+	}
+	@override String readWord({required ColoredWord context}) {
+		switch (context) {
+			case ColoredWord.black:
+				return 'くろ';
+			case ColoredWord.red:
+				return 'あか';
+			case ColoredWord.blue:
+				return 'あお';
+			case ColoredWord.green:
+				return 'みどり';
+		}
+	}
 }
 
 // Path: training.result.scoreCard
@@ -785,6 +854,30 @@ extension on Translations {
 			case 'training.result.score': return ({required int points}) => '${points} points';
 			case 'training.result.correctRate': return ({required int rate}) => 'Correct rate: ${rate}%';
 			case 'training.tutorial': return 'Tutorial';
+			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
+				switch (context) {
+					case ColoredWord.black:
+						return 'Black';
+					case ColoredWord.red:
+						return 'Red';
+					case ColoredWord.blue:
+						return 'Blue';
+					case ColoredWord.green:
+						return 'Green';
+				}
+			};
+			case 'training.coloredWord.readWord': return ({required ColoredWord context}) {
+				switch (context) {
+					case ColoredWord.black:
+						return 'Black';
+					case ColoredWord.red:
+						return 'Red';
+					case ColoredWord.blue:
+						return 'Blue';
+					case ColoredWord.green:
+						return 'Green';
+				}
+			};
 			default: return null;
 		}
 	}
@@ -908,6 +1001,30 @@ extension on _StringsJa {
 			case 'training.result.score': return ({required int points}) => '${points}点';
 			case 'training.result.correctRate': return ({required int rate}) => '正答率：${rate}%';
 			case 'training.tutorial': return 'チュートリアル';
+			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
+				switch (context) {
+					case ColoredWord.black:
+						return 'くろ';
+					case ColoredWord.red:
+						return 'あか';
+					case ColoredWord.blue:
+						return 'あお';
+					case ColoredWord.green:
+						return 'みどり';
+				}
+			};
+			case 'training.coloredWord.readWord': return ({required ColoredWord context}) {
+				switch (context) {
+					case ColoredWord.black:
+						return 'くろ';
+					case ColoredWord.red:
+						return 'あか';
+					case ColoredWord.blue:
+						return 'あお';
+					case ColoredWord.green:
+						return 'みどり';
+				}
+			};
 			default: return null;
 		}
 	}

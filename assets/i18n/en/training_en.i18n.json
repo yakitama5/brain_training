@@ -67,5 +67,19 @@
         "score": "${points: int} points",
         "correctRate": "Correct rate: ${rate: int}%"
     },
-    "tutorial": "Tutorial"
+    "tutorial": "Tutorial",
+    "coloredWord": {
+        "displayWord(context=ColoredWord)": {
+            "black": "Black",
+            "red": "Red",
+            "blue": "Blue",
+            "green": "Green"
+        },
+        "readWord(context=ColoredWord)": {
+            "black": "Black",
+            "red": "Red",
+            "blue": "Blue",
+            "green": "Green"
+        }
+    }
 }

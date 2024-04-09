@@ -6,10 +6,11 @@ namespaces: true
 
 # Config
 imports:
-  - 'package:brain_training/app/domain/training/value_object/training_type.dart'
-  - 'package:brain_training/app/domain/training/value_object/result_rank.dart'
-  - 'package:brain_training/app/domain/training/value_object/rank_category.dart'
-  - 'package:brain_training/app/domain/training/value_object/answer_type.dart'
+  - "package:brain_training/app/domain/training/value_object/training_type.dart"
+  - "package:brain_training/app/domain/training/value_object/result_rank.dart"
+  - "package:brain_training/app/domain/training/value_object/rank_category.dart"
+  - "package:brain_training/app/domain/training/value_object/answer_type.dart"
+  - "package:brain_training/app/domain/read_color/value_object/colored_word.dart"
 contexts:
   TrainingType:
     generate_enum: false
@@ -18,4 +19,6 @@ contexts:
   RankCategory:
     generate_enum: false
   AnswerType:
+    generate_enum: false
+  ColoredWord:
     generate_enum: false

@@ -61,6 +61,7 @@ class PlayPage extends HookConsumerWidget {
   PlayPage({super.key, required this.answerType});
 
   static const interval = Duration(milliseconds: 100);
+  static const endDuration = Duration(milliseconds: 2000);
 
   final AnswerType answerType;
   final Stopwatch stopwatch = Stopwatch();
@@ -69,6 +70,8 @@ class PlayPage extends HookConsumerWidget {
     ..setAsset(Assets.sounds.quizCorrect);
   final AudioPlayer incorrectSoundPlayer = AudioPlayer()
     ..setAsset(Assets.sounds.quizIncorrect);
+  final AudioPlayer endSoundPlayer = AudioPlayer()
+    ..setAsset(Assets.sounds.quizEnd);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,37 +82,45 @@ class PlayPage extends HookConsumerWidget {
     final word = useState(_createMixedWord());
     final ms = useState(0);
     final answerResult = useState<AnswerResult?>(null);
+    final ended = useState(false);
 
     useEffect(
       () {
         stopwatch.start();
         Timer(
           interval,
-          () => updateStopWatch(ms, () async {
-            final result = ColoredWordResult(
-              correct: correct.value,
-              questions: questions.value,
-            );
+          () => updateStopWatch(ms, () {
+            ended.value = true;
+            endSoundPlayer.play();
 
-            Future<void> addResult() async {
-              final user = await ref.read(authUserProvider.future);
+            Timer(endDuration, () {
+              final result = ColoredWordResult(
+                correct: correct.value,
+                questions: questions.value,
+              );
 
-              await ref.read(trainingUsecaseProvider).finishColoredWordTraining(
-                    userId: user!.id,
-                    score: result.score,
-                    rank: result.rank,
-                    correct: result.correct,
-                    questions: result.questions,
-                    correctRate: result.correctRate,
-                    doneAt: DateTime.now(),
-                  );
-            }
+              Future<void> addResult() async {
+                final user = await ref.read(authUserProvider.future);
 
-            // 非同期で処理する
-            unawaited(addResult());
-            TrainingResultRouteData(
-              result,
-            ).go(context);
+                await ref
+                    .read(trainingUsecaseProvider)
+                    .finishColoredWordTraining(
+                      userId: user!.id,
+                      score: result.score,
+                      rank: result.rank,
+                      correct: result.correct,
+                      questions: result.questions,
+                      correctRate: result.correctRate,
+                      doneAt: DateTime.now(),
+                    );
+              }
+
+              // 非同期で処理する
+              unawaited(addResult());
+              TrainingResultRouteData(
+                result,
+              ).go(context);
+            });
           }),
         );
         return stopwatch.reset;
@@ -117,51 +128,62 @@ class PlayPage extends HookConsumerWidget {
       [stopwatch],
     );
 
+    if (ended.value) {
+      return Center(
+        child: Text(
+          i18n.common.end,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+      );
+    }
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 120),
+              child: WidthFillBox(
+                child: Column(
+                  children: [
+                    // 正誤表示
+                    _AnswerResult(result: answerResult.value),
+
+                    // 色付き文字
+                    MixedColoredWordText(coloredWord: word.value),
+                    const Gap(80),
+
+                    // 回答方法
+                    switch (answerType) {
+                      AnswerType.voice => VoiceAnswer(
+                          onAnswered: (answer) => onAnswered(
+                            answer,
+                            word,
+                            questions,
+                            correct,
+                            answerResult,
+                          ),
+                        ),
+                      AnswerType.list => ListAnswer(
+                          onAnswered: (answer) => onAnswered(
+                            answer,
+                            word,
+                            questions,
+                            correct,
+                            answerResult,
+                          ),
+                        ),
+                    },
+                  ],
+                ),
+              ),
+            ),
             Align(
               alignment: Alignment.topRight,
               child: GaugeChart(
                 value: ms.value / limit * 100,
                 radius: 56,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 120),
-              child: Column(
-                children: [
-                  // 正誤表示
-                  _AnswerResult(result: answerResult.value),
-
-                  // 色付き文字
-                  MixedColoredWordText(coloredWord: word.value),
-                  const Gap(80),
-
-                  // 回答方法
-                  switch (answerType) {
-                    AnswerType.voice => VoiceAnswer(
-                        onAnswered: (answer) => onAnswered(
-                          answer,
-                          word,
-                          questions,
-                          correct,
-                          answerResult,
-                        ),
-                      ),
-                    AnswerType.list => ListAnswer(
-                        onAnswered: (answer) => onAnswered(
-                          answer,
-                          word,
-                          questions,
-                          correct,
-                          answerResult,
-                        ),
-                      ),
-                  },
-                ],
               ),
             ),
           ],
@@ -240,7 +262,8 @@ class ListAnswer extends StatelessWidget {
                 width: double.infinity,
                 child: OutlinedButton(
                   onPressed: () => onAnswered(e),
-                  child: Text(e.hiragana),
+                  child:
+                      Text(i18n.training.coloredWord.displayWord(context: e)),
                 ),
               ),
             ),

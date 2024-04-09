@@ -31,7 +31,17 @@ class TrainingUsecase with RunUsecaseMixin {
       execute(
         _ref,
         action: () async {
-          // TODO(yakitama5): 初回か否かの判定を行うこと
+          // 実施済であれば登録は行わない
+          final result = await _trainingRepository
+              .fetchColoredWordResultByDate(
+                userId: userId,
+                date: doneAt,
+              )
+              .first;
+          if (result != null) {
+            return;
+          }
+
           return _trainingRepository.addColoredWordResult(
             userId: userId,
             score: score,
@@ -42,5 +52,6 @@ class TrainingUsecase with RunUsecaseMixin {
             doneAt: doneAt,
           );
         },
+        disableLoading: true,
       );
 }
