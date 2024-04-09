@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -83,7 +84,19 @@ class PlayPage extends HookConsumerWidget {
         stopwatch.start();
         Timer(
           interval,
-          () => updateStopWatch(ms, () {
+          () => updateStopWatch(ms, () async {
+            // TODO(yakitama5): 登録処理を追加...？
+
+            ref.read(trainingUsecaseProvider).finishColoredWordTraining(
+                  userId: userId,
+                  score: score,
+                  rank: rank,
+                  correct: correct,
+                  questions: questions,
+                  correctRate: correctRate,
+                  doneAt: doneAt,
+                );
+
             TrainingResultRouteData(
               ColoredWordResult(
                 correct: correct.value,

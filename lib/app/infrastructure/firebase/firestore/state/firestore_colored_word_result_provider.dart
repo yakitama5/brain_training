@@ -25,6 +25,7 @@ CollectionReference<FirestoreColoredWordResultModel>
           ...value.toJson(),
 
           // 日付項目は自動更新
+          if (value.doneAt == null) 'doneAt': FieldValue.serverTimestamp(),
           firestoreColumnUpdatedAt: FieldValue.serverTimestamp(),
           if (value.createdAt == null)
             firestoreColumnCreatedAt: FieldValue.serverTimestamp(),

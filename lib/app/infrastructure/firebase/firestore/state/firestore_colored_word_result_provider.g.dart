@@ -7,7 +7,7 @@ part of 'firestore_colored_word_result_provider.dart';
 // **************************************************************************
 
 String _$coloredWordResultCollectionHash() =>
-    r'd5de494f2f6b4ed8b7742668f0b4f9af2932f6cd';
+    r'be4df7956b5d6de2a38de5147e38930bbb2ad0d3';
 
 /// Copied from Dart SDK
 class _SystemHash {

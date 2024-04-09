@@ -63,7 +63,6 @@ class FirebaseTrainingRepository implements TrainingRepository {
       correct: correct,
       questions: questions,
       correctRate: correctRate,
-      doneAt: doneAt,
     );
 
     // サマリの設定
