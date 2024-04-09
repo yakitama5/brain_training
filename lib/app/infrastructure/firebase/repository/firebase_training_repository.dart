@@ -66,7 +66,7 @@ class FirebaseTrainingRepository implements TrainingRepository {
     );
 
     // サマリの設定
-    final summary = await fetchDailySummary(userId: userId, date: doneAt).last;
+    final summary = await fetchDailySummary(userId: userId, date: doneAt).first;
     final summaryRef = summary == null
         ? ref.read(trainingDailySummaryCollectionProvider(userId)).doc()
         : ref.read(
@@ -77,7 +77,7 @@ class FirebaseTrainingRepository implements TrainingRepository {
           );
     final summaryParam = FirestoreTrainingDailySummaryModel(
       id: summaryRef.id,
-      coloredWordScore: summary?.coloredWordScore,
+      coloredWordScore: score,
       themeShiritoriScore: summary?.themeShiritoriScore,
       addMinusScore: summary?.addMinusScore,
       // その他の項目は`withConverter`で共通設定

@@ -8,7 +8,7 @@ import '../run_usecase_mixin.dart';
 part 'training_usecase.g.dart';
 
 @riverpod
-TrainingUsecase trainingUsecase(TrainingUsecaseRef ref) => trainingUsecase(ref);
+TrainingUsecase trainingUsecase(TrainingUsecaseRef ref) => TrainingUsecase(ref);
 
 class TrainingUsecase with RunUsecaseMixin {
   const TrainingUsecase(this._ref);

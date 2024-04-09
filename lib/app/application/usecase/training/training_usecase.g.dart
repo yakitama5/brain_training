@@ -6,7 +6,7 @@ part of 'training_usecase.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$trainingUsecaseHash() => r'673eab513b9755bc9bb547a881a90936812818ad';
+String _$trainingUsecaseHash() => r'2e584834f0e028561f695a789a5ab30762322012';
 
 /// See also [trainingUsecase].
 @ProviderFor(trainingUsecase)
