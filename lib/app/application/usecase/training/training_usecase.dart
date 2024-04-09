@@ -25,7 +25,7 @@ class TrainingUsecase with RunUsecaseMixin {
     required ResultRank rank,
     required int correct,
     required int questions,
-    required int correctRate,
+    required double correctRate,
     required DateTime doneAt,
   }) =>
       execute(

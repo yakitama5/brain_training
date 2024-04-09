@@ -26,7 +26,7 @@ mixin _$FirestoreColoredWordResultModel {
   ResultRank get rank => throw _privateConstructorUsedError;
   int get correct => throw _privateConstructorUsedError;
   int get questions => throw _privateConstructorUsedError;
-  int get correctRate => throw _privateConstructorUsedError;
+  double get correctRate => throw _privateConstructorUsedError;
   @timestampKey
   DateTime? get doneAt => throw _privateConstructorUsedError;
   @timestampKey
@@ -54,7 +54,7 @@ abstract class $FirestoreColoredWordResultModelCopyWith<$Res> {
       ResultRank rank,
       int correct,
       int questions,
-      int correctRate,
+      double correctRate,
       @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
       @timestampKey DateTime? updatedAt});
@@ -108,7 +108,7 @@ class _$FirestoreColoredWordResultModelCopyWithImpl<$Res,
       correctRate: null == correctRate
           ? _value.correctRate
           : correctRate // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       doneAt: freezed == doneAt
           ? _value.doneAt
           : doneAt // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$$FirestoreColoredWordResultModelImplCopyWith<$Res>
       ResultRank rank,
       int correct,
       int questions,
-      int correctRate,
+      double correctRate,
       @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
       @timestampKey DateTime? updatedAt});
@@ -193,7 +193,7 @@ class __$$FirestoreColoredWordResultModelImplCopyWithImpl<$Res>
       correctRate: null == correctRate
           ? _value.correctRate
           : correctRate // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       doneAt: freezed == doneAt
           ? _value.doneAt
           : doneAt // ignore: cast_nullable_to_non_nullable
@@ -240,7 +240,7 @@ class _$FirestoreColoredWordResultModelImpl
   @override
   final int questions;
   @override
-  final int correctRate;
+  final double correctRate;
   @override
   @timestampKey
   final DateTime? doneAt;
@@ -305,7 +305,7 @@ abstract class _FirestoreColoredWordResultModel
           required final ResultRank rank,
           required final int correct,
           required final int questions,
-          required final int correctRate,
+          required final double correctRate,
           @timestampKey final DateTime? doneAt,
           @timestampKey final DateTime? createdAt,
           @timestampKey final DateTime? updatedAt}) =
@@ -325,7 +325,7 @@ abstract class _FirestoreColoredWordResultModel
   @override
   int get questions;
   @override
-  int get correctRate;
+  double get correctRate;
   @override
   @timestampKey
   DateTime? get doneAt;

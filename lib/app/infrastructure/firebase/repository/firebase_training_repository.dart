@@ -51,7 +51,7 @@ class FirebaseTrainingRepository implements TrainingRepository {
     required ResultRank rank,
     required int correct,
     required int questions,
-    required int correctRate,
+    required double correctRate,
     required DateTime doneAt,
   }) async {
     // 結果の設定

@@ -25,7 +25,7 @@ abstract class TrainingRepository {
     required ResultRank rank,
     required int correct,
     required int questions,
-    required int correctRate,
+    required double correctRate,
     required DateTime doneAt,
   });
 }

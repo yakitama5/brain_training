@@ -14,7 +14,7 @@ _$FirestoreColoredWordResultModelImpl
           rank: $enumDecode(_$ResultRankEnumMap, json['rank']),
           correct: json['correct'] as int,
           questions: json['questions'] as int,
-          correctRate: json['correctRate'] as int,
+          correctRate: (json['correctRate'] as num).toDouble(),
           doneAt: dateFromTimestampValue(json['doneAt']),
           createdAt: dateFromTimestampValue(json['createdAt']),
           updatedAt: dateFromTimestampValue(json['updatedAt']),

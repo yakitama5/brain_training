@@ -14,6 +14,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../application/state/speech_to_text_provider.dart';
+import '../../../application/usecase/user/state/auth_user_provider.dart';
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
@@ -87,22 +88,27 @@ class PlayPage extends HookConsumerWidget {
           () => updateStopWatch(ms, () async {
             // TODO(yakitama5): 登録処理を追加...？
 
-            ref.read(trainingUsecaseProvider).finishColoredWordTraining(
-                  userId: userId,
-                  score: score,
-                  rank: rank,
-                  correct: correct,
-                  questions: questions,
-                  correctRate: correctRate,
-                  doneAt: doneAt,
+            final user = await ref.read(authUserProvider.future);
+            final result = ColoredWordResult(
+              correct: correct.value,
+              questions: questions.value,
+            );
+
+            await ref.read(trainingUsecaseProvider).finishColoredWordTraining(
+                  userId: user!.id,
+                  score: result.score,
+                  rank: result.rank,
+                  correct: result.correct,
+                  questions: result.questions,
+                  correctRate: result.correctRate,
+                  doneAt: DateTime.now(),
                 );
 
-            TrainingResultRouteData(
-              ColoredWordResult(
-                correct: correct.value,
-                questions: questions.value,
-              ),
-            ).go(context);
+            if (context.mounted) {
+              TrainingResultRouteData(
+                result,
+              ).go(context);
+            }
           }),
         );
         return stopwatch.reset;

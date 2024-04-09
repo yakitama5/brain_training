@@ -14,7 +14,7 @@ class FirestoreColoredWordResultModel with _$FirestoreColoredWordResultModel {
     required ResultRank rank,
     required int correct,
     required int questions,
-    required int correctRate,
+    required double correctRate,
     @timestampKey DateTime? doneAt,
     @timestampKey DateTime? createdAt,
     @timestampKey DateTime? updatedAt,
