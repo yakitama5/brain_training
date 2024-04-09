@@ -30,14 +30,17 @@ class TrainingUsecase with RunUsecaseMixin {
   }) =>
       execute(
         _ref,
-        action: () => _trainingRepository.addColoredWordResult(
-          userId: userId,
-          score: score,
-          rank: rank,
-          correct: correct,
-          questions: questions,
-          correctRate: correctRate,
-          doneAt: doneAt,
-        ),
+        action: () async {
+          // TODO(yakitama5): 初回か否かの判定を行うこと
+          return _trainingRepository.addColoredWordResult(
+            userId: userId,
+            score: score,
+            rank: rank,
+            correct: correct,
+            questions: questions,
+            correctRate: correctRate,
+            doneAt: doneAt,
+          );
+        },
       );
 }

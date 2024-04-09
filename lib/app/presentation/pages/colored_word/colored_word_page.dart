@@ -86,29 +86,30 @@ class PlayPage extends HookConsumerWidget {
         Timer(
           interval,
           () => updateStopWatch(ms, () async {
-            // TODO(yakitama5): 登録処理を追加...？
-
-            final user = await ref.read(authUserProvider.future);
             final result = ColoredWordResult(
               correct: correct.value,
               questions: questions.value,
             );
 
-            await ref.read(trainingUsecaseProvider).finishColoredWordTraining(
-                  userId: user!.id,
-                  score: result.score,
-                  rank: result.rank,
-                  correct: result.correct,
-                  questions: result.questions,
-                  correctRate: result.correctRate,
-                  doneAt: DateTime.now(),
-                );
+            Future<void> addResult() async {
+              final user = await ref.read(authUserProvider.future);
 
-            if (context.mounted) {
-              TrainingResultRouteData(
-                result,
-              ).go(context);
+              await ref.read(trainingUsecaseProvider).finishColoredWordTraining(
+                    userId: user!.id,
+                    score: result.score,
+                    rank: result.rank,
+                    correct: result.correct,
+                    questions: result.questions,
+                    correctRate: result.correctRate,
+                    doneAt: DateTime.now(),
+                  );
             }
+
+            // 非同期で処理する
+            unawaited(addResult());
+            TrainingResultRouteData(
+              result,
+            ).go(context);
           }),
         );
         return stopwatch.reset;
