@@ -19,12 +19,15 @@ class $AssetsSoundsGen {
   /// File path: assets/sounds/quiz_correct.mp3
   String get quizCorrect => 'assets/sounds/quiz_correct.mp3';
 
+  /// File path: assets/sounds/quiz_end.mp3
+  String get quizEnd => 'assets/sounds/quiz_end.mp3';
+
   /// File path: assets/sounds/quiz_incorrect.mp3
   String get quizIncorrect => 'assets/sounds/quiz_incorrect.mp3';
 
   /// List of all assets
   List<String> get values =>
-      [countdownCount, countdownEnd, quizCorrect, quizIncorrect];
+      [countdownCount, countdownEnd, quizCorrect, quizEnd, quizIncorrect];
 }
 
 class Assets {
