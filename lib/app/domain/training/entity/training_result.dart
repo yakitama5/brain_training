@@ -15,6 +15,8 @@ class ColoredWordResult extends TrainingResult {
   final int correct;
   final int questions;
 
+  // TODO(yakitama5): Firestoreのモデル変換などをうまいことやる...
+
   @override
   ResultRank get rank {
     // HACK(yakitama5): ここでしかでないしマジックナンバーで良い気がする
