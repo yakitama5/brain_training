@@ -100,19 +100,18 @@ class PlayPage extends HookConsumerWidget {
               );
 
               Future<void> addResult() async {
+                final usecase = ref.read(trainingUsecaseProvider);
                 final user = await ref.read(authUserProvider.future);
 
-                await ref
-                    .read(trainingUsecaseProvider)
-                    .finishColoredWordTraining(
-                      userId: user!.id,
-                      score: result.score,
-                      rank: result.rank,
-                      correct: result.correct,
-                      questions: result.questions,
-                      correctRate: result.correctRate,
-                      doneAt: DateTime.now(),
-                    );
+                await usecase.finishColoredWordTraining(
+                  userId: user!.id,
+                  score: result.score,
+                  rank: result.rank,
+                  correct: result.correct,
+                  questions: result.questions,
+                  correctRate: result.correctRate,
+                  doneAt: DateTime.now(),
+                );
               }
 
               // 非同期で処理する
