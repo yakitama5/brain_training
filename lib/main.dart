@@ -1,5 +1,7 @@
+import 'package:brain_training/app/application/state/color_scheme_provider.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -8,10 +10,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app/app.dart';
 import 'app/application/config/app_config.dart';
+import 'app/application/model/colore_schemes.dart';
 import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
 import 'app/domain/user/interface/user_repository.dart';
 import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
+import 'app/presentation/theme/importer.dart';
 import 'firebase_options.dart';
 import 'firebase_options_dev.dart' as dev;
 import 'i18n/strings.g.dart';
@@ -19,6 +23,9 @@ import 'i18n/strings.g.dart';
 void main() async {
   // Flutter Initialize
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ColorScheme
+  final colorSchemes = await initializeColorSchemes();
 
   // Slang
   LocaleSettings.useDeviceLocale();
@@ -47,6 +54,9 @@ void main() async {
         // 初期ロケーションの設定
         initialLocationProvider.overrideWith((ref) => '/home'),
 
+        // アプリ内で利用するColorSchemeの定義
+        colorSchemesProvider.overrideWithValue(colorSchemes),
+
         // インフラ層のDI
         // Firebase
         userRepositoryProvider.overrideWith(FirebaseUserRepository.new),
@@ -56,5 +66,23 @@ void main() async {
         child: const App(),
       ),
     ),
+  );
+}
+
+Future<ColorSchemes> initializeColorSchemes() async {
+  final corePalette = await DynamicColorPlugin.getCorePalette();
+
+  final isDynamicColorSupported = corePalette != null;
+
+  final lightColorScheme = isDynamicColorSupported
+      ? corePalette.toColorScheme()
+      : MaterialTheme.lightScheme().toColorScheme();
+  final darkColorScheme = isDynamicColorSupported
+      ? corePalette.toColorScheme(brightness: Brightness.dark)
+      : MaterialTheme.darkScheme().toColorScheme();
+
+  return ColorSchemes(
+    lightColorScheme: lightColorScheme,
+    darkColorScheme: darkColorScheme,
   );
 }

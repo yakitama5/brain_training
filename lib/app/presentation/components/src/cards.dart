@@ -52,7 +52,10 @@ class FilledCard extends SingleChildStatelessWidget {
     // https://m3.material.io/components/cards/specs#9abbced9-d5d3-4893-9a67-031825205f06
     const padding = EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 16);
 
-    return Card.filled(
+    return Card(
+      clipBehavior: Clip.hardEdge,
+      elevation: 0,
+      color: Theme.of(context).colorScheme.surfaceVariant,
       child: InkWell(
         onTap: _onTap,
         onLongPress: _onLongPress,

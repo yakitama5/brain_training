@@ -24,6 +24,7 @@ import '../../routes/src/routes/routes.dart';
 import '../training/components/count_down.dart';
 import 'components/mixed_colored_word_text.dart';
 
+
 class ColoredWordPage extends HookConsumerWidget {
   const ColoredWordPage({super.key, required this.answerType});
 
