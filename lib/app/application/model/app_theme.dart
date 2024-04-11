@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  AppTheme({
-    required this.darkColorScheme,
-    required this.lightColorScheme,
-  });
+  const AppTheme({
+    required ColorScheme darkColorScheme,
+    required ColorScheme lightColorScheme,
+  })  : _darkColorScheme = darkColorScheme,
+        _lightColorScheme = lightColorScheme;
 
-  final ColorScheme lightColorScheme;
-  final ColorScheme darkColorScheme;
+  final ColorScheme _lightColorScheme;
+  final ColorScheme _darkColorScheme;
 
   ThemeData get light => _createThemeData(Brightness.light);
   ThemeData get dark => _createThemeData(Brightness.dark);
 
   ThemeData _createThemeData(Brightness brightness) {
     final colorScheme = switch (brightness) {
-      Brightness.light => lightColorScheme,
-      Brightness.dark => darkColorScheme,
+      Brightness.light => _lightColorScheme,
+      Brightness.dark => _darkColorScheme,
     };
 
     return ThemeData(
