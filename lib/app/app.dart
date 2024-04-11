@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../i18n/strings.g.dart';
-import 'application/state/color_scheme_provider.dart';
+import 'application/state/app_theme_provider.dart';
 import 'presentation/components/importer.dart';
 import 'presentation/routes/src/routes/router.dart';
 
@@ -14,7 +14,7 @@ class App extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    final colorSchemes = ref.watch(colorSchemesProvider);
+    final appTheme = ref.watch(appThemeProvider);
 
     return MaterialApp.router(
       builder: (context, child) => Consumer(
@@ -42,16 +42,8 @@ class App extends HookConsumerWidget {
           .copyWith(physics: const BouncingScrollPhysics()),
 
       // テーマ設定
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: colorSchemes.lightColorScheme,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: colorSchemes.darkColorScheme,
-        brightness: Brightness.dark,
-      ),
+      theme: appTheme.light,
+      darkTheme: appTheme.dark,
     );
   }
 }

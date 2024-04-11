@@ -1,4 +1,4 @@
-import 'package:brain_training/app/application/state/color_scheme_provider.dart';
+import 'package:brain_training/app/application/state/app_theme_provider.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -10,7 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app/app.dart';
 import 'app/application/config/app_config.dart';
-import 'app/application/model/colore_schemes.dart';
+import 'app/application/model/app_theme.dart';
 import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
 import 'app/domain/user/interface/user_repository.dart';
@@ -24,8 +24,8 @@ void main() async {
   // Flutter Initialize
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ColorScheme
-  final colorSchemes = await initializeColorSchemes();
+  // Theme
+  final appTheme = await initializeAppTheme();
 
   // Slang
   LocaleSettings.useDeviceLocale();
@@ -54,8 +54,8 @@ void main() async {
         // 初期ロケーションの設定
         initialLocationProvider.overrideWith((ref) => '/home'),
 
-        // アプリ内で利用するColorSchemeの定義
-        colorSchemesProvider.overrideWithValue(colorSchemes),
+        // アプリ内で利用するThemeの定義
+        appThemeProvider.overrideWithValue(appTheme),
 
         // インフラ層のDI
         // Firebase
@@ -69,7 +69,7 @@ void main() async {
   );
 }
 
-Future<ColorSchemes> initializeColorSchemes() async {
+Future<AppTheme> initializeAppTheme() async {
   final corePalette = await DynamicColorPlugin.getCorePalette();
 
   final isDynamicColorSupported = corePalette != null;
@@ -81,7 +81,7 @@ Future<ColorSchemes> initializeColorSchemes() async {
       ? corePalette.toColorScheme(brightness: Brightness.dark)
       : MaterialTheme.darkScheme().toColorScheme();
 
-  return ColorSchemes(
+  return AppTheme(
     lightColorScheme: lightColorScheme,
     darkColorScheme: darkColorScheme,
   );

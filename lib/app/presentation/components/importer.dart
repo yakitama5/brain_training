@@ -1,3 +1,4 @@
+export 'src/brightness_scope.dart';
 export 'src/cards.dart';
 export 'src/gauge_indicator.dart';
 export 'src/overlay_loading.dart';
