@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:nested/nested.dart';
 
-class ElevatedCard extends SingleChildStatelessWidget {
+sealed class SingleChildCard extends SingleChildStatelessWidget {
+  const SingleChildCard({
+    super.key,
+    super.child,
+    this.onTap,
+    this.onLongPress,
+  });
+
+  final void Function()? onTap;
+  final void Function()? onLongPress;
+}
+
+class ElevatedCard extends SingleChildCard {
   const ElevatedCard({
     super.key,
     super.child,
-    void Function()? onTap,
-    void Function()? onLongPress,
-  })  : _onTap = onTap,
-        _onLongPress = onLongPress;
-
-  final void Function()? _onTap;
-  final void Function()? _onLongPress;
+    super.onTap,
+    super.onLongPress,
+  });
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -23,8 +31,8 @@ class ElevatedCard extends SingleChildStatelessWidget {
       // InkWellのスプラッシュ表示をはみ出さないように指定
       clipBehavior: Clip.hardEdge,
       child: InkWell(
-        onTap: _onTap,
-        onLongPress: _onLongPress,
+        onTap: onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: padding,
           child: child,
@@ -34,17 +42,13 @@ class ElevatedCard extends SingleChildStatelessWidget {
   }
 }
 
-class FilledCard extends SingleChildStatelessWidget {
+class FilledCard extends SingleChildCard {
   const FilledCard({
     super.key,
     super.child,
-    void Function()? onTap,
-    void Function()? onLongPress,
-  })  : _onTap = onTap,
-        _onLongPress = onLongPress;
-
-  final void Function()? _onTap;
-  final void Function()? _onLongPress;
+    super.onTap,
+    super.onLongPress,
+  });
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -54,8 +58,8 @@ class FilledCard extends SingleChildStatelessWidget {
 
     return Card.filled(
       child: InkWell(
-        onTap: _onTap,
-        onLongPress: _onLongPress,
+        onTap: onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: padding,
           child: child,
@@ -65,17 +69,13 @@ class FilledCard extends SingleChildStatelessWidget {
   }
 }
 
-class OutlinedCard extends SingleChildStatelessWidget {
+class OutlinedCard extends SingleChildCard {
   const OutlinedCard({
     super.key,
     super.child,
-    void Function()? onTap,
-    void Function()? onLongPress,
-  })  : _onTap = onTap,
-        _onLongPress = onLongPress;
-
-  final void Function()? _onTap;
-  final void Function()? _onLongPress;
+    super.onTap,
+    super.onLongPress,
+  });
 
   @override
   Widget buildWithChild(BuildContext context, Widget? child) {
@@ -95,8 +95,8 @@ class OutlinedCard extends SingleChildStatelessWidget {
       ),
       child: InkWell(
         borderRadius: shape,
-        onTap: _onTap,
-        onLongPress: _onLongPress,
+        onTap: onTap,
+        onLongPress: onLongPress,
         child: Padding(
           padding: padding,
           child: child,
