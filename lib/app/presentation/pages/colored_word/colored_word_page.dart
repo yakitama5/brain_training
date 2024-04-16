@@ -40,7 +40,9 @@ class ColoredWordPage extends HookConsumerWidget {
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.close),
-            onPressed: () {},
+            onPressed: () {
+              // TODO(yakitama5): ここで中断処理を記載する (確認中はタイマーを止める)
+            },
           ),
           title: Text(
             i18n.training.trainingType.title(context: TrainingType.coloredWord),
