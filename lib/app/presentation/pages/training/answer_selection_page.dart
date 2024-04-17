@@ -36,6 +36,7 @@ class AnswerSelectionPage extends HookConsumerWidget {
               ),
               const Gap(16),
               Text(
+                // TODO(yakitama5): おすすめを"(おすすめ)"みたいな形で表記する
                 i18n.training.answerSelection.process(context: item),
                 style: ts.titleLarge,
               ),
