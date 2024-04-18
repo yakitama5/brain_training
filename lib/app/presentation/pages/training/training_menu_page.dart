@@ -10,6 +10,7 @@ class TrainingMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(yakitama5): 当日の実施状況を基に表示判定を行う
     final menu = [TrainingType.coloredWord, TrainingType.themeShiritori];
     final completeMenu = [TrainingType.addMinus];
 
