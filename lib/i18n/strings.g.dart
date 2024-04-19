@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 130 (65 per locale)
+/// Strings: 136 (68 per locale)
 ///
-/// Built on 2024-04-09 at 07:14 UTC
+/// Built on 2024-04-19 at 06:19 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -193,7 +193,7 @@ class _StringsSettingsEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get title => '設定';
+	String get title => 'Settings';
 	late final _StringsSettingsListEn list = _StringsSettingsListEn._(_root);
 	late final _StringsSettingsAccountEn account = _StringsSettingsAccountEn._(_root);
 }
@@ -246,9 +246,9 @@ class _StringsSettingsAccountEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get accountLink => 'アカウント連携';
-	String get other => 'その他';
-	String get leave => '退会';
+	String get accountLink => 'Account link';
+	String get other => 'Other';
+	String get leave => 'Leave';
 }
 
 // Path: training.trainingType
@@ -385,8 +385,8 @@ class _StringsSettingsListAccountEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-	String get head => 'アカウント';
-	String get account => 'アカウント';
+	String get head => 'Account';
+	String get account => 'Account';
 }
 
 // Path: training.result.scoreCard
@@ -478,6 +478,7 @@ class _StringsJa extends Translations {
 	// Translations
 	@override late final _StringsCommonJa common = _StringsCommonJa._(_root);
 	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
+	@override late final _StringsSettingsJa settings = _StringsSettingsJa._(_root);
 	@override late final _StringsTrainingJa training = _StringsTrainingJa._(_root);
 }
 
@@ -506,6 +507,18 @@ class _StringsHomeJa extends _StringsHomeEn {
 	@override String get thisWeekStatus => '今週の状況';
 	@override String get dailyTraining => '毎日のトレーニング';
 	@override String get completed => '達成';
+}
+
+// Path: settings
+class _StringsSettingsJa extends _StringsSettingsEn {
+	_StringsSettingsJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '設定';
+	@override late final _StringsSettingsListJa list = _StringsSettingsListJa._(_root);
+	@override late final _StringsSettingsAccountJa account = _StringsSettingsAccountJa._(_root);
 }
 
 // Path: training
@@ -537,6 +550,28 @@ class _StringsCommonNavigationDestinationJa extends _StringsCommonNavigationDest
 	@override String get training => '脳トレ';
 	@override String get coffeBreak => '息抜き';
 	@override String get settings => '設定';
+}
+
+// Path: settings.list
+class _StringsSettingsListJa extends _StringsSettingsListEn {
+	_StringsSettingsListJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _StringsSettingsListAccountJa account = _StringsSettingsListAccountJa._(_root);
+}
+
+// Path: settings.account
+class _StringsSettingsAccountJa extends _StringsSettingsAccountEn {
+	_StringsSettingsAccountJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get accountLink => 'アカウント連携';
+	@override String get other => 'その他';
+	@override String get leave => '退会';
 }
 
 // Path: training.trainingType
@@ -666,6 +701,17 @@ class _StringsTrainingColoredWordJa extends _StringsTrainingColoredWordEn {
 	}
 }
 
+// Path: settings.list.account
+class _StringsSettingsListAccountJa extends _StringsSettingsListAccountEn {
+	_StringsSettingsListAccountJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get head => 'アカウント';
+	@override String get account => 'アカウント';
+}
+
 // Path: training.result.scoreCard
 class _StringsTrainingResultScoreCardJa extends _StringsTrainingResultScoreCardEn {
 	_StringsTrainingResultScoreCardJa._(_StringsJa root) : this._root = root, super._(root);
@@ -746,12 +792,12 @@ extension on Translations {
 			case 'home.thisWeekStatus': return 'This Week';
 			case 'home.dailyTraining': return 'Daily';
 			case 'home.completed': return 'Completed';
-			case 'settings.title': return '設定';
-			case 'settings.list.account.head': return 'アカウント';
-			case 'settings.list.account.account': return 'アカウント';
-			case 'settings.account.accountLink': return 'アカウント連携';
-			case 'settings.account.other': return 'その他';
-			case 'settings.account.leave': return '退会';
+			case 'settings.title': return 'Settings';
+			case 'settings.list.account.head': return 'Account';
+			case 'settings.list.account.account': return 'Account';
+			case 'settings.account.accountLink': return 'Account link';
+			case 'settings.account.other': return 'Other';
+			case 'settings.account.leave': return 'Leave';
 			case 'training.menu': return 'Menu';
 			case 'training.doneMenu': return 'Done';
 			case 'training.trainingType.title': return ({required TrainingType context}) {
@@ -899,6 +945,12 @@ extension on _StringsJa {
 			case 'home.thisWeekStatus': return '今週の状況';
 			case 'home.dailyTraining': return '毎日のトレーニング';
 			case 'home.completed': return '達成';
+			case 'settings.title': return '設定';
+			case 'settings.list.account.head': return 'アカウント';
+			case 'settings.list.account.account': return 'アカウント';
+			case 'settings.account.accountLink': return 'アカウント連携';
+			case 'settings.account.other': return 'その他';
+			case 'settings.account.leave': return '退会';
 			case 'training.menu': return '脳トレメニュー';
 			case 'training.doneMenu': return '実施済のトレーニング';
 			case 'training.trainingType.title': return ({required TrainingType context}) {
