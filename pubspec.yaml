@@ -47,6 +47,7 @@ dependencies:
   material_color_utilities: 
   material_design_icons_flutter: 
   nested: 
+  permission_handler: 
   responsive_framework: 
   riverpod_annotation: ^3.0.0-dev.3
   settings_ui: 
