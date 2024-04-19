@@ -26,6 +26,8 @@ class AnswerSelectionPage extends HookConsumerWidget {
         itemBuilder: (context, index) {
           final recomende = index == 0;
           final item = items[index];
+          final selectionTitle =
+              i18n.training.answerSelection.process(context: item);
 
           final content = Column(
             children: [
@@ -36,8 +38,10 @@ class AnswerSelectionPage extends HookConsumerWidget {
               ),
               const Gap(16),
               Text(
-                // TODO(yakitama5): おすすめを"(おすすめ)"みたいな形で表記する
-                i18n.training.answerSelection.process(context: item),
+                recomende
+                    ? i18n.training.answerSelection
+                        .recommended(answerType: selectionTitle)
+                    : selectionTitle,
                 style: ts.titleLarge,
               ),
             ],
