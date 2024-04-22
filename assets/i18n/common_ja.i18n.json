@@ -8,5 +8,14 @@
         "settings": "設定"
     },
     "start": "スタート！",
-    "end": "終了"
+    "end": "終了",
+    "permission": {
+        "openSettingsDialog": {
+            "title": "権限設定のお願い",
+            "message": "この機能を利用するためには、設定アプリを開いて${operation: String}へのアクセスを許可して下さい。.",
+            "okLabel": "設定アプリを開く"
+        }
+    },
+    "camera": "カメラ",
+    "microphone": "マイク"
 }

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 136 (68 per locale)
+/// Strings: 146 (73 per locale)
 ///
-/// Built on 2024-04-19 at 06:19 UTC
+/// Built on 2024-04-22 at 08:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -170,6 +170,9 @@ class _StringsCommonEn {
 	late final _StringsCommonNavigationDestinationEn navigationDestination = _StringsCommonNavigationDestinationEn._(_root);
 	String get start => 'Start!';
 	String get end => 'End';
+	late final _StringsCommonPermissionEn permission = _StringsCommonPermissionEn._(_root);
+	String get camera => 'Camera';
+	String get microphone => 'Microphone';
 }
 
 // Path: home
@@ -227,6 +230,16 @@ class _StringsCommonNavigationDestinationEn {
 	String get training => 'Training';
 	String get coffeBreak => 'Break';
 	String get settings => 'Settings';
+}
+
+// Path: common.permission
+class _StringsCommonPermissionEn {
+	_StringsCommonPermissionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsCommonPermissionOpenSettingsDialogEn openSettingsDialog = _StringsCommonPermissionOpenSettingsDialogEn._(_root);
 }
 
 // Path: settings.list
@@ -378,6 +391,18 @@ class _StringsTrainingColoredWordEn {
 	}
 }
 
+// Path: common.permission.openSettingsDialog
+class _StringsCommonPermissionOpenSettingsDialogEn {
+	_StringsCommonPermissionOpenSettingsDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Request for permission settings';
+	String message({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
+	String get okLabel => 'Open Settings';
+}
+
 // Path: settings.list.account
 class _StringsSettingsListAccountEn {
 	_StringsSettingsListAccountEn._(this._root);
@@ -493,6 +518,9 @@ class _StringsCommonJa extends _StringsCommonEn {
 	@override late final _StringsCommonNavigationDestinationJa navigationDestination = _StringsCommonNavigationDestinationJa._(_root);
 	@override String get start => 'スタート！';
 	@override String get end => '終了';
+	@override late final _StringsCommonPermissionJa permission = _StringsCommonPermissionJa._(_root);
+	@override String get camera => 'カメラ';
+	@override String get microphone => 'マイク';
 }
 
 // Path: home
@@ -550,6 +578,16 @@ class _StringsCommonNavigationDestinationJa extends _StringsCommonNavigationDest
 	@override String get training => '脳トレ';
 	@override String get coffeBreak => '息抜き';
 	@override String get settings => '設定';
+}
+
+// Path: common.permission
+class _StringsCommonPermissionJa extends _StringsCommonPermissionEn {
+	_StringsCommonPermissionJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _StringsCommonPermissionOpenSettingsDialogJa openSettingsDialog = _StringsCommonPermissionOpenSettingsDialogJa._(_root);
 }
 
 // Path: settings.list
@@ -701,6 +739,18 @@ class _StringsTrainingColoredWordJa extends _StringsTrainingColoredWordEn {
 	}
 }
 
+// Path: common.permission.openSettingsDialog
+class _StringsCommonPermissionOpenSettingsDialogJa extends _StringsCommonPermissionOpenSettingsDialogEn {
+	_StringsCommonPermissionOpenSettingsDialogJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '権限設定のお願い';
+	@override String message({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
+	@override String get okLabel => '設定アプリを開く';
+}
+
 // Path: settings.list.account
 class _StringsSettingsListAccountJa extends _StringsSettingsListAccountEn {
 	_StringsSettingsListAccountJa._(_StringsJa root) : this._root = root, super._(root);
@@ -787,6 +837,11 @@ extension on Translations {
 			case 'common.navigationDestination.settings': return 'Settings';
 			case 'common.start': return 'Start!';
 			case 'common.end': return 'End';
+			case 'common.permission.openSettingsDialog.title': return 'Request for permission settings';
+			case 'common.permission.openSettingsDialog.message': return ({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
+			case 'common.permission.openSettingsDialog.okLabel': return 'Open Settings';
+			case 'common.camera': return 'Camera';
+			case 'common.microphone': return 'Microphone';
 			case 'home.todayStatus': return 'Today';
 			case 'home.todayNews': return 'News';
 			case 'home.thisWeekStatus': return 'This Week';
@@ -940,6 +995,11 @@ extension on _StringsJa {
 			case 'common.navigationDestination.settings': return '設定';
 			case 'common.start': return 'スタート！';
 			case 'common.end': return '終了';
+			case 'common.permission.openSettingsDialog.title': return '権限設定のお願い';
+			case 'common.permission.openSettingsDialog.message': return ({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
+			case 'common.permission.openSettingsDialog.okLabel': return '設定アプリを開く';
+			case 'common.camera': return 'カメラ';
+			case 'common.microphone': return 'マイク';
 			case 'home.todayStatus': return '今日の状況';
 			case 'home.todayNews': return '今日のニュース';
 			case 'home.thisWeekStatus': return '今週の状況';

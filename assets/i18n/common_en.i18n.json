@@ -8,5 +8,14 @@
         "settings": "Settings"
     },
     "start": "Start!",
-    "end": "End"
+    "end": "End",
+    "permission": {
+        "openSettingsDialog": {
+            "title": "Request for permission settings",
+            "message": "To use this feature, open the Settings app and allow access to the ${operation: String}.",
+            "okLabel": "Open Settings"
+        }
+    },
+    "camera": "Camera",
+    "microphone": "Microphone"
 }
