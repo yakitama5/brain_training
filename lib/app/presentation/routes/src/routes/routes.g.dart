@@ -17,10 +17,12 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
         GoRouteData.$route(
           path: '/',
           factory: $RootRouteDataExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: '/onboard',
-          factory: $OnboardRouteDataExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'colored_word/:answerType',
+              factory: $ColoredWordRouteDataExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: '/tutorial',
@@ -33,12 +35,12 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           ],
         ),
         GoRouteData.$route(
-          path: '/home/colored_word/:answerType',
-          factory: $ColoredWordRouteDataExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: '/training_result',
           factory: $TrainingResultRouteDataExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: '/onboard',
+          factory: $OnboardRouteDataExtension._fromState,
         ),
         StatefulShellRouteData.$route(
           restorationScopeId: BottomNavitorShellRouteData.$restorationScopeId,
@@ -123,12 +125,14 @@ extension $RootRouteDataExtension on RootRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $OnboardRouteDataExtension on OnboardRouteData {
-  static OnboardRouteData _fromState(GoRouterState state) =>
-      const OnboardRouteData();
+extension $ColoredWordRouteDataExtension on ColoredWordRouteData {
+  static ColoredWordRouteData _fromState(GoRouterState state) =>
+      ColoredWordRouteData(
+        _$AnswerTypeEnumMap._$fromName(state.pathParameters['answerType']!),
+      );
 
   String get location => GoRouteData.$location(
-        '/onboard',
+        '/colored_word/${Uri.encodeComponent(_$AnswerTypeEnumMap[answerType]!)}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -140,6 +144,11 @@ extension $OnboardRouteDataExtension on OnboardRouteData {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+const _$AnswerTypeEnumMap = {
+  AnswerType.voice: 'voice',
+  AnswerType.list: 'list',
+};
 
 extension $ColoredWordTutorialRouteDataExtension
     on ColoredWordTutorialRouteData {
@@ -178,31 +187,6 @@ extension $ColoredWordSelectRouteDataExtension on ColoredWordSelectRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ColoredWordRouteDataExtension on ColoredWordRouteData {
-  static ColoredWordRouteData _fromState(GoRouterState state) =>
-      ColoredWordRouteData(
-        _$AnswerTypeEnumMap._$fromName(state.pathParameters['answerType']!),
-      );
-
-  String get location => GoRouteData.$location(
-        '/home/colored_word/${Uri.encodeComponent(_$AnswerTypeEnumMap[answerType]!)}',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-const _$AnswerTypeEnumMap = {
-  AnswerType.voice: 'voice',
-  AnswerType.list: 'list',
-};
-
 extension $TrainingResultRouteDataExtension on TrainingResultRouteData {
   static TrainingResultRouteData _fromState(GoRouterState state) =>
       TrainingResultRouteData(
@@ -223,6 +207,24 @@ extension $TrainingResultRouteDataExtension on TrainingResultRouteData {
 
   void replace(BuildContext context) =>
       context.replace(location, extra: $extra);
+}
+
+extension $OnboardRouteDataExtension on OnboardRouteData {
+  static OnboardRouteData _fromState(GoRouterState state) =>
+      const OnboardRouteData();
+
+  String get location => GoRouteData.$location(
+        '/onboard',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $BottomNavitorShellRouteDataExtension on BottomNavitorShellRouteData {

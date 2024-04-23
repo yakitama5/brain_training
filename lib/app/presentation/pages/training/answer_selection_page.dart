@@ -49,7 +49,6 @@ class AnswerSelectionPage extends HookConsumerWidget {
             ],
           );
 
-          // HACK(yakitama5): sealedClassでどうにかできる？
           return recomende
               ? FilledCard(
                   child: content,

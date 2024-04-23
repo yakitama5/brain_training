@@ -34,7 +34,7 @@ class CountDown extends StatelessWidget {
                   () {
                     // 初回再生とカウントダウンの開始
                     countPlayer.play();
-                    Timer(_duration, () => updateCountDown(seconds));
+                    Timer(_duration, () => updateCountDown(context, seconds));
 
                     // 音が途切れるため、`dispose`は行わない
                     return null;
@@ -61,7 +61,11 @@ class CountDown extends StatelessWidget {
   }
 
   // カウントダウンの更新
-  void updateCountDown(ValueNotifier<int> seconds) {
+  void updateCountDown(BuildContext context, ValueNotifier<int> seconds) {
+    if (!context.mounted) {
+      return;
+    }
+
     seconds.value--;
 
     if (seconds.value <= 0) {
@@ -76,6 +80,6 @@ class CountDown extends StatelessWidget {
     countPlayer
       ..seek(Duration.zero)
       ..play();
-    Timer(_duration, () => updateCountDown(seconds));
+    Timer(_duration, () => updateCountDown(context, seconds));
   }
 }

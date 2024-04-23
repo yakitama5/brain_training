@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
+import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -35,27 +37,58 @@ class ColoredWordPage extends HookConsumerWidget {
 
     return BrightnessScope(
       brightness: Brightness.light,
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () {
-              // TODO(yakitama5): ここで中断処理を記載する (確認中はタイマーを止める)
-            },
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: (didPop) => _onWillPopScope(context, didPop),
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () async => _onCancel(context),
+            ),
+            title: Text(
+              i18n.training.trainingType
+                  .title(context: TrainingType.coloredWord),
+            ),
           ),
-          title: Text(
-            i18n.training.trainingType.title(context: TrainingType.coloredWord),
-          ),
+          body: completedCountDown.value
+              ? PlayPage(answerType: answerType)
+              : CountDown(
+                  initialSecond: 3,
+                  onEnd: () => completedCountDown.value = true,
+                ),
         ),
-        body: completedCountDown.value
-            ? PlayPage(answerType: answerType)
-            : CountDown(
-                initialSecond: 3,
-                onEnd: () => completedCountDown.value = true,
-              ),
       ),
     );
+  }
+
+  Future<void> _onWillPopScope(
+    BuildContext context,
+    bool didPop,
+  ) async {
+    // 移行ガイドに沿って変更
+    // Notes: https://docs.flutter.dev/release/breaking-changes/android-predictive-back#migrating-a-back-confirmation-dialog
+    if (didPop) {
+      return;
+    }
+
+    // ダイアログを表示して確認
+    await _onCancel(context);
+  }
+
+  Future<void> _onCancel(BuildContext context) async {
+    final result = await showOkCancelAlertDialog(
+      context: context,
+      title: i18n.training.cancelDialog.title,
+      message: i18n.training.cancelDialog.messages,
+      cancelLabel: i18n.training.cancelDialog.cancel,
+      okLabel: i18n.training.cancelDialog.ok,
+    );
+
+    if (result == OkCancelResult.ok && context.mounted) {
+      const HomeRouteData().go(context);
+    }
   }
 }
 
@@ -91,7 +124,7 @@ class PlayPage extends HookConsumerWidget {
         stopwatch.start();
         Timer(
           interval,
-          () => updateStopWatch(ms, () {
+          () => updateStopWatch(context, ms, () {
             ended.value = true;
             endSoundPlayer.play();
 
@@ -193,7 +226,14 @@ class PlayPage extends HookConsumerWidget {
     );
   }
 
-  void updateStopWatch(ValueNotifier<int> ms, void Function() onEnd) {
+  void updateStopWatch(
+    BuildContext context,
+    ValueNotifier<int> ms,
+    void Function() onEnd,
+  ) {
+    if (!context.mounted) {
+      return;
+    }
     ms.value = stopwatch.elapsed.inMilliseconds;
 
     // 終了時
@@ -204,7 +244,7 @@ class PlayPage extends HookConsumerWidget {
     }
 
     if (stopwatch.isRunning) {
-      Timer(interval, () => updateStopWatch(ms, onEnd));
+      Timer(interval, () => updateStopWatch(context, ms, onEnd));
     }
   }
 

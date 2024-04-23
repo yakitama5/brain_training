@@ -21,8 +21,13 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 @TypedShellRoute<BaseShellSrouteData>(
   routes: [
-    TypedGoRoute<RootRouteData>(path: RootRouteData.path),
-    TypedGoRoute<OnboardRouteData>(path: OnboardRouteData.path),
+    TypedGoRoute<RootRouteData>(
+      path: RootRouteData.path,
+      routes: [
+        // Willpopとするため、Rootパス配下に組む
+        TypedGoRoute<ColoredWordRouteData>(path: ColoredWordRouteData.path),
+      ],
+    ),
     TypedGoRoute<ColoredWordTutorialRouteData>(
       path: ColoredWordTutorialRouteData.path,
       routes: [
@@ -31,8 +36,10 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
         ),
       ],
     ),
-    TypedGoRoute<ColoredWordRouteData>(path: ColoredWordRouteData.path),
-    TypedGoRoute<TrainingResultRouteData>(path: TrainingResultRouteData.path),
+    TypedGoRoute<TrainingResultRouteData>(
+      path: TrainingResultRouteData.path,
+    ),
+    TypedGoRoute<OnboardRouteData>(path: OnboardRouteData.path),
     TypedStatefulShellRoute<BottomNavitorShellRouteData>(
       branches: [
         homeBranch,
@@ -116,7 +123,7 @@ class ColoredWordSelectRouteData extends GoRouteData {
 class ColoredWordRouteData extends GoRouteData {
   const ColoredWordRouteData(this.answerType);
 
-  static const path = '/home/colored_word/:answerType';
+  static const path = 'colored_word/:answerType';
   final AnswerType answerType;
 
   @override

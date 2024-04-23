@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 146 (73 per locale)
+/// Strings: 154 (77 per locale)
 ///
-/// Built on 2024-04-22 at 08:46 UTC
+/// Built on 2024-04-23 at 04:08 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -216,6 +216,7 @@ class _StringsTrainingEn {
 	late final _StringsTrainingResultEn result = _StringsTrainingResultEn._(_root);
 	String get tutorial => 'Tutorial';
 	late final _StringsTrainingColoredWordEn coloredWord = _StringsTrainingColoredWordEn._(_root);
+	late final _StringsTrainingCancelDialogEn cancelDialog = _StringsTrainingCancelDialogEn._(_root);
 }
 
 // Path: common.navigationDestination
@@ -391,6 +392,19 @@ class _StringsTrainingColoredWordEn {
 	}
 }
 
+// Path: training.cancelDialog
+class _StringsTrainingCancelDialogEn {
+	_StringsTrainingCancelDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Interruption?';
+	String get messages => 'Training content is not reflected.';
+	String get cancel => 'Continue';
+	String get ok => 'Interruption';
+}
+
 // Path: common.permission.openSettingsDialog
 class _StringsCommonPermissionOpenSettingsDialogEn {
 	_StringsCommonPermissionOpenSettingsDialogEn._(this._root);
@@ -564,6 +578,7 @@ class _StringsTrainingJa extends _StringsTrainingEn {
 	@override late final _StringsTrainingResultJa result = _StringsTrainingResultJa._(_root);
 	@override String get tutorial => 'チュートリアル';
 	@override late final _StringsTrainingColoredWordJa coloredWord = _StringsTrainingColoredWordJa._(_root);
+	@override late final _StringsTrainingCancelDialogJa cancelDialog = _StringsTrainingCancelDialogJa._(_root);
 }
 
 // Path: common.navigationDestination
@@ -737,6 +752,19 @@ class _StringsTrainingColoredWordJa extends _StringsTrainingColoredWordEn {
 				return 'みどり';
 		}
 	}
+}
+
+// Path: training.cancelDialog
+class _StringsTrainingCancelDialogJa extends _StringsTrainingCancelDialogEn {
+	_StringsTrainingCancelDialogJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '中断しますか？';
+	@override String get messages => 'トレーニングの内容は反映されません。';
+	@override String get cancel => '続行';
+	@override String get ok => '中断';
 }
 
 // Path: common.permission.openSettingsDialog
@@ -979,6 +1007,10 @@ extension on Translations {
 						return 'Green';
 				}
 			};
+			case 'training.cancelDialog.title': return 'Interruption?';
+			case 'training.cancelDialog.messages': return 'Training content is not reflected.';
+			case 'training.cancelDialog.cancel': return 'Continue';
+			case 'training.cancelDialog.ok': return 'Interruption';
 			default: return null;
 		}
 	}
@@ -1137,6 +1169,10 @@ extension on _StringsJa {
 						return 'みどり';
 				}
 			};
+			case 'training.cancelDialog.title': return '中断しますか？';
+			case 'training.cancelDialog.messages': return 'トレーニングの内容は反映されません。';
+			case 'training.cancelDialog.cancel': return '続行';
+			case 'training.cancelDialog.ok': return '中断';
 			default: return null;
 		}
 	}

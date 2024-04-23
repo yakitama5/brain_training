@@ -1,12 +1,12 @@
 /// Generated file. Do not edit.
 ///
-/// Original: assets/i18n/en
+/// Original: assets/i18n
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 16 (8 per locale)
+/// Strings: 26 (13 per locale)
 ///
-/// Built on 2024-04-04 at 02:01 UTC
+/// Built on 2024-04-23 at 04:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -152,6 +152,9 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final _StringsNavigationDestinationEn navigationDestination = _StringsNavigationDestinationEn._(_root);
 	String get start => 'Start!';
 	String get end => 'End';
+	late final _StringsPermissionEn permission = _StringsPermissionEn._(_root);
+	String get camera => 'Camera';
+	String get microphone => 'Microphone';
 }
 
 // Path: navigationDestination
@@ -166,6 +169,28 @@ class _StringsNavigationDestinationEn {
 	String get training => 'Training';
 	String get coffeBreak => 'Break';
 	String get settings => 'Settings';
+}
+
+// Path: permission
+class _StringsPermissionEn {
+	_StringsPermissionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsPermissionOpenSettingsDialogEn openSettingsDialog = _StringsPermissionOpenSettingsDialogEn._(_root);
+}
+
+// Path: permission.openSettingsDialog
+class _StringsPermissionOpenSettingsDialogEn {
+	_StringsPermissionOpenSettingsDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Request for permission settings';
+	String message({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
+	String get okLabel => 'Open Settings';
 }
 
 // Path: <root>
@@ -196,6 +221,9 @@ class _StringsJa implements Translations {
 	@override late final _StringsNavigationDestinationJa navigationDestination = _StringsNavigationDestinationJa._(_root);
 	@override String get start => 'スタート！';
 	@override String get end => '終了';
+	@override late final _StringsPermissionJa permission = _StringsPermissionJa._(_root);
+	@override String get camera => 'カメラ';
+	@override String get microphone => 'マイク';
 }
 
 // Path: navigationDestination
@@ -212,6 +240,28 @@ class _StringsNavigationDestinationJa implements _StringsNavigationDestinationEn
 	@override String get settings => '設定';
 }
 
+// Path: permission
+class _StringsPermissionJa implements _StringsPermissionEn {
+	_StringsPermissionJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _StringsPermissionOpenSettingsDialogJa openSettingsDialog = _StringsPermissionOpenSettingsDialogJa._(_root);
+}
+
+// Path: permission.openSettingsDialog
+class _StringsPermissionOpenSettingsDialogJa implements _StringsPermissionOpenSettingsDialogEn {
+	_StringsPermissionOpenSettingsDialogJa._(this._root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '権限設定のお願い';
+	@override String message({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
+	@override String get okLabel => '設定アプリを開く';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -226,6 +276,11 @@ extension on Translations {
 			case 'navigationDestination.settings': return 'Settings';
 			case 'start': return 'Start!';
 			case 'end': return 'End';
+			case 'permission.openSettingsDialog.title': return 'Request for permission settings';
+			case 'permission.openSettingsDialog.message': return ({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
+			case 'permission.openSettingsDialog.okLabel': return 'Open Settings';
+			case 'camera': return 'Camera';
+			case 'microphone': return 'Microphone';
 			default: return null;
 		}
 	}
@@ -242,6 +297,11 @@ extension on _StringsJa {
 			case 'navigationDestination.settings': return '設定';
 			case 'start': return 'スタート！';
 			case 'end': return '終了';
+			case 'permission.openSettingsDialog.title': return '権限設定のお願い';
+			case 'permission.openSettingsDialog.message': return ({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
+			case 'permission.openSettingsDialog.okLabel': return '設定アプリを開く';
+			case 'camera': return 'カメラ';
+			case 'microphone': return 'マイク';
 			default: return null;
 		}
 	}

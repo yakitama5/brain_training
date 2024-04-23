@@ -81,5 +81,11 @@
             "blue": "Blue",
             "green": "Green"
         }
+    },
+    "cancelDialog": {
+        "title": "Interruption?",
+        "messages": "Training content is not reflected.",
+        "cancel": "Continue",
+        "ok": "Interruption"
     }
 }
