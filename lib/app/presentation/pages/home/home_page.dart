@@ -144,6 +144,7 @@ class Callender extends StatelessWidget {
           style: ts.headlineMedium,
         ),
         const Gap(8),
+        // TODO(yakitama5): 現在の天気を取得してから表示すること
         Icon(
           Icons.sunny,
           size: 32,

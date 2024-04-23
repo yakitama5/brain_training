@@ -1,5 +1,6 @@
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
+import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,6 +16,7 @@ import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
 import 'app/domain/user/interface/user_repository.dart';
 import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
+import 'app/infrastructure/open_weather/service/open_weather_weather_service.dart';
 import 'app/presentation/theme/importer.dart';
 import 'firebase_options.dart';
 import 'firebase_options_dev.dart' as dev;
@@ -61,6 +63,9 @@ void main() async {
         // Firebase
         userRepositoryProvider.overrideWith(FirebaseUserRepository.new),
         trainingRepositoryProvider.overrideWith(FirebaseTrainingRepository.new),
+
+        // OpenWeatherM
+        weatherServiceProvider.overrideWith(OpenWeatherWeatherService.new),
       ],
       child: TranslationProvider(
         child: const App(),
