@@ -340,6 +340,7 @@ class VoiceAnswer extends HookConsumerWidget {
           size: 92,
         ),
         const Gap(12),
+        // TODO(yakitama5): 多言語化対応
         Text('声で回答して下さい', style: ts.headlineMedium),
         Text(stt.speechToText.lastRecognizedWords, style: ts.headlineMedium),
       ],
