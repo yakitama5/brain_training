@@ -153,7 +153,7 @@ class Callender extends StatelessWidget {
               '01d' || '01n' => MdiIcons.weatherSunny,
               '02d' || '02n' => MdiIcons.weatherPartlyCloudy,
               '03d' || '03n' => MdiIcons.weatherCloudy,
-              '04d' || '04n' => MdiIcons.weatherCloudyAlert,
+              '04d' || '04n' => MdiIcons.weatherCloudy,
               '09d' || '09n' => MdiIcons.weatherRainy,
               '10d' || '10n' => MdiIcons.weatherPouring,
               '11d' || '11n' => MdiIcons.weatherLightning,

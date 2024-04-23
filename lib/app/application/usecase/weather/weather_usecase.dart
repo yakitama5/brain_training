@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/usecase/location/state/location_provider.dart';
 import 'package:brain_training/app/application/usecase/run_usecase_mixin.dart';
 import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,9 +21,11 @@ class WeatherUsecase with RunUsecaseMixin {
   WeatherService get _weatherService => ref.read(weatherServiceProvider);
 
   Future<Weather> fetchCurrentLocationNowWeather() async {
+    final position = await ref.read(locationProvider.future);
+    final latitude = position.latitude;
+    final longitude = position.longitude;
+
     // TODO(yakitama5): テスト用
-    const latitude = 31.0;
-    const longitude = 31.0;
     const languageCode = 'ja';
 
     return _weatherService.currentWeatherByLocation(
