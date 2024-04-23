@@ -49,5 +49,7 @@
 	<string>アプリ内で声を文字として認識する目的で音声認識の権限リクエストします。</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>アプリ内で問題を声で回答する目的でマイクの権限リクエストします。</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>アプリ内で現在地に応じた天気を取得するためにロケーション情報をリクエストします。</string>
 </dict>
 </plist>
