@@ -74,7 +74,7 @@ class ColoredWordPage extends HookConsumerWidget {
     }
 
     // ダイアログを表示して確認
-    await _onCancel(context);
+    return _onCancel(context);
   }
 
   Future<void> _onCancel(BuildContext context) async {
