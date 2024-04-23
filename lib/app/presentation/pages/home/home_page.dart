@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/usecase/weather/state/weather_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:nested/nested.dart';
 
 import '../../../../i18n/strings.g.dart';
@@ -144,11 +146,28 @@ class Callender extends StatelessWidget {
           style: ts.headlineMedium,
         ),
         const Gap(8),
-        // TODO(yakitama5): 現在の天気を取得してから表示すること
-        Icon(
-          Icons.sunny,
-          size: 32,
-          color: cs.primary,
+        Consumer(
+          builder: (context, ref, child) {
+            final weather = ref.watch(weatherProvider).value;
+            final iconData = switch (weather?.weatherIcon) {
+              '01d' || '01n' => MdiIcons.weatherSunny,
+              '02d' || '02n' => MdiIcons.weatherPartlyCloudy,
+              '03d' || '03n' => MdiIcons.weatherCloudy,
+              '04d' || '04n' => MdiIcons.weatherCloudyAlert,
+              '09d' || '09n' => MdiIcons.weatherRainy,
+              '10d' || '10n' => MdiIcons.weatherPouring,
+              '11d' || '11n' => MdiIcons.weatherLightning,
+              '13d' || '13n' => MdiIcons.weatherSnowy,
+              '50d' || '50n' => MdiIcons.weatherFog,
+              _ => Icons.question_mark,
+            };
+
+            return Icon(
+              iconData,
+              size: 32,
+              color: cs.primary,
+            );
+          },
         ),
       ],
     );
