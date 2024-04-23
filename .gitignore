@@ -56,7 +56,7 @@ coverage/**
 
 # アプリ公開に伴い機密情報などは除外
 ExportOptions.plist
-# scripts/**
+scripts/env/**
 GoogleService-Info.plist
 google-services.json
 env.g.dart
