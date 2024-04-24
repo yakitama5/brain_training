@@ -7,8 +7,6 @@ part 'weather_factory_provider.g.dart';
 
 @riverpod
 WeatherFactory weatherFactory(
-  WeatherFactoryRef ref, {
-  required Language language,
-}) {
-  return WeatherFactory(openWeatherApiKey, language: language);
-}
+  WeatherFactoryRef ref,
+) =>
+    WeatherFactory(openWeatherApiKey);

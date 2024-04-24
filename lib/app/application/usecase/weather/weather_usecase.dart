@@ -3,7 +3,8 @@ import 'package:brain_training/app/application/usecase/run_usecase_mixin.dart';
 import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather/weather.dart';
+
+import '../../../domain/weather/model/entity/weather.dart';
 
 part 'weather_usecase.g.dart';
 
@@ -25,13 +26,9 @@ class WeatherUsecase with RunUsecaseMixin {
     final latitude = position.latitude;
     final longitude = position.longitude;
 
-    // TODO(yakitama5): テスト用
-    const languageCode = 'ja';
-
     return _weatherService.currentWeatherByLocation(
       latitude: latitude,
       longitude: longitude,
-      languageCode: languageCode,
     );
   }
 }

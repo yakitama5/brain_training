@@ -1,9 +1,10 @@
 import 'package:brain_training/app/domain/training/value_object/training_type.dart';
-import 'package:brain_training/app/presentation/pages/home/home_page.dart';
 import 'package:brain_training/app/presentation/pages/training/components/training_card.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
+import '../home/components/headline_pane.dart';
 
 class TrainingMenuPage extends StatelessWidget {
   const TrainingMenuPage({super.key});
@@ -29,7 +30,7 @@ class TrainingMenuPage extends StatelessWidget {
                 ),
               ),
               const Gap(32),
-              HomePane(
+              HeadlinePane(
                 label: i18n.training.doneMenu,
                 child: Column(
                   children: completeMenu

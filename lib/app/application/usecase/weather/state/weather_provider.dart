@@ -1,6 +1,7 @@
 import 'package:brain_training/app/application/usecase/weather/weather_usecase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather/weather.dart';
+
+import '../../../../domain/weather/model/entity/weather.dart';
 
 part 'weather_provider.g.dart';
 

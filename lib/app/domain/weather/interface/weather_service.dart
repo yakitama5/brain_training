@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:weather/weather.dart';
+
+import '../model/entity/weather.dart';
 
 part 'weather_service.g.dart';
 
@@ -13,11 +14,9 @@ abstract class WeatherService {
   Future<Weather> currentWeatherByLocation({
     required double latitude,
     required double longitude,
-    required String languageCode,
   });
 
   Future<Weather> currentWeatherByCityName({
     required String cityName,
-    required String languageCode,
   });
 }
