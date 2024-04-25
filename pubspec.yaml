@@ -14,7 +14,6 @@ dependencies:
   cloud_firestore: 
   collection: 
   convex_bottom_bar: ^3.2.0
-  dio: 
   dynamic_color: 
   envied: 
   firebase_analytics: 
@@ -51,6 +50,7 @@ dependencies:
   nested: 
   permission_handler: 
   responsive_framework: 
+  retrofit: 
   riverpod_annotation: ^3.0.0-dev.3
   settings_ui: 
   slang: 
