@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 154 (77 per locale)
 ///
-/// Built on 2024-04-23 at 04:08 UTC
+/// Built on 2024-04-24 at 05:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -637,7 +637,7 @@ class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
 	@override String title({required TrainingType context}) {
 		switch (context) {
 			case TrainingType.coloredWord:
-				return '色当てクイズ';
+				return '色彩識別';
 			case TrainingType.themeShiritori:
 				return 'お題しりとり';
 			case TrainingType.addMinus:
@@ -1048,7 +1048,7 @@ extension on _StringsJa {
 			case 'training.trainingType.title': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
-						return '色当てクイズ';
+						return '色彩識別';
 					case TrainingType.themeShiritori:
 						return 'お題しりとり';
 					case TrainingType.addMinus:

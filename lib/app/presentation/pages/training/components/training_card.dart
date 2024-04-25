@@ -54,7 +54,11 @@ class TrainingCard extends StatelessWidget {
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: cs.primary,
+                backgroundColor: cs.primaryContainer,
+                child: Icon(
+                  trainingType.iconData,
+                  color: cs.onPrimaryContainer,
+                ),
               ),
               const Gap(16),
               Column(

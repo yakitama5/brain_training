@@ -33,7 +33,7 @@ class Callender extends StatelessWidget {
         const Gap(8),
         Consumer(
           builder: (context, ref, child) {
-            final weather = ref.watch(weatherProvider).value;
+            final weather = ref.watch(weatherProvider).valueOrNull;
             final iconData = switch (weather?.weatherType) {
               WeatherType.sunny => MdiIcons.weatherSunny,
               WeatherType.partCloud => MdiIcons.weatherPartlyCloudy,

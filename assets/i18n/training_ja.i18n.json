@@ -3,7 +3,7 @@
     "doneMenu": "実施済のトレーニング",
     "trainingType": {
         "title(context=TrainingType)": {
-            "coloredWord": "色当てクイズ",
+            "coloredWord": "色彩識別",
             "themeShiritori": "お題しりとり",
             "addMinus": "タスヒク"
         },
