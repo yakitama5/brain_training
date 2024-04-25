@@ -136,6 +136,7 @@ class _NewsPane extends HookConsumerWidget {
     // TODO(yakitama5): ページングを行えるようにNotifierを利用すること
     final news = ref.watch(newsProvider(country: NewsCountry.jp, page: 1));
 
+    // TODO(yakitama5): 読み込み中はスケルトン表示とすること
     return news.when(
       error: ErrorView.new,
       loading: CircularProgressIndicator.adaptive,
