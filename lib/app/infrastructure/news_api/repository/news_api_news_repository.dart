@@ -1,0 +1,48 @@
+import 'package:brain_training/app/domain/news/interface/news_repository.dart';
+import 'package:brain_training/app/infrastructure/news_api/client/news_headline_api_client.dart';
+import 'package:brain_training/app/infrastructure/news_api/config/news_api_config.dart';
+import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../../../domain/news/model/entity/news.dart';
+import '../../../domain/news/model/value_object/news_category.dart';
+import '../../../domain/news/model/value_object/news_country.dart';
+
+/// NewsAPIを利用した実装
+class NewsApiNewsRepository implements NewsRepository {
+  NewsApiNewsRepository(this.ref);
+
+  final Ref ref;
+  final _apiClient = NewsHeadlinesApiClient(Dio());
+
+  @override
+  Future<List<News>> fetchTodayHeadlines({
+    required NewsCategory category,
+    int page = 1,
+    required NewsCountry country,
+  }) async {
+    final res = await _apiClient.fetch(
+      apiKey: newsApiKey,
+      // TODO(yakitama5): 後から作る
+      category: category.name,
+      country: country.name,
+      page: page,
+      pageSize: 10,
+    );
+
+    return res.articles
+            ?.map(
+              (e) => News(
+                author: e.author,
+                content: e.author,
+                description: e.description,
+                publishedAt: e.publishedAt,
+                title: e.title,
+                url: e.url,
+                urlToImage: e.urlToImage,
+              ),
+            )
+            .toList() ??
+        [];
+  }
+}

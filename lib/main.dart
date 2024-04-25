@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
+import 'package:brain_training/app/domain/news/interface/news_repository.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
@@ -16,6 +17,7 @@ import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
 import 'app/domain/user/interface/user_repository.dart';
 import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
+import 'app/infrastructure/news_api/repository/news_api_news_repository.dart';
 import 'app/infrastructure/open_weather/service/open_weather_weather_service.dart';
 import 'app/presentation/theme/importer.dart';
 import 'firebase_options.dart';
@@ -66,6 +68,9 @@ void main() async {
 
         // OpenWeatherM
         weatherServiceProvider.overrideWith(OpenWeatherWeatherService.new),
+
+        // News API
+        newsRepositoryProvider.overrideWith(NewsApiNewsRepository.new),
       ],
       child: TranslationProvider(
         child: const App(),

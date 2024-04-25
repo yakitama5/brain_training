@@ -1,4 +1,7 @@
+import 'package:brain_training/app/application/usecase/news/state/news_provider.dart';
+import 'package:brain_training/app/domain/news/model/value_object/news_country.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
+import 'package:brain_training/app/presentation/pages/error/components/error_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -130,38 +133,65 @@ class _NewsPane extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO(yakitama5): APIか何かでニュースを取得する
-    final cs = Theme.of(context).colorScheme;
+    // TODO(yakitama5): ページングを行えるようにNotifierを利用すること
+    final news = ref.watch(newsProvider(country: NewsCountry.jp, page: 1));
 
-    return HeadlinePane(
-      label: i18n.home.todayNews,
-      child: CarouselSlider(
-        items: List.generate(
-          5,
-          (index) => WidthFillBox(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: cs.primary,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Text(
-                  // TODO(yakitama5): テスト値の設定
-                  'label$index',
-                  style: TextStyle(color: cs.onPrimary),
-                ),
-              ),
+    return news.when(
+      error: ErrorView.new,
+      loading: CircularProgressIndicator.adaptive,
+      data: (newsList) {
+        final cs = Theme.of(context).colorScheme;
+
+        return HeadlinePane(
+          label: i18n.home.todayNews,
+          child: CarouselSlider(
+            items: List.generate(
+              newsList.length,
+              (index) {
+                final newsData = newsList[index];
+                final decoration = newsData.urlToImage == null
+                    ? BoxDecoration(
+                        color: cs.secondary,
+                        borderRadius: BorderRadius.circular(12),
+                      )
+                    : BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        image: DecorationImage(
+                          image: NetworkImage(newsData.urlToImage!),
+                          fit: BoxFit.fitHeight,
+                          colorFilter: ColorFilter.mode(
+                            cs.onBackground.withOpacity(0.7),
+                            BlendMode.srcATop,
+                          ),
+                        ),
+                      );
+
+                return WidthFillBox(
+                  child: DecoratedBox(
+                    decoration: decoration,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        '${newsData.title}',
+                        maxLines: 5,
+                        style: TextStyle(
+                          color: cs.onSecondary,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            options: CarouselOptions(
+              viewportFraction: 0.5,
+              enlargeCenterPage: true,
+              enableInfiniteScroll: false,
             ),
           ),
-        ),
-        options: CarouselOptions(
-          viewportFraction: 0.4,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          enableInfiniteScroll: false,
-        ),
-      ),
+        );
+      },
     );
   }
 }

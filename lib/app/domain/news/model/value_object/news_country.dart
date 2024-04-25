@@ -1,0 +1,4 @@
+enum NewsCountry {
+  jp,
+  us,
+}

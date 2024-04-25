@@ -1,5 +1,7 @@
+import 'package:brain_training/app/domain/news/interface/news_repository.dart';
+import 'package:brain_training/app/domain/news/model/value_object/news_category.dart';
+import 'package:brain_training/app/domain/news/model/value_object/news_country.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -13,38 +15,37 @@ class SamplePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final text = useState('Common');
-    final enableListening = useState(false);
+    final res = ref.watch(newsRepositoryProvider).fetchTodayHeadlines(
+          category: NewsCategory.health,
+          country: NewsCountry.jp,
+        );
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('SamplePage'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(text.value),
-          FilledButton(
-            onPressed: () async {
-              await speech.initialize(
-                onError: errorListener,
-                onStatus: (status) => statusListener(
-                  status,
-                  text,
-                  enableListening,
-                ),
+      body: FutureBuilder(
+        future: res,
+        builder: (context, snapshot) {
+          if (snapshot.data == null || snapshot.hasError) {
+            return const CircularProgressIndicator();
+          }
+
+          final newsList = snapshot.data!;
+          return ListView.builder(
+            itemCount: newsList.length,
+            itemBuilder: (context, index) {
+              final news = newsList[index];
+              return ListTile(
+                leading: news.urlToImage == null
+                    ? const SizedBox.shrink()
+                    : Image.network(news.urlToImage!),
+                subtitle: Text('${news.url}'),
+                title: Text('${news.title}'),
               );
-              await startListening(text, enableListening);
             },
-            child: const Text('Record'),
-          ),
-          FilledButton(
-            onPressed: () async {
-              await stopListening(enableListening);
-            },
-            child: const Text('stop'),
-          ),
-        ],
+          );
+        },
       ),
     );
   }
