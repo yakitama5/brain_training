@@ -4,6 +4,7 @@ import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/pages/error/components/error_view.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -134,7 +135,14 @@ class _NewsPane extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO(yakitama5): ページングを行えるようにNotifierを利用すること
-    final news = ref.watch(newsProvider(country: NewsCountry.jp, page: 1));
+    // 言語設定に応じてニュースを取得する
+    final country = switch (i18n.$meta.locale) {
+      AppLocale.en => NewsCountry.us,
+      AppLocale.ja => NewsCountry.jp,
+    };
+    final page = useState(1);
+    final itemCount = page.value * 10 + 1;
+    final news = ref.watch(newsProvider(country: country, page: 1));
 
     // TODO(yakitama5): 読み込み中はスケルトン表示とすること
     return news.when(
@@ -145,46 +153,9 @@ class _NewsPane extends HookConsumerWidget {
 
         return HeadlinePane(
           label: i18n.home.todayNews,
-          child: CarouselSlider(
-            items: List.generate(
-              newsList.length,
-              (index) {
-                final newsData = newsList[index];
-                final decoration = newsData.urlToImage == null
-                    ? BoxDecoration(
-                        color: cs.secondary,
-                        borderRadius: BorderRadius.circular(12),
-                      )
-                    : BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        image: DecorationImage(
-                          image: NetworkImage(newsData.urlToImage!),
-                          fit: BoxFit.fitHeight,
-                          colorFilter: ColorFilter.mode(
-                            cs.onBackground.withOpacity(0.7),
-                            BlendMode.srcATop,
-                          ),
-                        ),
-                      );
-
-                return WidthFillBox(
-                  child: DecoratedBox(
-                    decoration: decoration,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        '${newsData.title}',
-                        maxLines: 5,
-                        style: TextStyle(
-                          color: cs.onSecondary,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+          child: CarouselSlider.builder(
+            itemCount: itemCount,
+            itemBuilder: (context, index, realIndex) {},
             options: CarouselOptions(
               viewportFraction: 0.5,
               enlargeCenterPage: true,
