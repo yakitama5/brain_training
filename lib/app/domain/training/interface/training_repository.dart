@@ -1,6 +1,7 @@
 import 'package:brain_training/app/domain/training/entity/training_daily_summary.dart';
 import 'package:brain_training/app/domain/training/entity/training_result.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'training_repository.g.dart';
@@ -17,6 +18,12 @@ abstract class TrainingRepository {
   Stream<TrainingDailySummary?> fetchDailySummaryByDate({
     required String userId,
     required DateTime date,
+  });
+
+  /// 指定した日付範囲の実施状況サマリを取得する
+  Stream<List<TrainingDailySummary>> fetchDailySummaryByDateRange({
+    required String userId,
+    required DateTimeRange range,
   });
 
   /// 日毎の実施状況サマリを取得する

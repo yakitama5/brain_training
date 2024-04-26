@@ -9,6 +9,7 @@ import 'package:brain_training/app/infrastructure/firebase/firestore/state/fires
 import 'package:brain_training/app/infrastructure/firebase/firestore/state/firestore_training_daily_summary_provider.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/src/material/date.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Firebaseを利用したリポジトリの実装
@@ -114,6 +115,30 @@ class FirebaseTrainingRepository implements TrainingRepository {
         )
         .map(
           (snap) => snap.docs.map((e) => e.data().toDomainModel()).firstOrNull,
+        );
+  }
+
+  @override
+  Stream<List<TrainingDailySummary>> fetchDailySummaryByDateRange({
+    required String userId,
+    required DateTimeRange range,
+  }) {
+    return ref
+        .read(trainingDailySummaryCollectionProvider(userId))
+        .where(
+          'doneAt',
+          isGreaterThanOrEqualTo: Timestamp.fromDate(range.start),
+          isLessThanOrEqualTo: Timestamp.fromDate(range.end),
+        )
+        .snapshots()
+        // 読み込み中のドキュメントが存在する場合はスキップ
+        .where(
+          (s) => s.docs
+              .where((element) => element.data().fieldValuePending)
+              .isEmpty,
+        )
+        .map(
+          (snap) => snap.docs.map((e) => e.data().toDomainModel()).toList(),
         );
   }
 }

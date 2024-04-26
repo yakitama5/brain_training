@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/usecase/training/state/training_weekly_summary_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -5,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../i18n/strings.g.dart';
 import '../../../domain/training/value_object/training_type.dart';
+import '../error/components/error_view.dart';
 import '../news/components/news_pane.dart';
 import '../training/components/training_card.dart';
 import 'components/callender.dart';
@@ -80,45 +82,63 @@ class _WeeklyTrainingPane extends HookConsumerWidget {
     final ts = Theme.of(context).textTheme;
     final cs = Theme.of(context).colorScheme;
 
+    final weeklySummary = ref.watch(trainingWeeklySummaryProvider);
+
     // TODO(yakitama5): 1週間のサマリを取得してから表示
     return HeadlinePane(
       label: i18n.home.thisWeekStatus,
-      child: FilledCard(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              i18n.home.dailyTraining,
-              style: ts.titleMedium,
-            ),
-            const Gap(24),
-            Row(
+      child: weeklySummary.when(
+        data: (data) {
+          if (data == null) {
+            return const SizedBox.shrink();
+          }
+
+          return FilledCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                Text(
+                  i18n.home.dailyTraining,
+                  style: ts.titleMedium,
+                ),
+                const Gap(24),
+                Row(
                   children: [
-                    // TODO(yakitama5): テスト値の設定
-                    Text(
-                      '6/7',
-                      style: ts.bodyLarge?.merge(
-                        TextStyle(
-                          color: cs.surfaceTint,
-                          fontWeight: FontWeight.bold,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        // TODO(yakitama5): テスト値の設定
+                        Text(
+                          '${data.doneDays}/${data.totalDays}',
+                          style: ts.bodyLarge?.merge(
+                            TextStyle(
+                              color: cs.surfaceTint,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          i18n.home.completed,
+                          style: ts.labelSmall?.merge(
+                            TextStyle(color: cs.surfaceTint),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      i18n.home.completed,
-                      style: ts.labelSmall?.merge(
-                        TextStyle(color: cs.surfaceTint),
-                      ),
-                    ),
+                    const Gap(32),
                   ],
                 ),
-                const Gap(32),
               ],
             ),
-          ],
+          );
+          return null;
+        },
+        error: ErrorView.new,
+        loading: () => ShimmerWidget.circular(
+          width: double.infinity,
+          height: 160,
+          shapeBorder:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );

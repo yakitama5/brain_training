@@ -49,12 +49,12 @@ class NewsPane extends HookConsumerWidget {
               return NewsCard(
                 news: news,
                 radius: radius,
-                onTap: news.url?.isNotEmpty == true
-                    ? () {
+                onTap: news.url == null
+                    ? null
+                    : () {
                         logger.d('Send to :${news.url}');
-                        launchUrlString(news.url!);
-                      }
-                    : null,
+                        launchUrlString(news.url ?? '');
+                      },
               );
             },
             error: ErrorView.new,
