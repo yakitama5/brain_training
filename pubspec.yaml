@@ -61,6 +61,7 @@ dependencies:
   url_launcher: 
   uuid: 
   version: 
+  visibility_detector: 
   weather:
 
 dev_dependencies:
