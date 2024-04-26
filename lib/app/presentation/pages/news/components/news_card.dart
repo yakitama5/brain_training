@@ -21,27 +21,31 @@ class NewsCard extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final hasImage = news.urlToImage != null;
 
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(radius),
-          child: hasImage
-              ? _Image(url: news.urlToImage!, radius: radius)
-              : const _ColoredBackground(),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            '${news.title}',
-            maxLines: 5,
-            style: TextStyle(
-              color: cs.onSecondary,
-              overflow: TextOverflow.ellipsis,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(radius),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            hasImage
+                ? _Image(url: news.urlToImage!, radius: radius)
+                : const _ColoredBackground(),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                '${news.title}',
+                maxLines: 5,
+                style: TextStyle(
+                  color: cs.onSecondary,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -1,6 +1,8 @@
+import 'package:brain_training/utils/logger.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../../i18n/strings.g.dart';
 import '../../../../application/config/news_headlines_config.dart';
@@ -43,10 +45,16 @@ class NewsPane extends HookConsumerWidget {
 
           return headlines.when(
             data: (data) {
-              final perIndex = index % newsHeadlinesConfig.pageSize;
+              final news = data.headlines[index % newsHeadlinesConfig.pageSize];
               return NewsCard(
-                news: data.headlines[perIndex],
+                news: news,
                 radius: radius,
+                onTap: news.url?.isNotEmpty == true
+                    ? () {
+                        logger.d('Send to :${news.url}');
+                        launchUrlString(news.url!);
+                      }
+                    : null,
               );
             },
             error: ErrorView.new,
