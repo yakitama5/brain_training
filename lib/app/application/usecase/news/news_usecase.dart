@@ -5,7 +5,7 @@ import 'package:brain_training/app/domain/news/model/value_object/news_country.d
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../domain/news/model/entity/news.dart';
+import '../../../domain/news/model/entity/news_headlines.dart';
 
 part 'news_usecase.g.dart';
 
@@ -18,13 +18,14 @@ class NewsUsecase with RunUsecaseMixin {
   final Ref ref;
   NewsRepository get _repository => ref.read(newsRepositoryProvider);
 
-  Future<List<News>> fetchHealthNews({
+  Future<NewsHeadlines> fetchHealthNews({
     required NewsCountry country,
     required int page,
   }) {
     return _repository.fetchTodayHeadlines(
       category: NewsCategory.health,
       country: country,
+      page: page,
     );
   }
 }

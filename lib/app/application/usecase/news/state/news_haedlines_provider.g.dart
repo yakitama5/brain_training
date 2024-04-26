@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'news_provider.dart';
+part of 'news_haedlines_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsHash() => r'a9a9d458e2c80581289c527fbcc9b62645bc6ae3';
+String _$newsHeadlinesHash() => r'df3a313af3e2cdb08377a9c97819759ed5ef9b8c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,14 +29,14 @@ class _SystemHash {
   }
 }
 
-/// See also [news].
-@ProviderFor(news)
-const newsProvider = NewsFamily();
+/// See also [newsHeadlines].
+@ProviderFor(newsHeadlines)
+const newsHeadlinesProvider = NewsHeadlinesFamily();
 
-/// See also [news].
-class NewsFamily extends Family {
-  /// See also [news].
-  const NewsFamily();
+/// See also [newsHeadlines].
+class NewsHeadlinesFamily extends Family {
+  /// See also [newsHeadlines].
+  const NewsHeadlinesFamily();
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
 
@@ -50,14 +50,14 @@ class NewsFamily extends Family {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'newsProvider';
+  String? get name => r'newsHeadlinesProvider';
 
-  /// See also [news].
-  NewsProvider call({
+  /// See also [newsHeadlines].
+  NewsHeadlinesProvider call({
     required NewsCountry country,
     required int page,
   }) {
-    return NewsProvider(
+    return NewsHeadlinesProvider(
       country: country,
       page: page,
     );
@@ -65,8 +65,8 @@ class NewsFamily extends Family {
 
   @visibleForOverriding
   @override
-  NewsProvider getProviderOverride(
-    covariant NewsProvider provider,
+  NewsHeadlinesProvider getProviderOverride(
+    covariant NewsHeadlinesProvider provider,
   ) {
     return call(
       country: provider.country,
@@ -75,50 +75,54 @@ class NewsFamily extends Family {
   }
 
   /// Enables overriding the behavior of this provider, no matter the parameters.
-  Override overrideWith(FutureOr<List<News>> Function(NewsRef ref) create) {
-    return _$NewsFamilyOverride(this, create);
+  Override overrideWith(
+      FutureOr<NewsHeadlines> Function(NewsHeadlinesRef ref) create) {
+    return _$NewsHeadlinesFamilyOverride(this, create);
   }
 }
 
-class _$NewsFamilyOverride implements FamilyOverride {
-  _$NewsFamilyOverride(this.overriddenFamily, this.create);
+class _$NewsHeadlinesFamilyOverride implements FamilyOverride {
+  _$NewsHeadlinesFamilyOverride(this.overriddenFamily, this.create);
 
-  final FutureOr<List<News>> Function(NewsRef ref) create;
-
-  @override
-  final NewsFamily overriddenFamily;
+  final FutureOr<NewsHeadlines> Function(NewsHeadlinesRef ref) create;
 
   @override
-  NewsProvider getProviderOverride(
-    covariant NewsProvider provider,
+  final NewsHeadlinesFamily overriddenFamily;
+
+  @override
+  NewsHeadlinesProvider getProviderOverride(
+    covariant NewsHeadlinesProvider provider,
   ) {
     return provider._copyWith(create);
   }
 }
 
-/// See also [news].
-class NewsProvider extends AutoDisposeFutureProvider<List<News>> {
-  /// See also [news].
-  NewsProvider({
+/// See also [newsHeadlines].
+class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
+  /// See also [newsHeadlines].
+  NewsHeadlinesProvider({
     required NewsCountry country,
     required int page,
   }) : this._internal(
-          (ref) => news(
-            ref as NewsRef,
+          (ref) => newsHeadlines(
+            ref as NewsHeadlinesRef,
             country: country,
             page: page,
           ),
-          from: newsProvider,
-          name: r'newsProvider',
+          from: newsHeadlinesProvider,
+          name: r'newsHeadlinesProvider',
           debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product') ? null : _$newsHash,
-          dependencies: NewsFamily._dependencies,
-          allTransitiveDependencies: NewsFamily._allTransitiveDependencies,
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$newsHeadlinesHash,
+          dependencies: NewsHeadlinesFamily._dependencies,
+          allTransitiveDependencies:
+              NewsHeadlinesFamily._allTransitiveDependencies,
           country: country,
           page: page,
         );
 
-  NewsProvider._internal(
+  NewsHeadlinesProvider._internal(
     super.create, {
     required super.name,
     required super.dependencies,
@@ -134,12 +138,12 @@ class NewsProvider extends AutoDisposeFutureProvider<List<News>> {
 
   @override
   Override overrideWith(
-    FutureOr<List<News>> Function(NewsRef ref) create,
+    FutureOr<NewsHeadlines> Function(NewsHeadlinesRef ref) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: NewsProvider._internal(
-        (ref) => create(ref as NewsRef),
+      override: NewsHeadlinesProvider._internal(
+        (ref) => create(ref as NewsHeadlinesRef),
         from: from,
         name: null,
         dependencies: null,
@@ -163,15 +167,15 @@ class NewsProvider extends AutoDisposeFutureProvider<List<News>> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<News>> createElement() {
-    return _NewsProviderElement(this);
+  AutoDisposeFutureProviderElement<NewsHeadlines> createElement() {
+    return _NewsHeadlinesProviderElement(this);
   }
 
-  NewsProvider _copyWith(
-    FutureOr<List<News>> Function(NewsRef ref) create,
+  NewsHeadlinesProvider _copyWith(
+    FutureOr<NewsHeadlines> Function(NewsHeadlinesRef ref) create,
   ) {
-    return NewsProvider._internal(
-      (ref) => create(ref as NewsRef),
+    return NewsHeadlinesProvider._internal(
+      (ref) => create(ref as NewsHeadlinesRef),
       name: name,
       dependencies: dependencies,
       allTransitiveDependencies: allTransitiveDependencies,
@@ -184,7 +188,7 @@ class NewsProvider extends AutoDisposeFutureProvider<List<News>> {
 
   @override
   bool operator ==(Object other) {
-    return other is NewsProvider &&
+    return other is NewsHeadlinesProvider &&
         other.country == country &&
         other.page == page;
   }
@@ -199,7 +203,7 @@ class NewsProvider extends AutoDisposeFutureProvider<List<News>> {
   }
 }
 
-mixin NewsRef on AutoDisposeFutureProviderRef<List<News>> {
+mixin NewsHeadlinesRef on AutoDisposeFutureProviderRef<NewsHeadlines> {
   /// The parameter `country` of this provider.
   NewsCountry get country;
 
@@ -207,14 +211,15 @@ mixin NewsRef on AutoDisposeFutureProviderRef<List<News>> {
   int get page;
 }
 
-class _NewsProviderElement extends AutoDisposeFutureProviderElement<List<News>>
-    with NewsRef {
-  _NewsProviderElement(super.provider);
+class _NewsHeadlinesProviderElement
+    extends AutoDisposeFutureProviderElement<NewsHeadlines>
+    with NewsHeadlinesRef {
+  _NewsHeadlinesProviderElement(super.provider);
 
   @override
-  NewsCountry get country => (origin as NewsProvider).country;
+  NewsCountry get country => (origin as NewsHeadlinesProvider).country;
   @override
-  int get page => (origin as NewsProvider).page;
+  int get page => (origin as NewsHeadlinesProvider).page;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package

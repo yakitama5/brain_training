@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../model/entity/news.dart';
+import '../model/entity/news_headlines.dart';
 import '../model/value_object/news_category.dart';
 import '../model/value_object/news_country.dart';
 
@@ -14,7 +14,7 @@ NewsRepository newsRepository(NewsRepositoryRef ref) =>
 
 // ignore: one_member_abstracts
 abstract class NewsRepository {
-  Future<List<News>> fetchTodayHeadlines({
+  Future<NewsHeadlines> fetchTodayHeadlines({
     required NewsCategory category,
     int page = 1,
     required NewsCountry country,

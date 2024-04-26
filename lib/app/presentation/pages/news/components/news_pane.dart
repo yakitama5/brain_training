@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../../i18n/strings.g.dart';
-import '../../../../application/usecase/news/state/news_provider.dart';
+import '../../../../application/config/news_headlines_config.dart';
+import '../../../../application/usecase/news/state/news_haedlines_provider.dart';
 import '../../../../domain/news/model/value_object/news_country.dart';
 import '../../../components/importer.dart';
 import '../../error/components/error_view.dart';
@@ -26,28 +26,26 @@ class NewsPane extends HookConsumerWidget {
       AppLocale.en => NewsCountry.us,
       AppLocale.ja => NewsCountry.jp,
     };
-    const pageSize = 10;
-    final maxPage = useState(1);
-    final itemCount = maxPage.value * pageSize + 1;
+    // あらかじめ先頭ページを取得し、総数を判定しておく
+    final headlinesCount = ref.watch(
+      newsHeadlinesProvider(country: country, page: 1)
+          .select((value) => value.valueOrNull?.totalCount),
+    );
 
     return HeadlinePane(
       label: i18n.home.todayNews,
       child: CarouselSlider.builder(
-        itemCount: itemCount,
+        itemCount: headlinesCount,
         itemBuilder: (context, index, realIndex) {
-          final endItemIndex = itemCount - 1;
-          if (index >= endItemIndex) {
-            // TODO(yakitama5): 最後のページ判定を行う必要がある
-            return _Shimmer(radius: radius);
-          }
+          final page = index ~/ newsHeadlinesConfig.pageSize + 1;
+          final headlines =
+              ref.watch(newsHeadlinesProvider(country: country, page: page));
 
-          final page = index ~/ pageSize + 1;
-          final news = ref.watch(newsProvider(country: country, page: page));
-
-          return news.when(
-            data: (newsList) {
+          return headlines.when(
+            data: (data) {
+              final perIndex = index % newsHeadlinesConfig.pageSize;
               return NewsCard(
-                news: newsList[index],
+                news: data.headlines[perIndex],
                 radius: radius,
               );
             },

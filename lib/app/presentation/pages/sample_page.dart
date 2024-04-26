@@ -1,6 +1,3 @@
-import 'package:brain_training/app/domain/news/interface/news_repository.dart';
-import 'package:brain_training/app/domain/news/model/value_object/news_category.dart';
-import 'package:brain_training/app/domain/news/model/value_object/news_country.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -15,38 +12,11 @@ class SamplePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final res = ref.watch(newsRepositoryProvider).fetchTodayHeadlines(
-          category: NewsCategory.health,
-          country: NewsCountry.jp,
-        );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('SamplePage'),
       ),
-      body: FutureBuilder(
-        future: res,
-        builder: (context, snapshot) {
-          if (snapshot.data == null || snapshot.hasError) {
-            return const CircularProgressIndicator();
-          }
-
-          final newsList = snapshot.data!;
-          return ListView.builder(
-            itemCount: newsList.length,
-            itemBuilder: (context, index) {
-              final news = newsList[index];
-              return ListTile(
-                leading: news.urlToImage == null
-                    ? const SizedBox.shrink()
-                    : Image.network(news.urlToImage!),
-                subtitle: Text('${news.url}'),
-                title: Text('${news.title}'),
-              );
-            },
-          );
-        },
-      ),
+      body: Container(),
     );
   }
 
