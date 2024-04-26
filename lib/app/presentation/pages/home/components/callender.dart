@@ -33,6 +33,7 @@ class Callender extends StatelessWidget {
         const Gap(8),
         Consumer(
           builder: (context, ref, child) {
+            // 天気のアイコンは必須でもないため、同期しない
             final weather = ref.watch(weatherProvider).valueOrNull;
             final iconData = switch (weather?.weatherType) {
               WeatherType.sunny => MdiIcons.weatherSunny,
