@@ -3,8 +3,11 @@ import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../i18n/strings.g.dart';
+import '../../../domain/training/entity/training_daily_summary.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../error/components/error_view.dart';
 import '../news/components/news_pane.dart';
@@ -107,7 +110,6 @@ class _WeeklyTrainingPane extends HookConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        // TODO(yakitama5): テスト値の設定
                         Text(
                           '${data.doneDays}/${data.totalDays}',
                           style: ts.bodyLarge?.merge(
@@ -126,12 +128,19 @@ class _WeeklyTrainingPane extends HookConsumerWidget {
                       ],
                     ),
                     const Gap(32),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: data.days
+                            .map((e) => DailySummaryGauge(summary: e))
+                            .toList(),
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
           );
-          return null;
         },
         error: ErrorView.new,
         loading: () => ShimmerWidget.circular(
@@ -141,6 +150,55 @@ class _WeeklyTrainingPane extends HookConsumerWidget {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
+    );
+  }
+}
+
+class DailySummaryGauge extends HookConsumerWidget {
+  const DailySummaryGauge({super.key, required this.summary});
+
+  final TrainingDailySummary summary;
+
+  static const _radius = 16.0;
+  static const _thickness = 6.0;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cs = Theme.of(context).colorScheme;
+    final total = TrainingType.values.length;
+    final value = summary.doneCount / total * 100;
+
+    final languageCode =
+        LocaleSettings.currentLocale.flutterLocale.languageCode;
+    initializeDateFormatting(languageCode);
+    final format = DateFormat('EEE', languageCode);
+
+    return Column(
+      children: [
+        Visibility(
+          visible: summary.doneCount > 0,
+          maintainAnimation: true,
+          maintainSize: true,
+          maintainState: true,
+          child: Icon(
+            Icons.check,
+            size: 24,
+            color: cs.secondary,
+          ),
+        ),
+        const Gap(4),
+        GaugeChart(
+          value: value,
+          radius: _radius,
+          thickness: _thickness,
+          color: cs.secondary,
+        ),
+        const Gap(4),
+        Text(
+          format.format(summary.doneAt),
+          style: TextStyle(color: cs.onSurface),
+        ),
+      ],
     );
   }
 }

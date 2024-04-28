@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TrainingWeeklySummary {
+  DateTimeRange get range => throw _privateConstructorUsedError;
   int get doneDays => throw _privateConstructorUsedError;
   int get totalDays => throw _privateConstructorUsedError;
   List<TrainingDailySummary> get days => throw _privateConstructorUsedError;
@@ -31,7 +32,11 @@ abstract class $TrainingWeeklySummaryCopyWith<$Res> {
           $Res Function(TrainingWeeklySummary) then) =
       _$TrainingWeeklySummaryCopyWithImpl<$Res, TrainingWeeklySummary>;
   @useResult
-  $Res call({int doneDays, int totalDays, List<TrainingDailySummary> days});
+  $Res call(
+      {DateTimeRange range,
+      int doneDays,
+      int totalDays,
+      List<TrainingDailySummary> days});
 }
 
 /// @nodoc
@@ -48,11 +53,16 @@ class _$TrainingWeeklySummaryCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? range = null,
     Object? doneDays = null,
     Object? totalDays = null,
     Object? days = null,
   }) {
     return _then(_value.copyWith(
+      range: null == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as DateTimeRange,
       doneDays: null == doneDays
           ? _value.doneDays
           : doneDays // ignore: cast_nullable_to_non_nullable
@@ -78,7 +88,11 @@ abstract class _$$TrainingWeeklySummaryImplCopyWith<$Res>
       __$$TrainingWeeklySummaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int doneDays, int totalDays, List<TrainingDailySummary> days});
+  $Res call(
+      {DateTimeRange range,
+      int doneDays,
+      int totalDays,
+      List<TrainingDailySummary> days});
 }
 
 /// @nodoc
@@ -93,11 +107,16 @@ class __$$TrainingWeeklySummaryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? range = null,
     Object? doneDays = null,
     Object? totalDays = null,
     Object? days = null,
   }) {
     return _then(_$TrainingWeeklySummaryImpl(
+      range: null == range
+          ? _value.range
+          : range // ignore: cast_nullable_to_non_nullable
+              as DateTimeRange,
       doneDays: null == doneDays
           ? _value.doneDays
           : doneDays // ignore: cast_nullable_to_non_nullable
@@ -118,11 +137,14 @@ class __$$TrainingWeeklySummaryImplCopyWithImpl<$Res>
 
 class _$TrainingWeeklySummaryImpl implements _TrainingWeeklySummary {
   const _$TrainingWeeklySummaryImpl(
-      {required this.doneDays,
+      {required this.range,
+      required this.doneDays,
       required this.totalDays,
       required final List<TrainingDailySummary> days})
       : _days = days;
 
+  @override
+  final DateTimeRange range;
   @override
   final int doneDays;
   @override
@@ -137,7 +159,7 @@ class _$TrainingWeeklySummaryImpl implements _TrainingWeeklySummary {
 
   @override
   String toString() {
-    return 'TrainingWeeklySummary(doneDays: $doneDays, totalDays: $totalDays, days: $days)';
+    return 'TrainingWeeklySummary(range: $range, doneDays: $doneDays, totalDays: $totalDays, days: $days)';
   }
 
   @override
@@ -145,6 +167,7 @@ class _$TrainingWeeklySummaryImpl implements _TrainingWeeklySummary {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TrainingWeeklySummaryImpl &&
+            (identical(other.range, range) || other.range == range) &&
             (identical(other.doneDays, doneDays) ||
                 other.doneDays == doneDays) &&
             (identical(other.totalDays, totalDays) ||
@@ -153,7 +176,7 @@ class _$TrainingWeeklySummaryImpl implements _TrainingWeeklySummary {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, doneDays, totalDays,
+  int get hashCode => Object.hash(runtimeType, range, doneDays, totalDays,
       const DeepCollectionEquality().hash(_days));
 
   @JsonKey(ignore: true)
@@ -166,11 +189,14 @@ class _$TrainingWeeklySummaryImpl implements _TrainingWeeklySummary {
 
 abstract class _TrainingWeeklySummary implements TrainingWeeklySummary {
   const factory _TrainingWeeklySummary(
-          {required final int doneDays,
+          {required final DateTimeRange range,
+          required final int doneDays,
           required final int totalDays,
           required final List<TrainingDailySummary> days}) =
       _$TrainingWeeklySummaryImpl;
 
+  @override
+  DateTimeRange get range;
   @override
   int get doneDays;
   @override

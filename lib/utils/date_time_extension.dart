@@ -11,8 +11,11 @@ extension DateTimeX on DateTime {
   /// 日付の00:00から23:59までの範囲に変換する
   DateTimeRange get dayRange => DateTimeRange(start: dayStart, end: dayEnd);
 
-  /// 一週間の開始と終了の範囲に変換する
+  /// 一週間の開始(月曜日)と終了(日曜日)の範囲に変換する
   DateTimeRange get weekRange {
+    // 日曜日開始ならこっち
+    // final start = subtract(Duration(days: (weekday - 7).abs())).dayStart;
+
     final start = subtract(Duration(days: weekday - 1)).dayStart;
     final end = start.add(const Duration(days: 6)).dayEnd;
     return DateTimeRange(start: start, end: end);

@@ -1,3 +1,4 @@
+import 'package:brain_training/app/domain/training/entity/training_daily_summary.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -70,11 +71,33 @@ class TrainingUsecase with RunUsecaseMixin {
         )
         .first;
 
+    // 日付を元に空を作成する
+    final daysMap = {
+      for (final day in days) day.doneAt.day: day,
+    };
+    final weekDays = Iterable.generate(
+      weekRange.end.difference(weekRange.start).inDays + 1,
+      (i) => weekRange.start.add(Duration(days: i)),
+    ).map((e) {
+      final day = e.day;
+      if (daysMap.containsKey(day) && daysMap[day] != null) {
+        return daysMap[day]!;
+      }
+
+      return TrainingDailySummary(
+        id: '',
+        doneAt: e.dayStart,
+        createdAt: e.dayStart,
+        updatedAt: e.dayStart,
+      );
+    }).toList();
+
     // 集計して返却
     return TrainingWeeklySummary(
+      range: weekRange,
       doneDays: days.where((element) => element.doneCount > 0).length,
       totalDays: weekRange.duration.inDays + 1,
-      days: days,
+      days: weekDays,
     );
   }
 }
