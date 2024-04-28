@@ -20,7 +20,7 @@ class UIStyleSelectPage extends HookConsumerWidget {
     final selected = useState<UIStyle?>(initialValue);
 
     return SettingsRadioScaffold(
-      title: i18n.settings.list.layout.rankType,
+      title: i18n.settings.list.layout.uiStyle,
       tiles: UIStyle.values.map((style) {
         return SettingsRadioListTile<UIStyle>(
           title: Text(i18n.settings.uiStyle.type(context: style)),
