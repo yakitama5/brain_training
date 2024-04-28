@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
+import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/app/presentation/theme/importer.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -20,6 +21,7 @@ class SettingsPage extends HookConsumerWidget {
         ? const Icon(Icons.arrow_forward_ios_rounded)
         : null;
     final rankCategory = ref.watch(rankCategoryProvider);
+    final uiStyle = ref.watch(uiStyleProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -53,8 +55,9 @@ class SettingsPage extends HookConsumerWidget {
               SettingsTile.navigation(
                 leading: const Icon(Icons.style),
                 trailing: trailing,
-                title: Text(i18n.settings.list.layout.style),
-                onPressed: (context) {},
+                title: Text(i18n.settings.list.layout.uiStyle),
+                description: Text(i18n.settings.uiStyle.type(context: uiStyle)),
+                onPressed: _onUIStyle,
               ),
               SettingsTile.navigation(
                 leading: const Icon(Icons.light_mode),
@@ -115,5 +118,9 @@ class SettingsPage extends HookConsumerWidget {
 
   void _onRankCategory(BuildContext context) {
     const SettingsLayoutRankCategoryRouteData().go(context);
+  }
+
+  void _onUIStyle(BuildContext context) {
+    const SettingsUIStyleRouteData().go(context);
   }
 }

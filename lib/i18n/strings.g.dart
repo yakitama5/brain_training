@@ -4,14 +4,15 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 176 (88 per locale)
+/// Strings: 182 (91 per locale)
 ///
-/// Built on 2024-04-28 at 12:12 UTC
+/// Built on 2024-04-28 at 13:20 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
+import 'package:brain_training/app/domain/settings/value_object/ui_style.dart';
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
@@ -199,6 +200,7 @@ class _StringsSettingsEn {
 	String get title => 'Settings';
 	late final _StringsSettingsListEn list = _StringsSettingsListEn._(_root);
 	late final _StringsSettingsAccountEn account = _StringsSettingsAccountEn._(_root);
+	late final _StringsSettingsUiStyleEn uiStyle = _StringsSettingsUiStyleEn._(_root);
 }
 
 // Path: training
@@ -265,6 +267,25 @@ class _StringsSettingsAccountEn {
 	String get accountLink => 'Account link';
 	String get other => 'Other';
 	String get leave => 'Leave';
+}
+
+// Path: settings.uiStyle
+class _StringsSettingsUiStyleEn {
+	_StringsSettingsUiStyleEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String type({required UIStyle context}) {
+		switch (context) {
+			case UIStyle.system:
+				return 'System';
+			case UIStyle.android:
+				return 'Android';
+			case UIStyle.ios:
+				return 'iOS';
+		}
+	}
 }
 
 // Path: training.trainingType
@@ -482,7 +503,7 @@ class _StringsSettingsListLayoutEn {
 	// Translations
 	String get head => 'Layout';
 	String get rankType => 'Rank';
-	String get style => 'UI Style';
+	String get uiStyle => 'UI Style';
 	String get themeMode => 'ThemeMode';
 	String get colorTheme => 'ColorTheme';
 }
@@ -584,6 +605,7 @@ class _StringsSettingsJa extends _StringsSettingsEn {
 	@override String get title => '設定';
 	@override late final _StringsSettingsListJa list = _StringsSettingsListJa._(_root);
 	@override late final _StringsSettingsAccountJa account = _StringsSettingsAccountJa._(_root);
+	@override late final _StringsSettingsUiStyleJa uiStyle = _StringsSettingsUiStyleJa._(_root);
 }
 
 // Path: training
@@ -650,6 +672,25 @@ class _StringsSettingsAccountJa extends _StringsSettingsAccountEn {
 	@override String get accountLink => 'アカウント連携';
 	@override String get other => 'その他';
 	@override String get leave => '退会';
+}
+
+// Path: settings.uiStyle
+class _StringsSettingsUiStyleJa extends _StringsSettingsUiStyleEn {
+	_StringsSettingsUiStyleJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String type({required UIStyle context}) {
+		switch (context) {
+			case UIStyle.system:
+				return 'システム設定';
+			case UIStyle.android:
+				return 'Android';
+			case UIStyle.ios:
+				return 'iOS';
+		}
+	}
 }
 
 // Path: training.trainingType
@@ -867,7 +908,7 @@ class _StringsSettingsListLayoutJa extends _StringsSettingsListLayoutEn {
 	// Translations
 	@override String get head => 'レイアウト';
 	@override String get rankType => 'ランク表記';
-	@override String get style => 'UIスタイル';
+	@override String get uiStyle => 'UIスタイル';
 	@override String get themeMode => 'テーマ';
 	@override String get colorTheme => 'カラーテーマ';
 }
@@ -926,7 +967,7 @@ extension on Translations {
 			case 'settings.list.account.account': return 'Account';
 			case 'settings.list.layout.head': return 'Layout';
 			case 'settings.list.layout.rankType': return 'Rank';
-			case 'settings.list.layout.style': return 'UI Style';
+			case 'settings.list.layout.uiStyle': return 'UI Style';
 			case 'settings.list.layout.themeMode': return 'ThemeMode';
 			case 'settings.list.layout.colorTheme': return 'ColorTheme';
 			case 'settings.list.help.head': return 'Help';
@@ -938,6 +979,16 @@ extension on Translations {
 			case 'settings.account.accountLink': return 'Account link';
 			case 'settings.account.other': return 'Other';
 			case 'settings.account.leave': return 'Leave';
+			case 'settings.uiStyle.type': return ({required UIStyle context}) {
+				switch (context) {
+					case UIStyle.system:
+						return 'System';
+					case UIStyle.android:
+						return 'Android';
+					case UIStyle.ios:
+						return 'iOS';
+				}
+			};
 			case 'training.menu': return 'Menu';
 			case 'training.doneMenu': return 'Done';
 			case 'training.trainingType.title': return ({required TrainingType context}) {
@@ -1099,7 +1150,7 @@ extension on _StringsJa {
 			case 'settings.list.account.account': return 'アカウント';
 			case 'settings.list.layout.head': return 'レイアウト';
 			case 'settings.list.layout.rankType': return 'ランク表記';
-			case 'settings.list.layout.style': return 'UIスタイル';
+			case 'settings.list.layout.uiStyle': return 'UIスタイル';
 			case 'settings.list.layout.themeMode': return 'テーマ';
 			case 'settings.list.layout.colorTheme': return 'カラーテーマ';
 			case 'settings.list.help.head': return 'ヘルプ';
@@ -1111,6 +1162,16 @@ extension on _StringsJa {
 			case 'settings.account.accountLink': return 'アカウント連携';
 			case 'settings.account.other': return 'その他';
 			case 'settings.account.leave': return '退会';
+			case 'settings.uiStyle.type': return ({required UIStyle context}) {
+				switch (context) {
+					case UIStyle.system:
+						return 'システム設定';
+					case UIStyle.android:
+						return 'Android';
+					case UIStyle.ios:
+						return 'iOS';
+				}
+			};
 			case 'training.menu': return '脳トレメニュー';
 			case 'training.doneMenu': return '実施済のトレーニング';
 			case 'training.trainingType.title': return ({required TrainingType context}) {

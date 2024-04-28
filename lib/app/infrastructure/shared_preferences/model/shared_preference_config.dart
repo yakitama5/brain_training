@@ -6,5 +6,6 @@ part 'shared_preference_config.freezed.dart';
 class SharedPreferenceConfig with _$SharedPreferenceConfig {
   const factory SharedPreferenceConfig({
     required String rankCategoryKey,
+    required String uiStyleKey,
   }) = _SharedPreferenceConfig;
 }

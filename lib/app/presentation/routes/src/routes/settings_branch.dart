@@ -1,6 +1,7 @@
 import 'package:brain_training/app/presentation/pages/settings/account_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/rank_category_select_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/settings_page.dart';
+import 'package:brain_training/app/presentation/pages/settings/ui_style_select_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,6 +17,9 @@ const settingsBranch = TypedStatefulShellBranch<BranchSettingsData>(
         ),
         TypedGoRoute<SettingsLayoutRankCategoryRouteData>(
           path: SettingsLayoutRankCategoryRouteData.path,
+        ),
+        TypedGoRoute<SettingsUIStyleRouteData>(
+          path: SettingsUIStyleRouteData.path,
         ),
       ],
     ),
@@ -55,4 +59,14 @@ class SettingsLayoutRankCategoryRouteData extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const RankCategorySelectPage();
+}
+
+class SettingsUIStyleRouteData extends GoRouteData {
+  const SettingsUIStyleRouteData();
+
+  static const path = 'ui_style';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const UIStyleSelectPage();
 }

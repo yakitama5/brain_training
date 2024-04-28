@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
+import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
 import 'package:brain_training/app/domain/news/interface/news_repository.dart';
 import 'package:brain_training/app/domain/settings/interface/settings_service.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
@@ -12,6 +13,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
@@ -33,7 +35,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Theme
-  final appTheme = await initializeAppTheme();
+  final corePalette = await DynamicColorPlugin.getCorePalette();
 
   // Slang
   LocaleSettings.useDeviceLocale();
@@ -66,7 +68,8 @@ void main() async {
         initialLocationProvider.overrideWith((ref) => '/home'),
 
         // アプリ内で利用するThemeの定義
-        appThemeProvider.overrideWithValue(appTheme),
+        appThemeProvider
+            .overrideWith((ref) => initializeAppTheme(corePalette, ref)),
 
         // インフラ層のDI
         // Firebase
@@ -91,8 +94,8 @@ void main() async {
   );
 }
 
-Future<AppTheme> initializeAppTheme() async {
-  final corePalette = await DynamicColorPlugin.getCorePalette();
+AppTheme initializeAppTheme(CorePalette? corePalette, Ref ref) {
+  final style = ref.watch(uiStyleProvider);
 
   final isDynamicColorSupported = corePalette != null;
 
@@ -106,5 +109,6 @@ Future<AppTheme> initializeAppTheme() async {
   return AppTheme(
     lightColorScheme: lightColorScheme,
     darkColorScheme: darkColorScheme,
+    platform: style?.platform,
   );
 }

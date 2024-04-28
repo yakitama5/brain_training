@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../training/value_object/rank_category.dart';
+import '../value_object/ui_style.dart';
 
 part 'settings_service.g.dart';
 
@@ -14,4 +15,7 @@ SettingsService settingsService(SettingsServiceRef ref) =>
 abstract class SettingsService {
   RankCategory? fetchRankCategory();
   Future<bool> updateRankCategory({required RankCategory? rankCategory});
+
+  UIStyle? fetchUIStyle();
+  Future<bool> updateUIStyle({required UIStyle? style});
 }

@@ -11,6 +11,7 @@ imports:
   - "package:brain_training/app/domain/training/value_object/rank_category.dart"
   - "package:brain_training/app/domain/training/value_object/answer_type.dart"
   - "package:brain_training/app/domain/read_color/value_object/colored_word.dart"
+  - "package:brain_training/app/domain/settings/value_object/ui_style.dart"
 contexts:
   TrainingType:
     generate_enum: false
@@ -21,4 +22,6 @@ contexts:
   AnswerType:
     generate_enum: false
   ColoredWord:
+    generate_enum: false
+  UIStyle:
     generate_enum: false

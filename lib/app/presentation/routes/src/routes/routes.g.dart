@@ -99,6 +99,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                       factory: $SettingsLayoutRankCategoryRouteDataExtension
                           ._fromState,
                     ),
+                    GoRouteData.$route(
+                      path: 'ui_style',
+                      factory: $SettingsUIStyleRouteDataExtension._fromState,
+                    ),
                   ],
                 ),
               ],
@@ -369,6 +373,24 @@ extension $SettingsLayoutRankCategoryRouteDataExtension
 
   String get location => GoRouteData.$location(
         '/settings/rank_category',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsUIStyleRouteDataExtension on SettingsUIStyleRouteData {
+  static SettingsUIStyleRouteData _fromState(GoRouterState state) =>
+      const SettingsUIStyleRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/ui_style',
       );
 
   void go(BuildContext context) => context.go(location);

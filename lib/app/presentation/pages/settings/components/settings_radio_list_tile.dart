@@ -32,5 +32,6 @@ class SettingsRadioListTile<T> extends StatelessWidget {
         groupValue: groupValue,
         onChanged: onChanged,
         controlAffinity: ListTileControlAffinity.trailing,
+        useCupertinoCheckmarkStyle: true,
       );
 }

@@ -8,7 +8,7 @@
         "layout": {
             "head": "Layout",
             "rankType": "Rank",
-            "style": "UI Style",
+            "uiStyle": "UI Style",
             "themeMode": "ThemeMode",
             "colorTheme": "ColorTheme"
         },
@@ -25,5 +25,12 @@
         "accountLink": "Account link",
         "other": "Other",
         "leave": "Leave"
+    },
+    "uiStyle": {
+        "type(context=UIStyle)": {
+            "system": "System",
+            "android": "Android",
+            "ios": "iOS"
+        }
     }
 }
