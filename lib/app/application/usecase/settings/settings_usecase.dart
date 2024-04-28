@@ -1,8 +1,11 @@
+import 'package:brain_training/app/application/state/color_style_provider.dart';
+import 'package:brain_training/app/application/state/dynamic_color_supported_provider.dart';
 import 'package:brain_training/app/application/usecase/run_usecase_mixin.dart';
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/theme_mode_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
 import 'package:brain_training/app/domain/settings/interface/settings_service.dart';
+import 'package:brain_training/app/domain/settings/value_object/color_style.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -41,5 +44,20 @@ class SettingsUsecase with RunUsecaseMixin {
   Future<void> updateThemeMode({required ThemeMode? themeMode}) async {
     await _service.updateThemeMode(themeMode: themeMode);
     return ref.invalidate(themeModeProvider);
+  }
+
+  ColorStyle fetchColorStyle() {
+    // プラットフォームに応じて設定する
+    final isDynamicColorSupported = ref.read(dynamicColorSupportedProvider);
+    final defaultColorStyle = isDynamicColorSupported
+        ? ColorStyle.dynamicColor
+        : ColorStyle.systemColor;
+
+    return _service.fetchColorStyle() ?? defaultColorStyle;
+  }
+
+  Future<void> updateColorStyle({required ColorStyle? colorStyle}) async {
+    await _service.updateColorStyle(colorStyle: colorStyle);
+    return ref.invalidate(colorStyleProvider);
   }
 }

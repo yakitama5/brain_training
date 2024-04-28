@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/state/color_style_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/theme_mode_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
@@ -26,6 +27,7 @@ class SettingsPage extends HookConsumerWidget {
     final rankCategory = ref.watch(rankCategoryProvider);
     final uiStyle = ref.watch(uiStyleProvider);
     final themeMode = ref.watch(themeModeProvider);
+    final colorStyle = ref.watch(colorStyleProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -76,6 +78,8 @@ class SettingsPage extends HookConsumerWidget {
                 leading: const Icon(Icons.color_lens),
                 trailing: trailing,
                 title: Text(i18n.settings.list.layout.colorTheme),
+                description:
+                    Text(i18n.settings.colorStyle.type(context: colorStyle)),
                 onPressed: _onColorStyle,
               ),
             ],
@@ -136,7 +140,7 @@ class SettingsPage extends HookConsumerWidget {
   }
 
   void _onColorStyle(BuildContext context) {
-    // TODO(yakitama5): 未着手
+    const SettingsColorStyleRouteData().go(context);
   }
 
   Future<bool> _onHowToUse(BuildContext context) {

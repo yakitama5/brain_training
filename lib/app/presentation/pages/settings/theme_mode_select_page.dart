@@ -19,7 +19,7 @@ class ThemeModeSelectPage extends HookConsumerWidget {
     final selected = useState<ThemeMode?>(initialValue);
 
     return SettingsRadioScaffold(
-      title: i18n.settings.list.layout.uiStyle,
+      title: i18n.settings.list.layout.themeMode,
       tiles: ThemeMode.values.map((themeMode) {
         return SettingsRadioListTile<ThemeMode>(
           title: Text(i18n.settings.themeMode.type(context: themeMode)),
@@ -27,7 +27,7 @@ class ThemeModeSelectPage extends HookConsumerWidget {
           groupValue: selected.value,
           leading: Icon(
             switch (themeMode) {
-              ThemeMode.system => Icons.accessibility,
+              ThemeMode.system => Icons.settings,
               ThemeMode.light => Icons.light_mode,
               ThemeMode.dark => Icons.dark_mode,
             },

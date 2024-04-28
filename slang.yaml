@@ -12,6 +12,7 @@ imports:
   - "package:brain_training/app/domain/training/value_object/answer_type.dart"
   - "package:brain_training/app/domain/read_color/value_object/colored_word.dart"
   - "package:brain_training/app/domain/settings/value_object/ui_style.dart"
+  - "package:brain_training/app/domain/settings/value_object/color_style.dart"
   - "package:flutter/material.dart"
 contexts:
   TrainingType:
@@ -25,6 +26,8 @@ contexts:
   ColoredWord:
     generate_enum: false
   UIStyle:
+    generate_enum: false
+  ColorStyle:
     generate_enum: false
   ThemeMode:
     generate_enum: false

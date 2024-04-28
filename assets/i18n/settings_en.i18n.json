@@ -39,5 +39,18 @@
             "light": "Light mode",
             "dark": "Dark mode"
         }
+    },
+    "colorStyle": {
+        "type(context=ColorStyle)": {
+            "dynamicColor": "DynamicColor",
+            "systemColor": "SystemColor",
+            "blue": "Blue",
+            "purple": "Purple",
+            "green": "Green",
+            "red": "Red",
+            "pink": "Pink",
+            "yellow": "Yellow",
+            "orange": "Orange"
+        }
     }
 }

@@ -1,3 +1,4 @@
+import 'package:brain_training/app/domain/settings/value_object/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -22,4 +23,7 @@ abstract class SettingsService {
 
   ThemeMode? fetchThemeMode();
   Future<bool> updateThemeMode({required ThemeMode? themeMode});
+
+  ColorStyle? fetchColorStyle();
+  Future<bool> updateColorStyle({required ColorStyle? colorStyle});
 }

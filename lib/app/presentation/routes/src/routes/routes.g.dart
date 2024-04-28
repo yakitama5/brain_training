@@ -108,6 +108,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                       factory: $SettingsThemeModeRouteDataExtension._fromState,
                     ),
                     GoRouteData.$route(
+                      path: 'color_style',
+                      factory: $SettingsColorStyleRouteDataExtension._fromState,
+                    ),
+                    GoRouteData.$route(
                       path: 'license',
                       factory: $SettingsLicenseRouteDataExtension._fromState,
                     ),
@@ -417,6 +421,24 @@ extension $SettingsThemeModeRouteDataExtension on SettingsThemeModeRouteData {
 
   String get location => GoRouteData.$location(
         '/settings/theme_mode',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsColorStyleRouteDataExtension on SettingsColorStyleRouteData {
+  static SettingsColorStyleRouteData _fromState(GoRouterState state) =>
+      const SettingsColorStyleRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/color_style',
       );
 
   void go(BuildContext context) => context.go(location);

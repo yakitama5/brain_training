@@ -4,14 +4,15 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 188 (94 per locale)
+/// Strings: 206 (103 per locale)
 ///
-/// Built on 2024-04-28 at 13:42 UTC
+/// Built on 2024-04-28 at 14:15 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
 
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
+import 'package:brain_training/app/domain/settings/value_object/color_style.dart';
 import 'package:brain_training/app/domain/settings/value_object/ui_style.dart';
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
@@ -203,6 +204,7 @@ class _StringsSettingsEn {
 	late final _StringsSettingsAccountEn account = _StringsSettingsAccountEn._(_root);
 	late final _StringsSettingsUiStyleEn uiStyle = _StringsSettingsUiStyleEn._(_root);
 	late final _StringsSettingsThemeModeEn themeMode = _StringsSettingsThemeModeEn._(_root);
+	late final _StringsSettingsColorStyleEn colorStyle = _StringsSettingsColorStyleEn._(_root);
 }
 
 // Path: training
@@ -305,6 +307,37 @@ class _StringsSettingsThemeModeEn {
 				return 'Light mode';
 			case ThemeMode.dark:
 				return 'Dark mode';
+		}
+	}
+}
+
+// Path: settings.colorStyle
+class _StringsSettingsColorStyleEn {
+	_StringsSettingsColorStyleEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String type({required ColorStyle context}) {
+		switch (context) {
+			case ColorStyle.dynamicColor:
+				return 'DynamicColor';
+			case ColorStyle.systemColor:
+				return 'SystemColor';
+			case ColorStyle.blue:
+				return 'Blue';
+			case ColorStyle.purple:
+				return 'Purple';
+			case ColorStyle.green:
+				return 'Green';
+			case ColorStyle.red:
+				return 'Red';
+			case ColorStyle.pink:
+				return 'Pink';
+			case ColorStyle.yellow:
+				return 'Yellow';
+			case ColorStyle.orange:
+				return 'Orange';
 		}
 	}
 }
@@ -628,6 +661,7 @@ class _StringsSettingsJa extends _StringsSettingsEn {
 	@override late final _StringsSettingsAccountJa account = _StringsSettingsAccountJa._(_root);
 	@override late final _StringsSettingsUiStyleJa uiStyle = _StringsSettingsUiStyleJa._(_root);
 	@override late final _StringsSettingsThemeModeJa themeMode = _StringsSettingsThemeModeJa._(_root);
+	@override late final _StringsSettingsColorStyleJa colorStyle = _StringsSettingsColorStyleJa._(_root);
 }
 
 // Path: training
@@ -730,6 +764,37 @@ class _StringsSettingsThemeModeJa extends _StringsSettingsThemeModeEn {
 				return 'ライトモード';
 			case ThemeMode.dark:
 				return 'ダークモード';
+		}
+	}
+}
+
+// Path: settings.colorStyle
+class _StringsSettingsColorStyleJa extends _StringsSettingsColorStyleEn {
+	_StringsSettingsColorStyleJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String type({required ColorStyle context}) {
+		switch (context) {
+			case ColorStyle.dynamicColor:
+				return 'ダイナミックカラー';
+			case ColorStyle.systemColor:
+				return 'システムカラー';
+			case ColorStyle.blue:
+				return 'ブルー';
+			case ColorStyle.purple:
+				return 'パープル';
+			case ColorStyle.green:
+				return 'グリーン';
+			case ColorStyle.red:
+				return 'レッド';
+			case ColorStyle.pink:
+				return 'ピンク';
+			case ColorStyle.yellow:
+				return 'イエロー';
+			case ColorStyle.orange:
+				return 'オレンジ';
 		}
 	}
 }
@@ -1040,6 +1105,28 @@ extension on Translations {
 						return 'Dark mode';
 				}
 			};
+			case 'settings.colorStyle.type': return ({required ColorStyle context}) {
+				switch (context) {
+					case ColorStyle.dynamicColor:
+						return 'DynamicColor';
+					case ColorStyle.systemColor:
+						return 'SystemColor';
+					case ColorStyle.blue:
+						return 'Blue';
+					case ColorStyle.purple:
+						return 'Purple';
+					case ColorStyle.green:
+						return 'Green';
+					case ColorStyle.red:
+						return 'Red';
+					case ColorStyle.pink:
+						return 'Pink';
+					case ColorStyle.yellow:
+						return 'Yellow';
+					case ColorStyle.orange:
+						return 'Orange';
+				}
+			};
 			case 'training.menu': return 'Menu';
 			case 'training.doneMenu': return 'Done';
 			case 'training.trainingType.title': return ({required TrainingType context}) {
@@ -1231,6 +1318,28 @@ extension on _StringsJa {
 						return 'ライトモード';
 					case ThemeMode.dark:
 						return 'ダークモード';
+				}
+			};
+			case 'settings.colorStyle.type': return ({required ColorStyle context}) {
+				switch (context) {
+					case ColorStyle.dynamicColor:
+						return 'ダイナミックカラー';
+					case ColorStyle.systemColor:
+						return 'システムカラー';
+					case ColorStyle.blue:
+						return 'ブルー';
+					case ColorStyle.purple:
+						return 'パープル';
+					case ColorStyle.green:
+						return 'グリーン';
+					case ColorStyle.red:
+						return 'レッド';
+					case ColorStyle.pink:
+						return 'ピンク';
+					case ColorStyle.yellow:
+						return 'イエロー';
+					case ColorStyle.orange:
+						return 'オレンジ';
 				}
 			};
 			case 'training.menu': return '脳トレメニュー';

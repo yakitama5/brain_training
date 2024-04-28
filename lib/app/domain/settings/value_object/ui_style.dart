@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum UIStyle {
-  system(null, Icons.accessibility),
+  system(null, Icons.settings),
   android(TargetPlatform.android, Icons.android),
   ios(TargetPlatform.iOS, Icons.apple);
 

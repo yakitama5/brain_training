@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
+import 'package:brain_training/app/application/state/color_style_provider.dart';
+import 'package:brain_training/app/application/state/dynamic_color_supported_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
 import 'package:brain_training/app/domain/news/interface/news_repository.dart';
 import 'package:brain_training/app/domain/settings/interface/settings_service.dart';
@@ -13,7 +17,6 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:material_color_utilities/palettes/core_palette.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
@@ -25,7 +28,6 @@ import 'app/domain/user/interface/user_repository.dart';
 import 'app/infrastructure/firebase/repository/firebase_user_repository.dart';
 import 'app/infrastructure/news_api/repository/news_api_news_repository.dart';
 import 'app/infrastructure/open_weather/service/open_weather_weather_service.dart';
-import 'app/presentation/theme/importer.dart';
 import 'firebase_options.dart';
 import 'firebase_options_dev.dart' as dev;
 import 'i18n/strings.g.dart';
@@ -36,6 +38,8 @@ void main() async {
 
   // Theme
   final corePalette = await DynamicColorPlugin.getCorePalette();
+  final isDynamicColorSupported =
+      corePalette != null && !Platform.isIOS && !Platform.isMacOS;
 
   // Slang
   LocaleSettings.useDeviceLocale();
@@ -68,8 +72,16 @@ void main() async {
         initialLocationProvider.overrideWith((ref) => '/home'),
 
         // アプリ内で利用するThemeの定義
-        appThemeProvider
-            .overrideWith((ref) => initializeAppTheme(corePalette, ref)),
+        dynamicColorSupportedProvider
+            .overrideWithValue(isDynamicColorSupported),
+        appThemeProvider.overrideWith(
+          (ref) => AppTheme.createAppTheme(
+            isDynamicColorSupported: isDynamicColorSupported,
+            corePalette: corePalette,
+            uiStyle: ref.watch(uiStyleProvider),
+            colorStyle: ref.watch(colorStyleProvider),
+          ),
+        ),
 
         // インフラ層のDI
         // Firebase
@@ -91,24 +103,5 @@ void main() async {
         child: const App(),
       ),
     ),
-  );
-}
-
-AppTheme initializeAppTheme(CorePalette? corePalette, Ref ref) {
-  final style = ref.watch(uiStyleProvider);
-
-  final isDynamicColorSupported = corePalette != null;
-
-  final lightColorScheme = isDynamicColorSupported
-      ? corePalette.toColorScheme()
-      : MaterialTheme.lightScheme().toColorScheme();
-  final darkColorScheme = isDynamicColorSupported
-      ? corePalette.toColorScheme(brightness: Brightness.dark)
-      : MaterialTheme.darkScheme().toColorScheme();
-
-  return AppTheme(
-    lightColorScheme: lightColorScheme,
-    darkColorScheme: darkColorScheme,
-    platform: style.platform,
   );
 }

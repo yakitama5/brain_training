@@ -39,5 +39,18 @@
             "light": "ライトモード",
             "dark": "ダークモード"
         }
+    },
+    "colorStyle": {
+        "type(context=ColorStyle)": {
+            "dynamicColor": "ダイナミックカラー",
+            "systemColor": "システムカラー",
+            "blue": "ブルー",
+            "purple": "パープル",
+            "green": "グリーン",
+            "red": "レッド",
+            "pink": "ピンク",
+            "yellow": "イエロー",
+            "orange": "オレンジ"
+        }
     }
 }

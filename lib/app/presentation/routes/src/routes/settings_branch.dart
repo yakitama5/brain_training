@@ -1,4 +1,5 @@
 import 'package:brain_training/app/presentation/pages/settings/account_page.dart';
+import 'package:brain_training/app/presentation/pages/settings/color_style_select_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/rank_category_select_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/settings_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/theme_mode_select_page.dart';
@@ -26,6 +27,9 @@ const settingsBranch = TypedStatefulShellBranch<BranchSettingsData>(
         ),
         TypedGoRoute<SettingsThemeModeRouteData>(
           path: SettingsThemeModeRouteData.path,
+        ),
+        TypedGoRoute<SettingsColorStyleRouteData>(
+          path: SettingsColorStyleRouteData.path,
         ),
         TypedGoRoute<SettingsLicenseRouteData>(
           path: SettingsLicenseRouteData.path,
@@ -88,6 +92,16 @@ class SettingsThemeModeRouteData extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ThemeModeSelectPage();
+}
+
+class SettingsColorStyleRouteData extends GoRouteData {
+  const SettingsColorStyleRouteData();
+
+  static const path = 'color_style';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ColorStyleSelectPage();
 }
 
 class SettingsLicenseRouteData extends GoRouteData {
