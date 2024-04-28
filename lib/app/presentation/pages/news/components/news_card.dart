@@ -62,7 +62,7 @@ class _Image extends StatelessWidget {
 
     return CachedNetworkImage(
       imageUrl: url,
-      fit: BoxFit.fitHeight,
+      fit: BoxFit.fill,
       color: cs.secondary.withOpacity(0.7),
       colorBlendMode: BlendMode.srcATop,
       progressIndicatorBuilder: (_, __, ___) =>
