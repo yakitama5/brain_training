@@ -58,46 +58,46 @@ class TrainingUsecase with RunUsecaseMixin {
         disableLoading: true,
       );
 
-  Future<TrainingWeeklySummary> fetchWeeklySummary({
+  Stream<TrainingWeeklySummary> fetchWeeklySummary({
     required String userId,
     required DateTime dateTime,
-  }) async {
+  }) {
     // 一週間分のサマリを取得する
     final weekRange = dateTime.weekRange;
-    final days = await _trainingRepository
+    return _trainingRepository
         .fetchDailySummaryByDateRange(
-          userId: userId,
-          range: weekRange,
-        )
-        .first;
-
-    // 日付を元に空を作成する
-    final daysMap = {
-      for (final day in days) day.doneAt.day: day,
-    };
-    final weekDays = Iterable.generate(
-      weekRange.end.difference(weekRange.start).inDays + 1,
-      (i) => weekRange.start.add(Duration(days: i)),
-    ).map((e) {
-      final day = e.day;
-      if (daysMap.containsKey(day) && daysMap[day] != null) {
-        return daysMap[day]!;
-      }
-
-      return TrainingDailySummary(
-        id: '',
-        doneAt: e.dayStart,
-        createdAt: e.dayStart,
-        updatedAt: e.dayStart,
-      );
-    }).toList();
-
-    // 集計して返却
-    return TrainingWeeklySummary(
+      userId: userId,
       range: weekRange,
-      doneDays: days.where((element) => element.doneCount > 0).length,
-      totalDays: weekRange.duration.inDays + 1,
-      days: weekDays,
-    );
+    )
+        .map((days) {
+      // 日付を元に空を作成する
+      final daysMap = {
+        for (final day in days) day.doneAt.day: day,
+      };
+      final weekDays = Iterable.generate(
+        weekRange.end.difference(weekRange.start).inDays + 1,
+        (i) => weekRange.start.add(Duration(days: i)),
+      ).map((e) {
+        final day = e.day;
+        if (daysMap.containsKey(day) && daysMap[day] != null) {
+          return daysMap[day]!;
+        }
+
+        return TrainingDailySummary(
+          id: '',
+          doneAt: e.dayStart,
+          createdAt: e.dayStart,
+          updatedAt: e.dayStart,
+        );
+      }).toList();
+
+      // 集計して返却
+      return TrainingWeeklySummary(
+        range: weekRange,
+        doneDays: days.where((element) => element.doneCount > 0).length,
+        totalDays: weekRange.duration.inDays + 1,
+        days: weekDays,
+      );
+    });
   }
 }

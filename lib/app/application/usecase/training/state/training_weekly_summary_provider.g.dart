@@ -7,12 +7,12 @@ part of 'training_weekly_summary_provider.dart';
 // **************************************************************************
 
 String _$trainingWeeklySummaryHash() =>
-    r'87d9dec2c08f67abfc303156dd8f2e218df01cfd';
+    r'9e1dbe8bfd492b9f98966e62a57333f2dbb5423a';
 
 /// See also [trainingWeeklySummary].
 @ProviderFor(trainingWeeklySummary)
 final trainingWeeklySummaryProvider =
-    AutoDisposeFutureProvider<TrainingWeeklySummary?>.internal(
+    AutoDisposeStreamProvider<TrainingWeeklySummary?>.internal(
   trainingWeeklySummary,
   name: r'trainingWeeklySummaryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -23,6 +23,6 @@ final trainingWeeklySummaryProvider =
 );
 
 typedef TrainingWeeklySummaryRef
-    = AutoDisposeFutureProviderRef<TrainingWeeklySummary?>;
+    = AutoDisposeStreamProviderRef<TrainingWeeklySummary?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
