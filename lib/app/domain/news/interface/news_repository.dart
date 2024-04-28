@@ -14,9 +14,10 @@ NewsRepository newsRepository(NewsRepositoryRef ref) =>
 
 // ignore: one_member_abstracts
 abstract class NewsRepository {
-  Future<NewsHeadlines> fetchTodayHeadlines({
+  Future<NewsHeadlines> fetchHeadlinesByDate({
     required NewsCategory category,
     int page = 1,
     required NewsCountry country,
+    required DateTime dateTime,
   });
 }

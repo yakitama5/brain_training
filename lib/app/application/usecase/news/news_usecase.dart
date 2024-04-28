@@ -20,11 +20,13 @@ class NewsUsecase with RunUsecaseMixin {
 
   Future<NewsHeadlines> fetchHealthNews({
     required NewsCountry country,
+    required DateTime dateTime,
     required int page,
   }) {
-    return _repository.fetchTodayHeadlines(
+    return _repository.fetchHeadlinesByDate(
       category: NewsCategory.health,
       country: country,
+      dateTime: dateTime,
       page: page,
     );
   }

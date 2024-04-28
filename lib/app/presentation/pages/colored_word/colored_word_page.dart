@@ -12,7 +12,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../application/state/speech_to_text_provider.dart';
@@ -315,11 +314,9 @@ class ListAnswer extends StatelessWidget {
 }
 
 class VoiceAnswer extends HookConsumerWidget {
-  VoiceAnswer({super.key, required this.onAnswered});
+  const VoiceAnswer({super.key, required this.onAnswered});
 
   final void Function(ColoredWord answer) onAnswered;
-
-  final SpeechToText speech = SpeechToText();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -347,13 +344,13 @@ class VoiceAnswer extends HookConsumerWidget {
     );
   }
 
-  Future<void> onListen(SpeechResultListener onResult) async {
-    await speech.initialize();
-    await speech.listen(
-      onResult: onResult,
-      listenFor: const Duration(seconds: 60),
-    );
-  }
+  // Future<void> onListen(SpeechResultListener onResult) async {
+  //   await speech.initialize();
+  //   await speech.listen(
+  //     onResult: onResult,
+  //     listenFor: const Duration(seconds: 60),
+  //   );
+  // }
 }
 
 class _AnswerResult extends StatelessWidget {

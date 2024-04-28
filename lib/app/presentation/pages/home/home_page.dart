@@ -110,7 +110,8 @@ class _WeeklyTrainingPane extends HookConsumerWidget {
     final ts = Theme.of(context).textTheme;
     final cs = Theme.of(context).colorScheme;
 
-    final weeklySummary = ref.watch(trainingWeeklySummaryProvider);
+    final weeklySummary =
+        ref.watch(trainingWeeklySummaryProvider(date: DateTime.now().dayStart));
 
     // TODO(yakitama5): 1週間のサマリを取得してから表示
     return HeadlinePane(

@@ -1,3 +1,4 @@
+import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:brain_training/utils/logger.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +30,13 @@ class NewsPane extends HookConsumerWidget {
       AppLocale.ja => NewsCountry.jp,
     };
     // あらかじめ先頭ページを取得し、総数を判定しておく
+    final today = DateTime.now().dayStart;
     final headlinesCount = ref.watch(
-      newsHeadlinesProvider(country: country, page: 1)
-          .select((value) => value.valueOrNull?.totalCount),
+      newsHeadlinesProvider(
+        country: country,
+        page: 1,
+        dateTime: today,
+      ).select((value) => value.valueOrNull?.totalCount),
     );
 
     return HeadlinePane(
@@ -40,8 +45,13 @@ class NewsPane extends HookConsumerWidget {
         itemCount: headlinesCount ?? newsHeadlinesConfig.pageSize,
         itemBuilder: (context, index, realIndex) {
           final page = index ~/ newsHeadlinesConfig.pageSize + 1;
-          final headlines =
-              ref.watch(newsHeadlinesProvider(country: country, page: page));
+          final headlines = ref.watch(
+            newsHeadlinesProvider(
+              country: country,
+              page: page,
+              dateTime: today,
+            ),
+          );
 
           return headlines.when(
             data: (data) {

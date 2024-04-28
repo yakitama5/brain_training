@@ -6,7 +6,7 @@ part of 'news_haedlines_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsHeadlinesHash() => r'df3a313af3e2cdb08377a9c97819759ed5ef9b8c';
+String _$newsHeadlinesHash() => r'56f512afe2b426836e1971f393d948d9813d9bc3';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -55,10 +55,12 @@ class NewsHeadlinesFamily extends Family {
   /// See also [newsHeadlines].
   NewsHeadlinesProvider call({
     required NewsCountry country,
+    required DateTime dateTime,
     required int page,
   }) {
     return NewsHeadlinesProvider(
       country: country,
+      dateTime: dateTime,
       page: page,
     );
   }
@@ -70,6 +72,7 @@ class NewsHeadlinesFamily extends Family {
   ) {
     return call(
       country: provider.country,
+      dateTime: provider.dateTime,
       page: provider.page,
     );
   }
@@ -102,11 +105,13 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
   /// See also [newsHeadlines].
   NewsHeadlinesProvider({
     required NewsCountry country,
+    required DateTime dateTime,
     required int page,
   }) : this._internal(
           (ref) => newsHeadlines(
             ref as NewsHeadlinesRef,
             country: country,
+            dateTime: dateTime,
             page: page,
           ),
           from: newsHeadlinesProvider,
@@ -119,6 +124,7 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
           allTransitiveDependencies:
               NewsHeadlinesFamily._allTransitiveDependencies,
           country: country,
+          dateTime: dateTime,
           page: page,
         );
 
@@ -130,10 +136,12 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.country,
+    required this.dateTime,
     required this.page,
   }) : super.internal();
 
   final NewsCountry country;
+  final DateTime dateTime;
   final int page;
 
   @override
@@ -150,6 +158,7 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         country: country,
+        dateTime: dateTime,
         page: page,
       ),
     );
@@ -158,10 +167,12 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
   @override
   ({
     NewsCountry country,
+    DateTime dateTime,
     int page,
   }) get argument {
     return (
       country: country,
+      dateTime: dateTime,
       page: page,
     );
   }
@@ -182,6 +193,7 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
       debugGetCreateSourceHash: debugGetCreateSourceHash,
       from: from,
       country: country,
+      dateTime: dateTime,
       page: page,
     );
   }
@@ -190,6 +202,7 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
   bool operator ==(Object other) {
     return other is NewsHeadlinesProvider &&
         other.country == country &&
+        other.dateTime == dateTime &&
         other.page == page;
   }
 
@@ -197,6 +210,7 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, country.hashCode);
+    hash = _SystemHash.combine(hash, dateTime.hashCode);
     hash = _SystemHash.combine(hash, page.hashCode);
 
     return _SystemHash.finish(hash);
@@ -206,6 +220,9 @@ class NewsHeadlinesProvider extends AutoDisposeFutureProvider<NewsHeadlines> {
 mixin NewsHeadlinesRef on AutoDisposeFutureProviderRef<NewsHeadlines> {
   /// The parameter `country` of this provider.
   NewsCountry get country;
+
+  /// The parameter `dateTime` of this provider.
+  DateTime get dateTime;
 
   /// The parameter `page` of this provider.
   int get page;
@@ -218,6 +235,8 @@ class _NewsHeadlinesProviderElement
 
   @override
   NewsCountry get country => (origin as NewsHeadlinesProvider).country;
+  @override
+  DateTime get dateTime => (origin as NewsHeadlinesProvider).dateTime;
   @override
   int get page => (origin as NewsHeadlinesProvider).page;
 }

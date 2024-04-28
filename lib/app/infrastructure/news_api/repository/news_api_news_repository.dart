@@ -18,9 +18,10 @@ class NewsApiNewsRepository implements NewsRepository {
   final _apiClient = NewsHeadlinesApiClient(Dio());
 
   @override
-  Future<NewsHeadlines> fetchTodayHeadlines({
+  Future<NewsHeadlines> fetchHeadlinesByDate({
     required NewsCategory category,
     int page = 1,
+    required DateTime dateTime,
     required NewsCountry country,
   }) async {
     final res = await _apiClient.fetch(

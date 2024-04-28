@@ -10,9 +10,10 @@ part 'news_haedlines_provider.g.dart';
 Future<NewsHeadlines> newsHeadlines(
   NewsHeadlinesRef ref, {
   required NewsCountry country,
+  required DateTime dateTime,
   required int page,
 }) {
   return ref
       .read(newsUsecaseProvider)
-      .fetchHealthNews(country: country, page: page);
+      .fetchHealthNews(country: country, page: page, dateTime: dateTime);
 }
