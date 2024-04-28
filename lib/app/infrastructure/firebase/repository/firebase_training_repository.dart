@@ -9,7 +9,7 @@ import 'package:brain_training/app/infrastructure/firebase/firestore/state/fires
 import 'package:brain_training/app/infrastructure/firebase/firestore/state/firestore_training_daily_summary_provider.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/src/material/date.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 /// Firebaseを利用したリポジトリの実装

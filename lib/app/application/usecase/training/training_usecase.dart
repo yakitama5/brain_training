@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:brain_training/app/domain/training/entity/training_daily_summary.dart';
+import 'package:brain_training/app/domain/training/entity/training_result.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
+import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -99,5 +104,37 @@ class TrainingUsecase with RunUsecaseMixin {
         days: weekDays,
       );
     });
+  }
+
+  Stream<TrainingResult?> fetchResultByDate({
+    required String userId,
+    required DateTime dateTime,
+    required TrainingType trainingType,
+  }) {
+    return switch (trainingType) {
+      TrainingType.coloredWord =>
+        _trainingRepository.fetchColoredWordResultByDate(
+          userId: userId,
+          date: dateTime,
+        ),
+      // TODO(yakitama5): ここに追加
+      TrainingType.themeShiritori => Stream.value(null),
+      TrainingType.addMinus => Stream.value(null),
+    };
+  }
+
+  Stream<List<TrainingResult>> fetchDailyResults({
+    required String userId,
+    required DateTime dateTime,
+  }) {
+    final coloredWord = _trainingRepository
+        .fetchColoredWordResultByDate(
+          userId: userId,
+          date: dateTime,
+        )
+        .map((event) => [event]);
+
+    // TODO(yakitama5): ここで複数をまとめる？
+    return coloredWord.map((event) => event.whereNotNull().toList());
   }
 }

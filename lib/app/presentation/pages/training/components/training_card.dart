@@ -4,12 +4,12 @@ import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../domain/training/entity/training_result.dart';
 import '../../../../domain/training/value_object/training_type.dart';
 import '../../../components/importer.dart';
 
 enum TrainingCardType {
   home,
-  done,
   trainingDetail,
 }
 
@@ -18,13 +18,9 @@ class TrainingCard extends StatelessWidget {
     super.key,
     required this.trainingType,
     this.cardType = TrainingCardType.home,
+    this.result,
   });
 
-  factory TrainingCard.done({required TrainingType trainingType}) =>
-      TrainingCard(
-        trainingType: trainingType,
-        cardType: TrainingCardType.done,
-      );
   factory TrainingCard.detail({required TrainingType trainingType}) =>
       TrainingCard(
         trainingType: trainingType,
@@ -35,18 +31,20 @@ class TrainingCard extends StatelessWidget {
 
   final TrainingType trainingType;
   final TrainingCardType cardType;
+  final TrainingResult? result;
 
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final ts = Theme.of(context).textTheme;
 
-    final subhead = switch (cardType) {
-      TrainingCardType.home => i18n.training.trainingCard.inviteSubhead,
-      TrainingCardType.done => i18n.training.trainingCard.doneSubhead,
-      TrainingCardType.trainingDetail =>
-        i18n.training.trainingType.timeRequired(context: trainingType),
-    };
+    final subhead = result == null
+        ? switch (cardType) {
+            TrainingCardType.home => i18n.training.trainingCard.inviteSubhead,
+            TrainingCardType.trainingDetail =>
+              i18n.training.trainingType.timeRequired(context: trainingType),
+          }
+        : i18n.training.trainingCard.doneSubhead;
 
     return FilledCard(
       child: Column(
@@ -85,13 +83,16 @@ class TrainingCard extends StatelessWidget {
                 style: ts.bodyMedium,
               ),
             ),
+          if (result != null)
+            _Score(
+              result: result!,
+            ),
           switch (cardType) {
             TrainingCardType.home ||
             TrainingCardType.trainingDetail =>
               _TrainingButton(
                 onPressed: () => onTraining(context),
               ),
-            TrainingCardType.done => const _Score(),
           },
         ],
       ),
@@ -158,14 +159,22 @@ class _TrainingButton extends StatelessWidget {
 }
 
 class _Score extends StatelessWidget {
-  const _Score();
+  const _Score({required this.result});
+
+  final TrainingResult result;
 
   @override
-  Widget build(BuildContext context) => const Row(
+  Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _IconWithLabel(iconData: Icons.score, label: '横綱級'),
-          _IconWithLabel(iconData: Icons.sports_score, label: '15点'),
+          _IconWithLabel(
+            iconData: Icons.score,
+            label: i18n.training.result.rank.sumo(context: result.rank),
+          ),
+          _IconWithLabel(
+            iconData: Icons.sports_score,
+            label: i18n.training.result.score(points: result.score),
+          ),
         ],
       );
 }

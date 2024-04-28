@@ -1,5 +1,7 @@
+import 'package:brain_training/app/application/usecase/training/state/training_result_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/training_weekly_summary_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
+import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -67,11 +69,28 @@ class _TrainingCardsPane extends HookConsumerWidget {
     return HeadlinePane(
       label: i18n.home.todayStatus,
       child: Column(
-        children: TrainingType.values
-            .map(
-              (e) => TrainingCard(trainingType: e),
-            )
-            .toList(),
+        children: TrainingType.values.map((type) {
+          final result = ref.watch(
+            trainingResultProvider(
+              trainingType: type,
+              dateTime: DateTime.now().dayStart,
+            ),
+          );
+          return result.when(
+            data: (data) {
+              // TODO(yakitama5): ここ？
+              return TrainingCard(trainingType: type, result: data);
+            },
+            error: ErrorView.new,
+            loading: () => ShimmerWidget.circular(
+              width: double.infinity,
+              height: 160,
+              shapeBorder: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -34,7 +34,7 @@ class TrainingMenuPage extends StatelessWidget {
                 label: i18n.training.doneMenu,
                 child: Column(
                   children: completeMenu
-                      .map((e) => TrainingCard.done(trainingType: e))
+                      .map((e) => TrainingCard(trainingType: e))
                       .toList(),
                 ),
               ),
