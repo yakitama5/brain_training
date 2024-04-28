@@ -26,10 +26,12 @@ class TrainingCard extends StatelessWidget {
   factory TrainingCard.detail({
     required TrainingType trainingType,
     required RankCategory rankCategory,
+    TrainingResult? result,
   }) =>
       TrainingCard(
         trainingType: trainingType,
         cardType: TrainingCardType.trainingDetail,
+        result: result,
         rankCategory: rankCategory,
       );
 
@@ -90,6 +92,7 @@ class TrainingCard extends StatelessWidget {
                 style: ts.bodyMedium,
               ),
             ),
+          // TODO(yakitama5): 実施済のカードの表示を作成すること
           if (result != null)
             _Score(
               result: result!,

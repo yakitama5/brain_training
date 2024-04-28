@@ -1,5 +1,4 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
-import 'package:brain_training/app/application/usecase/training/state/training_result_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/training_weekly_summary_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
@@ -10,6 +9,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../i18n/strings.g.dart';
+import '../../../application/usecase/training/state/training_result_provider.dart';
 import '../../../domain/training/entity/training_daily_summary.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../error/components/error_view.dart';
@@ -66,7 +66,6 @@ class _TrainingCardsPane extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO(yakitama5): 本日のトレーニング実施状況を取得して、状態に応じて表示を出し分けること
     return HeadlinePane(
       label: i18n.home.todayStatus,
       child: Column(
@@ -90,7 +89,7 @@ class _TrainingCardsPane extends HookConsumerWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: ShimmerWidget.circular(
                 width: double.infinity,
-                height: 160,
+                height: 144,
                 shapeBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
