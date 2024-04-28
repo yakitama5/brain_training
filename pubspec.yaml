@@ -54,6 +54,7 @@ dependencies:
   retrofit: 
   riverpod_annotation: ^3.0.0-dev.3
   settings_ui: 
+  shared_preferences: 
   shimmer: 
   slang: 
   slang_flutter: 
