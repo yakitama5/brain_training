@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 154 (77 per locale)
+/// Strings: 176 (88 per locale)
 ///
-/// Built on 2024-04-28 at 07:04 UTC
+/// Built on 2024-04-28 at 10:14 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -251,6 +251,8 @@ class _StringsSettingsListEn {
 
 	// Translations
 	late final _StringsSettingsListAccountEn account = _StringsSettingsListAccountEn._(_root);
+	late final _StringsSettingsListLayoutEn layout = _StringsSettingsListLayoutEn._(_root);
+	late final _StringsSettingsListHelpEn help = _StringsSettingsListHelpEn._(_root);
 }
 
 // Path: settings.account
@@ -426,6 +428,35 @@ class _StringsSettingsListAccountEn {
 	// Translations
 	String get head => 'Account';
 	String get account => 'Account';
+}
+
+// Path: settings.list.layout
+class _StringsSettingsListLayoutEn {
+	_StringsSettingsListLayoutEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get head => 'Layout';
+	String get rankType => 'Rank';
+	String get style => 'UI Style';
+	String get themeMode => 'ThemeMode';
+	String get colorTheme => 'ColorTheme';
+}
+
+// Path: settings.list.help
+class _StringsSettingsListHelpEn {
+	_StringsSettingsListHelpEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get head => 'Help';
+	String get howToUse => 'HowToUse';
+	String get contactUs => 'Contact us';
+	String get developperTwitter => 'Developper X (Twitter)';
+	String get privacyPollicy => 'PrivacyPollicy';
+	String get license => 'License';
 }
 
 // Path: training.result.scoreCard
@@ -613,6 +644,8 @@ class _StringsSettingsListJa extends _StringsSettingsListEn {
 
 	// Translations
 	@override late final _StringsSettingsListAccountJa account = _StringsSettingsListAccountJa._(_root);
+	@override late final _StringsSettingsListLayoutJa layout = _StringsSettingsListLayoutJa._(_root);
+	@override late final _StringsSettingsListHelpJa help = _StringsSettingsListHelpJa._(_root);
 }
 
 // Path: settings.account
@@ -790,6 +823,35 @@ class _StringsSettingsListAccountJa extends _StringsSettingsListAccountEn {
 	@override String get account => 'アカウント';
 }
 
+// Path: settings.list.layout
+class _StringsSettingsListLayoutJa extends _StringsSettingsListLayoutEn {
+	_StringsSettingsListLayoutJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get head => 'レイアウト';
+	@override String get rankType => 'ランク表記';
+	@override String get style => 'UIスタイル';
+	@override String get themeMode => 'テーマ';
+	@override String get colorTheme => 'カラーテーマ';
+}
+
+// Path: settings.list.help
+class _StringsSettingsListHelpJa extends _StringsSettingsListHelpEn {
+	_StringsSettingsListHelpJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get head => 'ヘルプ';
+	@override String get howToUse => '使い方';
+	@override String get contactUs => 'お問い合わせ';
+	@override String get developperTwitter => '開発者 X (旧Twitter)';
+	@override String get privacyPollicy => 'プライバシーポリシー';
+	@override String get license => 'ライセンス';
+}
+
 // Path: training.result.scoreCard
 class _StringsTrainingResultScoreCardJa extends _StringsTrainingResultScoreCardEn {
 	_StringsTrainingResultScoreCardJa._(_StringsJa root) : this._root = root, super._(root);
@@ -878,6 +940,17 @@ extension on Translations {
 			case 'settings.title': return 'Settings';
 			case 'settings.list.account.head': return 'Account';
 			case 'settings.list.account.account': return 'Account';
+			case 'settings.list.layout.head': return 'Layout';
+			case 'settings.list.layout.rankType': return 'Rank';
+			case 'settings.list.layout.style': return 'UI Style';
+			case 'settings.list.layout.themeMode': return 'ThemeMode';
+			case 'settings.list.layout.colorTheme': return 'ColorTheme';
+			case 'settings.list.help.head': return 'Help';
+			case 'settings.list.help.howToUse': return 'HowToUse';
+			case 'settings.list.help.contactUs': return 'Contact us';
+			case 'settings.list.help.developperTwitter': return 'Developper X (Twitter)';
+			case 'settings.list.help.privacyPollicy': return 'PrivacyPollicy';
+			case 'settings.list.help.license': return 'License';
 			case 'settings.account.accountLink': return 'Account link';
 			case 'settings.account.other': return 'Other';
 			case 'settings.account.leave': return 'Leave';
@@ -1040,6 +1113,17 @@ extension on _StringsJa {
 			case 'settings.title': return '設定';
 			case 'settings.list.account.head': return 'アカウント';
 			case 'settings.list.account.account': return 'アカウント';
+			case 'settings.list.layout.head': return 'レイアウト';
+			case 'settings.list.layout.rankType': return 'ランク表記';
+			case 'settings.list.layout.style': return 'UIスタイル';
+			case 'settings.list.layout.themeMode': return 'テーマ';
+			case 'settings.list.layout.colorTheme': return 'カラーテーマ';
+			case 'settings.list.help.head': return 'ヘルプ';
+			case 'settings.list.help.howToUse': return '使い方';
+			case 'settings.list.help.contactUs': return 'お問い合わせ';
+			case 'settings.list.help.developperTwitter': return '開発者 X (旧Twitter)';
+			case 'settings.list.help.privacyPollicy': return 'プライバシーポリシー';
+			case 'settings.list.help.license': return 'ライセンス';
 			case 'settings.account.accountLink': return 'アカウント連携';
 			case 'settings.account.other': return 'その他';
 			case 'settings.account.leave': return '退会';

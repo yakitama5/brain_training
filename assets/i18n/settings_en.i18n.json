@@ -4,6 +4,21 @@
         "account": {
             "head": "Account",
             "account": "Account"
+        },
+        "layout": {
+            "head": "Layout",
+            "rankType": "Rank",
+            "style": "UI Style",
+            "themeMode": "ThemeMode",
+            "colorTheme": "ColorTheme"
+        },
+        "help": {
+            "head": "Help",
+            "howToUse": "HowToUse",
+            "contactUs": "Contact us",
+            "developperTwitter": "Developper X (Twitter)",
+            "privacyPollicy": "PrivacyPollicy",
+            "license": "License"
         }
     },
     "account": {

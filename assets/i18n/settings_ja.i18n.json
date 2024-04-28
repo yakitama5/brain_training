@@ -4,6 +4,21 @@
         "account": {
             "head": "アカウント",
             "account": "アカウント"
+        },
+        "layout": {
+            "head": "レイアウト",
+            "rankType": "ランク表記",
+            "style": "UIスタイル",
+            "themeMode": "テーマ",
+            "colorTheme": "カラーテーマ"
+        },
+        "help": {
+            "head": "ヘルプ",
+            "howToUse": "使い方",
+            "contactUs": "お問い合わせ",
+            "developperTwitter": "開発者 X (旧Twitter)",
+            "privacyPollicy": "プライバシーポリシー",
+            "license": "ライセンス"
         }
     },
     "account": {
