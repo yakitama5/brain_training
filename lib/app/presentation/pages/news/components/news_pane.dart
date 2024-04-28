@@ -37,7 +37,7 @@ class NewsPane extends HookConsumerWidget {
     return HeadlinePane(
       label: i18n.home.todayNews,
       child: CarouselSlider.builder(
-        itemCount: headlinesCount,
+        itemCount: headlinesCount ?? newsHeadlinesConfig.pageSize,
         itemBuilder: (context, index, realIndex) {
           final page = index ~/ newsHeadlinesConfig.pageSize + 1;
           final headlines =
