@@ -1,6 +1,7 @@
 import 'package:brain_training/app/presentation/pages/settings/account_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/rank_category_select_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/settings_page.dart';
+import 'package:brain_training/app/presentation/pages/settings/theme_mode_select_page.dart';
 import 'package:brain_training/app/presentation/pages/settings/ui_style_select_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -20,6 +21,9 @@ const settingsBranch = TypedStatefulShellBranch<BranchSettingsData>(
         ),
         TypedGoRoute<SettingsUIStyleRouteData>(
           path: SettingsUIStyleRouteData.path,
+        ),
+        TypedGoRoute<SettingsThemeModeRouteData>(
+          path: SettingsThemeModeRouteData.path,
         ),
       ],
     ),
@@ -69,4 +73,14 @@ class SettingsUIStyleRouteData extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const UIStyleSelectPage();
+}
+
+class SettingsThemeModeRouteData extends GoRouteData {
+  const SettingsThemeModeRouteData();
+
+  static const path = 'theme_mode';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ThemeModeSelectPage();
 }

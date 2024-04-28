@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/state/loading_provider.dart';
+import 'package:brain_training/app/application/usecase/settings/state/theme_mode_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -15,6 +16,7 @@ class App extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
     final appTheme = ref.watch(appThemeProvider);
+    final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp.router(
       builder: (context, child) => Consumer(
@@ -44,6 +46,7 @@ class App extends HookConsumerWidget {
       // テーマ設定
       theme: appTheme.light,
       darkTheme: appTheme.dark,
+      themeMode: themeMode,
     );
   }
 }

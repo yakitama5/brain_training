@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,6 +58,31 @@ class SharedPreferencesSettingsService implements SettingsService {
       case UIStyle.system:
       case null:
         return _sp.remove(sharedPreferenceConfig.uiStyleKey);
+    }
+  }
+
+  @override
+  ThemeMode? fetchThemeMode() {
+    final res = _sp.getString(sharedPreferenceConfig.themeModeKey);
+    if (res == null) {
+      return null;
+    }
+
+    return ThemeMode.values.byName(res);
+  }
+
+  @override
+  Future<bool> updateThemeMode({required ThemeMode? themeMode}) {
+    switch (themeMode) {
+      case ThemeMode.light:
+      case ThemeMode.dark:
+        return _sp.setString(
+          sharedPreferenceConfig.themeModeKey,
+          themeMode!.name,
+        );
+      case ThemeMode.system:
+      case null:
+        return _sp.remove(sharedPreferenceConfig.themeModeKey);
     }
   }
 }

@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SharedPreferenceConfig {
   String get rankCategoryKey => throw _privateConstructorUsedError;
   String get uiStyleKey => throw _privateConstructorUsedError;
+  String get themeModeKey => throw _privateConstructorUsedError;
+  String get colorStyleKey => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SharedPreferenceConfigCopyWith<SharedPreferenceConfig> get copyWith =>
@@ -30,7 +32,11 @@ abstract class $SharedPreferenceConfigCopyWith<$Res> {
           $Res Function(SharedPreferenceConfig) then) =
       _$SharedPreferenceConfigCopyWithImpl<$Res, SharedPreferenceConfig>;
   @useResult
-  $Res call({String rankCategoryKey, String uiStyleKey});
+  $Res call(
+      {String rankCategoryKey,
+      String uiStyleKey,
+      String themeModeKey,
+      String colorStyleKey});
 }
 
 /// @nodoc
@@ -49,6 +55,8 @@ class _$SharedPreferenceConfigCopyWithImpl<$Res,
   $Res call({
     Object? rankCategoryKey = null,
     Object? uiStyleKey = null,
+    Object? themeModeKey = null,
+    Object? colorStyleKey = null,
   }) {
     return _then(_value.copyWith(
       rankCategoryKey: null == rankCategoryKey
@@ -58,6 +66,14 @@ class _$SharedPreferenceConfigCopyWithImpl<$Res,
       uiStyleKey: null == uiStyleKey
           ? _value.uiStyleKey
           : uiStyleKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      themeModeKey: null == themeModeKey
+          ? _value.themeModeKey
+          : themeModeKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      colorStyleKey: null == colorStyleKey
+          ? _value.colorStyleKey
+          : colorStyleKey // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -72,7 +88,11 @@ abstract class _$$SharedPreferenceConfigImplCopyWith<$Res>
       __$$SharedPreferenceConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String rankCategoryKey, String uiStyleKey});
+  $Res call(
+      {String rankCategoryKey,
+      String uiStyleKey,
+      String themeModeKey,
+      String colorStyleKey});
 }
 
 /// @nodoc
@@ -90,6 +110,8 @@ class __$$SharedPreferenceConfigImplCopyWithImpl<$Res>
   $Res call({
     Object? rankCategoryKey = null,
     Object? uiStyleKey = null,
+    Object? themeModeKey = null,
+    Object? colorStyleKey = null,
   }) {
     return _then(_$SharedPreferenceConfigImpl(
       rankCategoryKey: null == rankCategoryKey
@@ -100,6 +122,14 @@ class __$$SharedPreferenceConfigImplCopyWithImpl<$Res>
           ? _value.uiStyleKey
           : uiStyleKey // ignore: cast_nullable_to_non_nullable
               as String,
+      themeModeKey: null == themeModeKey
+          ? _value.themeModeKey
+          : themeModeKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      colorStyleKey: null == colorStyleKey
+          ? _value.colorStyleKey
+          : colorStyleKey // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -108,16 +138,23 @@ class __$$SharedPreferenceConfigImplCopyWithImpl<$Res>
 
 class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
   const _$SharedPreferenceConfigImpl(
-      {required this.rankCategoryKey, required this.uiStyleKey});
+      {required this.rankCategoryKey,
+      required this.uiStyleKey,
+      required this.themeModeKey,
+      required this.colorStyleKey});
 
   @override
   final String rankCategoryKey;
   @override
   final String uiStyleKey;
+  @override
+  final String themeModeKey;
+  @override
+  final String colorStyleKey;
 
   @override
   String toString() {
-    return 'SharedPreferenceConfig(rankCategoryKey: $rankCategoryKey, uiStyleKey: $uiStyleKey)';
+    return 'SharedPreferenceConfig(rankCategoryKey: $rankCategoryKey, uiStyleKey: $uiStyleKey, themeModeKey: $themeModeKey, colorStyleKey: $colorStyleKey)';
   }
 
   @override
@@ -128,11 +165,16 @@ class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
             (identical(other.rankCategoryKey, rankCategoryKey) ||
                 other.rankCategoryKey == rankCategoryKey) &&
             (identical(other.uiStyleKey, uiStyleKey) ||
-                other.uiStyleKey == uiStyleKey));
+                other.uiStyleKey == uiStyleKey) &&
+            (identical(other.themeModeKey, themeModeKey) ||
+                other.themeModeKey == themeModeKey) &&
+            (identical(other.colorStyleKey, colorStyleKey) ||
+                other.colorStyleKey == colorStyleKey));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, rankCategoryKey, uiStyleKey);
+  int get hashCode => Object.hash(
+      runtimeType, rankCategoryKey, uiStyleKey, themeModeKey, colorStyleKey);
 
   @JsonKey(ignore: true)
   @override
@@ -145,12 +187,18 @@ class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
 abstract class _SharedPreferenceConfig implements SharedPreferenceConfig {
   const factory _SharedPreferenceConfig(
       {required final String rankCategoryKey,
-      required final String uiStyleKey}) = _$SharedPreferenceConfigImpl;
+      required final String uiStyleKey,
+      required final String themeModeKey,
+      required final String colorStyleKey}) = _$SharedPreferenceConfigImpl;
 
   @override
   String get rankCategoryKey;
   @override
   String get uiStyleKey;
+  @override
+  String get themeModeKey;
+  @override
+  String get colorStyleKey;
   @override
   @JsonKey(ignore: true)
   _$$SharedPreferenceConfigImplCopyWith<_$SharedPreferenceConfigImpl>

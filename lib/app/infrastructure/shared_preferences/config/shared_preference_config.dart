@@ -3,4 +3,6 @@ import 'package:brain_training/app/infrastructure/shared_preferences/model/share
 const sharedPreferenceConfig = SharedPreferenceConfig(
   rankCategoryKey: 'rank_category',
   uiStyleKey: 'ui_style',
+  themeModeKey: 'theme_mode',
+  colorStyleKey: 'color_style',
 );

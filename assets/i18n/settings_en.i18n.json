@@ -32,5 +32,12 @@
             "android": "Android",
             "ios": "iOS"
         }
+    },
+    "themeMode": {
+        "type(context=ThemeMode)": {
+            "system": "System",
+            "light": "Light mode",
+            "dark": "Dark mode"
+        }
     }
 }

@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
+import 'package:brain_training/app/application/usecase/settings/state/theme_mode_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/app/presentation/theme/importer.dart';
@@ -22,6 +23,7 @@ class SettingsPage extends HookConsumerWidget {
         : null;
     final rankCategory = ref.watch(rankCategoryProvider);
     final uiStyle = ref.watch(uiStyleProvider);
+    final themeMode = ref.watch(themeModeProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -60,10 +62,13 @@ class SettingsPage extends HookConsumerWidget {
                 onPressed: _onUIStyle,
               ),
               SettingsTile.navigation(
+                // TODO(yakitama5): アイコンを変えること
                 leading: const Icon(Icons.light_mode),
                 trailing: trailing,
                 title: Text(i18n.settings.list.layout.themeMode),
-                onPressed: (context) {},
+                description:
+                    Text(i18n.settings.themeMode.type(context: themeMode)),
+                onPressed: _onThemeMode,
               ),
               SettingsTile.navigation(
                 leading: const Icon(Icons.color_lens),
@@ -122,5 +127,9 @@ class SettingsPage extends HookConsumerWidget {
 
   void _onUIStyle(BuildContext context) {
     const SettingsUIStyleRouteData().go(context);
+  }
+
+  void _onThemeMode(BuildContext context) {
+    const SettingsThemeModeRouteData().go(context);
   }
 }

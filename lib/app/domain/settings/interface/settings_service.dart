@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../training/value_object/rank_category.dart';
@@ -18,4 +19,7 @@ abstract class SettingsService {
 
   UIStyle? fetchUIStyle();
   Future<bool> updateUIStyle({required UIStyle? style});
+
+  ThemeMode? fetchThemeMode();
+  Future<bool> updateThemeMode({required ThemeMode? themeMode});
 }

@@ -103,6 +103,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                       path: 'ui_style',
                       factory: $SettingsUIStyleRouteDataExtension._fromState,
                     ),
+                    GoRouteData.$route(
+                      path: 'theme_mode',
+                      factory: $SettingsThemeModeRouteDataExtension._fromState,
+                    ),
                   ],
                 ),
               ],
@@ -391,6 +395,24 @@ extension $SettingsUIStyleRouteDataExtension on SettingsUIStyleRouteData {
 
   String get location => GoRouteData.$location(
         '/settings/ui_style',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsThemeModeRouteDataExtension on SettingsThemeModeRouteData {
+  static SettingsThemeModeRouteData _fromState(GoRouterState state) =>
+      const SettingsThemeModeRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/theme_mode',
       );
 
   void go(BuildContext context) => context.go(location);
