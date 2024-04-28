@@ -58,6 +58,7 @@ dependencies:
   slang: 
   slang_flutter: 
   speech_to_text: 
+  stream_transform: 
   url_launcher: 
   uuid: 
   version: 
