@@ -1,8 +1,10 @@
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
 import 'package:brain_training/app/domain/news/interface/news_repository.dart';
+import 'package:brain_training/app/domain/settings/interface/settings_service.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
+import 'package:brain_training/app/infrastructure/shared_preferences/service/shared_preferences_settings_service.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -71,6 +73,10 @@ void main() async {
 
         // News API
         newsRepositoryProvider.overrideWith(NewsApiNewsRepository.new),
+
+        // SharedPreference
+        settingsServiceProvider
+            .overrideWith(SharedPreferencesSettingsService.new),
       ],
       child: TranslationProvider(
         child: const App(),

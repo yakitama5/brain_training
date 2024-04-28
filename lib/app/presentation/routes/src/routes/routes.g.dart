@@ -94,6 +94,11 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                       path: 'account',
                       factory: $SettingsAccountRouteDataExtension._fromState,
                     ),
+                    GoRouteData.$route(
+                      path: 'rank_category',
+                      factory: $SettingsLayoutRankCategoryRouteDataExtension
+                          ._fromState,
+                    ),
                   ],
                 ),
               ],
@@ -345,6 +350,25 @@ extension $SettingsAccountRouteDataExtension on SettingsAccountRouteData {
 
   String get location => GoRouteData.$location(
         '/settings/account',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsLayoutRankCategoryRouteDataExtension
+    on SettingsLayoutRankCategoryRouteData {
+  static SettingsLayoutRankCategoryRouteData _fromState(GoRouterState state) =>
+      const SettingsLayoutRankCategoryRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/rank_category',
       );
 
   void go(BuildContext context) => context.go(location);
