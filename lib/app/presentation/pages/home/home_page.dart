@@ -86,11 +86,14 @@ class _TrainingCardsPane extends HookConsumerWidget {
               rankCategory: rankCategory,
             ),
             error: ErrorView.new,
-            loading: () => ShimmerWidget.circular(
-              width: double.infinity,
-              height: 160,
-              shapeBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+            loading: () => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: ShimmerWidget.circular(
+                width: double.infinity,
+                height: 160,
+                shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
             ),
           );
