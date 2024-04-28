@@ -107,6 +107,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
                       path: 'theme_mode',
                       factory: $SettingsThemeModeRouteDataExtension._fromState,
                     ),
+                    GoRouteData.$route(
+                      path: 'license',
+                      factory: $SettingsLicenseRouteDataExtension._fromState,
+                    ),
                   ],
                 ),
               ],
@@ -413,6 +417,24 @@ extension $SettingsThemeModeRouteDataExtension on SettingsThemeModeRouteData {
 
   String get location => GoRouteData.$location(
         '/settings/theme_mode',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $SettingsLicenseRouteDataExtension on SettingsLicenseRouteData {
+  static SettingsLicenseRouteData _fromState(GoRouterState state) =>
+      const SettingsLicenseRouteData();
+
+  String get location => GoRouteData.$location(
+        '/settings/license',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -9,6 +9,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:settings_ui/settings_ui.dart';
 
+import '../../../application/config/settings_config.dart';
+import '../../helper/url_launcher_helper.dart';
 import '../../routes/src/routes/settings_branch.dart';
 import 'components/themed_settings_list.dart';
 
@@ -74,7 +76,7 @@ class SettingsPage extends HookConsumerWidget {
                 leading: const Icon(Icons.color_lens),
                 trailing: trailing,
                 title: Text(i18n.settings.list.layout.colorTheme),
-                onPressed: (context) {},
+                onPressed: _onColorStyle,
               ),
             ],
           ),
@@ -85,30 +87,30 @@ class SettingsPage extends HookConsumerWidget {
                 leading: const Icon(Icons.how_to_vote),
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.howToUse),
-                onPressed: _onAccount,
+                onPressed: _onHowToUse,
               ),
               SettingsTile.navigation(
                 leading: const Icon(Icons.help),
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.contactUs),
-                onPressed: _onAccount,
+                onPressed: _onContactUs,
               ),
               SettingsTile.navigation(
                 leading: Icon(MdiIcons.twitter),
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.developperTwitter),
-                onPressed: _onAccount,
+                onPressed: _onDevelopperTwitter,
               ),
               SettingsTile.navigation(
                 leading: const Icon(Icons.lock),
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.privacyPollicy),
-                onPressed: _onAccount,
+                onPressed: _onPrivacyPolicy,
               ),
               SettingsTile.navigation(
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.license),
-                onPressed: _onAccount,
+                onPressed: _onLicense,
               ),
             ],
           ),
@@ -131,5 +133,34 @@ class SettingsPage extends HookConsumerWidget {
 
   void _onThemeMode(BuildContext context) {
     const SettingsThemeModeRouteData().go(context);
+  }
+
+  void _onColorStyle(BuildContext context) {
+    // TODO(yakitama5): 未着手
+  }
+
+  Future<bool> _onHowToUse(BuildContext context) {
+    return lanchUrlStringSafety(context, settingsConfig.howToUseUrl);
+  }
+
+  Future<bool> _onContactUs(BuildContext context) {
+    return lanchUrlStringSafety(context, settingsConfig.contactUsUrl);
+  }
+
+  Future<bool> _onDevelopperTwitter(BuildContext context) async {
+    // Notes: https://pub.dev/packages/url_launcher#configuration
+    return lanchUrlStringSafety(
+      context,
+      settingsConfig.developperXAppUrl,
+      secondUrl: settingsConfig.developperXWebUrl,
+    );
+  }
+
+  Future<bool> _onPrivacyPolicy(BuildContext context) async {
+    return lanchUrlStringSafety(context, settingsConfig.privacyPolicyUrl);
+  }
+
+  void _onLicense(BuildContext context) {
+    const SettingsLicenseRouteData().go(context);
   }
 }

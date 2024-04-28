@@ -6,6 +6,8 @@ import 'package:brain_training/app/presentation/pages/settings/ui_style_select_p
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../pages/settings/license_page.dart';
+
 final _navigatorKey = GlobalKey<NavigatorState>(debugLabel: 'SETTINGS');
 
 const settingsBranch = TypedStatefulShellBranch<BranchSettingsData>(
@@ -24,6 +26,9 @@ const settingsBranch = TypedStatefulShellBranch<BranchSettingsData>(
         ),
         TypedGoRoute<SettingsThemeModeRouteData>(
           path: SettingsThemeModeRouteData.path,
+        ),
+        TypedGoRoute<SettingsLicenseRouteData>(
+          path: SettingsLicenseRouteData.path,
         ),
       ],
     ),
@@ -83,4 +88,14 @@ class SettingsThemeModeRouteData extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ThemeModeSelectPage();
+}
+
+class SettingsLicenseRouteData extends GoRouteData {
+  const SettingsLicenseRouteData();
+
+  static const path = 'license';
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const MyLincensePage();
 }
