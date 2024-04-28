@@ -1,7 +1,7 @@
 {
     "todayStatus": "Today",
     "todayNews": "News",
-    "thisWeekStatus": "This Week",
+    "thisWeekStatus": "Weekly",
     "dailyTraining": "Daily",
-    "completed": "Completed"
+    "completed": "Comp"
 }

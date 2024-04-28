@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 154 (77 per locale)
 ///
-/// Built on 2024-04-24 at 05:46 UTC
+/// Built on 2024-04-28 at 07:04 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -184,9 +184,9 @@ class _StringsHomeEn {
 	// Translations
 	String get todayStatus => 'Today';
 	String get todayNews => 'News';
-	String get thisWeekStatus => 'This Week';
+	String get thisWeekStatus => 'Weekly';
 	String get dailyTraining => 'Daily';
-	String get completed => 'Completed';
+	String get completed => 'Comp';
 }
 
 // Path: settings
@@ -872,9 +872,9 @@ extension on Translations {
 			case 'common.microphone': return 'Microphone';
 			case 'home.todayStatus': return 'Today';
 			case 'home.todayNews': return 'News';
-			case 'home.thisWeekStatus': return 'This Week';
+			case 'home.thisWeekStatus': return 'Weekly';
 			case 'home.dailyTraining': return 'Daily';
-			case 'home.completed': return 'Completed';
+			case 'home.completed': return 'Comp';
 			case 'settings.title': return 'Settings';
 			case 'settings.list.account.head': return 'Account';
 			case 'settings.list.account.account': return 'Account';
