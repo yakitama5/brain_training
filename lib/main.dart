@@ -109,6 +109,6 @@ AppTheme initializeAppTheme(CorePalette? corePalette, Ref ref) {
   return AppTheme(
     lightColorScheme: lightColorScheme,
     darkColorScheme: darkColorScheme,
-    platform: style?.platform,
+    platform: style.platform,
   );
 }
