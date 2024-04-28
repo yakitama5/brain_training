@@ -6,5 +6,5 @@ import '../../../../domain/training/value_object/rank_category.dart';
 part 'rank_category_provider.g.dart';
 
 @riverpod
-Future<RankCategory> rankCategory(RankCategoryRef ref) =>
+RankCategory rankCategory(RankCategoryRef ref) =>
     ref.read(settingsUsecaseProvider).fetchRankCategory();

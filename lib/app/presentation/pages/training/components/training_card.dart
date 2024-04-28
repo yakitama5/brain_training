@@ -1,3 +1,4 @@
+import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -19,12 +20,17 @@ class TrainingCard extends StatelessWidget {
     required this.trainingType,
     this.cardType = TrainingCardType.home,
     this.result,
+    required this.rankCategory,
   });
 
-  factory TrainingCard.detail({required TrainingType trainingType}) =>
+  factory TrainingCard.detail({
+    required TrainingType trainingType,
+    required RankCategory rankCategory,
+  }) =>
       TrainingCard(
         trainingType: trainingType,
         cardType: TrainingCardType.trainingDetail,
+        rankCategory: rankCategory,
       );
 
   bool get _isDetail => cardType == TrainingCardType.trainingDetail;
@@ -32,6 +38,7 @@ class TrainingCard extends StatelessWidget {
   final TrainingType trainingType;
   final TrainingCardType cardType;
   final TrainingResult? result;
+  final RankCategory rankCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +93,7 @@ class TrainingCard extends StatelessWidget {
           if (result != null)
             _Score(
               result: result!,
+              rankCategory: rankCategory,
             ),
           switch (cardType) {
             TrainingCardType.home ||
@@ -159,17 +167,21 @@ class _TrainingButton extends StatelessWidget {
 }
 
 class _Score extends StatelessWidget {
-  const _Score({required this.result});
+  const _Score({required this.result, required this.rankCategory});
 
   final TrainingResult result;
+  final RankCategory rankCategory;
 
   @override
   Widget build(BuildContext context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _IconWithLabel(
-            iconData: Icons.score,
-            label: i18n.training.result.rank.sumo(context: result.rank),
+            iconData: rankCategory.iconData,
+            // ignore: avoid_dynamic_calls
+            label: i18n.training.result.rank[rankCategory.name](
+              context: result.rank,
+            ) as String,
           ),
           _IconWithLabel(
             iconData: Icons.sports_score,

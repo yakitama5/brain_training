@@ -1,6 +1,4 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
-import 'package:brain_training/app/presentation/components/importer.dart';
-import 'package:brain_training/app/presentation/pages/error/components/error_view.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/app/presentation/theme/importer.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -21,107 +19,92 @@ class SettingsPage extends HookConsumerWidget {
     final trailing = Theme.of(context).isCupertinoPlatform
         ? const Icon(Icons.arrow_forward_ios_rounded)
         : null;
-
     final rankCategory = ref.watch(rankCategoryProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(i18n.settings.title),
       ),
-      body: rankCategory.when(
-        data: (rankCategoryData) {
-          return ThemedSettingsList(
-            sections: [
-              SettingsSection(
-                title: Text(i18n.settings.list.account.head),
-                tiles: [
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.link),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.account.account),
-                    onPressed: _onAccount,
-                  ),
-                ],
-              ),
-              SettingsSection(
-                title: Text(i18n.settings.list.layout.head),
-                tiles: [
-                  SettingsTile.navigation(
-                    leading: Icon(MdiIcons.trophy),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.layout.rankType),
-                    description: Text(
-                      i18n.training.result.category(context: rankCategoryData),
-                    ),
-                    onPressed: _onRankCategory,
-                  ),
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.style),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.layout.style),
-                    onPressed: (context) {},
-                  ),
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.light_mode),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.layout.themeMode),
-                    onPressed: (context) {},
-                  ),
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.color_lens),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.layout.colorTheme),
-                    onPressed: (context) {},
-                  ),
-                ],
-              ),
-              SettingsSection(
-                title: Text(i18n.settings.list.help.head),
-                tiles: [
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.how_to_vote),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.help.howToUse),
-                    onPressed: _onAccount,
-                  ),
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.help),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.help.contactUs),
-                    onPressed: _onAccount,
-                  ),
-                  SettingsTile.navigation(
-                    leading: Icon(MdiIcons.twitter),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.help.developperTwitter),
-                    onPressed: _onAccount,
-                  ),
-                  SettingsTile.navigation(
-                    leading: const Icon(Icons.lock),
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.help.privacyPollicy),
-                    onPressed: _onAccount,
-                  ),
-                  SettingsTile.navigation(
-                    trailing: trailing,
-                    title: Text(i18n.settings.list.help.license),
-                    onPressed: _onAccount,
-                  ),
-                ],
+      body: ThemedSettingsList(
+        sections: [
+          SettingsSection(
+            title: Text(i18n.settings.list.account.head),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.link),
+                trailing: trailing,
+                title: Text(i18n.settings.list.account.account),
+                onPressed: _onAccount,
               ),
             ],
-          );
-        },
-        error: ErrorView.new,
-        loading: () => ListView.builder(
-          itemCount: 20,
-          itemBuilder: (context, index) => ShimmerWidget.circular(
-            width: double.infinity,
-            height: 160,
-            shapeBorder:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
-        ),
+          SettingsSection(
+            title: Text(i18n.settings.list.layout.head),
+            tiles: [
+              SettingsTile.navigation(
+                leading: Icon(MdiIcons.trophy),
+                trailing: trailing,
+                title: Text(i18n.settings.list.layout.rankType),
+                description: Text(
+                  i18n.training.result.category(context: rankCategory),
+                ),
+                onPressed: _onRankCategory,
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.style),
+                trailing: trailing,
+                title: Text(i18n.settings.list.layout.style),
+                onPressed: (context) {},
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.light_mode),
+                trailing: trailing,
+                title: Text(i18n.settings.list.layout.themeMode),
+                onPressed: (context) {},
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.color_lens),
+                trailing: trailing,
+                title: Text(i18n.settings.list.layout.colorTheme),
+                onPressed: (context) {},
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: Text(i18n.settings.list.help.head),
+            tiles: [
+              SettingsTile.navigation(
+                leading: const Icon(Icons.how_to_vote),
+                trailing: trailing,
+                title: Text(i18n.settings.list.help.howToUse),
+                onPressed: _onAccount,
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.help),
+                trailing: trailing,
+                title: Text(i18n.settings.list.help.contactUs),
+                onPressed: _onAccount,
+              ),
+              SettingsTile.navigation(
+                leading: Icon(MdiIcons.twitter),
+                trailing: trailing,
+                title: Text(i18n.settings.list.help.developperTwitter),
+                onPressed: _onAccount,
+              ),
+              SettingsTile.navigation(
+                leading: const Icon(Icons.lock),
+                trailing: trailing,
+                title: Text(i18n.settings.list.help.privacyPollicy),
+                onPressed: _onAccount,
+              ),
+              SettingsTile.navigation(
+                trailing: trailing,
+                title: Text(i18n.settings.list.help.license),
+                onPressed: _onAccount,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

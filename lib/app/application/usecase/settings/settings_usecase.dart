@@ -17,13 +17,13 @@ class SettingsUsecase with RunUsecaseMixin {
 
   SettingsService get _service => ref.read(settingsServiceProvider);
 
-  Future<RankCategory> fetchRankCategory() async {
-    final rank = await _service.fetchRankCategory();
+  RankCategory fetchRankCategory() {
+    final rank = _service.fetchRankCategory();
     return rank ?? RankCategory.normal;
   }
 
-  Future<void> updateRankCategory({required RankCategory? rankCategory}) async {
-    await _service.updateRankCategory(rankCategory: rankCategory);
+  void updateRankCategory({required RankCategory? rankCategory}) {
+    _service.updateRankCategory(rankCategory: rankCategory);
     return ref.invalidate(rankCategoryProvider);
   }
 }

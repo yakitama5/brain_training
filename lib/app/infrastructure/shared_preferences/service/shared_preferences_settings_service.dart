@@ -10,12 +10,11 @@ class SharedPreferencesSettingsService implements SettingsService {
   const SharedPreferencesSettingsService(this.ref);
 
   final Ref ref;
-  Future<SharedPreferences> get _sp =>
-      ref.read(sharedPreferencesProvider.future);
+  SharedPreferences get _sp => ref.read(sharedPreferencesProvider);
 
   @override
-  Future<RankCategory?> fetchRankCategory() async {
-    final res = (await _sp).getString(sharedPreferenceConfig.rankCategoryKey);
+  RankCategory? fetchRankCategory() {
+    final res = _sp.getString(sharedPreferenceConfig.rankCategoryKey);
     if (res == null) {
       return null;
     }
@@ -25,11 +24,10 @@ class SharedPreferencesSettingsService implements SettingsService {
 
   @override
   Future<bool> updateRankCategory({required RankCategory? rankCategory}) async {
-    final sp = await _sp;
     if (rankCategory == null) {
-      return sp.remove(sharedPreferenceConfig.rankCategoryKey);
+      return _sp.remove(sharedPreferenceConfig.rankCategoryKey);
     } else {
-      return sp.setString(
+      return _sp.setString(
         sharedPreferenceConfig.rankCategoryKey,
         rankCategory.name,
       );

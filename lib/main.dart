@@ -5,12 +5,14 @@ import 'package:brain_training/app/domain/training/interface/training_repository
 import 'package:brain_training/app/domain/weather/interface/weather_service.dart';
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
 import 'package:brain_training/app/infrastructure/shared_preferences/service/shared_preferences_settings_service.dart';
+import 'package:brain_training/app/infrastructure/shared_preferences/state/shared_preference_provider.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
 import 'app/application/config/app_config.dart';
@@ -41,6 +43,9 @@ void main() async {
     Flavor.prod => DefaultFirebaseOptions.currentPlatform,
     Flavor.dev => dev.DefaultFirebaseOptions.currentPlatform,
   };
+
+  // SharedPreference
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   // Initialize Firebase
   await Firebase.initializeApp(
@@ -75,6 +80,7 @@ void main() async {
         newsRepositoryProvider.overrideWith(NewsApiNewsRepository.new),
 
         // SharedPreference
+        sharedPreferencesProvider.overrideWithValue(sharedPreferences),
         settingsServiceProvider
             .overrideWith(SharedPreferencesSettingsService.new),
       ],

@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/training_result_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/training_weekly_summary_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
@@ -70,17 +71,20 @@ class _TrainingCardsPane extends HookConsumerWidget {
       label: i18n.home.todayStatus,
       child: Column(
         children: TrainingType.values.map((type) {
+          final rankCategory = ref.watch(rankCategoryProvider);
           final result = ref.watch(
             trainingResultProvider(
               trainingType: type,
               dateTime: DateTime.now().dayStart,
             ),
           );
+
           return result.when(
-            data: (data) {
-              // TODO(yakitama5): ここ？
-              return TrainingCard(trainingType: type, result: data);
-            },
+            data: (resultData) => TrainingCard(
+              trainingType: type,
+              result: resultData,
+              rankCategory: rankCategory,
+            ),
             error: ErrorView.new,
             loading: () => ShimmerWidget.circular(
               width: double.infinity,

@@ -1,3 +1,4 @@
+import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
@@ -8,7 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/result_rank.dart';
-import '../../theme/importer.dart';
 
 class TrainingResultPage extends HookConsumerWidget {
   const TrainingResultPage({
@@ -45,14 +45,15 @@ class TrainingResultPage extends HookConsumerWidget {
   }
 }
 
-class ScoreCard extends StatelessWidget {
+class ScoreCard extends HookConsumerWidget {
   const ScoreCard({super.key, required this.rank});
 
   final ResultRank rank;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final ts = Theme.of(context).textTheme;
+    final rankCategory = ref.watch(rankCategoryProvider);
 
     return WidthFillBox(
       child: FilledCard(
@@ -63,15 +64,15 @@ class ScoreCard extends StatelessWidget {
               style: ts.headlineMedium,
             ),
             const Gap(16),
-            const Icon(
-              // TODO(yakitama5): 表示形式は後から切り替える
-              CustomIcons.sumo,
+            Icon(
+              rankCategory.iconData,
               size: 92,
             ),
             const Gap(8),
-            // TODO(yakitama5): 表示形式は後から切り替える
             Text(
-              i18n.training.result.rank.sumo(context: rank),
+              // ignore: avoid_dynamic_calls
+              i18n.training.result.rank[rankCategory.name](context: rank)
+                  as String,
               style: ts.displayMedium,
             ),
           ],

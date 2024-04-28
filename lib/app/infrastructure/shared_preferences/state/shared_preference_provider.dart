@@ -6,5 +6,6 @@ part 'shared_preference_provider.g.dart';
 /// SharedPreference
 /// テスト時にDIすることを考慮して、Providerとして定義
 @Riverpod(keepAlive: true)
-Future<SharedPreferences> sharedPreferences(SharedPreferencesRef ref) =>
-    SharedPreferences.getInstance();
+SharedPreferences sharedPreferences(SharedPreferencesRef ref) =>
+    // アプリ起動時 or テスト時に `override` することを前提に利用
+    throw UnimplementedError();

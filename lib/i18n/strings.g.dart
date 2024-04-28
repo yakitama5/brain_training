@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 176 (88 per locale)
 ///
-/// Built on 2024-04-28 at 10:14 UTC
+/// Built on 2024-04-28 at 12:12 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -345,7 +345,50 @@ class _StringsTrainingResultEn {
 
 	// Translations
 	late final _StringsTrainingResultScoreCardEn scoreCard = _StringsTrainingResultScoreCardEn._(_root);
-	late final _StringsTrainingResultRankEn rank = _StringsTrainingResultRankEn._(_root);
+	Map<String, dynamic> get rank => {
+		'normal': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Eexcellent!!!';
+				case ResultRank.great:
+					return 'Great!';
+				case ResultRank.good:
+					return 'Good';
+				case ResultRank.average:
+					return 'Average';
+				case ResultRank.poor:
+					return 'Poor...';
+			}
+		},
+		'sumo': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Yokozuna!!!';
+				case ResultRank.great:
+					return 'Ozeki!';
+				case ResultRank.good:
+					return 'Sekiwake';
+				case ResultRank.average:
+					return 'Maegashira';
+				case ResultRank.poor:
+					return 'Non-banzuke...';
+			}
+		},
+		'royal': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Prince';
+				case ResultRank.great:
+					return 'Marquess';
+				case ResultRank.good:
+					return 'Earl';
+				case ResultRank.average:
+					return 'Viscount';
+				case ResultRank.poor:
+					return 'Baron';
+			}
+		},
+	};
 	String category({required RankCategory context}) {
 		switch (context) {
 			case RankCategory.normal:
@@ -467,57 +510,6 @@ class _StringsTrainingResultScoreCardEn {
 
 	// Translations
 	String get title => 'Score';
-}
-
-// Path: training.result.rank
-class _StringsTrainingResultRankEn {
-	_StringsTrainingResultRankEn._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String normal({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return 'Eexcellent!!!';
-			case ResultRank.great:
-				return 'Great!';
-			case ResultRank.good:
-				return 'Good';
-			case ResultRank.average:
-				return 'Average';
-			case ResultRank.poor:
-				return 'Poor...';
-		}
-	}
-	String sumo({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return 'Yokozuna!!!';
-			case ResultRank.great:
-				return 'Ozeki!';
-			case ResultRank.good:
-				return 'Sekiwake';
-			case ResultRank.average:
-				return 'Maegashira';
-			case ResultRank.poor:
-				return 'Non-banzuke...';
-		}
-	}
-	String royal({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return 'Prince';
-			case ResultRank.great:
-				return 'Marquess';
-			case ResultRank.good:
-				return 'Earl';
-			case ResultRank.average:
-				return 'Viscount';
-			case ResultRank.poor:
-				return 'Baron';
-		}
-	}
 }
 
 // Path: <root>
@@ -738,7 +730,50 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 
 	// Translations
 	@override late final _StringsTrainingResultScoreCardJa scoreCard = _StringsTrainingResultScoreCardJa._(_root);
-	@override late final _StringsTrainingResultRankJa rank = _StringsTrainingResultRankJa._(_root);
+	@override Map<String, dynamic> get rank => {
+		'normal': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Eexcellent!!!';
+				case ResultRank.great:
+					return 'Great!';
+				case ResultRank.good:
+					return 'Good';
+				case ResultRank.average:
+					return 'Average';
+				case ResultRank.poor:
+					return 'Poor...';
+			}
+		},
+		'sumo': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return '横綱級';
+				case ResultRank.great:
+					return '大関級';
+				case ResultRank.good:
+					return '関脇級';
+				case ResultRank.average:
+					return '前頭級';
+				case ResultRank.poor:
+					return '番付外';
+			}
+		},
+		'royal': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return '公爵';
+				case ResultRank.great:
+					return '侯爵';
+				case ResultRank.good:
+					return '伯爵';
+				case ResultRank.average:
+					return '子爵';
+				case ResultRank.poor:
+					return '男爵';
+			}
+		},
+	};
 	@override String category({required RankCategory context}) {
 		switch (context) {
 			case RankCategory.normal:
@@ -860,57 +895,6 @@ class _StringsTrainingResultScoreCardJa extends _StringsTrainingResultScoreCardE
 
 	// Translations
 	@override String get title => '評価';
-}
-
-// Path: training.result.rank
-class _StringsTrainingResultRankJa extends _StringsTrainingResultRankEn {
-	_StringsTrainingResultRankJa._(_StringsJa root) : this._root = root, super._(root);
-
-	@override final _StringsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String normal({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return 'Eexcellent!!!';
-			case ResultRank.great:
-				return 'Great!';
-			case ResultRank.good:
-				return 'Good';
-			case ResultRank.average:
-				return 'Average';
-			case ResultRank.poor:
-				return 'Poor...';
-		}
-	}
-	@override String sumo({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return '横綱級';
-			case ResultRank.great:
-				return '大関級';
-			case ResultRank.good:
-				return '関脇級';
-			case ResultRank.average:
-				return '前頭級';
-			case ResultRank.poor:
-				return '番付外';
-		}
-	}
-	@override String royal({required ResultRank context}) {
-		switch (context) {
-			case ResultRank.excellent:
-				return '公爵';
-			case ResultRank.great:
-				return '侯爵';
-			case ResultRank.good:
-				return '伯爵';
-			case ResultRank.average:
-				return '子爵';
-			case ResultRank.poor:
-				return '男爵';
-		}
-	}
 }
 
 /// Flat map(s) containing all translations.

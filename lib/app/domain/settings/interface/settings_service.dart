@@ -12,6 +12,6 @@ SettingsService settingsService(SettingsServiceRef ref) =>
 
 /// 設定に関するリポジトリ
 abstract class SettingsService {
-  Future<RankCategory?> fetchRankCategory();
+  RankCategory? fetchRankCategory();
   Future<bool> updateRankCategory({required RankCategory? rankCategory});
 }
