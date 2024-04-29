@@ -93,7 +93,7 @@ class PlayPage extends HookConsumerWidget {
 
   final AnswerType answerType;
   final Stopwatch stopwatch = Stopwatch();
-  final int limit = TrainingType.coloredWord.limitMillSecond;
+  final int limit = TrainingType.fillInTheBlankCalc.limitMillSecond;
   final AudioPlayer correctSoundPlayer = AudioPlayer()
     ..setAsset(Assets.sounds.quizCorrect);
   final AudioPlayer incorrectSoundPlayer = AudioPlayer()

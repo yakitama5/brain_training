@@ -3,8 +3,36 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:nested/nested.dart';
 
 import '../../../../../gen/assets.gen.dart';
+
+class CountDownContainer extends SingleChildStatelessWidget {
+  const CountDownContainer({
+    super.key,
+    this.initialSecond,
+    super.child,
+  });
+
+  final int? initialSecond;
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget? child) {
+    return HookBuilder(
+      builder: (context) {
+        final completedCountDown = useState(false);
+
+        return completedCountDown.value
+            ? child ?? const SizedBox.shrink()
+            : CountDown(
+                // TODO(yakitama5): マジックナンバーをコンフィグ化
+                initialSecond: initialSecond ?? 3,
+                onEnd: () => completedCountDown.value = true,
+              );
+      },
+    );
+  }
+}
 
 class CountDown extends StatelessWidget {
   CountDown({

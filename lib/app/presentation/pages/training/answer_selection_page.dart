@@ -83,7 +83,15 @@ class AnswerSelectionPage extends HookConsumerWidget {
       // do nothing
     }
     if (context.mounted) {
-      ColoredWordRouteData(answerType).go(context);
+      switch (trainingType) {
+        case TrainingType.coloredWord:
+        case TrainingType.themeShiritori:
+          ColoredWordRouteData(answerType).go(context);
+          return;
+        case TrainingType.fillInTheBlankCalc:
+          FillInTheBlankCalcRouteData(answerType).go(context);
+          return;
+      }
     }
   }
 

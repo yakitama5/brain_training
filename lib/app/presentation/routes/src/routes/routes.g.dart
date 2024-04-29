@@ -22,6 +22,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
               path: 'colored_word/:answerType',
               factory: $ColoredWordRouteDataExtension._fromState,
             ),
+            GoRouteData.$route(
+              path: 'fill_in_the_blank_calc/:answerType',
+              factory: $FillInTheBlankCalcRouteDataExtension._fromState,
+            ),
           ],
         ),
         GoRouteData.$route(
@@ -170,6 +174,26 @@ const _$AnswerTypeEnumMap = {
   AnswerType.voice: 'voice',
   AnswerType.list: 'list',
 };
+
+extension $FillInTheBlankCalcRouteDataExtension on FillInTheBlankCalcRouteData {
+  static FillInTheBlankCalcRouteData _fromState(GoRouterState state) =>
+      FillInTheBlankCalcRouteData(
+        _$AnswerTypeEnumMap._$fromName(state.pathParameters['answerType']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/fill_in_the_blank_calc/${Uri.encodeComponent(_$AnswerTypeEnumMap[answerType]!)}',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
 
 extension $TutorialRouteDataExtension on TutorialRouteData {
   static TutorialRouteData _fromState(GoRouterState state) => TutorialRouteData(
