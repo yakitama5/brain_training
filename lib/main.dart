@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:brain_training/app/application/model/app_sound_players.dart';
+import 'package:brain_training/app/application/state/app_sound_players_provider.dart';
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
 import 'package:brain_training/app/application/state/color_style_provider.dart';
 import 'package:brain_training/app/application/state/dynamic_color_supported_provider.dart';
@@ -11,12 +13,14 @@ import 'package:brain_training/app/domain/weather/interface/weather_service.dart
 import 'package:brain_training/app/infrastructure/firebase/repository/firebase_training_repository.dart';
 import 'package:brain_training/app/infrastructure/shared_preferences/service/shared_preferences_settings_service.dart';
 import 'package:brain_training/app/infrastructure/shared_preferences/state/shared_preference_provider.dart';
+import 'package:brain_training/gen/assets.gen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
@@ -65,11 +69,30 @@ void main() async {
     return true;
   };
 
+  // アプリ内のサウンド設定を設定しておく
+  final appSoundPlayers = AppSoundPlayers(
+    countdownCount: AudioPlayer(),
+    countdownFinish: AudioPlayer(),
+    quizCorrect: AudioPlayer(),
+    quizIncorrect: AudioPlayer(),
+    quizFinish: AudioPlayer(),
+  );
+  await Future.wait([
+    appSoundPlayers.countdownCount.setAsset(Assets.sounds.countdownCount),
+    appSoundPlayers.countdownFinish.setAsset(Assets.sounds.countdownEnd),
+    appSoundPlayers.quizCorrect.setAsset(Assets.sounds.quizCorrect),
+    appSoundPlayers.quizIncorrect.setAsset(Assets.sounds.quizIncorrect),
+    appSoundPlayers.quizFinish.setAsset(Assets.sounds.quizEnd),
+  ]);
+
   runApp(
     ProviderScope(
       overrides: [
         // 初期ロケーションの設定
         initialLocationProvider.overrideWith((ref) => '/home'),
+
+        // アプリ内のアセット設定
+        appSoundPlayersProvider.overrideWithValue(appSoundPlayers),
 
         // アプリ内で利用するThemeの定義
         dynamicColorSupportedProvider
