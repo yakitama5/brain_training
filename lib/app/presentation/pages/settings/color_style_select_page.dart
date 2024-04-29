@@ -37,7 +37,6 @@ class ColorStyleSelectPage extends HookConsumerWidget {
           value: colorStyle,
           groupValue: selected.value,
           leading: switch (colorStyle) {
-            // TODO(yakitama5): アイコンを設定
             ColorStyle.dynamicColor => const Icon(Icons.person),
             ColorStyle.systemColor => const Icon(Icons.settings),
             // 参考カラーを表示

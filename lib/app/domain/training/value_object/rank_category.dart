@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 enum RankCategory {
   normal(Icons.abc),
   sumo(CustomIcons.sumo),
-  // TODO(yakitama5): アイコンを作成すること
-  royal(Icons.ac_unit);
+  royal(CustomIcons.royal);
 
   const RankCategory(this.iconData);
 
