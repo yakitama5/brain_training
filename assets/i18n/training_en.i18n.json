@@ -5,17 +5,17 @@
         "title(context=TrainingType)": {
             "coloredWord": "Colored Word",
             "themeShiritori": "Shiritori",
-            "addMinus": "Add Minus"
+            "fillInTheBlankCalc": "Add Minus"
         },
         "timeRequired(context=TrainingType)": {
             "coloredWord": "30 Seconds",
             "themeShiritori": "5 Minuts",
-            "addMinus": "60 Seconds"
+            "fillInTheBlankCalc": "60 Seconds"
         },
         "description(context=TrainingType)": {
             "coloredWord": "Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options",
             "themeShiritori": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer",
-            "addMinus": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer"
+            "fillInTheBlankCalc": "A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options"
         }
     },
     "answerSelection": {

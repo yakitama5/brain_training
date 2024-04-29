@@ -101,6 +101,8 @@ class ScoreDetail extends StatelessWidget {
         switch (result) {
           ColoredWordResult() =>
             ColoredWordScoreDetail(result: result as ColoredWordResult),
+          // TODO(yakitama5): 未着手
+          FillInTheBlankCalcResult() => const SizedBox.shrink(),
         },
         const Gap(32),
         WidthFillBox(

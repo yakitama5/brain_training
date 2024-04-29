@@ -25,12 +25,12 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           ],
         ),
         GoRouteData.$route(
-          path: '/tutorial',
-          factory: $ColoredWordTutorialRouteDataExtension._fromState,
+          path: '/tutorial/:trainingType',
+          factory: $TutorialRouteDataExtension._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'select',
-              factory: $ColoredWordSelectRouteDataExtension._fromState,
+              path: 'answer_select',
+              factory: $AnswerSelectRouteDataExtension._fromState,
             ),
           ],
         ),
@@ -171,13 +171,13 @@ const _$AnswerTypeEnumMap = {
   AnswerType.list: 'list',
 };
 
-extension $ColoredWordTutorialRouteDataExtension
-    on ColoredWordTutorialRouteData {
-  static ColoredWordTutorialRouteData _fromState(GoRouterState state) =>
-      const ColoredWordTutorialRouteData();
+extension $TutorialRouteDataExtension on TutorialRouteData {
+  static TutorialRouteData _fromState(GoRouterState state) => TutorialRouteData(
+        _$TrainingTypeEnumMap._$fromName(state.pathParameters['trainingType']!),
+      );
 
   String get location => GoRouteData.$location(
-        '/tutorial',
+        '/tutorial/${Uri.encodeComponent(_$TrainingTypeEnumMap[trainingType]!)}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -190,12 +190,20 @@ extension $ColoredWordTutorialRouteDataExtension
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $ColoredWordSelectRouteDataExtension on ColoredWordSelectRouteData {
-  static ColoredWordSelectRouteData _fromState(GoRouterState state) =>
-      const ColoredWordSelectRouteData();
+const _$TrainingTypeEnumMap = {
+  TrainingType.coloredWord: 'colored-word',
+  TrainingType.themeShiritori: 'theme-shiritori',
+  TrainingType.fillInTheBlankCalc: 'fill-in-the-blank-calc',
+};
+
+extension $AnswerSelectRouteDataExtension on AnswerSelectRouteData {
+  static AnswerSelectRouteData _fromState(GoRouterState state) =>
+      AnswerSelectRouteData(
+        _$TrainingTypeEnumMap._$fromName(state.pathParameters['trainingType']!),
+      );
 
   String get location => GoRouteData.$location(
-        '/tutorial/select',
+        '/tutorial/${Uri.encodeComponent(_$TrainingTypeEnumMap[trainingType]!)}/answer_select',
       );
 
   void go(BuildContext context) => context.go(location);

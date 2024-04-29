@@ -113,10 +113,13 @@ class TrainingCard extends StatelessWidget {
   void onTraining(BuildContext context) {
     switch (trainingType) {
       case TrainingType.coloredWord:
-        const ColoredWordTutorialRouteData().push<void>(context);
+        const TutorialRouteData().push<void>(context);
         return;
       case TrainingType.themeShiritori:
+        const SampleRouteData().go(context);
+        return;
       case TrainingType.fillInTheBlankCalc:
+        // TODO(yakitama5): 未着手
         const SampleRouteData().go(context);
         return;
     }

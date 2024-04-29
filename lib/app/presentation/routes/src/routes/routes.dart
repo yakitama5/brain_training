@@ -1,4 +1,5 @@
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:brain_training/app/presentation/pages/colored_word/colored_word_page.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/analytics_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/break_branch.dart';
@@ -28,11 +29,11 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
         TypedGoRoute<ColoredWordRouteData>(path: ColoredWordRouteData.path),
       ],
     ),
-    TypedGoRoute<ColoredWordTutorialRouteData>(
-      path: ColoredWordTutorialRouteData.path,
+    TypedGoRoute<TutorialRouteData>(
+      path: TutorialRouteData.path,
       routes: [
-        TypedGoRoute<ColoredWordSelectRouteData>(
-          path: ColoredWordSelectRouteData.path,
+        TypedGoRoute<AnswerSelectRouteData>(
+          path: AnswerSelectRouteData.path,
         ),
       ],
     ),
@@ -97,27 +98,30 @@ class BottomNavitorShellRouteData extends StatefulShellRouteData {
   static const String $restorationScopeId = 'app_router';
 }
 
-class ColoredWordTutorialRouteData extends GoRouteData {
-  const ColoredWordTutorialRouteData();
+class TutorialRouteData extends GoRouteData {
+  const TutorialRouteData(this.trainingType);
 
-  static const path = '/tutorial';
+  static const path = '/tutorial/:trainingType';
+  final TrainingType trainingType;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) =>
-      const MaterialPage(
-        child: TrainingTutorialPage(),
+      MaterialPage(
+        child: TrainingTutorialPage(
+          trainingType: trainingType,
+        ),
         fullscreenDialog: true,
       );
 }
 
-class ColoredWordSelectRouteData extends GoRouteData {
-  const ColoredWordSelectRouteData();
+class AnswerSelectRouteData extends GoRouteData {
+  const AnswerSelectRouteData(this.trainingType);
 
-  static const path = 'select';
-
+  static const path = 'answer_select';
+  final TrainingType trainingType;
   @override
   Widget build(BuildContext context, GoRouterState state) =>
-      const AnswerSelectionPage();
+      AnswerSelectionPage(trainingType: trainingType);
 }
 
 class ColoredWordRouteData extends GoRouteData {

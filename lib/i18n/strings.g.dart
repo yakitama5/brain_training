@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 206 (103 per locale)
 ///
-/// Built on 2024-04-29 at 00:30 UTC
+/// Built on 2024-04-29 at 04:29 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -355,7 +355,7 @@ class _StringsTrainingTrainingTypeEn {
 				return 'Colored Word';
 			case TrainingType.themeShiritori:
 				return 'Shiritori';
-			case TrainingType.addMinus:
+			case TrainingType.fillInTheBlankCalc:
 				return 'Add Minus';
 		}
 	}
@@ -365,7 +365,7 @@ class _StringsTrainingTrainingTypeEn {
 				return '30 Seconds';
 			case TrainingType.themeShiritori:
 				return '5 Minuts';
-			case TrainingType.addMinus:
+			case TrainingType.fillInTheBlankCalc:
 				return '60 Seconds';
 		}
 	}
@@ -375,8 +375,8 @@ class _StringsTrainingTrainingTypeEn {
 				return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
 			case TrainingType.themeShiritori:
 				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
-			case TrainingType.addMinus:
-				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+			case TrainingType.fillInTheBlankCalc:
+				return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
 		}
 	}
 }
@@ -812,8 +812,8 @@ class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
 				return '色彩識別';
 			case TrainingType.themeShiritori:
 				return 'お題しりとり';
-			case TrainingType.addMinus:
-				return 'タスヒク';
+			case TrainingType.fillInTheBlankCalc:
+				return '穴埋め計算';
 		}
 	}
 	@override String timeRequired({required TrainingType context}) {
@@ -822,7 +822,7 @@ class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
 				return '所要時間：30秒';
 			case TrainingType.themeShiritori:
 				return '所要時間：5分';
-			case TrainingType.addMinus:
+			case TrainingType.fillInTheBlankCalc:
 				return '所要時間：60秒';
 		}
 	}
@@ -832,8 +832,8 @@ class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
 				return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
 			case TrainingType.themeShiritori:
 				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
-			case TrainingType.addMinus:
-				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+			case TrainingType.fillInTheBlankCalc:
+				return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
 		}
 	}
 }
@@ -1135,7 +1135,7 @@ extension on Translations {
 						return 'Colored Word';
 					case TrainingType.themeShiritori:
 						return 'Shiritori';
-					case TrainingType.addMinus:
+					case TrainingType.fillInTheBlankCalc:
 						return 'Add Minus';
 				}
 			};
@@ -1145,7 +1145,7 @@ extension on Translations {
 						return '30 Seconds';
 					case TrainingType.themeShiritori:
 						return '5 Minuts';
-					case TrainingType.addMinus:
+					case TrainingType.fillInTheBlankCalc:
 						return '60 Seconds';
 				}
 			};
@@ -1155,8 +1155,8 @@ extension on Translations {
 						return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
 					case TrainingType.themeShiritori:
 						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
-					case TrainingType.addMinus:
-						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+					case TrainingType.fillInTheBlankCalc:
+						return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
 				}
 			};
 			case 'training.answerSelection.title': return 'Answer selection';
@@ -1350,8 +1350,8 @@ extension on _StringsJa {
 						return '色彩識別';
 					case TrainingType.themeShiritori:
 						return 'お題しりとり';
-					case TrainingType.addMinus:
-						return 'タスヒク';
+					case TrainingType.fillInTheBlankCalc:
+						return '穴埋め計算';
 				}
 			};
 			case 'training.trainingType.timeRequired': return ({required TrainingType context}) {
@@ -1360,7 +1360,7 @@ extension on _StringsJa {
 						return '所要時間：30秒';
 					case TrainingType.themeShiritori:
 						return '所要時間：5分';
-					case TrainingType.addMinus:
+					case TrainingType.fillInTheBlankCalc:
 						return '所要時間：60秒';
 				}
 			};
@@ -1370,8 +1370,8 @@ extension on _StringsJa {
 						return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
 					case TrainingType.themeShiritori:
 						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
-					case TrainingType.addMinus:
-						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+					case TrainingType.fillInTheBlankCalc:
+						return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
 				}
 			};
 			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';

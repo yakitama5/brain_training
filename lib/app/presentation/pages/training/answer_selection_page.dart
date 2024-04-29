@@ -1,4 +1,5 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -10,10 +11,16 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 
 class AnswerSelectionPage extends HookConsumerWidget {
-  const AnswerSelectionPage({super.key});
+  const AnswerSelectionPage({
+    super.key,
+    required this.trainingType,
+  });
+
+  final TrainingType trainingType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // TODO(yakitama5): 種類に応じて回答種類を選べるようにする
     const items = AnswerType.values;
     final cs = Theme.of(context).colorScheme;
     final ts = Theme.of(context).textTheme;
