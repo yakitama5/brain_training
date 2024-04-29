@@ -1,3 +1,5 @@
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
+
 import '../value_object/result_rank.dart';
 
 sealed class TrainingResult {
@@ -9,6 +11,10 @@ sealed class TrainingResult {
   final ResultRank rank;
   final int score;
   final DateTime doneAt;
+  TrainingType get trainingType => switch (this) {
+        ColoredWordResult() => TrainingType.coloredWord,
+        FillInTheBlankCalcResult() => TrainingType.fillInTheBlankCalc,
+      };
 }
 
 /// 色当てクイズ
