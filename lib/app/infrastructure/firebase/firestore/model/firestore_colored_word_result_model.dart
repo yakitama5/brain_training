@@ -30,6 +30,10 @@ extension FirestoreColoredWordResultModelX on FirestoreColoredWordResultModel {
   ColoredWordResult toDomainModel() => ColoredWordResult(
         correct: correct,
         questions: questions,
+        rank: rank,
+        score: score,
+        correctRate: correctRate,
+        doneAt: doneAt!,
       );
 
   /// `FieldValue`による更新が保留中か否か

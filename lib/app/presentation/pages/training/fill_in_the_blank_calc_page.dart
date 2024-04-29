@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:brain_training/app/presentation/pages/training/components/list_answer.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +6,11 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nested/nested.dart';
 
-import '../../../application/usecase/training/training_usecase.dart';
-import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/four_arithmetic_operator.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
-import '../../routes/src/routes/routes.dart';
 import '../training/components/count_down.dart';
 import 'components/answer_result_widget.dart';
 import 'components/playing_pop_scope_scaffold.dart';
@@ -83,29 +78,29 @@ class PlayPage extends HookConsumerWidget {
         );
       },
       onEnd: () {
-        final result = FillInTheBlankCalcResult(
-          correct: correct.value,
-          questions: questions.value,
-        );
+        // final result = FillInTheBlankCalcResult(
+        //   correct: correct.value,
+        //   questions: questions.value,
+        // );
 
-        Future<void> addResult() async {
-          final usecase = ref.read(trainingUsecaseProvider);
+        // Future<void> addResult() async {
+        //   final usecase = ref.read(trainingUsecaseProvider);
 
-          await usecase.finishColoredWordTraining(
-            score: result.score,
-            rank: result.rank,
-            correct: result.correct,
-            questions: result.questions,
-            correctRate: result.correctRate,
-            doneAt: DateTime.now(),
-          );
-        }
+        //   await usecase.finishColoredWordTraining(
+        //     score: result.score,
+        //     rank: result.createRank,
+        //     correct: result.correct,
+        //     questions: result.questions,
+        //     correctRate: result.correctRate,
+        //     doneAt: DateTime.now(),
+        //   );
+        // }
 
-        // 非同期で処理する
-        unawaited(addResult());
-        TrainingResultRouteData(
-          result,
-        ).go(context);
+        // // 非同期で処理する
+        // unawaited(addResult());
+        // TrainingResultRouteData(
+        //   result,
+        // ).go(context);
       },
     );
   }

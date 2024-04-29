@@ -103,9 +103,10 @@ class PlayPage extends HookConsumerWidget {
         );
       },
       onEnd: () {
-        final result = ColoredWordResult(
+        final result = ColoredWordResult.initialize(
           correct: correct.value,
           questions: questions.value,
+          doneAt: DateTime.now(),
         );
 
         Future<void> addResult() async {
@@ -117,7 +118,7 @@ class PlayPage extends HookConsumerWidget {
             correct: result.correct,
             questions: result.questions,
             correctRate: result.correctRate,
-            doneAt: DateTime.now(),
+            doneAt: result.doneAt,
           );
         }
 
