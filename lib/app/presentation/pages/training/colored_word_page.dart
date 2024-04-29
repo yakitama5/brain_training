@@ -24,7 +24,7 @@ import '../../../domain/training/value_object/answer_type.dart';
 import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
 import '../../routes/src/routes/routes.dart';
-import '../training/components/count_down.dart';
+import 'components/count_down.dart';
 import 'components/mixed_colored_word_text.dart';
 
 class ColoredWordPage extends HookConsumerWidget {

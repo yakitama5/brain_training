@@ -90,7 +90,7 @@ flutter:
   # Assets & Fonts
   assets:
     - assets/sounds/
-    - assets/json/
+    # - assets/json/
     # - assets/images/
     # - assets/lottie/
   fonts:

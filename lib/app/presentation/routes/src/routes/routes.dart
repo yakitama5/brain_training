@@ -1,6 +1,6 @@
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/training_type.dart';
-import 'package:brain_training/app/presentation/pages/colored_word/colored_word_page.dart';
+import 'package:brain_training/app/presentation/pages/training/colored_word_page.dart';
 import 'package:brain_training/app/presentation/pages/training/fill_in_the_blank_calc_page.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/analytics_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/break_branch.dart';
