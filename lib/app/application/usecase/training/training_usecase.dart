@@ -119,7 +119,7 @@ class TrainingUsecase with RunUsecaseMixin {
         ),
       // TODO(yakitama5): ここに追加
       TrainingType.themeShiritori => Stream.value(null),
-      TrainingType.addMinus => Stream.value(null),
+      TrainingType.fillInTheBlankCalc => Stream.value(null),
     };
   }
 

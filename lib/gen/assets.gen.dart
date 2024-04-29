@@ -7,16 +7,6 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
-class $AssetsJsonGen {
-  const $AssetsJsonGen();
-
-  /// File path: assets/json/speech_to_text_key.json
-  String get speechToTextKey => 'assets/json/speech_to_text_key.json';
-
-  /// List of all assets
-  List<String> get values => [speechToTextKey];
-}
-
 class $AssetsSoundsGen {
   const $AssetsSoundsGen();
 
@@ -43,6 +33,5 @@ class $AssetsSoundsGen {
 class Assets {
   Assets._();
 
-  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }

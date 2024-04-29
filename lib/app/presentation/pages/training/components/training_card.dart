@@ -116,7 +116,7 @@ class TrainingCard extends StatelessWidget {
         const ColoredWordTutorialRouteData().push<void>(context);
         return;
       case TrainingType.themeShiritori:
-      case TrainingType.addMinus:
+      case TrainingType.fillInTheBlankCalc:
         const SampleRouteData().go(context);
         return;
     }

@@ -381,9 +381,9 @@ class VoiceAnswer extends HookConsumerWidget {
       // - SpeechRecognition.onEnd、かつ、結果があるとき
       // 音声認識が完了(結果なし)
       // - SpeechRecognition.onEnd、かつ、結果がないとき
-      // if (enableListening.value) {
-      //   onListen(enableListening, listenText);
-      // }
+      if (enableListening.value) {
+        onListen(enableListening, listenText);
+      }
     }
   }
 

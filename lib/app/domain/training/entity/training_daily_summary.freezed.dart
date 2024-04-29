@@ -19,7 +19,7 @@ mixin _$TrainingDailySummary {
   String get id => throw _privateConstructorUsedError;
   int? get coloredWordScore => throw _privateConstructorUsedError;
   int? get themeShiritoriScore => throw _privateConstructorUsedError;
-  int? get addMinusScore => throw _privateConstructorUsedError;
+  int? get fillInTheBlankCalcScore => throw _privateConstructorUsedError;
   int get doneCount => throw _privateConstructorUsedError;
   DateTime get doneAt => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $TrainingDailySummaryCopyWith<$Res> {
       {String id,
       int? coloredWordScore,
       int? themeShiritoriScore,
-      int? addMinusScore,
+      int? fillInTheBlankCalcScore,
       int doneCount,
       DateTime doneAt,
       DateTime createdAt,
@@ -64,7 +64,7 @@ class _$TrainingDailySummaryCopyWithImpl<$Res,
     Object? id = null,
     Object? coloredWordScore = freezed,
     Object? themeShiritoriScore = freezed,
-    Object? addMinusScore = freezed,
+    Object? fillInTheBlankCalcScore = freezed,
     Object? doneCount = null,
     Object? doneAt = null,
     Object? createdAt = null,
@@ -83,9 +83,9 @@ class _$TrainingDailySummaryCopyWithImpl<$Res,
           ? _value.themeShiritoriScore
           : themeShiritoriScore // ignore: cast_nullable_to_non_nullable
               as int?,
-      addMinusScore: freezed == addMinusScore
-          ? _value.addMinusScore
-          : addMinusScore // ignore: cast_nullable_to_non_nullable
+      fillInTheBlankCalcScore: freezed == fillInTheBlankCalcScore
+          ? _value.fillInTheBlankCalcScore
+          : fillInTheBlankCalcScore // ignore: cast_nullable_to_non_nullable
               as int?,
       doneCount: null == doneCount
           ? _value.doneCount
@@ -119,7 +119,7 @@ abstract class _$$TrainingDailySummaryImplCopyWith<$Res>
       {String id,
       int? coloredWordScore,
       int? themeShiritoriScore,
-      int? addMinusScore,
+      int? fillInTheBlankCalcScore,
       int doneCount,
       DateTime doneAt,
       DateTime createdAt,
@@ -140,7 +140,7 @@ class __$$TrainingDailySummaryImplCopyWithImpl<$Res>
     Object? id = null,
     Object? coloredWordScore = freezed,
     Object? themeShiritoriScore = freezed,
-    Object? addMinusScore = freezed,
+    Object? fillInTheBlankCalcScore = freezed,
     Object? doneCount = null,
     Object? doneAt = null,
     Object? createdAt = null,
@@ -159,9 +159,9 @@ class __$$TrainingDailySummaryImplCopyWithImpl<$Res>
           ? _value.themeShiritoriScore
           : themeShiritoriScore // ignore: cast_nullable_to_non_nullable
               as int?,
-      addMinusScore: freezed == addMinusScore
-          ? _value.addMinusScore
-          : addMinusScore // ignore: cast_nullable_to_non_nullable
+      fillInTheBlankCalcScore: freezed == fillInTheBlankCalcScore
+          ? _value.fillInTheBlankCalcScore
+          : fillInTheBlankCalcScore // ignore: cast_nullable_to_non_nullable
               as int?,
       doneCount: null == doneCount
           ? _value.doneCount
@@ -190,7 +190,7 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
       {required this.id,
       this.coloredWordScore,
       this.themeShiritoriScore,
-      this.addMinusScore,
+      this.fillInTheBlankCalcScore,
       this.doneCount = 0,
       required this.doneAt,
       required this.createdAt,
@@ -203,7 +203,7 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
   @override
   final int? themeShiritoriScore;
   @override
-  final int? addMinusScore;
+  final int? fillInTheBlankCalcScore;
   @override
   @JsonKey()
   final int doneCount;
@@ -216,7 +216,7 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
 
   @override
   String toString() {
-    return 'TrainingDailySummary(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, addMinusScore: $addMinusScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'TrainingDailySummary(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, fillInTheBlankCalcScore: $fillInTheBlankCalcScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -229,8 +229,9 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
                 other.coloredWordScore == coloredWordScore) &&
             (identical(other.themeShiritoriScore, themeShiritoriScore) ||
                 other.themeShiritoriScore == themeShiritoriScore) &&
-            (identical(other.addMinusScore, addMinusScore) ||
-                other.addMinusScore == addMinusScore) &&
+            (identical(
+                    other.fillInTheBlankCalcScore, fillInTheBlankCalcScore) ||
+                other.fillInTheBlankCalcScore == fillInTheBlankCalcScore) &&
             (identical(other.doneCount, doneCount) ||
                 other.doneCount == doneCount) &&
             (identical(other.doneAt, doneAt) || other.doneAt == doneAt) &&
@@ -246,7 +247,7 @@ class _$TrainingDailySummaryImpl implements _TrainingDailySummary {
       id,
       coloredWordScore,
       themeShiritoriScore,
-      addMinusScore,
+      fillInTheBlankCalcScore,
       doneCount,
       doneAt,
       createdAt,
@@ -266,7 +267,7 @@ abstract class _TrainingDailySummary implements TrainingDailySummary {
       {required final String id,
       final int? coloredWordScore,
       final int? themeShiritoriScore,
-      final int? addMinusScore,
+      final int? fillInTheBlankCalcScore,
       final int doneCount,
       required final DateTime doneAt,
       required final DateTime createdAt,
@@ -279,7 +280,7 @@ abstract class _TrainingDailySummary implements TrainingDailySummary {
   @override
   int? get themeShiritoriScore;
   @override
-  int? get addMinusScore;
+  int? get fillInTheBlankCalcScore;
   @override
   int get doneCount;
   @override

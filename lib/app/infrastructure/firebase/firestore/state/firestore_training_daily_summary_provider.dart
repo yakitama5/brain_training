@@ -29,7 +29,7 @@ CollectionReference<FirestoreTrainingDailySummaryModel>
           'doneCount': [
             value.coloredWordScore,
             value.themeShiritoriScore,
-            value.addMinusScore,
+            value.fillInTheBlankCalcScore,
           ].whereNotNull().length,
 
           // 日付項目は自動更新

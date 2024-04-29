@@ -861,22 +861,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.12.4"
-  google_speech:
-    dependency: "direct main"
-    description:
-      name: google_speech
-      sha256: "7e4583896e3e46a0d5c20652ca89ca359e012bdf54e902f30d8babf2bffbabe7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.2.0+1"
-  googleapis_auth:
-    dependency: transitive
-    description:
-      name: googleapis_auth
-      sha256: befd71383a955535060acde8792e7efc11d2fccd03dd1d3ec434e85b68775938
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.6.0"
   gradient_borders:
     dependency: transitive
     description:
@@ -893,14 +877,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  grpc:
-    dependency: transitive
-    description:
-      name: grpc
-      sha256: e93ee3bce45c134bf44e9728119102358c7cd69de7832d9a874e2e74eb8cab40
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.4"
   hooks_riverpod:
     dependency: "direct main"
     description:
@@ -925,14 +901,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  http2:
-    dependency: transitive
-    description:
-      name: http2
-      sha256: "9ced024a160b77aba8fb8674e38f70875e321d319e6f303ec18e87bd5a4b0c1d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   http_multi_server:
     dependency: transitive
     description:
@@ -1502,7 +1470,7 @@ packages:
     source: hosted
     version: "3.0.0-dev.4"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
@@ -1626,14 +1594,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.30.0"
-  sound_stream:
-    dependency: "direct main"
-    description:
-      name: sound_stream
-      sha256: "66e68cc6be9423c6ebbe40bcf177c61ae6b75fce8189c51fbf9db7f54d4ef23d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.1"
   source_gen:
     dependency: transitive
     description:

@@ -81,7 +81,7 @@ class FirebaseTrainingRepository implements TrainingRepository {
       id: summaryRef.id,
       coloredWordScore: score,
       themeShiritoriScore: summary?.themeShiritoriScore,
-      addMinusScore: summary?.addMinusScore,
+      fillInTheBlankCalcScore: summary?.fillInTheBlankCalcScore,
       // その他の項目は`withConverter`で共通設定
     );
 

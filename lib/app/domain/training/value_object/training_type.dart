@@ -9,7 +9,7 @@ enum TrainingType {
     300000,
     Icons.chat,
   ),
-  addMinus(
+  fillInTheBlankCalc(
     60000,
     Icons.calculate,
   ),

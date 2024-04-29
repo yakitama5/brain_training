@@ -8,7 +8,7 @@ class TrainingDailySummary with _$TrainingDailySummary {
     required String id,
     int? coloredWordScore,
     int? themeShiritoriScore,
-    int? addMinusScore,
+    int? fillInTheBlankCalcScore,
     @Default(0) int doneCount,
     required DateTime doneAt,
     required DateTime createdAt,

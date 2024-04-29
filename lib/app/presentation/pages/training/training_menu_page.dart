@@ -15,7 +15,7 @@ class TrainingMenuPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO(yakitama5): 当日の実施状況を基に表示判定を行う
     final menu = [TrainingType.coloredWord, TrainingType.themeShiritori];
-    final completeMenu = [TrainingType.addMinus];
+    final completeMenu = [TrainingType.fillInTheBlankCalc];
     final rankCategory = ref.watch(rankCategoryProvider);
 
     return Scaffold(

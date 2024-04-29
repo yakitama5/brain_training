@@ -24,7 +24,7 @@ mixin _$FirestoreTrainingDailySummaryModel {
   String get id => throw _privateConstructorUsedError;
   int? get coloredWordScore => throw _privateConstructorUsedError;
   int? get themeShiritoriScore => throw _privateConstructorUsedError;
-  int? get addMinusScore => throw _privateConstructorUsedError;
+  int? get fillInTheBlankCalcScore => throw _privateConstructorUsedError;
   int get doneCount => throw _privateConstructorUsedError;
   @timestampKey
   DateTime? get doneAt => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ abstract class $FirestoreTrainingDailySummaryModelCopyWith<$Res> {
       {String id,
       int? coloredWordScore,
       int? themeShiritoriScore,
-      int? addMinusScore,
+      int? fillInTheBlankCalcScore,
       int doneCount,
       @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
@@ -76,7 +76,7 @@ class _$FirestoreTrainingDailySummaryModelCopyWithImpl<$Res,
     Object? id = null,
     Object? coloredWordScore = freezed,
     Object? themeShiritoriScore = freezed,
-    Object? addMinusScore = freezed,
+    Object? fillInTheBlankCalcScore = freezed,
     Object? doneCount = null,
     Object? doneAt = freezed,
     Object? createdAt = freezed,
@@ -95,9 +95,9 @@ class _$FirestoreTrainingDailySummaryModelCopyWithImpl<$Res,
           ? _value.themeShiritoriScore
           : themeShiritoriScore // ignore: cast_nullable_to_non_nullable
               as int?,
-      addMinusScore: freezed == addMinusScore
-          ? _value.addMinusScore
-          : addMinusScore // ignore: cast_nullable_to_non_nullable
+      fillInTheBlankCalcScore: freezed == fillInTheBlankCalcScore
+          ? _value.fillInTheBlankCalcScore
+          : fillInTheBlankCalcScore // ignore: cast_nullable_to_non_nullable
               as int?,
       doneCount: null == doneCount
           ? _value.doneCount
@@ -132,7 +132,7 @@ abstract class _$$FirestoreTrainingDailySummaryModelImplCopyWith<$Res>
       {String id,
       int? coloredWordScore,
       int? themeShiritoriScore,
-      int? addMinusScore,
+      int? fillInTheBlankCalcScore,
       int doneCount,
       @timestampKey DateTime? doneAt,
       @timestampKey DateTime? createdAt,
@@ -155,7 +155,7 @@ class __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? coloredWordScore = freezed,
     Object? themeShiritoriScore = freezed,
-    Object? addMinusScore = freezed,
+    Object? fillInTheBlankCalcScore = freezed,
     Object? doneCount = null,
     Object? doneAt = freezed,
     Object? createdAt = freezed,
@@ -174,9 +174,9 @@ class __$$FirestoreTrainingDailySummaryModelImplCopyWithImpl<$Res>
           ? _value.themeShiritoriScore
           : themeShiritoriScore // ignore: cast_nullable_to_non_nullable
               as int?,
-      addMinusScore: freezed == addMinusScore
-          ? _value.addMinusScore
-          : addMinusScore // ignore: cast_nullable_to_non_nullable
+      fillInTheBlankCalcScore: freezed == fillInTheBlankCalcScore
+          ? _value.fillInTheBlankCalcScore
+          : fillInTheBlankCalcScore // ignore: cast_nullable_to_non_nullable
               as int?,
       doneCount: null == doneCount
           ? _value.doneCount
@@ -206,7 +206,7 @@ class _$FirestoreTrainingDailySummaryModelImpl
       {required this.id,
       this.coloredWordScore,
       this.themeShiritoriScore,
-      this.addMinusScore,
+      this.fillInTheBlankCalcScore,
       this.doneCount = 0,
       @timestampKey this.doneAt,
       @timestampKey this.createdAt,
@@ -223,7 +223,7 @@ class _$FirestoreTrainingDailySummaryModelImpl
   @override
   final int? themeShiritoriScore;
   @override
-  final int? addMinusScore;
+  final int? fillInTheBlankCalcScore;
   @override
   @JsonKey()
   final int doneCount;
@@ -239,7 +239,7 @@ class _$FirestoreTrainingDailySummaryModelImpl
 
   @override
   String toString() {
-    return 'FirestoreTrainingDailySummaryModel(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, addMinusScore: $addMinusScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'FirestoreTrainingDailySummaryModel(id: $id, coloredWordScore: $coloredWordScore, themeShiritoriScore: $themeShiritoriScore, fillInTheBlankCalcScore: $fillInTheBlankCalcScore, doneCount: $doneCount, doneAt: $doneAt, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -252,8 +252,9 @@ class _$FirestoreTrainingDailySummaryModelImpl
                 other.coloredWordScore == coloredWordScore) &&
             (identical(other.themeShiritoriScore, themeShiritoriScore) ||
                 other.themeShiritoriScore == themeShiritoriScore) &&
-            (identical(other.addMinusScore, addMinusScore) ||
-                other.addMinusScore == addMinusScore) &&
+            (identical(
+                    other.fillInTheBlankCalcScore, fillInTheBlankCalcScore) ||
+                other.fillInTheBlankCalcScore == fillInTheBlankCalcScore) &&
             (identical(other.doneCount, doneCount) ||
                 other.doneCount == doneCount) &&
             (identical(other.doneAt, doneAt) || other.doneAt == doneAt) &&
@@ -270,7 +271,7 @@ class _$FirestoreTrainingDailySummaryModelImpl
       id,
       coloredWordScore,
       themeShiritoriScore,
-      addMinusScore,
+      fillInTheBlankCalcScore,
       doneCount,
       doneAt,
       createdAt,
@@ -298,7 +299,7 @@ abstract class _FirestoreTrainingDailySummaryModel
           {required final String id,
           final int? coloredWordScore,
           final int? themeShiritoriScore,
-          final int? addMinusScore,
+          final int? fillInTheBlankCalcScore,
           final int doneCount,
           @timestampKey final DateTime? doneAt,
           @timestampKey final DateTime? createdAt,
@@ -316,7 +317,7 @@ abstract class _FirestoreTrainingDailySummaryModel
   @override
   int? get themeShiritoriScore;
   @override
-  int? get addMinusScore;
+  int? get fillInTheBlankCalcScore;
   @override
   int get doneCount;
   @override
