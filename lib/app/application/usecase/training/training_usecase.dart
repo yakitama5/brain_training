@@ -12,6 +12,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../domain/training/value_object/result_rank.dart';
 import '../../model/training/training_weekly_summary.dart';
 import '../run_usecase_mixin.dart';
+import '../user/state/auth_user_provider.dart';
 
 part 'training_usecase.g.dart';
 
@@ -28,7 +29,6 @@ class TrainingUsecase with RunUsecaseMixin {
       _ref.read(trainingRepositoryProvider);
 
   Future<void> finishColoredWordTraining({
-    required String userId,
     required int score,
     required ResultRank rank,
     required int correct,
@@ -40,6 +40,8 @@ class TrainingUsecase with RunUsecaseMixin {
         _ref,
         action: () async {
           // 実施済であれば登録は行わない
+          final userId =
+              await _ref.read(authUserProvider.selectAsync((data) => data!.id));
           final result = await _trainingRepository
               .fetchColoredWordResultByDate(
                 userId: userId,

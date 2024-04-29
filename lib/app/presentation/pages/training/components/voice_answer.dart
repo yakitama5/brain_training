@@ -5,15 +5,19 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import '../../../../../i18n/strings.g.dart';
 import '../../../../../utils/logger.dart';
-import '../../../../domain/read_color/value_object/colored_word.dart';
 
-class VoiceAnswer extends HookConsumerWidget {
-  VoiceAnswer({super.key, required this.onAnswered});
+class VoiceAnswer<T> extends HookConsumerWidget {
+  VoiceAnswer({
+    super.key,
+    required this.onAnswered,
+    required this.values,
+    required this.readBuilder,
+  });
 
-  final void Function(ColoredWord answer) onAnswered;
-
+  final void Function(T answer) onAnswered;
+  final List<T> values;
+  final String Function(T value) readBuilder;
   final SpeechToText client = SpeechToText();
 
   @override
@@ -91,12 +95,10 @@ class VoiceAnswer extends HookConsumerWidget {
         listenText.value = result.recognizedWords;
 
         logger.d(result.alternates.map((e) => e.recognizedWords).join(','));
-        final answer = ColoredWord.values.firstWhereOrNull(
-          (type) => result.alternates
+        final answer = values.firstWhereOrNull(
+          (value) => result.alternates
               .where(
-                (word) => word.recognizedWords.contains(
-                  i18n.training.coloredWord.readWord(context: type),
-                ),
+                (word) => word.recognizedWords.contains(readBuilder(value)),
               )
               .isNotEmpty,
         );

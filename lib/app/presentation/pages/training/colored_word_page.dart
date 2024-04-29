@@ -6,6 +6,7 @@ import 'package:brain_training/app/application/state/app_sound_players_provider.
 import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
+import 'package:brain_training/app/presentation/pages/training/components/adaptive_answer_widget.dart';
 import 'package:brain_training/app/presentation/pages/training/components/count_down.dart';
 import 'package:brain_training/app/presentation/pages/training/components/playing_pop_scope_scaffold.dart';
 import 'package:brain_training/app/presentation/pages/training/components/stopwatch_builder.dart';
@@ -17,7 +18,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:nested/nested.dart';
 
-import '../../../application/usecase/user/state/auth_user_provider.dart';
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/answer_result.dart';
 import '../../../domain/training/value_object/answer_type.dart';
@@ -25,9 +25,7 @@ import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
 import '../../routes/src/routes/routes.dart';
 import 'components/answer_result_widget.dart';
-import 'components/list_answer.dart';
 import 'components/mixed_colored_word_text.dart';
-import 'components/voice_answer.dart';
 
 class ColoredWordPage extends HookConsumerWidget {
   const ColoredWordPage({super.key, required this.answerType});
@@ -84,32 +82,23 @@ class PlayPage extends HookConsumerWidget {
             const Gap(80),
 
             // 回答方法
-            switch (answerType) {
-              AnswerType.voice => VoiceAnswer(
-                  onAnswered: (answer) => onAnswered(
-                    answer,
-                    word,
-                    questions,
-                    correct,
-                    answerResult,
-                    appSoundPlayers,
-                  ),
-                ),
-              AnswerType.list => ListAnswer<ColoredWord>(
-                  values: ColoredWord.values,
-                  titleBuilder: (value) => Text(
-                    i18n.training.coloredWord.displayWord(context: value),
-                  ),
-                  onAnswered: (answer) => onAnswered(
-                    answer,
-                    word,
-                    questions,
-                    correct,
-                    answerResult,
-                    appSoundPlayers,
-                  ),
-                ),
-            },
+            AdaptiveAnswerWidget(
+              answerType: answerType,
+              values: ColoredWord.values,
+              titleBuilder: (value) => Text(
+                i18n.training.coloredWord.displayWord(context: value),
+              ),
+              readBuilder: (value) =>
+                  i18n.training.coloredWord.readWord(context: value),
+              onAnswered: (answer) => onAnswered(
+                answer,
+                word,
+                questions,
+                correct,
+                answerResult,
+                appSoundPlayers,
+              ),
+            ),
           ],
         );
       },
@@ -121,10 +110,8 @@ class PlayPage extends HookConsumerWidget {
 
         Future<void> addResult() async {
           final usecase = ref.read(trainingUsecaseProvider);
-          final user = await ref.read(authUserProvider.future);
 
           await usecase.finishColoredWordTraining(
-            userId: user!.id,
             score: result.score,
             rank: result.rank,
             correct: result.correct,
