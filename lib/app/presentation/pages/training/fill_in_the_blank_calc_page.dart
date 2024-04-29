@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:brain_training/app/domain/read_color/value_object/colored_word.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +17,7 @@ import '../../../domain/training/value_object/training_type.dart';
 import '../../components/importer.dart';
 import '../../routes/src/routes/routes.dart';
 import '../training/components/count_down.dart';
+import 'components/answer_result_widget.dart';
 
 class FillInTheBlankCalcPage extends HookConsumerWidget {
   const FillInTheBlankCalcPage({super.key, required this.answerType});
@@ -174,7 +174,7 @@ class PlayPage extends HookConsumerWidget {
                 child: Column(
                   children: [
                     // 正誤表示
-                    _AnswerResult(result: answerResult.value),
+                    AnswerResultWidget(result: answerResult.value),
 
                     // 色付き文字
                     // MixedColoredWordText(coloredWord: word.value),
@@ -218,63 +218,5 @@ class PlayPage extends HookConsumerWidget {
     if (stopwatch.isRunning) {
       Timer(interval, () => updateStopWatch(context, ms, onEnd));
     }
-  }
-}
-
-class ListAnswer extends StatelessWidget {
-  const ListAnswer({super.key, required this.onAnswered});
-
-  final void Function(ColoredWord answer) onAnswered;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: ColoredWord.values
-          .map(
-            (e) => Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 8,
-              ),
-              child: SizedBox(
-                width: double.infinity,
-                child: OutlinedButton(
-                  onPressed: () => onAnswered(e),
-                  child:
-                      Text(i18n.training.coloredWord.displayWord(context: e)),
-                ),
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
-}
-
-class _AnswerResult extends StatelessWidget {
-  const _AnswerResult({required this.result});
-
-  static const _size = 80.0;
-
-  final AnswerResult? result;
-
-  @override
-  Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-
-    return switch (result) {
-      AnswerResult.correct => Icon(
-          Icons.circle_outlined,
-          size: _size,
-          color: cs.outline,
-        ),
-      AnswerResult.incorrect => Icon(
-          Icons.close,
-          size: _size,
-          color: cs.outline,
-        ),
-      _ => const Gap(_size),
-    };
   }
 }
