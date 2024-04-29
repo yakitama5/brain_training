@@ -6,7 +6,7 @@
 /// Locales: 2
 /// Strings: 206 (103 per locale)
 ///
-/// Built on 2024-04-28 at 14:15 UTC
+/// Built on 2024-04-29 at 00:30 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -958,13 +958,13 @@ class _StringsTrainingColoredWordJa extends _StringsTrainingColoredWordEn {
 	@override String readWord({required ColoredWord context}) {
 		switch (context) {
 			case ColoredWord.black:
-				return 'くろ';
+				return '黒';
 			case ColoredWord.red:
-				return 'あか';
+				return '赤';
 			case ColoredWord.blue:
-				return 'あお';
+				return '青';
 			case ColoredWord.green:
-				return 'みどり';
+				return '緑';
 		}
 	}
 }
@@ -1459,13 +1459,13 @@ extension on _StringsJa {
 			case 'training.coloredWord.readWord': return ({required ColoredWord context}) {
 				switch (context) {
 					case ColoredWord.black:
-						return 'くろ';
+						return '黒';
 					case ColoredWord.red:
-						return 'あか';
+						return '赤';
 					case ColoredWord.blue:
-						return 'あお';
+						return '青';
 					case ColoredWord.green:
-						return 'みどり';
+						return '緑';
 				}
 			};
 			case 'training.cancelDialog.title': return '中断しますか？';

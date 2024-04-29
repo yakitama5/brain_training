@@ -37,5 +37,5 @@ class SampleRouteData extends GoRouteData {
   static const path = 'sample';
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => SamplePage();
+  Widget build(BuildContext context, GoRouterState state) => const SamplePage();
 }
