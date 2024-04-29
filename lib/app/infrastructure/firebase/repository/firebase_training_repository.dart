@@ -2,6 +2,7 @@ import 'package:brain_training/app/domain/training/entity/training_daily_summary
 import 'package:brain_training/app/domain/training/entity/training_result.dart';
 import 'package:brain_training/app/domain/training/interface/training_repository.dart';
 import 'package:brain_training/app/domain/training/value_object/result_rank.dart';
+import 'package:brain_training/app/domain/training/value_object/training_type.dart';
 import 'package:brain_training/app/infrastructure/firebase/firestore/model/firestore_colored_word_result_model.dart';
 import 'package:brain_training/app/infrastructure/firebase/firestore/model/firestore_training_daily_summary_model.dart';
 import 'package:brain_training/app/infrastructure/firebase/firestore/state/firestore.dart';
@@ -92,14 +93,22 @@ class FirebaseTrainingRepository implements TrainingRepository {
   }
 
   @override
-  Stream<ColoredWordResult?> fetchColoredWordResultByDate({
+  Stream<ColoredWordResult?> fetchTrainingResultByDate({
     required String userId,
     required DateTime date,
+    required TrainingType trainingType,
   }) {
     final dateRange = date.dayRange;
 
-    return ref
-        .read(coloredWordResultCollectionProvider(userId))
+    // 対象のコレクションを選択
+    final collection = switch (trainingType) {
+      TrainingType.coloredWord =>
+        ref.read(coloredWordResultCollectionProvider(userId)),
+      TrainingType.themeShiritori => throw UnimplementedError(),
+      TrainingType.fillInTheBlankCalc => throw UnimplementedError(),
+    };
+
+    return collection
         .where(
           'doneAt',
           isGreaterThanOrEqualTo: Timestamp.fromDate(dateRange.start),

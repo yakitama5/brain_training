@@ -43,9 +43,10 @@ class TrainingUsecase with RunUsecaseMixin {
           final userId =
               await _ref.read(authUserProvider.selectAsync((data) => data!.id));
           final result = await _trainingRepository
-              .fetchColoredWordResultByDate(
+              .fetchTrainingResultByDate(
                 userId: userId,
                 date: doneAt,
+                trainingType: TrainingType.coloredWord,
               )
               .first;
           if (result != null) {
@@ -114,10 +115,10 @@ class TrainingUsecase with RunUsecaseMixin {
     required TrainingType trainingType,
   }) {
     return switch (trainingType) {
-      TrainingType.coloredWord =>
-        _trainingRepository.fetchColoredWordResultByDate(
+      TrainingType.coloredWord => _trainingRepository.fetchTrainingResultByDate(
           userId: userId,
           date: dateTime,
+          trainingType: trainingType,
         ),
       // TODO(yakitama5): ここに追加
       TrainingType.themeShiritori => Stream.value(null),
@@ -130,9 +131,10 @@ class TrainingUsecase with RunUsecaseMixin {
     required DateTime dateTime,
   }) {
     final coloredWord = _trainingRepository
-        .fetchColoredWordResultByDate(
+        .fetchTrainingResultByDate(
           userId: userId,
           date: dateTime,
+          trainingType: TrainingType.coloredWord,
         )
         .map((event) => [event]);
 

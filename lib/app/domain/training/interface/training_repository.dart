@@ -4,6 +4,8 @@ import 'package:brain_training/app/domain/training/value_object/result_rank.dart
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../value_object/training_type.dart';
+
 part 'training_repository.g.dart';
 
 /// DI用 (依存性逆転のためドメイン層に定義)
@@ -26,10 +28,11 @@ abstract class TrainingRepository {
     required DateTimeRange range,
   });
 
-  /// 日毎の実施状況サマリを取得する
-  Stream<ColoredWordResult?> fetchColoredWordResultByDate({
+  /// 脳トレの結果を日付を指定して取得する
+  Stream<ColoredWordResult?> fetchTrainingResultByDate({
     required String userId,
     required DateTime date,
+    required TrainingType trainingType,
   });
 
   /// 色彩識別のトレーニング結果を取得する
