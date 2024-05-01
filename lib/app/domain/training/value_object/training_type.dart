@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../presentation/theme/src/custom_icons_icons.dart';
+
 enum TrainingType {
   coloredWord(
     30000,
@@ -7,7 +9,7 @@ enum TrainingType {
   ),
   themeShiritori(
     300000,
-    Icons.chat,
+    CustomIcons.shiritori,
   ),
   fillInTheBlankCalc(
     60000,

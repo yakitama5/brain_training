@@ -88,7 +88,7 @@ class SettingsPage extends HookConsumerWidget {
             title: Text(i18n.settings.list.help.head),
             tiles: [
               SettingsTile.navigation(
-                leading: const Icon(Icons.how_to_vote),
+                leading: const Icon(CustomIcons.beginner),
                 trailing: trailing,
                 title: Text(i18n.settings.list.help.howToUse),
                 onPressed: _onHowToUse,

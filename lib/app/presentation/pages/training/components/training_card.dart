@@ -84,7 +84,7 @@ class TrainingCard extends StatelessWidget {
             ],
           ),
           const Gap(24),
-          if (_isDetail)
+          if (_isDetail && result == null)
             Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -92,19 +92,18 @@ class TrainingCard extends StatelessWidget {
                 style: ts.bodyMedium,
               ),
             ),
-          // TODO(yakitama5): 実施済のカードの表示を作成すること
           if (result != null)
-            _Score(
-              result: result!,
-              rankCategory: rankCategory,
-            ),
-          switch (cardType) {
-            TrainingCardType.home ||
-            TrainingCardType.trainingDetail =>
-              _TrainingButton(
-                onPressed: () => onTraining(context),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: _Score(
+                result: result!,
+                rankCategory: rankCategory,
               ),
-          },
+            ),
+          if (result == null)
+            _TrainingButton(
+              onPressed: () => onTraining(context),
+            ),
         ],
       ),
     );
