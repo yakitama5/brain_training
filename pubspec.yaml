@@ -92,7 +92,7 @@ flutter:
     - assets/sounds/
     # - assets/json/
     # - assets/images/
-    # - assets/lottie/
+    - assets/lottie/
   fonts:
     - family: CustomIcons
       fonts:
