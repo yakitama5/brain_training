@@ -2,7 +2,9 @@ import 'package:brain_training/app/application/model/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../../../gen/assets.gen.dart';
 import '../../../../application/config/app_config.dart';
 import '../../../../domain/exception/exceptions.dart';
 
@@ -42,6 +44,7 @@ class _ProdErrorView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final cs = Theme.of(context).colorScheme;
 
     /// 利用者向けにわかりやすい表示を行う
     /// エラー情報の収集などはWidgetではなく設定で対応するため不要
@@ -51,20 +54,20 @@ class _ProdErrorView extends HookWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Gap(8),
-          // Lottie.asset(
-          //   Assets.lottie.error,
-          //   height: 120,
-          //   delegates: LottieDelegates(
-          //     values: [
-          //       ValueDelegate.color(
-          //         const ['Shape Layer 1', '**'],
-          //         value: colorScheme.error,
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Lottie.asset(
+            Assets.lottie.sorry,
+            height: 80,
+            delegates: LottieDelegates(
+              values: [
+                ValueDelegate.color(
+                  const ['Shape Layer 1', '**'],
+                  value: cs.error,
+                ),
+              ],
+            ),
+          ),
           Text(
-            error.errorMessage,
+            'インターネットに接続されていません',
             style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           const Gap(40),
