@@ -53,9 +53,6 @@ class NewsPane extends HookConsumerWidget {
             ),
           );
 
-          // TODO(yakitama5): テスト用
-          return const ErrorView('Error', null);
-
           return headlines.when(
             data: (data) {
               final news = data.headlines[index % newsHeadlinesConfig.pageSize];
