@@ -18,7 +18,8 @@ class ErrorView extends HookWidget {
   Widget build(BuildContext context) =>
       // 環境に応じて表示を切り替える
       switch (appConfig.flavor) {
-        Flavor.dev => _DebugErrorView(error, stackTrace),
+        Flavor.dev => _ProdErrorView(error, stackTrace),
+        // Flavor.dev => _DebugErrorView(error, stackTrace),
         Flavor.prod => _ProdErrorView(error, stackTrace),
       };
 }
@@ -41,6 +42,35 @@ class _ProdErrorView extends HookWidget {
   final Object error;
   final StackTrace? stackTrace;
 
+  static const errorLayers = [
+    {
+      'cono 3': [
+        'Group 4',
+        'Group 5',
+        'Group 8',
+      ],
+    }
+  ];
+
+  static const bounceStrokeLayers = [
+    // 'Shape Layer 1',
+    'linea 1',
+    'linea 2',
+    'linea 3',
+    // 'bounce',
+    // 'escalador',
+    // 'NULL CONTROL',
+    // 'o1 Outlines',
+  ];
+
+  static const surfaceContainerLayers = [
+    {
+      'mancha Outlines 2': [
+        '**',
+      ],
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -59,8 +89,60 @@ class _ProdErrorView extends HookWidget {
             height: 80,
             delegates: LottieDelegates(
               values: [
+                // びっくりのせん
+                ...bounceStrokeLayers.map(
+                  (e) => ValueDelegate.strokeColor(
+                    [e, '**'],
+                    value: cs.error,
+                  ),
+                ),
+                ValueDelegate.strokeColor(
+                  ['o1 Outlines', '**'],
+                  value: cs.onSurface,
+                ),
+                // 背景色
                 ValueDelegate.color(
-                  const ['Shape Layer 1', '**'],
+                  const ['mancha Outlines 2', '**'],
+                  value: cs.surfaceVariant,
+                ),
+                // 下の途中までの縁(右側)
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 1', '**'],
+                  value: cs.onError,
+                ),
+                // 下の途中までの縁(左側)
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 2', '**'],
+                  value: cs.onError,
+                ),
+                // 全体のアウトライン
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 3', '**'],
+                  value: cs.onSurface,
+                ),
+                // コーン下側の縁
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 4', '**'],
+                  value: cs.error,
+                ),
+                // コーン右側の線
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 5', '**'],
+                  value: cs.error,
+                ),
+                // 1本目の線
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 7', '**'],
+                  value: cs.onError,
+                ),
+                // 2本目の線
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 6', '**'],
+                  value: cs.onError,
+                ),
+                // コーン本体の色
+                ValueDelegate.color(
+                  const ['cono 3', 'Group 8', '**'],
                   value: cs.error,
                 ),
               ],
