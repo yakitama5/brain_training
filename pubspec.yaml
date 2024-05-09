@@ -37,7 +37,8 @@ dependencies:
   geolocator:
   go_router: ^13.2.1
   google_fonts:
-  google_sign_in:
+  google_sign_in: 
+  google_speech: 
   hooks_riverpod: ^3.0.0-dev.3
   image_picker:
   intl:
@@ -53,17 +54,20 @@ dependencies:
   responsive_framework:
   retrofit:
   riverpod_annotation: ^3.0.0-dev.3
+  rxdart: 
   settings_ui:
   shared_preferences:
   shimmer:
   slang:
   slang_flutter:
+  sound_stream: 
   speech_to_text:
   stream_transform:
   url_launcher:
   uuid:
   version:
-  visibility_detector:
+  visibility_detector: 
+  # vosk_flutter: 
   weather:
 
 dev_dependencies:
@@ -93,6 +97,8 @@ flutter:
     # - assets/json/
     # - assets/images/
     - assets/lottie/
+    # - assets/models/
+
   fonts:
     - family: CustomIcons
       fonts:
