@@ -17,6 +17,17 @@ class $AssetsLottieGen {
   List<String> get values => [sorry];
 }
 
+class $AssetsSensitiveGen {
+  const $AssetsSensitiveGen();
+
+  /// File path: assets/sensitive/google-speech-to-text-key.json
+  String get googleSpeechToTextKey =>
+      'assets/sensitive/google-speech-to-text-key.json';
+
+  /// List of all assets
+  List<String> get values => [googleSpeechToTextKey];
+}
+
 class $AssetsSoundsGen {
   const $AssetsSoundsGen();
 
@@ -44,5 +55,6 @@ class Assets {
   Assets._();
 
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
+  static const $AssetsSensitiveGen sensitive = $AssetsSensitiveGen();
   static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }
