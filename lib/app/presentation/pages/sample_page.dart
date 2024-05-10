@@ -1,12 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_speech/google_speech.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
-
-import '../../../gen/assets.gen.dart';
 
 class SamplePage extends StatelessWidget {
   const SamplePage({super.key});
@@ -37,27 +34,22 @@ class _AudioRecognizeState extends State<AudioRecognize> {
   bool recognizing = false;
   bool recognizeFinished = false;
   String text = '';
-  StreamSubscription<List<int>>? _audioStreamSubscription;
+  // StreamSubscription<List<int>>? _audioStreamSubscription;
   BehaviorSubject<List<int>>? _audioStream;
 
   @override
   void initState() {
     super.initState();
-
-    _recorder.initialize();
+    initilize();
   }
 
-  Future<void> streamingRecognize() async {
+  Future<void> initilize() async {
+    await _recorder.initialize();
     _audioStream = BehaviorSubject<List<int>>();
     _audioStreamSubscription = _recorder.audioStream.listen((event) {
       _audioStream!.add(event);
     });
 
-    await _recorder.start();
-
-    setState(() {
-      recognizing = true;
-    });
     final serviceAccount = ServiceAccount.fromString(
       await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
     );
@@ -97,13 +89,26 @@ class _AudioRecognizeState extends State<AudioRecognize> {
     );
   }
 
+  Future<void> streamingRecognize() async {
+    // TODO(yakitama5): テスト用、後からスタートしても問題なし？
+    await _recorder.start();
+    setState(() {
+      recognizing = true;
+    });
+  }
+
   Future<void> stopRecording() async {
     await _recorder.stop();
-    await _audioStreamSubscription?.cancel();
-    await _audioStream?.close();
     setState(() {
       recognizing = false;
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // _audioStreamSubscription?.cancel();
+    _audioStream?.close();
   }
 
   RecognitionConfig _getConfig() => RecognitionConfig(
