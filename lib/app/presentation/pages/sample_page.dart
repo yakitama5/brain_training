@@ -6,8 +6,6 @@ import 'package:google_speech/google_speech.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
 
-import '../../../gen/assets.gen.dart';
-
 class SamplePage extends StatelessWidget {
   const SamplePage({super.key});
 
@@ -43,18 +41,23 @@ class _AudioRecognizeState extends State<AudioRecognize> {
   @override
   void initState() {
     super.initState();
-    initilize();
+
+    _recorder.initialize();
   }
 
-  Future<void> initilize() async {
-    await _recorder.initialize();
+  Future<void> streamingRecognize() async {
     _audioStream = BehaviorSubject<List<int>>();
     _audioStreamSubscription = _recorder.audioStream.listen((event) {
       _audioStream!.add(event);
     });
 
+    await _recorder.start();
+
+    setState(() {
+      recognizing = true;
+    });
     final serviceAccount = ServiceAccount.fromString(
-      await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
+      await rootBundle.loadString('assets/test_service_account.json'),
     );
     final speechToText = SpeechToText.viaServiceAccount(serviceAccount);
     final config = _getConfig();
@@ -92,26 +95,13 @@ class _AudioRecognizeState extends State<AudioRecognize> {
     );
   }
 
-  Future<void> streamingRecognize() async {
-    // TODO(yakitama5): テスト用、後からスタートしても問題なし？
-    await _recorder.start();
-    setState(() {
-      recognizing = true;
-    });
-  }
-
   Future<void> stopRecording() async {
     await _recorder.stop();
+    await _audioStreamSubscription?.cancel();
+    await _audioStream?.close();
     setState(() {
       recognizing = false;
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _audioStreamSubscription?.cancel();
-    _audioStream?.close();
   }
 
   RecognitionConfig _getConfig() => RecognitionConfig(
@@ -149,7 +139,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
 }
 
 class _RecognizeContent extends StatelessWidget {
-  const _RecognizeContent({this.text});
+  const _RecognizeContent({super.key, this.text});
   final String? text;
 
   @override
@@ -173,105 +163,3 @@ class _RecognizeContent extends StatelessWidget {
     );
   }
 }
-
-// class SamplePage extends StatefulWidget {
-//   const SamplePage({super.key});
-
-//   @override
-//   SamplePageState createState() => SamplePageState();
-// }
-
-// class SamplePageState extends State<SamplePage> {
-//   SpeechToText? speech;
-//   bool _listenLoop = false;
-//   String lastHeard = '';
-//   StringBuffer totalHeard = StringBuffer();
-
-//   void _onStatus(String status) {
-//     if ('done' == status) {
-//       logger.d('onStatus(): $status ');
-//       startListening();
-//     }
-//   }
-
-//   Future<void> startListening({bool forced = false}) async {
-//     if (forced) {
-//       setState(() {
-//         _listenLoop = !_listenLoop;
-//       });
-//     }
-//     if (!_listenLoop) {
-//       return;
-//     }
-//     logger.d('startListening()');
-//     speech = SpeechToText();
-
-//     final available = await speech!.initialize(
-//       onStatus: _onStatus,
-//       //onError: (val) => logger.d('onError: $val'),
-//       onError: onError,
-//       debugLogging: true,
-//     );
-//     if (available) {
-//       logger.d('startListening() -> _available = true');
-//       await listen();
-//     } else {
-//       logger.d('startListening() -> _available = false');
-//     }
-//   }
-
-//   Future<void> listen() async {
-//     logger.d('speech!.listen()');
-//     await speech!.listen(
-//       onResult: onResult,
-//     ); // Doesn't do anything
-//   }
-
-//   Future<void> onError(SpeechRecognitionError val) async {
-//     logger.d('onError(): ${val.errorMsg}');
-//   }
-
-//   Future<void> onResult(SpeechRecognitionResult val) async {
-//     logger
-//       ..d('onResult()')
-//       ..d('val.alternates ${val.alternates}');
-//     if (val.finalResult) {
-//       setState(() {
-//         lastHeard = val.recognizedWords;
-//         totalHeard
-//           ..write(lastHeard)
-//           ..write(' ');
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('サンプル'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Icon(_listenLoop ? Icons.mic : Icons.mic_external_off),
-//             const Text(
-//               'You said:',
-//             ),
-//             Text(lastHeard),
-//             const Text(
-//               'Heard so far:',
-//             ),
-//             Text(totalHeard.toString()),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () => startListening(forced: true),
-//         tooltip: 'Start listening',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }
