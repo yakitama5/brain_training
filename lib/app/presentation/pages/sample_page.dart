@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_speech/google_speech.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
+
+import '../../../gen/assets.gen.dart';
 
 class SamplePage extends StatelessWidget {
   const SamplePage({super.key});
@@ -34,7 +37,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
   bool recognizing = false;
   bool recognizeFinished = false;
   String text = '';
-  // StreamSubscription<List<int>>? _audioStreamSubscription;
+  StreamSubscription<List<int>>? _audioStreamSubscription;
   BehaviorSubject<List<int>>? _audioStream;
 
   @override
@@ -107,7 +110,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
   @override
   void dispose() {
     super.dispose();
-    // _audioStreamSubscription?.cancel();
+    _audioStreamSubscription?.cancel();
     _audioStream?.close();
   }
 
