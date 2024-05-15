@@ -56,7 +56,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
     setState(() {
       recognizing = true;
     });
-    // TODO(yakitama5): APIキーをフロントで管理しない方法を調査
+    // TODO(yakitama5): APIキーをフロントで管理しない方法を調査 (APIキーの制限が一番有効そう)
     final serviceAccount = ServiceAccount.fromString(
       await rootBundle.loadString('assets/test_service_account.json'),
     );
