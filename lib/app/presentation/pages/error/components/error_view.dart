@@ -109,7 +109,7 @@ class _CornLottie extends StatelessWidget {
           // 背景色
           ValueDelegate.color(
             const ['mancha Outlines 2', '**'],
-            value: cs.surfaceVariant,
+            value: cs.surfaceContainerHighest,
           ),
           // // 下の途中までの縁(右側)
           // ValueDelegate.color(

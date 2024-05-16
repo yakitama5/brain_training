@@ -140,7 +140,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
 }
 
 class _RecognizeContent extends StatelessWidget {
-  const _RecognizeContent({super.key, this.text});
+  const _RecognizeContent({this.text});
   final String? text;
 
   @override

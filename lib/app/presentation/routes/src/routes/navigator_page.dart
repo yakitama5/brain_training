@@ -1,4 +1,3 @@
-import 'package:brain_training/app/presentation/theme/src/color_scheme_extension.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';

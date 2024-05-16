@@ -41,7 +41,7 @@ class AccountPage extends HookConsumerWidget with PresentationMixin {
                 SettingsTile.switchTile(
                   leading: Icon(
                     MdiIcons.apple,
-                    color: colorScheme.onBackground,
+                    color: colorScheme.onSurface,
                   ),
                   title: const Text('Apple'),
                   initialValue: data?.linkedApple,

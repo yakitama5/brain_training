@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gauge_indicator/gauge_indicator.dart';
 
-import '../../theme/importer.dart';
-
 class GaugeChart extends HookWidget {
   const GaugeChart({
     super.key,
