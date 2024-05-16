@@ -25,6 +25,7 @@ class SettingsUsecase with RunUsecaseMixin {
 
   SettingsService get _service => ref.read(settingsServiceProvider);
   bool get _isDynamicColorSupported => ref.read(dynamicColorSupportedProvider);
+  void _invalidateColorStyleProvider() => ref.invalidate(colorStyleProvider);
 
   RankCategory fetchRankCategory() =>
       _service.fetchRankCategory() ?? RankCategory.normal;
@@ -58,6 +59,6 @@ class SettingsUsecase with RunUsecaseMixin {
 
   Future<void> updateColorStyle({required ColorStyle? colorStyle}) async {
     await _service.updateColorStyle(colorStyle: colorStyle);
-    return ref.invalidate(colorStyleProvider);
+    return _invalidateColorStyleProvider();
   }
 }

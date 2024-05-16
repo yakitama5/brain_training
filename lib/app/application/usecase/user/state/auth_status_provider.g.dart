@@ -6,7 +6,7 @@ part of 'auth_status_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authStatusHash() => r'a5c56b35b329c8f2018c9768076c7548043cfe7a';
+String _$authStatusHash() => r'b82f2172c23772287efe607ce6482943a05d0632';
 
 /// 認証状態
 ///

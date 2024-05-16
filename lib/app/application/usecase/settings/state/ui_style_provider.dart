@@ -7,4 +7,4 @@ part 'ui_style_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 UIStyle uiStyle(UiStyleRef ref) =>
-    ref.watch(settingsUsecaseProvider).fetchUIStyle();
+    ref.read(settingsUsecaseProvider).fetchUIStyle();

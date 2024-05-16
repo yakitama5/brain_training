@@ -7,5 +7,5 @@ part 'weather_provider.g.dart';
 
 @riverpod
 Future<Weather> weather(WeatherRef ref) {
-  return ref.watch(weatherUsecaseProvider).fetchCurrentLocationNowWeather();
+  return ref.read(weatherUsecaseProvider).fetchCurrentLocationNowWeather();
 }

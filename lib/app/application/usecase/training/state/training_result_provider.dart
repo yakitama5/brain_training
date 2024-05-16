@@ -19,7 +19,7 @@ Stream<TrainingResult?> trainingResult(
     return;
   }
 
-  yield* ref.watch(trainingUsecaseProvider).fetchResultByDate(
+  yield* ref.read(trainingUsecaseProvider).fetchResultByDate(
         userId: userId,
         dateTime: dateTime,
         trainingType: trainingType,

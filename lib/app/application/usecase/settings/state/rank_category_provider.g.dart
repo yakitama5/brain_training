@@ -6,7 +6,7 @@ part of 'rank_category_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$rankCategoryHash() => r'3dc6d1a7a077d37b8a46967939e5f3b1c5521e02';
+String _$rankCategoryHash() => r'ba91eda0258d828bd643a2c12234cf392ec33da0';
 
 /// See also [rankCategory].
 @ProviderFor(rankCategory)
