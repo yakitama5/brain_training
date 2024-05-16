@@ -14,6 +14,6 @@ Future<NewsHeadlines> newsHeadlines(
   required int page,
 }) {
   return ref
-      .read(newsUsecaseProvider)
+      .watch(newsUsecaseProvider)
       .fetchHealthNews(country: country, page: page, dateTime: dateTime);
 }

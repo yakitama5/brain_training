@@ -10,10 +10,10 @@ _$FirestoreColoredWordResultModelImpl
     _$$FirestoreColoredWordResultModelImplFromJson(Map<String, dynamic> json) =>
         _$FirestoreColoredWordResultModelImpl(
           id: json['id'] as String,
-          score: json['score'] as int,
+          score: (json['score'] as num).toInt(),
           rank: $enumDecode(_$ResultRankEnumMap, json['rank']),
-          correct: json['correct'] as int,
-          questions: json['questions'] as int,
+          correct: (json['correct'] as num).toInt(),
+          questions: (json['questions'] as num).toInt(),
           correctRate: (json['correctRate'] as num).toDouble(),
           doneAt: dateFromTimestampValue(json['doneAt']),
           createdAt: dateFromTimestampValue(json['createdAt']),

@@ -28,7 +28,7 @@ class _NewsHeadlinesApiClient implements NewsHeadlinesApiClient {
     int? page,
     int? pageSize,
   }) async {
-    const _extra = <String, dynamic>{};
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'apiKey': apiKey,
       r'country': country,
@@ -38,7 +38,7 @@ class _NewsHeadlinesApiClient implements NewsHeadlinesApiClient {
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<NewsHeadlineResponse>(Options(
       method: 'GET',

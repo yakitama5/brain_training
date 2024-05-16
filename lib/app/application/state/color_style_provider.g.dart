@@ -6,7 +6,7 @@ part of 'color_style_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$colorStyleHash() => r'914e534f0a37fd108980b3b73d83a2ba9894e990';
+String _$colorStyleHash() => r'ed6f9582b25cb1be7a10069f8d0522dd990a9c3a';
 
 /// See also [colorStyle].
 @ProviderFor(colorStyle)

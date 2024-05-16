@@ -6,4 +6,4 @@ part 'theme_mode_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 ThemeMode themeMode(ThemeModeRef ref) =>
-    ref.read(settingsUsecaseProvider).fetchThemeMode();
+    ref.watch(settingsUsecaseProvider).fetchThemeMode();

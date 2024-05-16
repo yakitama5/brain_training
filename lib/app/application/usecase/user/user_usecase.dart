@@ -12,7 +12,7 @@ import 'state/auth_user_provider.dart';
 
 part 'user_usecase.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 UserUsecase userUsecase(UserUsecaseRef ref) => UserUsecase(ref);
 
 /// ユーザーに関するユースケース
@@ -21,13 +21,16 @@ class UserUsecase with RunUsecaseMixin {
 
   final Ref ref;
 
+  UserRepository get _userRepository => ref.read(userRepositoryProvider);
+  Future<User?> get _authUser => ref.read(authUserProvider.future);
+  Future<String?> get _authUserId => _authUser.then((data) => data?.id);
+
   /// 認証状態の取得
-  Stream<AuthStatus?> fetchAuthStatus() =>
-      ref.read(userRepositoryProvider).fetchAuthStatus();
+  Stream<AuthStatus?> fetchAuthStatus() => _userRepository.fetchAuthStatus();
 
   /// ユーザーの取得
   Stream<User?> fetch({required String userId}) =>
-      ref.read(userRepositoryProvider).fetch(userId: userId);
+      _userRepository.fetch(userId: userId);
 
   /// ユーザーの登録
   Future<void> signUp() async {
@@ -35,7 +38,7 @@ class UserUsecase with RunUsecaseMixin {
       ref,
       action: () async {
         // 登録
-        await ref.read(userRepositoryProvider).signUp();
+        await _userRepository.signUp();
       },
     );
   }
@@ -46,7 +49,7 @@ class UserUsecase with RunUsecaseMixin {
       ref,
       action: () async {
         // サインイン
-        await ref.read(userRepositoryProvider).signInWithApple();
+        await _userRepository.signInWithApple();
       },
     );
   }
@@ -57,7 +60,7 @@ class UserUsecase with RunUsecaseMixin {
       ref,
       action: () async {
         // サインイン
-        await ref.read(userRepositoryProvider).signInWithGoogle();
+        await _userRepository.signInWithGoogle();
       },
     );
   }
@@ -68,7 +71,7 @@ class UserUsecase with RunUsecaseMixin {
       ref,
       action: () async {
         // サインアウト
-        await ref.read(userRepositoryProvider).signOut();
+        await _userRepository.signOut();
       },
     );
   }
@@ -79,12 +82,11 @@ class UserUsecase with RunUsecaseMixin {
       ref,
       action: () async {
         // ユーザー情報 および アカウントの削除
-        final userId =
-            await ref.read(authUserProvider.selectAsync((data) => data?.id));
+        final userId = await _authUserId;
         if (userId == null) {
           throw UpdateTargetNotFoundException();
         }
-        await ref.read(userRepositoryProvider).delete(userId: userId);
+        await _userRepository.delete(userId: userId);
       },
     );
   }
@@ -92,12 +94,12 @@ class UserUsecase with RunUsecaseMixin {
   /// Googleアカウント連携を解除する
   Future<void> unlinkWithGoogle() => execute(
         ref,
-        action: () => ref.read(userRepositoryProvider).unlinkWithGoogle(),
+        action: () => _userRepository.unlinkWithGoogle(),
       );
 
   /// Appleアカウント連携を解除する
   Future<void> unlinkWithApple() => execute(
         ref,
-        action: () => ref.read(userRepositoryProvider).unlinkWithApple(),
+        action: () => _userRepository.unlinkWithApple(),
       );
 }

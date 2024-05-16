@@ -10,13 +10,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../domain/training/value_object/result_rank.dart';
+import '../../../domain/user/entity/user.dart';
 import '../../model/training/training_weekly_summary.dart';
 import '../run_usecase_mixin.dart';
 import '../user/state/auth_user_provider.dart';
 
 part 'training_usecase.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 TrainingUsecase trainingUsecase(TrainingUsecaseRef ref) => TrainingUsecase(ref);
 
 class TrainingUsecase with RunUsecaseMixin {
@@ -27,6 +28,8 @@ class TrainingUsecase with RunUsecaseMixin {
   /// 別Providerに依存するものはここに定義して利用する
   TrainingRepository get _trainingRepository =>
       _ref.read(trainingRepositoryProvider);
+  Future<User?> get _authUser => _ref.read(authUserProvider.future);
+  Future<String?> get _authUserId => _authUser.then((data) => data?.id);
 
   Future<void> finishColoredWordTraining({
     required int score,
@@ -40,8 +43,7 @@ class TrainingUsecase with RunUsecaseMixin {
         _ref,
         action: () async {
           // 実施済であれば登録は行わない
-          final userId =
-              await _ref.read(authUserProvider.selectAsync((data) => data!.id));
+          final userId = (await _authUserId)!;
           final result = await _trainingRepository
               .fetchTrainingResultByDate(
                 userId: userId,

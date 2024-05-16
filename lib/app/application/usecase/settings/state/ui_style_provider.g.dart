@@ -6,7 +6,7 @@ part of 'ui_style_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uiStyleHash() => r'5853cc27858e314138bed2870a336157bc42fd7a';
+String _$uiStyleHash() => r'416260f81f19af28454dca6f40e7b056d00fbb2e';
 
 /// See also [uiStyle].
 @ProviderFor(uiStyle)

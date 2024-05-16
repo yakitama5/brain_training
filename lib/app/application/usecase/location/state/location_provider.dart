@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'location_provider.g.dart';
 
+// HACK(yakitama5): 要リファクタリング
 @riverpod
 Future<Position> location(LocationRef ref) async {
   final serviceEnabled = await Geolocator.isLocationServiceEnabled();

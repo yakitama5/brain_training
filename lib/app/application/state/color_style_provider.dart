@@ -6,4 +6,4 @@ part 'color_style_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 ColorStyle colorStyle(ColorStyleRef ref) =>
-    ref.read(settingsUsecaseProvider).fetchColorStyle();
+    ref.watch(settingsUsecaseProvider).fetchColorStyle();

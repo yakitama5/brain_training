@@ -15,7 +15,7 @@ import '../../../domain/settings/value_object/ui_style.dart';
 
 part 'settings_usecase.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 SettingsUsecase settingsUsecase(SettingsUsecaseRef ref) => SettingsUsecase(ref);
 
 class SettingsUsecase with RunUsecaseMixin {
@@ -24,6 +24,7 @@ class SettingsUsecase with RunUsecaseMixin {
   final Ref ref;
 
   SettingsService get _service => ref.read(settingsServiceProvider);
+  bool get _isDynamicColorSupported => ref.read(dynamicColorSupportedProvider);
 
   RankCategory fetchRankCategory() =>
       _service.fetchRankCategory() ?? RankCategory.normal;
@@ -48,8 +49,7 @@ class SettingsUsecase with RunUsecaseMixin {
 
   ColorStyle fetchColorStyle() {
     // プラットフォームに応じて設定する
-    final isDynamicColorSupported = ref.read(dynamicColorSupportedProvider);
-    final defaultColorStyle = isDynamicColorSupported
+    final defaultColorStyle = _isDynamicColorSupported
         ? ColorStyle.dynamicColor
         : ColorStyle.systemColor;
 

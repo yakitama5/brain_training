@@ -11,10 +11,11 @@ _$FirestoreTrainingDailySummaryModelImpl
             Map<String, dynamic> json) =>
         _$FirestoreTrainingDailySummaryModelImpl(
           id: json['id'] as String,
-          coloredWordScore: json['coloredWordScore'] as int?,
-          themeShiritoriScore: json['themeShiritoriScore'] as int?,
-          fillInTheBlankCalcScore: json['fillInTheBlankCalcScore'] as int?,
-          doneCount: json['doneCount'] as int? ?? 0,
+          coloredWordScore: (json['coloredWordScore'] as num?)?.toInt(),
+          themeShiritoriScore: (json['themeShiritoriScore'] as num?)?.toInt(),
+          fillInTheBlankCalcScore:
+              (json['fillInTheBlankCalcScore'] as num?)?.toInt(),
+          doneCount: (json['doneCount'] as num?)?.toInt() ?? 0,
           doneAt: dateFromTimestampValue(json['doneAt']),
           createdAt: dateFromTimestampValue(json['createdAt']),
           updatedAt: dateFromTimestampValue(json['updatedAt']),

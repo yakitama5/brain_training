@@ -6,7 +6,7 @@ part of 'news_haedlines_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsHeadlinesHash() => r'56f512afe2b426836e1971f393d948d9813d9bc3';
+String _$newsHeadlinesHash() => r'61a923972bd4a2a67984a07416b9a1cccc8460e0';
 
 /// Copied from Dart SDK
 class _SystemHash {

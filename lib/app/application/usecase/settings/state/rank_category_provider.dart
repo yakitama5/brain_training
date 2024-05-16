@@ -7,4 +7,4 @@ part 'rank_category_provider.g.dart';
 
 @riverpod
 RankCategory rankCategory(RankCategoryRef ref) =>
-    ref.read(settingsUsecaseProvider).fetchRankCategory();
+    ref.watch(settingsUsecaseProvider).fetchRankCategory();

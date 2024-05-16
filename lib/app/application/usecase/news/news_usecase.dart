@@ -9,7 +9,7 @@ import '../../../domain/news/model/entity/news_headlines.dart';
 
 part 'news_usecase.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 NewsUsecase newsUsecase(NewsUsecaseRef ref) => NewsUsecase(ref);
 
 class NewsUsecase with RunUsecaseMixin {
