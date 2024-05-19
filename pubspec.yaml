@@ -60,7 +60,7 @@ dependencies:
   shimmer:
   slang:
   slang_flutter:
-  sound_stream: 
+  sound_stream: ^0.4.1
   speech_to_text:
   stream_transform:
   url_launcher:

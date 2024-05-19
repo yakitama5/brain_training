@@ -6,19 +6,14 @@ import 'package:google_speech/google_speech.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
 
+import '../../../gen/assets.gen.dart';
+
 class SamplePage extends StatelessWidget {
   const SamplePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mic Stream Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const AudioRecognize(),
-    );
+    return const AudioRecognize();
   }
 }
 
@@ -58,7 +53,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
     });
     // TODO(yakitama5): APIキーをフロントで管理しない方法を調査 (APIキーの制限が一番有効そう)
     final serviceAccount = ServiceAccount.fromString(
-      await rootBundle.loadString('assets/test_service_account.json'),
+      await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
     );
     final speechToText = SpeechToText.viaServiceAccount(serviceAccount);
     final config = _getConfig();
@@ -107,6 +102,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
 
   RecognitionConfig _getConfig() => RecognitionConfig(
         encoding: AudioEncoding.LINEAR16,
+        model: RecognitionModel.basic,
         enableAutomaticPunctuation: true,
         sampleRateHertz: 16000,
         languageCode: 'ja-JP',
