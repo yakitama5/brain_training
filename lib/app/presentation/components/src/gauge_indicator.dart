@@ -10,6 +10,8 @@ class GaugeChart extends HookWidget {
     this.thickness = 20,
     this.color,
     this.emptyColor,
+    this.minValue = 0,
+    this.maxValue = 100,
   });
 
   final double value;
@@ -17,6 +19,8 @@ class GaugeChart extends HookWidget {
   final Color? color;
   final Color? emptyColor;
   final double thickness;
+  final double minValue;
+  final double maxValue;
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +37,18 @@ class GaugeChart extends HookWidget {
         radius: radius,
         value: value,
         axis: GaugeAxis(
-          max: 100,
+          max: maxValue,
           degrees: 360,
           pointer: const GaugePointer.circle(radius: 0, color: Colors.white),
           style: GaugeAxisStyle(thickness: thickness),
           progressBar: GaugeProgressBar.rounded(
-            // 値が0以下の場合表示が崩れるので、透明色を設定して表示を調整する
-            color: value <= 0 ? Colors.transparent : color ?? cs.primary,
+            // 値が最小値の場合表示が崩れるので、透明色を設定して表示を調整する
+            color: value <= minValue ? Colors.transparent : color ?? cs.primary,
           ),
           segments: [
             GaugeSegment(
-              from: 0,
-              to: 100,
+              from: minValue,
+              to: maxValue,
               color: emptyColor ?? cs.surfaceContainer,
             ),
           ],
