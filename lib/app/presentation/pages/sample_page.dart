@@ -52,6 +52,7 @@ class _AudioRecognizeState extends State<AudioRecognize> {
       recognizing = true;
     });
     // TODO(yakitama5): APIキーをフロントで管理しない方法を調査 (APIキーの制限が一番有効そう)
+    // BUG: 反応しない件を調査 (APIキーを再発行して調査)
     final serviceAccount = ServiceAccount.fromString(
       await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
     );
