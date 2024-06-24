@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'app_config.dart';
+part of 'app_build_config.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,30 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AppConfig {
+mixin _$AppBuildConfig {
   Flavor get flavor => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
   String get packageName => throw _privateConstructorUsedError;
   String get bundleId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AppConfigCopyWith<AppConfig> get copyWith =>
+  $AppBuildConfigCopyWith<AppBuildConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppConfigCopyWith<$Res> {
-  factory $AppConfigCopyWith(AppConfig value, $Res Function(AppConfig) then) =
-      _$AppConfigCopyWithImpl<$Res, AppConfig>;
+abstract class $AppBuildConfigCopyWith<$Res> {
+  factory $AppBuildConfigCopyWith(
+          AppBuildConfig value, $Res Function(AppBuildConfig) then) =
+      _$AppBuildConfigCopyWithImpl<$Res, AppBuildConfig>;
   @useResult
   $Res call(
       {Flavor flavor, String appName, String packageName, String bundleId});
 }
 
 /// @nodoc
-class _$AppConfigCopyWithImpl<$Res, $Val extends AppConfig>
-    implements $AppConfigCopyWith<$Res> {
-  _$AppConfigCopyWithImpl(this._value, this._then);
+class _$AppBuildConfigCopyWithImpl<$Res, $Val extends AppBuildConfig>
+    implements $AppBuildConfigCopyWith<$Res> {
+  _$AppBuildConfigCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,11 +76,11 @@ class _$AppConfigCopyWithImpl<$Res, $Val extends AppConfig>
 }
 
 /// @nodoc
-abstract class _$$AppConfigImplCopyWith<$Res>
-    implements $AppConfigCopyWith<$Res> {
-  factory _$$AppConfigImplCopyWith(
-          _$AppConfigImpl value, $Res Function(_$AppConfigImpl) then) =
-      __$$AppConfigImplCopyWithImpl<$Res>;
+abstract class _$$AppBuildConfigImplCopyWith<$Res>
+    implements $AppBuildConfigCopyWith<$Res> {
+  factory _$$AppBuildConfigImplCopyWith(_$AppBuildConfigImpl value,
+          $Res Function(_$AppBuildConfigImpl) then) =
+      __$$AppBuildConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -87,11 +88,11 @@ abstract class _$$AppConfigImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AppConfigImplCopyWithImpl<$Res>
-    extends _$AppConfigCopyWithImpl<$Res, _$AppConfigImpl>
-    implements _$$AppConfigImplCopyWith<$Res> {
-  __$$AppConfigImplCopyWithImpl(
-      _$AppConfigImpl _value, $Res Function(_$AppConfigImpl) _then)
+class __$$AppBuildConfigImplCopyWithImpl<$Res>
+    extends _$AppBuildConfigCopyWithImpl<$Res, _$AppBuildConfigImpl>
+    implements _$$AppBuildConfigImplCopyWith<$Res> {
+  __$$AppBuildConfigImplCopyWithImpl(
+      _$AppBuildConfigImpl _value, $Res Function(_$AppBuildConfigImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +103,7 @@ class __$$AppConfigImplCopyWithImpl<$Res>
     Object? packageName = null,
     Object? bundleId = null,
   }) {
-    return _then(_$AppConfigImpl(
+    return _then(_$AppBuildConfigImpl(
       flavor: null == flavor
           ? _value.flavor
           : flavor // ignore: cast_nullable_to_non_nullable
@@ -125,8 +126,8 @@ class __$$AppConfigImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AppConfigImpl implements _AppConfig {
-  const _$AppConfigImpl(
+class _$AppBuildConfigImpl implements _AppBuildConfig {
+  const _$AppBuildConfigImpl(
       {required this.flavor,
       required this.appName,
       required this.packageName,
@@ -143,14 +144,14 @@ class _$AppConfigImpl implements _AppConfig {
 
   @override
   String toString() {
-    return 'AppConfig(flavor: $flavor, appName: $appName, packageName: $packageName, bundleId: $bundleId)';
+    return 'AppBuildConfig(flavor: $flavor, appName: $appName, packageName: $packageName, bundleId: $bundleId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppConfigImpl &&
+            other is _$AppBuildConfigImpl &&
             (identical(other.flavor, flavor) || other.flavor == flavor) &&
             (identical(other.appName, appName) || other.appName == appName) &&
             (identical(other.packageName, packageName) ||
@@ -166,16 +167,17 @@ class _$AppConfigImpl implements _AppConfig {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppConfigImplCopyWith<_$AppConfigImpl> get copyWith =>
-      __$$AppConfigImplCopyWithImpl<_$AppConfigImpl>(this, _$identity);
+  _$$AppBuildConfigImplCopyWith<_$AppBuildConfigImpl> get copyWith =>
+      __$$AppBuildConfigImplCopyWithImpl<_$AppBuildConfigImpl>(
+          this, _$identity);
 }
 
-abstract class _AppConfig implements AppConfig {
-  const factory _AppConfig(
+abstract class _AppBuildConfig implements AppBuildConfig {
+  const factory _AppBuildConfig(
       {required final Flavor flavor,
       required final String appName,
       required final String packageName,
-      required final String bundleId}) = _$AppConfigImpl;
+      required final String bundleId}) = _$AppBuildConfigImpl;
 
   @override
   Flavor get flavor;
@@ -187,6 +189,6 @@ abstract class _AppConfig implements AppConfig {
   String get bundleId;
   @override
   @JsonKey(ignore: true)
-  _$$AppConfigImplCopyWith<_$AppConfigImpl> get copyWith =>
+  _$$AppBuildConfigImplCopyWith<_$AppBuildConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

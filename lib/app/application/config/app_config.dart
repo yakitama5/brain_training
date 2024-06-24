@@ -1,5 +1,5 @@
 import '../../../env/dart_define_key.dart';
-import '../model/app_config.dart';
+import '../model/app_build_config.dart';
 import '../model/flavor.dart';
 
 /// dart-defineから取得した設定値
@@ -7,7 +7,7 @@ const _flavorString = String.fromEnvironment(dartDefineKeyFlavor);
 const _isProd = _flavorString == 'prod';
 
 /// アプリ共通の設定
-const appConfig = AppConfig(
+const appConfig = AppBuildConfig(
   flavor: _isProd ? Flavor.prod : Flavor.dev,
   appName: String.fromEnvironment(dartDefineKeyAppName),
   packageName: String.fromEnvironment(dartDefineKeyAndroidPackageName),
