@@ -1,6 +1,8 @@
 import 'package:brain_training/app/application/model/app_build_config.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'app_build_config_provider.g.dart';
+
 /// DI前提利用
 @riverpod
 AppBuildConfig appBuildConfig(AppBuildConfigRef ref) =>
