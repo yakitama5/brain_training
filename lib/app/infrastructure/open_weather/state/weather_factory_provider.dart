@@ -5,8 +5,8 @@ import '../config/open_weather_config.dart';
 
 part 'weather_factory_provider.g.dart';
 
-@riverpod
+@Riverpod(dependencies: [openWeatherApiKey])
 WeatherFactory weatherFactory(
   WeatherFactoryRef ref,
 ) =>
-    WeatherFactory(openWeatherApiKey);
+    WeatherFactory(ref.watch(openWeatherApiKeyProvider));

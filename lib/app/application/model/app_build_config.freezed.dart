@@ -19,7 +19,10 @@ mixin _$AppBuildConfig {
   Flavor get flavor => throw _privateConstructorUsedError;
   String get appName => throw _privateConstructorUsedError;
   String get packageName => throw _privateConstructorUsedError;
-  String get bundleId => throw _privateConstructorUsedError;
+  String get version => throw _privateConstructorUsedError;
+  String get buildNumber => throw _privateConstructorUsedError;
+  String get buildSignature => throw _privateConstructorUsedError;
+  String? get installerStore => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppBuildConfigCopyWith<AppBuildConfig> get copyWith =>
@@ -33,7 +36,13 @@ abstract class $AppBuildConfigCopyWith<$Res> {
       _$AppBuildConfigCopyWithImpl<$Res, AppBuildConfig>;
   @useResult
   $Res call(
-      {Flavor flavor, String appName, String packageName, String bundleId});
+      {Flavor flavor,
+      String appName,
+      String packageName,
+      String version,
+      String buildNumber,
+      String buildSignature,
+      String? installerStore});
 }
 
 /// @nodoc
@@ -52,7 +61,10 @@ class _$AppBuildConfigCopyWithImpl<$Res, $Val extends AppBuildConfig>
     Object? flavor = null,
     Object? appName = null,
     Object? packageName = null,
-    Object? bundleId = null,
+    Object? version = null,
+    Object? buildNumber = null,
+    Object? buildSignature = null,
+    Object? installerStore = freezed,
   }) {
     return _then(_value.copyWith(
       flavor: null == flavor
@@ -67,10 +79,22 @@ class _$AppBuildConfigCopyWithImpl<$Res, $Val extends AppBuildConfig>
           ? _value.packageName
           : packageName // ignore: cast_nullable_to_non_nullable
               as String,
-      bundleId: null == bundleId
-          ? _value.bundleId
-          : bundleId // ignore: cast_nullable_to_non_nullable
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
+      buildNumber: null == buildNumber
+          ? _value.buildNumber
+          : buildNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      buildSignature: null == buildSignature
+          ? _value.buildSignature
+          : buildSignature // ignore: cast_nullable_to_non_nullable
+              as String,
+      installerStore: freezed == installerStore
+          ? _value.installerStore
+          : installerStore // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -84,7 +108,13 @@ abstract class _$$AppBuildConfigImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Flavor flavor, String appName, String packageName, String bundleId});
+      {Flavor flavor,
+      String appName,
+      String packageName,
+      String version,
+      String buildNumber,
+      String buildSignature,
+      String? installerStore});
 }
 
 /// @nodoc
@@ -101,7 +131,10 @@ class __$$AppBuildConfigImplCopyWithImpl<$Res>
     Object? flavor = null,
     Object? appName = null,
     Object? packageName = null,
-    Object? bundleId = null,
+    Object? version = null,
+    Object? buildNumber = null,
+    Object? buildSignature = null,
+    Object? installerStore = freezed,
   }) {
     return _then(_$AppBuildConfigImpl(
       flavor: null == flavor
@@ -116,10 +149,22 @@ class __$$AppBuildConfigImplCopyWithImpl<$Res>
           ? _value.packageName
           : packageName // ignore: cast_nullable_to_non_nullable
               as String,
-      bundleId: null == bundleId
-          ? _value.bundleId
-          : bundleId // ignore: cast_nullable_to_non_nullable
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
+      buildNumber: null == buildNumber
+          ? _value.buildNumber
+          : buildNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      buildSignature: null == buildSignature
+          ? _value.buildSignature
+          : buildSignature // ignore: cast_nullable_to_non_nullable
+              as String,
+      installerStore: freezed == installerStore
+          ? _value.installerStore
+          : installerStore // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -131,7 +176,10 @@ class _$AppBuildConfigImpl implements _AppBuildConfig {
       {required this.flavor,
       required this.appName,
       required this.packageName,
-      required this.bundleId});
+      required this.version,
+      required this.buildNumber,
+      required this.buildSignature,
+      this.installerStore});
 
   @override
   final Flavor flavor;
@@ -140,11 +188,17 @@ class _$AppBuildConfigImpl implements _AppBuildConfig {
   @override
   final String packageName;
   @override
-  final String bundleId;
+  final String version;
+  @override
+  final String buildNumber;
+  @override
+  final String buildSignature;
+  @override
+  final String? installerStore;
 
   @override
   String toString() {
-    return 'AppBuildConfig(flavor: $flavor, appName: $appName, packageName: $packageName, bundleId: $bundleId)';
+    return 'AppBuildConfig(flavor: $flavor, appName: $appName, packageName: $packageName, version: $version, buildNumber: $buildNumber, buildSignature: $buildSignature, installerStore: $installerStore)';
   }
 
   @override
@@ -156,13 +210,18 @@ class _$AppBuildConfigImpl implements _AppBuildConfig {
             (identical(other.appName, appName) || other.appName == appName) &&
             (identical(other.packageName, packageName) ||
                 other.packageName == packageName) &&
-            (identical(other.bundleId, bundleId) ||
-                other.bundleId == bundleId));
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.buildNumber, buildNumber) ||
+                other.buildNumber == buildNumber) &&
+            (identical(other.buildSignature, buildSignature) ||
+                other.buildSignature == buildSignature) &&
+            (identical(other.installerStore, installerStore) ||
+                other.installerStore == installerStore));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, flavor, appName, packageName, bundleId);
+  int get hashCode => Object.hash(runtimeType, flavor, appName, packageName,
+      version, buildNumber, buildSignature, installerStore);
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +236,10 @@ abstract class _AppBuildConfig implements AppBuildConfig {
       {required final Flavor flavor,
       required final String appName,
       required final String packageName,
-      required final String bundleId}) = _$AppBuildConfigImpl;
+      required final String version,
+      required final String buildNumber,
+      required final String buildSignature,
+      final String? installerStore}) = _$AppBuildConfigImpl;
 
   @override
   Flavor get flavor;
@@ -186,7 +248,13 @@ abstract class _AppBuildConfig implements AppBuildConfig {
   @override
   String get packageName;
   @override
-  String get bundleId;
+  String get version;
+  @override
+  String get buildNumber;
+  @override
+  String get buildSignature;
+  @override
+  String? get installerStore;
   @override
   @JsonKey(ignore: true)
   _$$AppBuildConfigImplCopyWith<_$AppBuildConfigImpl> get copyWith =>

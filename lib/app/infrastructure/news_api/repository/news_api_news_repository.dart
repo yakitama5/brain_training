@@ -16,6 +16,7 @@ class NewsApiNewsRepository implements NewsRepository {
 
   final Ref ref;
   final _apiClient = NewsHeadlinesApiClient(Dio());
+  String get _newsApiKey => ref.read(newsApiKeyProvider);
 
   @override
   Future<NewsHeadlines> fetchHeadlinesByDate({
@@ -25,7 +26,7 @@ class NewsApiNewsRepository implements NewsRepository {
     required NewsCountry country,
   }) async {
     final res = await _apiClient.fetch(
-      apiKey: newsApiKey,
+      apiKey: _newsApiKey,
       category: category.name,
       country: country.name,
       page: page,

@@ -11,6 +11,9 @@ class AppBuildConfig with _$AppBuildConfig {
     required Flavor flavor,
     required String appName,
     required String packageName,
-    required String bundleId,
+    required String version,
+    required String buildNumber,
+    required String buildSignature,
+    String? installerStore,
   }) = _AppBuildConfig;
 }

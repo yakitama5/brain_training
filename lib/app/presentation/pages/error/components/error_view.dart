@@ -1,11 +1,9 @@
-import 'package:brain_training/app/application/model/flavor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../gen/assets.gen.dart';
-import '../../../../application/config/app_config.dart';
 import '../../../../domain/exception/exceptions.dart';
 
 class ErrorView extends HookWidget {
@@ -26,19 +24,10 @@ class ErrorView extends HookWidget {
           const _CornLottie(
             height: 80,
           ),
-          // 環境に応じて表示を切り替える
-          switch (appConfig.flavor) {
-            Flavor.dev => Text(
-                error.errorMessage,
-                style:
-                    textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            Flavor.prod => Text(
-                'エラーが発生しました。',
-                style:
-                    textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-          },
+          Text(
+            error.errorMessage,
+            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+          ),
           const Gap(40),
         ],
       ),

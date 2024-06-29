@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:brain_training/app/application/config/app_build_config_provider.dart';
+import 'package:brain_training/app/application/model/app_build_config.dart';
 import 'package:brain_training/app/application/model/app_sound_players.dart';
 import 'package:brain_training/app/application/state/app_sound_players_provider.dart';
 import 'package:brain_training/app/application/state/app_theme_provider.dart';
@@ -21,10 +23,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/app.dart';
-import 'app/application/config/app_config.dart';
 import 'app/application/model/app_theme.dart';
 import 'app/application/model/flavor.dart';
 import 'app/application/state/initial_location_provider.dart';
@@ -40,6 +42,18 @@ void main() async {
   // Flutter Initialize
   WidgetsFlutterBinding.ensureInitialized();
 
+  // アプリのビルド設定を取得
+  final packageInfo = await PackageInfo.fromPlatform();
+  final appBuildConfig = AppBuildConfig(
+    appName: packageInfo.appName,
+    version: packageInfo.version,
+    buildNumber: packageInfo.buildNumber,
+    buildSignature: packageInfo.buildSignature,
+    packageName: packageInfo.packageName,
+    installerStore: packageInfo.installerStore,
+    flavor: Flavor.values.byName(const String.fromEnvironment('flavor')),
+  );
+
   // Theme
   final corePalette = await DynamicColorPlugin.getCorePalette();
   final isDynamicColorSupported =
@@ -49,7 +63,7 @@ void main() async {
   LocaleSettings.useDeviceLocale();
 
   // Flavor に応じた FirebaseOptions を準備する
-  final firebaseOptions = switch (appConfig.flavor) {
+  final firebaseOptions = switch (appBuildConfig.flavor) {
     Flavor.prod => DefaultFirebaseOptions.currentPlatform,
     Flavor.dev => dev.DefaultFirebaseOptions.currentPlatform,
   };
@@ -90,6 +104,9 @@ void main() async {
       overrides: [
         // 初期ロケーションの設定
         initialLocationProvider.overrideWith((ref) => '/home'),
+
+        // アプリコンフィグの設定
+        appBuildConfigProvider.overrideWithValue(appBuildConfig),
 
         // アプリ内のアセット設定
         appSoundPlayersProvider.overrideWithValue(appSoundPlayers),
