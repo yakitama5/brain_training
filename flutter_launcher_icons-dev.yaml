@@ -1,0 +1,10 @@
+flutter_launcher_icons:
+  # https://zenn.dev/tsuruo/articles/eae9dbbad8372f#themed-app-icons
+  # https://blog.okaryo.io/20221127-support-themed-app-icon-in-flutter-app-for-android-13
+  android: true
+  ios: true
+  image_path: "assets/launcher_icon/icon_dev.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/launcher_icon/icon_adaptive_dev.png"
+  adaptive_icon_monochrome: "assets/launcher_icon/icon_adaptive_monochrome_dev.png"
