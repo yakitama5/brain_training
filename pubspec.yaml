@@ -77,9 +77,6 @@ dev_dependencies:
   envied_generator:
   flutter_gen_runner:
   flutter_launcher_icons:
-    git: 
-      url: https://github.com/fluttercommunity/flutter_launcher_icons
-      ref: master
   flutter_lints:
   flutter_test:
     sdk: flutter
