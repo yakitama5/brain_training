@@ -45,6 +45,11 @@ tasks.whenTaskAdded { task ->
     }
 }
 
+task copySources(type: Copy) {
+    from "src/${dartDefines.flavor}/res"
+    into 'src/main/res'
+}
+
 android {
     namespace "com.yakuran.brain_training"
     compileSdk localProperties.getProperty('flutter.compileSdkVersion').toInteger()
