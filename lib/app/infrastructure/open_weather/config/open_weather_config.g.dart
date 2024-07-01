@@ -6,7 +6,7 @@ part of 'open_weather_config.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$openWeatherApiKeyHash() => r'32c7d4af55c3a7b096db7c42274863b6026308ce';
+String _$openWeatherApiKeyHash() => r'11782a2bc73d12cfe885ad37a3c48bbc63f3a9f2';
 
 /// See also [openWeatherApiKey].
 @ProviderFor(openWeatherApiKey)
@@ -16,11 +16,8 @@ final openWeatherApiKeyProvider = AutoDisposeProvider<String>.internal(
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$openWeatherApiKeyHash,
-  dependencies: <ProviderOrFamily>[appBuildConfigProvider],
-  allTransitiveDependencies: <ProviderOrFamily>{
-    appBuildConfigProvider,
-    ...?appBuildConfigProvider.allTransitiveDependencies
-  },
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
 
 typedef OpenWeatherApiKeyRef = AutoDisposeProviderRef<String>;

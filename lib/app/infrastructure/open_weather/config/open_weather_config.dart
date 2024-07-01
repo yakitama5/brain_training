@@ -7,7 +7,7 @@ import '../../../application/model/flavor.dart';
 
 part 'open_weather_config.g.dart';
 
-@Riverpod(dependencies: [appBuildConfig])
+@riverpod
 String openWeatherApiKey(OpenWeatherApiKeyRef ref) {
   final flavor = ref.watch(appBuildConfigProvider.select((e) => e.flavor));
   return switch (flavor) {

@@ -6,7 +6,7 @@ part of 'news_api_config.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsApiKeyHash() => r'80a1a87597e46ad7d13f945367b4ccff9cd77881';
+String _$newsApiKeyHash() => r'6bc0d1d605335f0e01ca78c596ee934c70a56d92';
 
 /// See also [newsApiKey].
 @ProviderFor(newsApiKey)
@@ -15,11 +15,8 @@ final newsApiKeyProvider = AutoDisposeProvider<String>.internal(
   name: r'newsApiKeyProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$newsApiKeyHash,
-  dependencies: <ProviderOrFamily>[appBuildConfigProvider],
-  allTransitiveDependencies: <ProviderOrFamily>{
-    appBuildConfigProvider,
-    ...?appBuildConfigProvider.allTransitiveDependencies
-  },
+  dependencies: null,
+  allTransitiveDependencies: null,
 );
 
 typedef NewsApiKeyRef = AutoDisposeProviderRef<String>;
