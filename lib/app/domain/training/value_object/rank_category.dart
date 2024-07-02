@@ -1,12 +1,26 @@
 import 'package:brain_training/app/presentation/theme/importer.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 enum RankCategory {
-  normal(Icons.abc),
-  sumo(CustomIcons.sumo),
-  royal(CustomIcons.royal);
+  normal,
+  sumo,
+  planet,
+  police,
+  beetle,
+  stagBeetle,
+  royal;
+}
 
-  const RankCategory(this.iconData);
-
-  final IconData iconData;
+extension RankCategoryX on RankCategory {
+  /// アイコンデータ (`MdiIcons`利用のため、Extensionで定義)
+  IconData get iconData => switch (this) {
+        RankCategory.normal => MdiIcons.trophy,
+        RankCategory.beetle => Icons.bug_report,
+        RankCategory.sumo => CustomIcons.sumo,
+        RankCategory.royal => CustomIcons.royal,
+        RankCategory.planet => CustomIcons.planet,
+        RankCategory.police => CustomIcons.police,
+        RankCategory.stagBeetle => CustomIcons.stag_beetle,
+      };
 }

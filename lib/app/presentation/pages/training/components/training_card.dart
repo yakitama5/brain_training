@@ -184,7 +184,7 @@ class _Score extends StatelessWidget {
             // ignore: avoid_dynamic_calls
             label: i18n.training.result.rank[rankCategory.name](
               context: result.rank,
-            ) as String,
+            ),
           ),
           _IconWithLabel(
             iconData: Icons.sports_score,

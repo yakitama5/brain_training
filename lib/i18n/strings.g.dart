@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 214 (107 per locale)
+/// Strings: 262 (131 per locale)
 ///
-/// Built on 2024-07-02 at 04:35 UTC
+/// Built on 2024-07-02 at 10:49 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -477,15 +477,79 @@ class _StringsTrainingResultEn {
 					return 'Baron';
 			}
 		},
+		'beetle': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Hercules Beetle';
+				case ResultRank.great:
+					return 'Satan Beetle';
+				case ResultRank.good:
+					return 'Elephant Beetle';
+				case ResultRank.average:
+					return 'Beetle';
+				case ResultRank.poor:
+					return 'Small Stag Beetle';
+			}
+		},
+		'stagBeetle': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Tarandus glossy stag beetle';
+				case ResultRank.great:
+					return 'Golden Stag Beetle';
+				case ResultRank.good:
+					return 'オオクワガタ';
+				case ResultRank.average:
+					return 'Giant stag beetle';
+				case ResultRank.poor:
+					return 'Stag beetle';
+			}
+		},
+		'planet': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Sun';
+				case ResultRank.great:
+					return 'Jupiter';
+				case ResultRank.good:
+					return 'Earth';
+				case ResultRank.average:
+					return 'Moon';
+				case ResultRank.poor:
+					return 'asteroid';
+			}
+		},
+		'police': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Commissioner';
+				case ResultRank.great:
+					return 'Superintendent';
+				case ResultRank.good:
+					return 'Police Inspector';
+				case ResultRank.average:
+					return 'Sergeant';
+				case ResultRank.poor:
+					return 'Constable';
+			}
+		},
 	};
 	String category({required RankCategory context}) {
 		switch (context) {
 			case RankCategory.normal:
-				return 'English';
+				return 'Default';
+			case RankCategory.beetle:
+				return 'Beetle';
 			case RankCategory.sumo:
 				return 'Sumo';
 			case RankCategory.royal:
 				return 'Royal';
+			case RankCategory.planet:
+				return 'Planet';
+			case RankCategory.police:
+				return 'Police';
+			case RankCategory.stagBeetle:
+				return 'StagBeetle';
 		}
 	}
 	String questions({required int qeustions}) => '${qeustions} qeustions';
@@ -948,15 +1012,79 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 					return '男爵';
 			}
 		},
+		'beetle': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'ヘラクレスオオカブト';
+				case ResultRank.great:
+					return 'サタンオオカブト';
+				case ResultRank.good:
+					return 'エレファントゾウカブト';
+				case ResultRank.average:
+					return 'カブトムシ';
+				case ResultRank.poor:
+					return 'ヒメカブト';
+			}
+		},
+		'stagBeetle': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'タランドゥスツヤクワガタ';
+				case ResultRank.great:
+					return 'オウゴンオニクワガタ';
+				case ResultRank.good:
+					return 'オオクワガタ';
+				case ResultRank.average:
+					return 'ノコギリクワガタ';
+				case ResultRank.poor:
+					return 'コクワガタ';
+			}
+		},
+		'planet': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return '太陽クラス';
+				case ResultRank.great:
+					return '木星クラス';
+				case ResultRank.good:
+					return '地球クラス';
+				case ResultRank.average:
+					return '月クラス';
+				case ResultRank.poor:
+					return '小惑星クラス';
+			}
+		},
+		'police': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return '警視総監';
+				case ResultRank.great:
+					return '警視長';
+				case ResultRank.good:
+					return '警部';
+				case ResultRank.average:
+					return '巡査部長';
+				case ResultRank.poor:
+					return '巡査';
+			}
+		},
 	};
 	@override String category({required RankCategory context}) {
 		switch (context) {
 			case RankCategory.normal:
-				return '英語';
+				return 'デフォルト';
+			case RankCategory.beetle:
+				return 'カブトムシ';
 			case RankCategory.sumo:
 				return '相撲';
 			case RankCategory.royal:
 				return '爵位';
+			case RankCategory.planet:
+				return '惑星';
+			case RankCategory.police:
+				return '警察';
+			case RankCategory.stagBeetle:
+				return 'クワガタ';
 		}
 	}
 	@override String questions({required int qeustions}) => '${qeustions}問';
@@ -1247,14 +1375,78 @@ extension on Translations {
 						return 'Baron';
 				}
 			};
+			case 'training.result.rank.beetle': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'Hercules Beetle';
+					case ResultRank.great:
+						return 'Satan Beetle';
+					case ResultRank.good:
+						return 'Elephant Beetle';
+					case ResultRank.average:
+						return 'Beetle';
+					case ResultRank.poor:
+						return 'Small Stag Beetle';
+				}
+			};
+			case 'training.result.rank.stagBeetle': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'Tarandus glossy stag beetle';
+					case ResultRank.great:
+						return 'Golden Stag Beetle';
+					case ResultRank.good:
+						return 'オオクワガタ';
+					case ResultRank.average:
+						return 'Giant stag beetle';
+					case ResultRank.poor:
+						return 'Stag beetle';
+				}
+			};
+			case 'training.result.rank.planet': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'Sun';
+					case ResultRank.great:
+						return 'Jupiter';
+					case ResultRank.good:
+						return 'Earth';
+					case ResultRank.average:
+						return 'Moon';
+					case ResultRank.poor:
+						return 'asteroid';
+				}
+			};
+			case 'training.result.rank.police': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'Commissioner';
+					case ResultRank.great:
+						return 'Superintendent';
+					case ResultRank.good:
+						return 'Police Inspector';
+					case ResultRank.average:
+						return 'Sergeant';
+					case ResultRank.poor:
+						return 'Constable';
+				}
+			};
 			case 'training.result.category': return ({required RankCategory context}) {
 				switch (context) {
 					case RankCategory.normal:
-						return 'English';
+						return 'Default';
+					case RankCategory.beetle:
+						return 'Beetle';
 					case RankCategory.sumo:
 						return 'Sumo';
 					case RankCategory.royal:
 						return 'Royal';
+					case RankCategory.planet:
+						return 'Planet';
+					case RankCategory.police:
+						return 'Police';
+					case RankCategory.stagBeetle:
+						return 'StagBeetle';
 				}
 			};
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions} qeustions';
@@ -1466,14 +1658,78 @@ extension on _StringsJa {
 						return '男爵';
 				}
 			};
+			case 'training.result.rank.beetle': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'ヘラクレスオオカブト';
+					case ResultRank.great:
+						return 'サタンオオカブト';
+					case ResultRank.good:
+						return 'エレファントゾウカブト';
+					case ResultRank.average:
+						return 'カブトムシ';
+					case ResultRank.poor:
+						return 'ヒメカブト';
+				}
+			};
+			case 'training.result.rank.stagBeetle': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'タランドゥスツヤクワガタ';
+					case ResultRank.great:
+						return 'オウゴンオニクワガタ';
+					case ResultRank.good:
+						return 'オオクワガタ';
+					case ResultRank.average:
+						return 'ノコギリクワガタ';
+					case ResultRank.poor:
+						return 'コクワガタ';
+				}
+			};
+			case 'training.result.rank.planet': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return '太陽クラス';
+					case ResultRank.great:
+						return '木星クラス';
+					case ResultRank.good:
+						return '地球クラス';
+					case ResultRank.average:
+						return '月クラス';
+					case ResultRank.poor:
+						return '小惑星クラス';
+				}
+			};
+			case 'training.result.rank.police': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return '警視総監';
+					case ResultRank.great:
+						return '警視長';
+					case ResultRank.good:
+						return '警部';
+					case ResultRank.average:
+						return '巡査部長';
+					case ResultRank.poor:
+						return '巡査';
+				}
+			};
 			case 'training.result.category': return ({required RankCategory context}) {
 				switch (context) {
 					case RankCategory.normal:
-						return '英語';
+						return 'デフォルト';
+					case RankCategory.beetle:
+						return 'カブトムシ';
 					case RankCategory.sumo:
 						return '相撲';
 					case RankCategory.royal:
 						return '爵位';
+					case RankCategory.planet:
+						return '惑星';
+					case RankCategory.police:
+						return '警察';
+					case RankCategory.stagBeetle:
+						return 'クワガタ';
 				}
 			};
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions}問';

@@ -56,12 +56,44 @@
                 "good": "Earl",
                 "average": "Viscount",
                 "poor": "Baron"
+            },
+            "beetle(context=ResultRank)": {
+                "excellent": "Hercules Beetle",
+                "great": "Satan Beetle",
+                "good": "Elephant Beetle",
+                "average": "Beetle",
+                "poor": "Small Stag Beetle"
+            },
+            "stagBeetle(context=ResultRank)": {
+                "excellent": "Tarandus glossy stag beetle",
+                "great": "Golden Stag Beetle",
+                "good": "オオクワガタ",
+                "average": "Giant stag beetle",
+                "poor": "Stag beetle"
+            },
+            "planet(context=ResultRank)": {
+                "excellent": "Sun",
+                "great": "Jupiter",
+                "good": "Earth",
+                "average": "Moon",
+                "poor": "asteroid"
+            },
+            "police(context=ResultRank)": {
+                "excellent": "Commissioner",
+                "great": "Superintendent",
+                "good": "Police Inspector",
+                "average": "Sergeant",
+                "poor": "Constable"
             }
         },
         "category(context=RankCategory)": {
-            "normal": "English",
+            "normal": "Default",
+            "beetle": "Beetle",
             "sumo": "Sumo",
-            "royal": "Royal"
+            "royal": "Royal",
+            "planet": "Planet",
+            "police": "Police",
+            "stagBeetle": "StagBeetle"
         },
         "questions": "${qeustions: int} qeustions",
         "score": "${points: int} points",

@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
+import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
