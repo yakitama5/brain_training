@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 206 (103 per locale)
+/// Strings: 214 (107 per locale)
 ///
-/// Built on 2024-04-29 at 04:29 UTC
+/// Built on 2024-07-02 at 04:35 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -158,6 +158,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final _StringsCommonEn common = _StringsCommonEn._(_root);
 	late final _StringsHomeEn home = _StringsHomeEn._(_root);
+	late final _StringsIntroductionEn introduction = _StringsIntroductionEn._(_root);
 	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
 	late final _StringsTrainingEn training = _StringsTrainingEn._(_root);
 }
@@ -190,6 +191,19 @@ class _StringsHomeEn {
 	String get thisWeekStatus => 'Weekly';
 	String get dailyTraining => 'Daily';
 	String get completed => 'Comp';
+}
+
+// Path: introduction
+class _StringsIntroductionEn {
+	_StringsIntroductionEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get start => 'はじめる';
+	String get forFirstUser => 'はじめての方はこちら';
+	String get signInWithGoogle => 'Googleアカウントでログイン';
+	String get signInWithApple => 'Appleアカウントでログイン';
 }
 
 // Path: settings
@@ -615,6 +629,7 @@ class _StringsJa extends Translations {
 	// Translations
 	@override late final _StringsCommonJa common = _StringsCommonJa._(_root);
 	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
+	@override late final _StringsIntroductionJa introduction = _StringsIntroductionJa._(_root);
 	@override late final _StringsSettingsJa settings = _StringsSettingsJa._(_root);
 	@override late final _StringsTrainingJa training = _StringsTrainingJa._(_root);
 }
@@ -647,6 +662,19 @@ class _StringsHomeJa extends _StringsHomeEn {
 	@override String get thisWeekStatus => '今週の状況';
 	@override String get dailyTraining => '毎日のトレーニング';
 	@override String get completed => '達成';
+}
+
+// Path: introduction
+class _StringsIntroductionJa extends _StringsIntroductionEn {
+	_StringsIntroductionJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get start => 'はじめる';
+	@override String get forFirstUser => 'はじめての方はこちら';
+	@override String get signInWithGoogle => 'Googleアカウントを使う';
+	@override String get signInWithApple => 'Appleアカウントを使う';
 }
 
 // Path: settings
@@ -1068,6 +1096,10 @@ extension on Translations {
 			case 'home.thisWeekStatus': return 'Weekly';
 			case 'home.dailyTraining': return 'Daily';
 			case 'home.completed': return 'Comp';
+			case 'introduction.start': return 'はじめる';
+			case 'introduction.forFirstUser': return 'はじめての方はこちら';
+			case 'introduction.signInWithGoogle': return 'Googleアカウントでログイン';
+			case 'introduction.signInWithApple': return 'Appleアカウントでログイン';
 			case 'settings.title': return 'Settings';
 			case 'settings.list.account.head': return 'Account';
 			case 'settings.list.account.account': return 'Account';
@@ -1283,6 +1315,10 @@ extension on _StringsJa {
 			case 'home.thisWeekStatus': return '今週の状況';
 			case 'home.dailyTraining': return '毎日のトレーニング';
 			case 'home.completed': return '達成';
+			case 'introduction.start': return 'はじめる';
+			case 'introduction.forFirstUser': return 'はじめての方はこちら';
+			case 'introduction.signInWithGoogle': return 'Googleアカウントを使う';
+			case 'introduction.signInWithApple': return 'Appleアカウントを使う';
 			case 'settings.title': return '設定';
 			case 'settings.list.account.head': return 'アカウント';
 			case 'settings.list.account.account': return 'アカウント';

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../domain/training/entity/training_result.dart';
-import '../../../pages/settings/onboard_page.dart';
+import '../../../pages/introduction/introduction_page.dart';
 import '../../../pages/training/answer_selection_page.dart';
 import '../../../pages/training/training_result_page.dart';
 import '../../../pages/training/training_tutorial_page.dart';

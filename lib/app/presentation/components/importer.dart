@@ -1,8 +1,11 @@
 export 'src/brightness_scope.dart';
 export 'src/cards.dart';
 export 'src/gauge_indicator.dart';
+export 'src/image_aspect_ratio.dart';
 export 'src/overlay_loading.dart';
 export 'src/shimmer_widget.dart';
 export 'src/snackbar/error_snackbar.dart';
 export 'src/snackbar/info_snackbar.dart';
+export 'src/svg_asset_image.dart';
+export 'src/url_link.dart';
 export 'src/width_fill_box.dart';

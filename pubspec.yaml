@@ -96,7 +96,7 @@ flutter:
   assets:
     - assets/sounds/
     # - assets/json/
-    # - assets/images/
+    - assets/images/
     - assets/lottie/
     # - assets/models/
     - assets/sensitive/
