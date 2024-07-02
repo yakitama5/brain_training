@@ -18,13 +18,13 @@
 - 開発
 
   ```sh
-  flutterfire configure --out=lib/firebase_options_dev.dart -p [Develop Project ID] --platforms=android,ios,web -i [iOS Bundle ID] -a [Android Package Name]
+  flutterfire configure --out=lib/firebase_options_dev.dart -p [Develop Project ID] --platforms=android,ios,web -i com.yakuran.brainTraining.dev -a com.yakuran.brain_training.dev
   ```
 
 - 本番
 
   ```sh
-  flutterfire configure --out=lib/firebase_options.dart -p [Develop Project ID] --platforms=android,ios,web -i [iOS Bundle ID] -a [Android Package Name]
+  flutterfire configure --out=lib/firebase_options.dart -p [Project ID] --platforms=android,ios,web -i com.yakuran.brainTraining -a com.yakuran.brain_training
   ```
 
 生成されるファイルの内、`GoogleService-Info.plist`, `google-services.json`は出力先を変更出来ないため、
