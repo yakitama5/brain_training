@@ -47,6 +47,9 @@ class App extends HookConsumerWidget {
       theme: appTheme.light,
       darkTheme: appTheme.dark,
       themeMode: themeMode,
+
+      // デバッグ表示の削除
+      debugShowCheckedModeBanner: false,
     );
   }
 }
