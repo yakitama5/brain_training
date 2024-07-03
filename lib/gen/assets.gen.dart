@@ -43,11 +43,14 @@ class $AssetsImagesGen {
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
+  /// File path: assets/lottie/maintenance.json
+  String get maintenance => 'assets/lottie/maintenance.json';
+
   /// File path: assets/lottie/sorry.json
   String get sorry => 'assets/lottie/sorry.json';
 
   /// List of all assets
-  List<String> get values => [sorry];
+  List<String> get values => [maintenance, sorry];
 }
 
 class $AssetsSensitiveGen {

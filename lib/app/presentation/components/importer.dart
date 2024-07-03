@@ -2,6 +2,7 @@ export 'src/brightness_scope.dart';
 export 'src/cards.dart';
 export 'src/gauge_indicator.dart';
 export 'src/image_aspect_ratio.dart';
+export 'src/maintenance_view.dart';
 export 'src/overlay_loading.dart';
 export 'src/shimmer_widget.dart';
 export 'src/snackbar/error_snackbar.dart';
