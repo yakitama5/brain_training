@@ -28,16 +28,19 @@ class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('トレーニング結果'),
+        title: Text(i18n.training.result.title),
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.share),
+            tooltip: i18n.training.result.share.buttonCaption,
             onPressed: () => execute(context, action: () async {
               final xFile = await captureToXFile(_imageKey);
               if (xFile == null) {
-                // TODO(yakitama5): エラー表示
-                return;
+                throw Exception([
+                  i18n.error.failedMessage(
+                      action: i18n.training.result.share.buttonCaption)
+                ]);
               }
 
               return ref
@@ -111,8 +114,7 @@ class ScoreCard extends HookConsumerWidget {
             const Gap(8),
             Text(
               // ignore: avoid_dynamic_calls
-              i18n.training.result.rank[rankCategory.name](context: rank)
-                  as String,
+              i18n.training.result.rank[rankCategory.name](context: rank),
               style: ts.displayMedium,
             ),
           ],

@@ -32,6 +32,7 @@
         "start": "Start"
     },
     "result": {
+        "title": "Result",
         "scoreCard": {
             "title": "Score"
         },
@@ -97,7 +98,12 @@
         },
         "questions": "${qeustions: int} qeustions",
         "score": "${points: int} points",
-        "correctRate": "Correct rate: ${rate: int}%"
+        "correctRate": "Correct rate: ${rate: int}%",
+        "share": {
+            "buttonCaption": "Share",
+            "subject": "${training: String} done!",
+            "body": "${training: String} done\nMy score is ${points: int} points✨"
+        }
     },
     "tutorial": "Tutorial",
     "coloredWord": {

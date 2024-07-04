@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../i18n/strings.g.dart';
 import '../../../domain/training/value_object/result_rank.dart';
 import '../../../domain/user/entity/user.dart';
 import '../../model/training/training_weekly_summary.dart';
@@ -150,13 +151,12 @@ class TrainingUsecase with RunUsecaseMixin {
     required TrainingResult result,
   }) async {
     // 文言を作成
-    final text = '''
-色彩識別でトレーニングを行いました
-点数は「${result.score}」点です
-''';
-    const subject = '''
-色彩識別でトレーニングを行いました。
-''';
-    await Share.shareXFiles([xFile], text: text, subject: subject);
+    final training =
+        i18n.training.trainingType.title(context: result.trainingType);
+    final body = i18n.training.result.share
+        .body(training: training, points: result.score);
+    final subject = i18n.training.result.share.subject(training: training);
+
+    await Share.shareXFiles([xFile], text: body, subject: subject);
   }
 }

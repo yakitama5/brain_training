@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 262 (131 per locale)
+/// Strings: 272 (136 per locale)
 ///
-/// Built on 2024-07-02 at 10:49 UTC
+/// Built on 2024-07-04 at 09:25 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -157,6 +157,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 
 	// Translations
 	late final _StringsCommonEn common = _StringsCommonEn._(_root);
+	late final _StringsErrorEn error = _StringsErrorEn._(_root);
 	late final _StringsHomeEn home = _StringsHomeEn._(_root);
 	late final _StringsIntroductionEn introduction = _StringsIntroductionEn._(_root);
 	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
@@ -177,6 +178,16 @@ class _StringsCommonEn {
 	late final _StringsCommonPermissionEn permission = _StringsCommonPermissionEn._(_root);
 	String get camera => 'Camera';
 	String get microphone => 'Microphone';
+}
+
+// Path: error
+class _StringsErrorEn {
+	_StringsErrorEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String failedMessage({required String action}) => '${action} failed.';
 }
 
 // Path: home
@@ -433,6 +444,7 @@ class _StringsTrainingResultEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+	String get title => 'Result';
 	late final _StringsTrainingResultScoreCardEn scoreCard = _StringsTrainingResultScoreCardEn._(_root);
 	Map<String, dynamic> get rank => {
 		'normal': ({required ResultRank context}) {
@@ -555,6 +567,7 @@ class _StringsTrainingResultEn {
 	String questions({required int qeustions}) => '${qeustions} qeustions';
 	String score({required int points}) => '${points} points';
 	String correctRate({required int rate}) => 'Correct rate: ${rate}%';
+	late final _StringsTrainingResultShareEn share = _StringsTrainingResultShareEn._(_root);
 }
 
 // Path: training.coloredWord
@@ -665,6 +678,18 @@ class _StringsTrainingResultScoreCardEn {
 	String get title => 'Score';
 }
 
+// Path: training.result.share
+class _StringsTrainingResultShareEn {
+	_StringsTrainingResultShareEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get buttonCaption => 'Share';
+	String subject({required String training}) => '${training} done!';
+	String body({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
+}
+
 // Path: <root>
 class _StringsJa extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
@@ -692,6 +717,7 @@ class _StringsJa extends Translations {
 
 	// Translations
 	@override late final _StringsCommonJa common = _StringsCommonJa._(_root);
+	@override late final _StringsErrorJa error = _StringsErrorJa._(_root);
 	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
 	@override late final _StringsIntroductionJa introduction = _StringsIntroductionJa._(_root);
 	@override late final _StringsSettingsJa settings = _StringsSettingsJa._(_root);
@@ -712,6 +738,16 @@ class _StringsCommonJa extends _StringsCommonEn {
 	@override late final _StringsCommonPermissionJa permission = _StringsCommonPermissionJa._(_root);
 	@override String get camera => 'カメラ';
 	@override String get microphone => 'マイク';
+}
+
+// Path: error
+class _StringsErrorJa extends _StringsErrorEn {
+	_StringsErrorJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String failedMessage({required String action}) => '${action}に失敗しました。';
 }
 
 // Path: home
@@ -968,6 +1004,7 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 	@override final _StringsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get title => 'トレーニング結果';
 	@override late final _StringsTrainingResultScoreCardJa scoreCard = _StringsTrainingResultScoreCardJa._(_root);
 	@override Map<String, dynamic> get rank => {
 		'normal': ({required ResultRank context}) {
@@ -1090,6 +1127,7 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 	@override String questions({required int qeustions}) => '${qeustions}問';
 	@override String score({required int points}) => '${points}点';
 	@override String correctRate({required int rate}) => '正答率：${rate}%';
+	@override late final _StringsTrainingResultShareJa share = _StringsTrainingResultShareJa._(_root);
 }
 
 // Path: training.coloredWord
@@ -1200,6 +1238,18 @@ class _StringsTrainingResultScoreCardJa extends _StringsTrainingResultScoreCardE
 	@override String get title => '評価';
 }
 
+// Path: training.result.share
+class _StringsTrainingResultShareJa extends _StringsTrainingResultShareEn {
+	_StringsTrainingResultShareJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get buttonCaption => '共有';
+	@override String subject({required String training}) => '${training}を実施しました！';
+	@override String body({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -1219,6 +1269,7 @@ extension on Translations {
 			case 'common.permission.openSettingsDialog.okLabel': return 'Open Settings';
 			case 'common.camera': return 'Camera';
 			case 'common.microphone': return 'Microphone';
+			case 'error.failedMessage': return ({required String action}) => '${action} failed.';
 			case 'home.todayStatus': return 'Today';
 			case 'home.todayNews': return 'News';
 			case 'home.thisWeekStatus': return 'Weekly';
@@ -1332,6 +1383,7 @@ extension on Translations {
 			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
 			case 'training.trainingCard.doneSubhead': return 'Today Score';
 			case 'training.trainingCard.start': return 'Start';
+			case 'training.result.title': return 'Result';
 			case 'training.result.scoreCard.title': return 'Score';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
 				switch (context) {
@@ -1452,6 +1504,9 @@ extension on Translations {
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions} qeustions';
 			case 'training.result.score': return ({required int points}) => '${points} points';
 			case 'training.result.correctRate': return ({required int rate}) => 'Correct rate: ${rate}%';
+			case 'training.result.share.buttonCaption': return 'Share';
+			case 'training.result.share.subject': return ({required String training}) => '${training} done!';
+			case 'training.result.share.body': return ({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
 			case 'training.tutorial': return 'Tutorial';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {
@@ -1502,6 +1557,7 @@ extension on _StringsJa {
 			case 'common.permission.openSettingsDialog.okLabel': return '設定アプリを開く';
 			case 'common.camera': return 'カメラ';
 			case 'common.microphone': return 'マイク';
+			case 'error.failedMessage': return ({required String action}) => '${action}に失敗しました。';
 			case 'home.todayStatus': return '今日の状況';
 			case 'home.todayNews': return '今日のニュース';
 			case 'home.thisWeekStatus': return '今週の状況';
@@ -1615,6 +1671,7 @@ extension on _StringsJa {
 				}
 			};
 			case 'training.answerSelection.recommended': return ({required String answerType}) => '(おすすめ)${answerType}';
+			case 'training.result.title': return 'トレーニング結果';
 			case 'training.result.scoreCard.title': return '評価';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
 				switch (context) {
@@ -1735,6 +1792,9 @@ extension on _StringsJa {
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions}問';
 			case 'training.result.score': return ({required int points}) => '${points}点';
 			case 'training.result.correctRate': return ({required int rate}) => '正答率：${rate}%';
+			case 'training.result.share.buttonCaption': return '共有';
+			case 'training.result.share.subject': return ({required String training}) => '${training}を実施しました！';
+			case 'training.result.share.body': return ({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
 			case 'training.tutorial': return 'チュートリアル';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {

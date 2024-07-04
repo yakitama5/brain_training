@@ -32,6 +32,7 @@
         "recommended": "(おすすめ)${answerType: String}"
     },
     "result": {
+        "title": "トレーニング結果",
         "scoreCard": {
             "title": "評価"
         },
@@ -97,7 +98,12 @@
         },
         "questions": "${qeustions: int}問",
         "score": "${points: int}点",
-        "correctRate": "正答率：${rate: int}%"
+        "correctRate": "正答率：${rate: int}%",
+        "share": {
+            "buttonCaption": "共有",
+            "subject": "${training: String}を実施しました！",
+            "body": "${training: String}を実施しました！\n私の得点は「${points: int}」点です✨"
+        }
     },
     "tutorial": "チュートリアル",
     "coloredWord": {
