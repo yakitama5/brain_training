@@ -1,7 +1,8 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
+import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
-import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
+import 'package:brain_training/app/presentation/pages/presentation_mixin.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -10,21 +11,41 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/result_rank.dart';
+import '../../routes/src/routes/home_branch.dart';
 
-class TrainingResultPage extends HookConsumerWidget {
-  const TrainingResultPage({
+class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
+  TrainingResultPage({
     super.key,
     required this.result,
   });
 
   final TrainingResult result;
+  final GlobalKey _imageKey = GlobalKey();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final cs = Theme.of(context).colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('トレーニング結果'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.share),
+            onPressed: () => execute(context, action: () async {
+              final xFile = await captureToXFile(_imageKey);
+              if (xFile == null) {
+                // TODO(yakitama5): エラー表示
+                return;
+              }
+
+              return ref
+                  .read(trainingUsecaseProvider)
+                  .shareResult(xFile: xFile, result: result);
+            }),
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,10 +53,28 @@ class TrainingResultPage extends HookConsumerWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                ScoreCard(rank: result.rank),
+                RepaintBoundary(
+                  key: _imageKey,
+                  // 背景色が透明化されるため、再描画範囲に色を設定する
+                  child: ColoredBox(
+                    color: cs.surface,
+                    child: Column(
+                      children: [
+                        ScoreCard(rank: result.rank),
+                        const Gap(32),
+                        ScoreDetail(
+                          result: result,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 const Gap(32),
-                ScoreDetail(
-                  result: result,
+                WidthFillBox(
+                  child: FilledButton(
+                    onPressed: () => const HomeRouteData().go(context),
+                    child: Text(i18n.common.end),
+                  ),
                 ),
               ],
             ),
@@ -105,13 +144,6 @@ class ScoreDetail extends StatelessWidget {
           // TODO(yakitama5): 未着手
           FillInTheBlankCalcResult() => const SizedBox.shrink(),
         },
-        const Gap(32),
-        WidthFillBox(
-          child: FilledButton(
-            onPressed: () => const HomeRouteData().go(context),
-            child: Text(i18n.common.end),
-          ),
-        ),
       ],
     );
   }

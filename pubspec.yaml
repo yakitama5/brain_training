@@ -51,12 +51,14 @@ dependencies:
   material_design_icons_flutter:
   nested:
   package_info_plus: 
+  path_provider: 
   permission_handler:
   responsive_framework:
   retrofit:
   riverpod_annotation: ^3.0.0-dev.3
   rxdart: 
   settings_ui:
+  share_plus: 
   shared_preferences:
   shimmer:
   slang:

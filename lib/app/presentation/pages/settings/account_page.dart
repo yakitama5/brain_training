@@ -1,3 +1,4 @@
+import 'package:brain_training/app/presentation/components/src/google_icon_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -33,7 +34,7 @@ class AccountPage extends HookConsumerWidget with PresentationMixin {
               title: const Text('アカウント連携'),
               tiles: [
                 SettingsTile.switchTile(
-                  leading: const Icon(Icons.account_balance),
+                  leading: const GoogleIcon(),
                   title: const Text('Google'),
                   initialValue: data?.linkedGoogle,
                   onToggle: (value) => _onToggleGoogle(context, ref, value),

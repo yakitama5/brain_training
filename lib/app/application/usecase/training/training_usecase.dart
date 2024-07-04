@@ -8,6 +8,7 @@ import 'package:brain_training/utils/date_time_extension.dart';
 import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../domain/training/value_object/result_rank.dart';
 import '../../../domain/user/entity/user.dart';
@@ -142,5 +143,20 @@ class TrainingUsecase with RunUsecaseMixin {
 
     // TODO(yakitama5): ここで複数をまとめる？
     return coloredWord.map((event) => event.whereNotNull().toList());
+  }
+
+  Future<void> shareResult({
+    required XFile xFile,
+    required TrainingResult result,
+  }) async {
+    // 文言を作成
+    final text = '''
+色彩識別でトレーニングを行いました
+点数は「${result.score}」点です
+''';
+    const subject = '''
+色彩識別でトレーニングを行いました。
+''';
+    await Share.shareXFiles([xFile], text: text, subject: subject);
   }
 }
