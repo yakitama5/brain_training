@@ -5,4 +5,5 @@ const sharedPreferenceConfig = SharedPreferenceConfig(
   uiStyleKey: 'ui_style',
   themeModeKey: 'theme_mode',
   colorStyleKey: 'color_style',
+  firstResultKey: 'first_result',
 );

@@ -117,4 +117,12 @@ class SharedPreferencesSettingsService implements SettingsService {
         return _sp.remove(sharedPreferenceConfig.colorStyleKey);
     }
   }
+
+  @override
+  bool isFirstResult() =>
+      _sp.getBool(sharedPreferenceConfig.firstResultKey) ?? false;
+
+  @override
+  Future<bool> doneFirstResult() =>
+      _sp.setBool(sharedPreferenceConfig.firstResultKey, true);
 }

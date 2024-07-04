@@ -26,4 +26,7 @@ abstract class SettingsService {
 
   ColorStyle? fetchColorStyle();
   Future<bool> updateColorStyle({required ColorStyle? colorStyle});
+
+  bool isFirstResult();
+  Future<bool> doneFirstResult();
 }

@@ -1,4 +1,5 @@
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
+import 'package:brain_training/app/application/usecase/training/state/first_result_provider.dart';
 import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
@@ -25,6 +26,9 @@ class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cs = Theme.of(context).colorScheme;
+
+    // チュートリアル表示を判定
+    final showTutorial = !ref.watch(trainingFirstDoneProvider);
 
     return Scaffold(
       appBar: AppBar(

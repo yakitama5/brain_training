@@ -66,6 +66,7 @@ dependencies:
   sound_stream: ^0.4.1
   speech_to_text:
   stream_transform:
+  tutorial_coach_mark: 
   url_launcher:
   uuid:
   version:
