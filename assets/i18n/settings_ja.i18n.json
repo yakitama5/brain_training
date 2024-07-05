@@ -22,9 +22,17 @@
         }
     },
     "account": {
+        "title": "アカウント",
         "accountLink": "アカウント連携",
+        "google": "Google",
+        "apple": "Apple",
         "other": "その他",
-        "leave": "退会"
+        "logout": "ログアウト",
+        "leave": "退会",
+        "leaveConfirmDialog": {
+            "title": "退会しますか？",
+            "body": "本当に退会してもよろしいですか？\nこの操作は元に戻すことができません。"
+        }
     },
     "uiStyle": {
         "type(context=UIStyle)": {

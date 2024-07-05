@@ -8,6 +8,7 @@ export 'src/page_padding.dart';
 export 'src/shimmer_widget.dart';
 export 'src/snackbar/error_snackbar.dart';
 export 'src/snackbar/info_snackbar.dart';
+export 'src/snackbar/maintenance_snackbar.dart';
 export 'src/svg_asset_image.dart';
 export 'src/url_link.dart';
 export 'src/width_fill_box.dart';

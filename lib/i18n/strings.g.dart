@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 290 (145 per locale)
+/// Strings: 306 (153 per locale)
 ///
-/// Built on 2024-07-05 at 07:21 UTC
+/// Built on 2024-07-05 at 09:27 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -160,6 +160,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final _StringsErrorEn error = _StringsErrorEn._(_root);
 	late final _StringsHomeEn home = _StringsHomeEn._(_root);
 	late final _StringsIntroductionEn introduction = _StringsIntroductionEn._(_root);
+	late final _StringsMaintenanceEn maintenance = _StringsMaintenanceEn._(_root);
 	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
 	late final _StringsTrainingEn training = _StringsTrainingEn._(_root);
 }
@@ -215,6 +216,17 @@ class _StringsIntroductionEn {
 	String get forFirstUser => 'はじめての方はこちら';
 	String get signInWithGoogle => 'Googleアカウントでログイン';
 	String get signInWithApple => 'Appleアカウントでログイン';
+}
+
+// Path: maintenance
+class _StringsMaintenanceEn {
+	_StringsMaintenanceEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get snackbarMessage => 'This function is currently unavailable';
+	String get sorryMessage => 'This function is currently unavailable. Please use other functions.';
 }
 
 // Path: settings
@@ -293,9 +305,14 @@ class _StringsSettingsAccountEn {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
+	String get title => 'Account';
 	String get accountLink => 'Account link';
+	String get google => 'Google';
+	String get apple => 'Apple';
 	String get other => 'Other';
+	String get logout => 'Logout';
 	String get leave => 'Leave';
+	late final _StringsSettingsAccountLeaveConfirmDialogEn leaveConfirmDialog = _StringsSettingsAccountLeaveConfirmDialogEn._(_root);
 }
 
 // Path: settings.uiStyle
@@ -683,6 +700,17 @@ class _StringsSettingsListHelpEn {
 	String get license => 'License';
 }
 
+// Path: settings.account.leaveConfirmDialog
+class _StringsSettingsAccountLeaveConfirmDialogEn {
+	_StringsSettingsAccountLeaveConfirmDialogEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Leave?';
+	String get body => 'Are you sure you want to cancel your membership? \Ўn this operation cannot be undone.';
+}
+
 // Path: training.result.scoreCard
 class _StringsTrainingResultScoreCardEn {
 	_StringsTrainingResultScoreCardEn._(this._root);
@@ -756,6 +784,7 @@ class _StringsJa extends Translations {
 	@override late final _StringsErrorJa error = _StringsErrorJa._(_root);
 	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
 	@override late final _StringsIntroductionJa introduction = _StringsIntroductionJa._(_root);
+	@override late final _StringsMaintenanceJa maintenance = _StringsMaintenanceJa._(_root);
 	@override late final _StringsSettingsJa settings = _StringsSettingsJa._(_root);
 	@override late final _StringsTrainingJa training = _StringsTrainingJa._(_root);
 }
@@ -811,6 +840,17 @@ class _StringsIntroductionJa extends _StringsIntroductionEn {
 	@override String get forFirstUser => 'はじめての方はこちら';
 	@override String get signInWithGoogle => 'Googleアカウントを使う';
 	@override String get signInWithApple => 'Appleアカウントを使う';
+}
+
+// Path: maintenance
+class _StringsMaintenanceJa extends _StringsMaintenanceEn {
+	_StringsMaintenanceJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get snackbarMessage => 'こちらの機能は現在ご利用できません';
+	@override String get sorryMessage => 'こちらの機能は現在ご利用できません\n他の機能をご利用下さい。';
 }
 
 // Path: settings
@@ -889,9 +929,14 @@ class _StringsSettingsAccountJa extends _StringsSettingsAccountEn {
 	@override final _StringsJa _root; // ignore: unused_field
 
 	// Translations
+	@override String get title => 'アカウント';
 	@override String get accountLink => 'アカウント連携';
+	@override String get google => 'Google';
+	@override String get apple => 'Apple';
 	@override String get other => 'その他';
+	@override String get logout => 'ログアウト';
 	@override String get leave => '退会';
+	@override late final _StringsSettingsAccountLeaveConfirmDialogJa leaveConfirmDialog = _StringsSettingsAccountLeaveConfirmDialogJa._(_root);
 }
 
 // Path: settings.uiStyle
@@ -1279,6 +1324,17 @@ class _StringsSettingsListHelpJa extends _StringsSettingsListHelpEn {
 	@override String get license => 'ライセンス';
 }
 
+// Path: settings.account.leaveConfirmDialog
+class _StringsSettingsAccountLeaveConfirmDialogJa extends _StringsSettingsAccountLeaveConfirmDialogEn {
+	_StringsSettingsAccountLeaveConfirmDialogJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '退会しますか？';
+	@override String get body => '本当に退会してもよろしいですか？\nこの操作は元に戻すことができません。';
+}
+
 // Path: training.result.scoreCard
 class _StringsTrainingResultScoreCardJa extends _StringsTrainingResultScoreCardEn {
 	_StringsTrainingResultScoreCardJa._(_StringsJa root) : this._root = root, super._(root);
@@ -1351,6 +1407,8 @@ extension on Translations {
 			case 'introduction.forFirstUser': return 'はじめての方はこちら';
 			case 'introduction.signInWithGoogle': return 'Googleアカウントでログイン';
 			case 'introduction.signInWithApple': return 'Appleアカウントでログイン';
+			case 'maintenance.snackbarMessage': return 'This function is currently unavailable';
+			case 'maintenance.sorryMessage': return 'This function is currently unavailable. Please use other functions.';
 			case 'settings.title': return 'Settings';
 			case 'settings.list.account.head': return 'Account';
 			case 'settings.list.account.account': return 'Account';
@@ -1365,9 +1423,15 @@ extension on Translations {
 			case 'settings.list.help.developperTwitter': return 'Developper X (Twitter)';
 			case 'settings.list.help.privacyPollicy': return 'PrivacyPollicy';
 			case 'settings.list.help.license': return 'License';
+			case 'settings.account.title': return 'Account';
 			case 'settings.account.accountLink': return 'Account link';
+			case 'settings.account.google': return 'Google';
+			case 'settings.account.apple': return 'Apple';
 			case 'settings.account.other': return 'Other';
+			case 'settings.account.logout': return 'Logout';
 			case 'settings.account.leave': return 'Leave';
+			case 'settings.account.leaveConfirmDialog.title': return 'Leave?';
+			case 'settings.account.leaveConfirmDialog.body': return 'Are you sure you want to cancel your membership? \Ўn this operation cannot be undone.';
 			case 'settings.uiStyle.type': return ({required UIStyle context}) {
 				switch (context) {
 					case UIStyle.system:
@@ -1655,6 +1719,8 @@ extension on _StringsJa {
 			case 'introduction.forFirstUser': return 'はじめての方はこちら';
 			case 'introduction.signInWithGoogle': return 'Googleアカウントを使う';
 			case 'introduction.signInWithApple': return 'Appleアカウントを使う';
+			case 'maintenance.snackbarMessage': return 'こちらの機能は現在ご利用できません';
+			case 'maintenance.sorryMessage': return 'こちらの機能は現在ご利用できません\n他の機能をご利用下さい。';
 			case 'settings.title': return '設定';
 			case 'settings.list.account.head': return 'アカウント';
 			case 'settings.list.account.account': return 'アカウント';
@@ -1669,9 +1735,15 @@ extension on _StringsJa {
 			case 'settings.list.help.developperTwitter': return '開発者 X (旧Twitter)';
 			case 'settings.list.help.privacyPollicy': return 'プライバシーポリシー';
 			case 'settings.list.help.license': return 'ライセンス';
+			case 'settings.account.title': return 'アカウント';
 			case 'settings.account.accountLink': return 'アカウント連携';
+			case 'settings.account.google': return 'Google';
+			case 'settings.account.apple': return 'Apple';
 			case 'settings.account.other': return 'その他';
+			case 'settings.account.logout': return 'ログアウト';
 			case 'settings.account.leave': return '退会';
+			case 'settings.account.leaveConfirmDialog.title': return '退会しますか？';
+			case 'settings.account.leaveConfirmDialog.body': return '本当に退会してもよろしいですか？\nこの操作は元に戻すことができません。';
 			case 'settings.uiStyle.type': return ({required UIStyle context}) {
 				switch (context) {
 					case UIStyle.system:

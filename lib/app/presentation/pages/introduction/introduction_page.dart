@@ -97,7 +97,10 @@ class _SignInWithGoogleButton extends ConsumerWidget with PresentationMixin {
   Widget build(BuildContext context, WidgetRef ref) {
     return WidthFillBox(
       child: OutlinedButton.icon(
-        onPressed: () {},
+        onPressed: () {
+          // TODO(yakitama5): 未着手
+          MaintenanceSnackbar.showByContext(context);
+        },
         label: Text(i18n.introduction.signInWithGoogle),
         icon: const GoogleIcon(),
       ),
@@ -113,7 +116,10 @@ class _SignInWithAppleButton extends ConsumerWidget with PresentationMixin {
 
     return WidthFillBox(
       child: OutlinedButton.icon(
-        onPressed: () {},
+        onPressed: () {
+          // TODO(yakitama5): 未着手
+          MaintenanceSnackbar.showByContext(context);
+        },
         label: Text(i18n.introduction.signInWithApple),
         icon: Icon(
           MdiIcons.apple,
@@ -132,7 +138,11 @@ class _Links extends HookWidget {
     return Column(
       children: [
         // TODO(yakitama5): URLを後から定義
-        UrlLink(url: '', label: i18n.settings.list.help.howToUse),
+        UrlLink(
+          url: '',
+          label: i18n.settings.list.help.howToUse,
+          onTap: () => MaintenanceSnackbar.showByContext(context),
+        ),
         const Gap(32),
         WidthFillBox(
           child: Row(
@@ -141,13 +151,18 @@ class _Links extends HookWidget {
               Flexible(
                 child:
                     // TODO(yakitama5): URLを後から定義
-                    UrlLink(url: '', label: i18n.settings.list.help.contactUs),
+                    UrlLink(
+                  url: '',
+                  label: i18n.settings.list.help.contactUs,
+                  onTap: () => MaintenanceSnackbar.showByContext(context),
+                ),
               ),
               Flexible(
                 child: UrlLink(
                   // TODO(yakitama5): URLを後から定義
                   url: '',
                   label: i18n.settings.list.help.privacyPollicy,
+                  onTap: () => MaintenanceSnackbar.showByContext(context),
                 ),
               ),
             ],

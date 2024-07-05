@@ -8,11 +8,13 @@ class UrlLink extends StatelessWidget {
     required this.url,
     required this.label,
     this.textStyle,
+    this.onTap,
   });
 
   final String label;
   final String url;
   final TextStyle? textStyle;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class UrlLink extends StatelessWidget {
       uri: Uri.parse(url),
       target: LinkTarget.blank,
       builder: (context, followLink) => GestureDetector(
-        onTap: () => launchUrlString(url),
+        onTap: onTap ?? () => launchUrlString(url),
         child: Text(
           label,
           style: defaultStyle?.merge(textStyle),

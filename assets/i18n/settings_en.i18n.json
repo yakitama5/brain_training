@@ -22,9 +22,17 @@
         }
     },
     "account": {
+        "title": "Account",
         "accountLink": "Account link",
+        "google": "Google",
+        "apple": "Apple",
         "other": "Other",
-        "leave": "Leave"
+        "logout": "Logout",
+        "leave": "Leave",
+        "leaveConfirmDialog": {
+            "title": "Leave?",
+            "body": "Are you sure you want to cancel your membership? \\Ўn this operation cannot be undone."
+        }
     },
     "uiStyle": {
         "type(context=UIStyle)": {

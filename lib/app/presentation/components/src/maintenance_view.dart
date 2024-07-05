@@ -1,3 +1,4 @@
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,7 +17,7 @@ class MaintenanceView extends StatelessWidget {
         children: [
           _MaintenanceLottie(),
           Text(
-            'test',
+            i18n.maintenance.sorryMessage,
             style: tt.titleLarge,
           ),
         ],

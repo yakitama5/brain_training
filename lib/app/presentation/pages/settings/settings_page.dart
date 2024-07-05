@@ -10,8 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:settings_ui/settings_ui.dart';
 
-import '../../../application/config/settings_config.dart';
-import '../../helper/url_launcher_helper.dart';
+import '../../components/importer.dart';
 import '../../routes/src/routes/settings_branch.dart';
 import 'components/themed_settings_list.dart';
 
@@ -143,25 +142,37 @@ class SettingsPage extends HookConsumerWidget {
     const SettingsColorStyleRouteData().go(context);
   }
 
-  Future<bool> _onHowToUse(BuildContext context) {
-    return lanchUrlStringSafety(context, settingsConfig.howToUseUrl);
+  Future<bool> _onHowToUse(BuildContext context) async {
+    // TODO(yakitama5): 未作成
+    MaintenanceSnackbar.showByContext(context);
+    return false;
+    // return lanchUrlStringSafety(context, settingsConfig.howToUseUrl);
   }
 
-  Future<bool> _onContactUs(BuildContext context) {
-    return lanchUrlStringSafety(context, settingsConfig.contactUsUrl);
+  Future<bool> _onContactUs(BuildContext context) async {
+    // TODO(yakitama5): 未作成
+    MaintenanceSnackbar.showByContext(context);
+    return false;
+    // return lanchUrlStringSafety(context, settingsConfig.contactUsUrl);
   }
 
   Future<bool> _onDevelopperTwitter(BuildContext context) async {
+    // TODO(yakitama5): 未作成
+    MaintenanceSnackbar.showByContext(context);
+    return false;
     // Notes: https://pub.dev/packages/url_launcher#configuration
-    return lanchUrlStringSafety(
-      context,
-      settingsConfig.developperXAppUrl,
-      secondUrl: settingsConfig.developperXWebUrl,
-    );
+    // return lanchUrlStringSafety(
+    //   context,
+    //   settingsConfig.developperXAppUrl,
+    //   secondUrl: settingsConfig.developperXWebUrl,
+    // );
   }
 
   Future<bool> _onPrivacyPolicy(BuildContext context) async {
-    return lanchUrlStringSafety(context, settingsConfig.privacyPolicyUrl);
+    // TODO(yakitama5): 未作成
+    MaintenanceSnackbar.showByContext(context);
+    return false;
+    // return lanchUrlStringSafety(context, settingsConfig.privacyPolicyUrl);
   }
 
   void _onLicense(BuildContext context) {
