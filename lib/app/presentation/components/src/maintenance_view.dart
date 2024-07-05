@@ -1,5 +1,6 @@
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../gen/assets.gen.dart';
@@ -16,6 +17,7 @@ class MaintenanceView extends StatelessWidget {
       child: Column(
         children: [
           _MaintenanceLottie(),
+          const Gap(32),
           Text(
             i18n.maintenance.sorryMessage,
             style: tt.titleLarge,
