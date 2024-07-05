@@ -16,7 +16,7 @@ extension RankCategoryX on RankCategory {
   /// アイコンデータ (`MdiIcons`利用のため、Extensionで定義)
   IconData get iconData => switch (this) {
         RankCategory.normal => MdiIcons.trophy,
-        RankCategory.beetle => Icons.bug_report,
+        RankCategory.beetle => CustomIcons.beetle,
         RankCategory.sumo => CustomIcons.sumo,
         RankCategory.royal => CustomIcons.royal,
         RankCategory.planet => CustomIcons.planet,
