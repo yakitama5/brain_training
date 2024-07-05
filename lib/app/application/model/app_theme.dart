@@ -26,7 +26,6 @@ class AppTheme {
     late final ColorScheme darkColorScheme;
     switch (colorStyle) {
       case ColorStyle.systemColor:
-        // TODO(yakitama5): アプリ特有のテーマを設定すること
         lightColorScheme = MaterialTheme.lightScheme().toColorScheme();
         darkColorScheme = MaterialTheme.darkScheme().toColorScheme();
       case ColorStyle.dynamicColor:
