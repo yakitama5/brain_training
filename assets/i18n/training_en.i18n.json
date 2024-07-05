@@ -103,6 +103,12 @@
             "buttonCaption": "Share",
             "subject": "${training: String} done!",
             "body": "${training: String} done\nMy score is ${points: int} points✨"
+        },
+        "tutorial": {
+            "share": {
+                "title": "Share",
+                "body": "Tap the icon to share your training results.\nSend them to your family and friends!\n#My brain training"
+            }
         }
     },
     "tutorial": "Tutorial",

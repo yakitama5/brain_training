@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 272 (136 per locale)
+/// Strings: 276 (138 per locale)
 ///
-/// Built on 2024-07-04 at 09:25 UTC
+/// Built on 2024-07-05 at 02:21 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -568,6 +568,7 @@ class _StringsTrainingResultEn {
 	String score({required int points}) => '${points} points';
 	String correctRate({required int rate}) => 'Correct rate: ${rate}%';
 	late final _StringsTrainingResultShareEn share = _StringsTrainingResultShareEn._(_root);
+	late final _StringsTrainingResultTutorialEn tutorial = _StringsTrainingResultTutorialEn._(_root);
 }
 
 // Path: training.coloredWord
@@ -688,6 +689,27 @@ class _StringsTrainingResultShareEn {
 	String get buttonCaption => 'Share';
 	String subject({required String training}) => '${training} done!';
 	String body({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
+}
+
+// Path: training.result.tutorial
+class _StringsTrainingResultTutorialEn {
+	_StringsTrainingResultTutorialEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final _StringsTrainingResultTutorialShareEn share = _StringsTrainingResultTutorialShareEn._(_root);
+}
+
+// Path: training.result.tutorial.share
+class _StringsTrainingResultTutorialShareEn {
+	_StringsTrainingResultTutorialShareEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Share';
+	String get body => 'Tap the icon to share your training results.\nSend them to your family and friends!';
 }
 
 // Path: <root>
@@ -1128,6 +1150,7 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 	@override String score({required int points}) => '${points}点';
 	@override String correctRate({required int rate}) => '正答率：${rate}%';
 	@override late final _StringsTrainingResultShareJa share = _StringsTrainingResultShareJa._(_root);
+	@override late final _StringsTrainingResultTutorialJa tutorial = _StringsTrainingResultTutorialJa._(_root);
 }
 
 // Path: training.coloredWord
@@ -1248,6 +1271,27 @@ class _StringsTrainingResultShareJa extends _StringsTrainingResultShareEn {
 	@override String get buttonCaption => '共有';
 	@override String subject({required String training}) => '${training}を実施しました！';
 	@override String body({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
+}
+
+// Path: training.result.tutorial
+class _StringsTrainingResultTutorialJa extends _StringsTrainingResultTutorialEn {
+	_StringsTrainingResultTutorialJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _StringsTrainingResultTutorialShareJa share = _StringsTrainingResultTutorialShareJa._(_root);
+}
+
+// Path: training.result.tutorial.share
+class _StringsTrainingResultTutorialShareJa extends _StringsTrainingResultTutorialShareEn {
+	_StringsTrainingResultTutorialShareJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '共有する';
+	@override String get body => 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
 }
 
 /// Flat map(s) containing all translations.
@@ -1507,6 +1551,8 @@ extension on Translations {
 			case 'training.result.share.buttonCaption': return 'Share';
 			case 'training.result.share.subject': return ({required String training}) => '${training} done!';
 			case 'training.result.share.body': return ({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
+			case 'training.result.tutorial.share.title': return 'Share';
+			case 'training.result.tutorial.share.body': return 'Tap the icon to share your training results.\nSend them to your family and friends!';
 			case 'training.tutorial': return 'Tutorial';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {
@@ -1795,6 +1841,8 @@ extension on _StringsJa {
 			case 'training.result.share.buttonCaption': return '共有';
 			case 'training.result.share.subject': return ({required String training}) => '${training}を実施しました！';
 			case 'training.result.share.body': return ({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
+			case 'training.result.tutorial.share.title': return '共有する';
+			case 'training.result.tutorial.share.body': return 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
 			case 'training.tutorial': return 'チュートリアル';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {

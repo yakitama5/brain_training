@@ -7,8 +7,10 @@ import 'package:brain_training/app/presentation/pages/presentation_mixin.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../../domain/training/entity/training_result.dart';
 import '../../../domain/training/value_object/result_rank.dart';
@@ -21,14 +23,29 @@ class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
   });
 
   final TrainingResult result;
+  final GlobalKey _shareButtonKey = GlobalKey();
   final GlobalKey _imageKey = GlobalKey();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cs = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
+    final cs = theme.colorScheme;
 
     // チュートリアル表示を判定
-    final showTutorial = !ref.watch(trainingFirstDoneProvider);
+    final isFirst = !ref.watch(trainingFirstDoneProvider);
+    useEffect(
+      () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!isFirst) {
+            return;
+          }
+
+          _showShareTutorial(context, ref);
+        });
+
+        return null;
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -36,21 +53,10 @@ class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
         centerTitle: true,
         actions: [
           IconButton(
+            key: _shareButtonKey,
             icon: const Icon(Icons.share),
             tooltip: i18n.training.result.share.buttonCaption,
-            onPressed: () => execute(context, action: () async {
-              final xFile = await captureToXFile(_imageKey);
-              if (xFile == null) {
-                throw Exception([
-                  i18n.error.failedMessage(
-                      action: i18n.training.result.share.buttonCaption)
-                ]);
-              }
-
-              return ref
-                  .read(trainingUsecaseProvider)
-                  .shareResult(xFile: xFile, result: result);
-            }),
+            onPressed: () => share(context, ref),
           )
         ],
       ),
@@ -89,6 +95,67 @@ class TrainingResultPage extends HookConsumerWidget with PresentationMixin {
         ),
       ),
     );
+  }
+
+  Future<void> share(BuildContext context, WidgetRef ref) {
+    return execute(context, action: () async {
+      final xFile = await captureToXFile(_imageKey);
+      if (xFile == null) {
+        throw Exception([
+          i18n.error
+              .failedMessage(action: i18n.training.result.share.buttonCaption)
+        ]);
+      }
+
+      return ref
+          .read(trainingUsecaseProvider)
+          .shareResult(xFile: xFile, result: result);
+    });
+  }
+
+  Future<void> _showShareTutorial(BuildContext context, WidgetRef ref) async {
+    final theme = Theme.of(context);
+    final cs = theme.colorScheme;
+    final tt = theme.textTheme;
+    final tsOnPrimary = TextStyle(color: cs.onPrimary);
+
+    final tutorial = TutorialCoachMark(
+        onClickTarget: (target) => share(context, ref),
+        targets: [
+          TargetFocus(
+            identify: 'shareButton',
+            keyTarget: _shareButtonKey,
+            alignSkip: Alignment.bottomRight,
+            color: cs.primary,
+            contents: [
+              TargetContent(
+                align: ContentAlign.left,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        i18n.training.result.tutorial.share.title,
+                        style: tt.headlineMedium?.merge(tsOnPrimary),
+                      ),
+                      const Gap(16),
+                      Text(
+                        i18n.training.result.tutorial.share.body,
+                        style: tsOnPrimary,
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          )
+        ]);
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      tutorial.show(context: context);
+      ref.read(trainingFirstDoneProvider.notifier).done();
+    });
   }
 }
 

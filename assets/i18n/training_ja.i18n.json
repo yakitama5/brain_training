@@ -103,6 +103,12 @@
             "buttonCaption": "共有",
             "subject": "${training: String}を実施しました！",
             "body": "${training: String}を実施しました！\n私の得点は「${points: int}」点です✨"
+        },
+        "tutorial": {
+            "share": {
+                "title": "共有する",
+                "body": "アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！\n#私の脳トレ"
+            }
         }
     },
     "tutorial": "チュートリアル",
