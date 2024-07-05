@@ -1,4 +1,5 @@
 import 'package:brain_training/app/domain/settings/value_object/ui_style.dart';
+import 'package:brain_training/gen/fonts.gen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:material_color_utilities/palettes/core_palette.dart';
@@ -76,7 +77,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
-      fontFamily: 'Murecho',
+      fontFamily: FontFamily.murecho,
       brightness: brightness,
       colorScheme: colorScheme,
       platform: platform,
