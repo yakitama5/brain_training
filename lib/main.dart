@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:brain_training/app/application/config/app_build_config_provider.dart';
 import 'package:brain_training/app/application/model/app_build_config.dart';
 import 'package:brain_training/app/application/model/app_sound_players.dart';
@@ -56,8 +54,10 @@ void main() async {
 
   // Theme
   final corePalette = await DynamicColorPlugin.getCorePalette();
-  final isDynamicColorSupported =
-      corePalette != null && !Platform.isIOS && !Platform.isMacOS;
+  // TODO(yakitama5): 現状DynamicColorのパッケージがFlutter3.22に追いついていないため無効化する
+  const isDynamicColorSupported =
+      // corePalette != null && !Platform.isIOS && !Platform.isMacOS;
+      false;
 
   // Slang
   LocaleSettings.useDeviceLocale();
