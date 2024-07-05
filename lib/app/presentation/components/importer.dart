@@ -4,6 +4,7 @@ export 'src/gauge_indicator.dart';
 export 'src/image_aspect_ratio.dart';
 export 'src/maintenance_view.dart';
 export 'src/overlay_loading.dart';
+export 'src/page_padding.dart';
 export 'src/shimmer_widget.dart';
 export 'src/snackbar/error_snackbar.dart';
 export 'src/snackbar/info_snackbar.dart';

@@ -70,6 +70,7 @@ dependencies:
   url_launcher:
   uuid:
   version:
+  video_player: 
   visibility_detector: 
   # vosk_flutter: 
   weather:
@@ -100,6 +101,7 @@ flutter:
     - assets/sounds/
     # - assets/json/
     - assets/images/
+    - assets/movie/
     - assets/lottie/
     # - assets/models/
     - assets/sensitive/

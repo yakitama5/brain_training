@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 276 (138 per locale)
+/// Strings: 288 (144 per locale)
 ///
-/// Built on 2024-07-05 at 02:21 UTC
+/// Built on 2024-07-05 at 03:55 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -394,14 +394,27 @@ class _StringsTrainingTrainingTypeEn {
 				return '60 Seconds';
 		}
 	}
+	String get descriptionTitleLarge => 'Training';
 	String description({required TrainingType context}) {
 		switch (context) {
 			case TrainingType.coloredWord:
-				return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+				return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.';
 			case TrainingType.themeShiritori:
-				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+				return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.';
 			case TrainingType.fillInTheBlankCalc:
-				return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+				return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.';
+		}
+	}
+	String get howToPlayTitleLarge => 'Answer methods';
+	String get howToPlayTitleSmall => 'You can choose from two answer methods.';
+	String howToPlayBody({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '・(Recommended) Answer with voice\n・Answer from the options';
+			case TrainingType.themeShiritori:
+				return '・(Recommended) Answer with voice\n・Enter and answer';
+			case TrainingType.fillInTheBlankCalc:
+				return '・(Recommended) Answer with voice\n・Answer from the options';
 		}
 	}
 }
@@ -709,7 +722,7 @@ class _StringsTrainingResultTutorialShareEn {
 
 	// Translations
 	String get title => 'Share';
-	String get body => 'Tap the icon to share your training results.\nSend them to your family and friends!';
+	String get body => 'Tap the icon to share your training results.\nSend them to your family and friends!\n#My brain training';
 }
 
 // Path: <root>
@@ -976,14 +989,27 @@ class _StringsTrainingTrainingTypeJa extends _StringsTrainingTrainingTypeEn {
 				return '所要時間：60秒';
 		}
 	}
+	@override String get descriptionTitleLarge => 'トレーニング内容';
 	@override String description({required TrainingType context}) {
 		switch (context) {
 			case TrainingType.coloredWord:
-				return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+				return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。';
 			case TrainingType.themeShiritori:
-				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+				return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。';
 			case TrainingType.fillInTheBlankCalc:
-				return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+				return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。';
+		}
+	}
+	@override String get howToPlayTitleLarge => '回答方法';
+	@override String get howToPlayTitleSmall => '回答方法は二種類から選ぶことができます。';
+	@override String howToPlayBody({required TrainingType context}) {
+		switch (context) {
+			case TrainingType.coloredWord:
+				return '・(おすすめ) 声で回答する\n・選択肢から回答する';
+			case TrainingType.themeShiritori:
+				return '・(おすすめ) 声で回答する\n・入力して回答する';
+			case TrainingType.fillInTheBlankCalc:
+				return '・(おすすめ) 声で回答する\n・選択肢から回答する';
 		}
 	}
 }
@@ -1291,7 +1317,7 @@ class _StringsTrainingResultTutorialShareJa extends _StringsTrainingResultTutori
 
 	// Translations
 	@override String get title => '共有する';
-	@override String get body => 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
+	@override String get body => 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！\n#私の脳トレ';
 }
 
 /// Flat map(s) containing all translations.
@@ -1404,14 +1430,27 @@ extension on Translations {
 						return '60 Seconds';
 				}
 			};
+			case 'training.trainingType.descriptionTitleLarge': return 'Training';
 			case 'training.trainingType.description': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
-						return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+						return 'Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.';
 					case TrainingType.themeShiritori:
-						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer';
+						return 'Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.';
 					case TrainingType.fillInTheBlankCalc:
-						return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options';
+						return 'A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.';
+				}
+			};
+			case 'training.trainingType.howToPlayTitleLarge': return 'Answer methods';
+			case 'training.trainingType.howToPlayTitleSmall': return 'You can choose from two answer methods.';
+			case 'training.trainingType.howToPlayBody': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '・(Recommended) Answer with voice\n・Answer from the options';
+					case TrainingType.themeShiritori:
+						return '・(Recommended) Answer with voice\n・Enter and answer';
+					case TrainingType.fillInTheBlankCalc:
+						return '・(Recommended) Answer with voice\n・Answer from the options';
 				}
 			};
 			case 'training.answerSelection.title': return 'Answer selection';
@@ -1552,7 +1591,7 @@ extension on Translations {
 			case 'training.result.share.subject': return ({required String training}) => '${training} done!';
 			case 'training.result.share.body': return ({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
 			case 'training.result.tutorial.share.title': return 'Share';
-			case 'training.result.tutorial.share.body': return 'Tap the icon to share your training results.\nSend them to your family and friends!';
+			case 'training.result.tutorial.share.body': return 'Tap the icon to share your training results.\nSend them to your family and friends!\n#My brain training';
 			case 'training.tutorial': return 'Tutorial';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {
@@ -1694,14 +1733,27 @@ extension on _StringsJa {
 						return '所要時間：60秒';
 				}
 			};
+			case 'training.trainingType.descriptionTitleLarge': return 'トレーニング内容';
 			case 'training.trainingType.description': return ({required TrainingType context}) {
 				switch (context) {
 					case TrainingType.coloredWord:
-						return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+						return '4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。';
 					case TrainingType.themeShiritori:
-						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する';
+						return '選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。';
 					case TrainingType.fillInTheBlankCalc:
-						return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する';
+						return '穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。';
+				}
+			};
+			case 'training.trainingType.howToPlayTitleLarge': return '回答方法';
+			case 'training.trainingType.howToPlayTitleSmall': return '回答方法は二種類から選ぶことができます。';
+			case 'training.trainingType.howToPlayBody': return ({required TrainingType context}) {
+				switch (context) {
+					case TrainingType.coloredWord:
+						return '・(おすすめ) 声で回答する\n・選択肢から回答する';
+					case TrainingType.themeShiritori:
+						return '・(おすすめ) 声で回答する\n・入力して回答する';
+					case TrainingType.fillInTheBlankCalc:
+						return '・(おすすめ) 声で回答する\n・選択肢から回答する';
 				}
 			};
 			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
@@ -1842,7 +1894,7 @@ extension on _StringsJa {
 			case 'training.result.share.subject': return ({required String training}) => '${training}を実施しました！';
 			case 'training.result.share.body': return ({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
 			case 'training.result.tutorial.share.title': return '共有する';
-			case 'training.result.tutorial.share.body': return 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
+			case 'training.result.tutorial.share.body': return 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！\n#私の脳トレ';
 			case 'training.tutorial': return 'チュートリアル';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {

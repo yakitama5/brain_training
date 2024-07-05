@@ -53,6 +53,19 @@ class $AssetsLottieGen {
   List<String> get values => [maintenance, sorry];
 }
 
+class $AssetsMovieGen {
+  const $AssetsMovieGen();
+
+  /// File path: assets/movie/sample.mp4
+  String get sample => 'assets/movie/sample.mp4';
+
+  /// File path: assets/movie/tutorial_color.mp4
+  String get tutorialColor => 'assets/movie/tutorial_color.mp4';
+
+  /// List of all assets
+  List<String> get values => [sample, tutorialColor];
+}
+
 class $AssetsSensitiveGen {
   const $AssetsSensitiveGen();
 
@@ -92,6 +105,7 @@ class Assets {
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
+  static const $AssetsMovieGen movie = $AssetsMovieGen();
   static const $AssetsSensitiveGen sensitive = $AssetsSensitiveGen();
   static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }

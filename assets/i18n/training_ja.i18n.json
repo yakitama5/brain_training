@@ -12,10 +12,18 @@
             "themeShiritori": "所要時間：5分",
             "fillInTheBlankCalc": "所要時間：60秒"
         },
+        "descriptionTitleLarge": "トレーニング内容",
         "description(context=TrainingType)": {
-            "coloredWord": "4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する",
-            "themeShiritori": "選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・入力して回答する",
-            "fillInTheBlankCalc": "穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。\n\n回答方法は二種類から選ぶことができます。\n・(おすすめ) 声で回答する\n・選択肢から回答する"
+            "coloredWord": "4種類の色の付いた文字が表示されます。\n文字ではなく、表示された色を答えて下さい。",
+            "themeShiritori": "選択肢に表示されたお題限定でしりとりを行います。\nAIとのしりとりを可能な限り続けて下さい。",
+            "fillInTheBlankCalc": "穴が開いた計算式が表示されます。\n計算式が正しくなるように演算子を答えてください。"
+        },
+        "howToPlayTitleLarge": "回答方法",
+        "howToPlayTitleSmall": "回答方法は二種類から選ぶことができます。",
+        "howToPlayBody(context=TrainingType)": {
+            "coloredWord": "・(おすすめ) 声で回答する\n・選択肢から回答する",
+            "themeShiritori": "・(おすすめ) 声で回答する\n・入力して回答する",
+            "fillInTheBlankCalc": "・(おすすめ) 声で回答する\n・選択肢から回答する"
         }
     },
     "trainingCard": {

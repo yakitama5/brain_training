@@ -64,8 +64,7 @@ class TrainingMenuPage extends HookConsumerWidget {
         title: Text(i18n.training.menu),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
+        child: PagePadding(
           child: Column(
             children: [
               ...menu,

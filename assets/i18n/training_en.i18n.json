@@ -12,10 +12,18 @@
             "themeShiritori": "5 Minuts",
             "fillInTheBlankCalc": "60 Seconds"
         },
+        "descriptionTitleLarge": "Training",
         "description(context=TrainingType)": {
-            "coloredWord": "Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options",
-            "themeShiritori": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Enter and answer",
-            "fillInTheBlankCalc": "A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct.\n\nYou can choose from two answer methods.\n・(Recommended) Answer with voice\n・Answer from the options"
+            "coloredWord": "Four different colored letters will be displayed.\nPlease answer with the displayed color, not the text.",
+            "themeShiritori": "Shiritori will be limited to the themes displayed in the options.Please continue to interact with AI as much as possible.",
+            "fillInTheBlankCalc": "A calculation formula with a hole will be displayed.\nPlease answer the operators so that the formula is correct."
+        },
+        "howToPlayTitleLarge": "Answer methods",
+        "howToPlayTitleSmall": "You can choose from two answer methods.",
+        "howToPlayBody(context=TrainingType)": {
+            "coloredWord": "・(Recommended) Answer with voice\n・Answer from the options",
+            "themeShiritori": "・(Recommended) Answer with voice\n・Enter and answer",
+            "fillInTheBlankCalc": "・(Recommended) Answer with voice\n・Answer from the options"
         }
     },
     "answerSelection": {
