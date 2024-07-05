@@ -13,8 +13,16 @@ part 'training_tutorial_page.g.dart';
 
 /// dispose管理を容易にするため、当画面内専用のStateとして定義
 @riverpod
-Future<VideoPlayerController> _videoPlayer(_VideoPlayerRef ref) async {
-  final controller = VideoPlayerController.asset(Assets.movie.tutorialColor);
+Future<VideoPlayerController> _videoPlayer(_VideoPlayerRef ref,
+    {required TrainingType trainingType}) async {
+  final asset = switch (trainingType) {
+    TrainingType.coloredWord => Assets.movie.tutorialColor,
+    // TODO: Handle this case.
+    TrainingType.themeShiritori => throw UnimplementedError(),
+    TrainingType.fillInTheBlankCalc => throw UnimplementedError(),
+  };
+
+  final controller = VideoPlayerController.asset(asset);
   await controller.initialize();
   await controller.setLooping(true);
   await controller.setVolume(0);
