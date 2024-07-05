@@ -29,7 +29,8 @@
     "trainingCard": {
         "inviteSubhead": "今日の脳トレを始めましょう",
         "doneSubhead": "今日のスコア",
-        "start": "測定"
+        "start": "測定",
+        "playAgainCaption": "1日2回目以降は結果に反映されません。\n息抜きとしてお楽しみ下さい"
     },
     "answerSelection": {
         "title": "回答方法",

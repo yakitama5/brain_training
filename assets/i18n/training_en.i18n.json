@@ -37,7 +37,8 @@
     "trainingCard": {
         "inviteSubhead": "Let's Training!",
         "doneSubhead": "Today Score",
-        "start": "Start"
+        "start": "Start",
+        "playAgainCaption": "The second time or later in the same day will not be reflected in the results. \nPlease enjoy it as a way to relax."
     },
     "result": {
         "title": "Result",

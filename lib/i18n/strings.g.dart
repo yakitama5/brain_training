@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 288 (144 per locale)
+/// Strings: 290 (145 per locale)
 ///
-/// Built on 2024-07-05 at 03:55 UTC
+/// Built on 2024-07-05 at 07:21 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -448,6 +448,7 @@ class _StringsTrainingTrainingCardEn {
 	String get inviteSubhead => 'Let\'s Training!';
 	String get doneSubhead => 'Today Score';
 	String get start => 'Start';
+	String get playAgainCaption => 'The second time or later in the same day will not be reflected in the results. \nPlease enjoy it as a way to relax.';
 }
 
 // Path: training.result
@@ -701,7 +702,7 @@ class _StringsTrainingResultShareEn {
 	// Translations
 	String get buttonCaption => 'Share';
 	String subject({required String training}) => '${training} done!';
-	String body({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
+	String body({required String training, required int points}) => '${training} done\nMy score is ${points} points✨\n#My brain training';
 }
 
 // Path: training.result.tutorial
@@ -722,7 +723,7 @@ class _StringsTrainingResultTutorialShareEn {
 
 	// Translations
 	String get title => 'Share';
-	String get body => 'Tap the icon to share your training results.\nSend them to your family and friends!\n#My brain training';
+	String get body => 'Tap the icon to share your training results.\nSend them to your family and friends!';
 }
 
 // Path: <root>
@@ -1024,6 +1025,7 @@ class _StringsTrainingTrainingCardJa extends _StringsTrainingTrainingCardEn {
 	@override String get inviteSubhead => '今日の脳トレを始めましょう';
 	@override String get doneSubhead => '今日のスコア';
 	@override String get start => '測定';
+	@override String get playAgainCaption => '1日2回目以降は結果に反映されません。\n息抜きとしてお楽しみ下さい';
 }
 
 // Path: training.answerSelection
@@ -1296,7 +1298,7 @@ class _StringsTrainingResultShareJa extends _StringsTrainingResultShareEn {
 	// Translations
 	@override String get buttonCaption => '共有';
 	@override String subject({required String training}) => '${training}を実施しました！';
-	@override String body({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
+	@override String body({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨\n#私の脳トレ';
 }
 
 // Path: training.result.tutorial
@@ -1317,7 +1319,7 @@ class _StringsTrainingResultTutorialShareJa extends _StringsTrainingResultTutori
 
 	// Translations
 	@override String get title => '共有する';
-	@override String get body => 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！\n#私の脳トレ';
+	@override String get body => 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
 }
 
 /// Flat map(s) containing all translations.
@@ -1466,6 +1468,7 @@ extension on Translations {
 			case 'training.trainingCard.inviteSubhead': return 'Let\'s Training!';
 			case 'training.trainingCard.doneSubhead': return 'Today Score';
 			case 'training.trainingCard.start': return 'Start';
+			case 'training.trainingCard.playAgainCaption': return 'The second time or later in the same day will not be reflected in the results. \nPlease enjoy it as a way to relax.';
 			case 'training.result.title': return 'Result';
 			case 'training.result.scoreCard.title': return 'Score';
 			case 'training.result.rank.normal': return ({required ResultRank context}) {
@@ -1589,9 +1592,9 @@ extension on Translations {
 			case 'training.result.correctRate': return ({required int rate}) => 'Correct rate: ${rate}%';
 			case 'training.result.share.buttonCaption': return 'Share';
 			case 'training.result.share.subject': return ({required String training}) => '${training} done!';
-			case 'training.result.share.body': return ({required String training, required int points}) => '${training} done\nMy score is ${points} points✨';
+			case 'training.result.share.body': return ({required String training, required int points}) => '${training} done\nMy score is ${points} points✨\n#My brain training';
 			case 'training.result.tutorial.share.title': return 'Share';
-			case 'training.result.tutorial.share.body': return 'Tap the icon to share your training results.\nSend them to your family and friends!\n#My brain training';
+			case 'training.result.tutorial.share.body': return 'Tap the icon to share your training results.\nSend them to your family and friends!';
 			case 'training.tutorial': return 'Tutorial';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {
@@ -1759,6 +1762,7 @@ extension on _StringsJa {
 			case 'training.trainingCard.inviteSubhead': return '今日の脳トレを始めましょう';
 			case 'training.trainingCard.doneSubhead': return '今日のスコア';
 			case 'training.trainingCard.start': return '測定';
+			case 'training.trainingCard.playAgainCaption': return '1日2回目以降は結果に反映されません。\n息抜きとしてお楽しみ下さい';
 			case 'training.answerSelection.title': return '回答方法';
 			case 'training.answerSelection.process': return ({required AnswerType context}) {
 				switch (context) {
@@ -1892,9 +1896,9 @@ extension on _StringsJa {
 			case 'training.result.correctRate': return ({required int rate}) => '正答率：${rate}%';
 			case 'training.result.share.buttonCaption': return '共有';
 			case 'training.result.share.subject': return ({required String training}) => '${training}を実施しました！';
-			case 'training.result.share.body': return ({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨';
+			case 'training.result.share.body': return ({required String training, required int points}) => '${training}を実施しました！\n私の得点は「${points}」点です✨\n#私の脳トレ';
 			case 'training.result.tutorial.share.title': return '共有する';
-			case 'training.result.tutorial.share.body': return 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！\n#私の脳トレ';
+			case 'training.result.tutorial.share.body': return 'アイコンをタップするとトレーニングの結果を共有できます。\n家族や友だちに送ってみましょう！';
 			case 'training.tutorial': return 'チュートリアル';
 			case 'training.coloredWord.displayWord': return ({required ColoredWord context}) {
 				switch (context) {

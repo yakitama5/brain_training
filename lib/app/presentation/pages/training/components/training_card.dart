@@ -100,10 +100,18 @@ class TrainingCard extends StatelessWidget {
                 rankCategory: rankCategory,
               ),
             ),
-          if (result == null)
+          if (result == null || cardType == TrainingCardType.trainingDetail)
             _TrainingButton(
               onPressed: () => onTraining(context),
             ),
+          if (result != null && cardType == TrainingCardType.trainingDetail)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                i18n.training.trainingCard.playAgainCaption,
+                style: ts.labelMedium?.merge(TextStyle(color: cs.outline)),
+              ),
+            )
         ],
       ),
     );
