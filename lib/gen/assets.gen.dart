@@ -56,14 +56,11 @@ class $AssetsLottieGen {
 class $AssetsMovieGen {
   const $AssetsMovieGen();
 
-  /// File path: assets/movie/sample.mp4
-  String get sample => 'assets/movie/sample.mp4';
-
   /// File path: assets/movie/tutorial_color.mp4
   String get tutorialColor => 'assets/movie/tutorial_color.mp4';
 
   /// List of all assets
-  List<String> get values => [sample, tutorialColor];
+  List<String> get values => [tutorialColor];
 }
 
 class $AssetsSensitiveGen {
