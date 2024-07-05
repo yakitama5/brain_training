@@ -11,6 +11,7 @@ import 'package:brain_training/app/presentation/pages/training/components/count_
 import 'package:brain_training/app/presentation/pages/training/components/playing_pop_scope_scaffold.dart';
 import 'package:brain_training/app/presentation/pages/training/components/stopwatch_builder.dart';
 import 'package:brain_training/i18n/strings.g.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -88,8 +89,17 @@ class PlayPage extends HookConsumerWidget {
               titleBuilder: (value) => Text(
                 i18n.training.coloredWord.displayWord(context: value),
               ),
-              readBuilder: (value) =>
-                  i18n.training.coloredWord.readWord(context: value),
+              toAnswer: (value) {
+                if (value == null) {
+                  return null;
+                }
+
+                return ColoredWord.values.singleWhereOrNull((type) {
+                  final readValue =
+                      i18n.training.coloredWord.readWord(context: type);
+                  return value == readValue;
+                });
+              },
               onAnswered: (answer) => onAnswered(
                 answer,
                 word,

@@ -138,6 +138,17 @@ void main() async {
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
         settingsServiceProvider
             .overrideWith(SharedPreferencesSettingsService.new),
+
+        // TODO(yakitama5): テスト用
+        // sttRecognizedTextProvider.overrideWith((ref) async* {
+        //   final list = <String>[];
+
+        //   for (var i = 0; i < 30; i++) {
+        //     await Future.delayed(const Duration(seconds: 1));
+        //     list.add('${i % 3 == 0 ? '青' : i}');
+        //     yield list;
+        //   }
+        // }),
       ],
       child: TranslationProvider(
         child: const App(),

@@ -12,22 +12,22 @@ class AdaptiveAnswerWidget<T> extends HookConsumerWidget {
     required this.onAnswered,
     required this.values,
     this.titleBuilder,
-    this.readBuilder,
-  });
+    this.toAnswer,
+  }) : assert(answerType != AnswerType.voice || toAnswer != null);
 
   final AnswerType answerType;
   final void Function(T answer) onAnswered;
   final List<T> values;
   final Widget Function(T value)? titleBuilder;
-  final String Function(T value)? readBuilder;
+  final T? Function(String? voice)? toAnswer;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return switch (answerType) {
       AnswerType.voice => VoiceAnswer<T>(
           values: values,
-          readBuilder: readBuilder ?? (value) => value.toString(),
           onAnswered: onAnswered,
+          toAnswer: toAnswer!,
         ),
       AnswerType.list => ListAnswer<T>(
           values: values,

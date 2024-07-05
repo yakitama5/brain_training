@@ -2,6 +2,7 @@ import 'package:brain_training/app/application/state/color_style_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/theme_mode_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/ui_style_provider.dart';
+import 'package:brain_training/app/presentation/pages/sample_page.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/app/presentation/theme/importer.dart';
 import 'package:brain_training/i18n/strings.g.dart';
@@ -144,7 +145,9 @@ class SettingsPage extends HookConsumerWidget {
 
   Future<bool> _onHowToUse(BuildContext context) async {
     // TODO(yakitama5): 未作成
-    MaintenanceSnackbar.showByContext(context);
+    await Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const SamplePage()));
+    // MaintenanceSnackbar.showByContext(context);
     return false;
     // return lanchUrlStringSafety(context, settingsConfig.howToUseUrl);
   }
