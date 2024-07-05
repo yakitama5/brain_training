@@ -1,9 +1,8 @@
+import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:flutter/material.dart';
 
-import '../../components/importer.dart';
-
-class AnalyticsPage extends StatelessWidget {
-  const AnalyticsPage({super.key});
+class MaintenancePage extends StatelessWidget {
+  const MaintenancePage({super.key});
 
   @override
   Widget build(BuildContext context) {

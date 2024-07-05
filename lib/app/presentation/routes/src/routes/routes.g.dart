@@ -39,6 +39,10 @@ RouteBase get $baseShellSrouteData => ShellRouteData.$route(
           ],
         ),
         GoRouteData.$route(
+          path: '/maintenance',
+          factory: $MaintenanceRouteDataExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: '/training_result',
           factory: $TrainingResultRouteDataExtension._fromState,
         ),
@@ -228,6 +232,24 @@ extension $AnswerSelectRouteDataExtension on AnswerSelectRouteData {
 
   String get location => GoRouteData.$location(
         '/tutorial/${Uri.encodeComponent(_$TrainingTypeEnumMap[trainingType]!)}/answer_select',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $MaintenanceRouteDataExtension on MaintenanceRouteData {
+  static MaintenanceRouteData _fromState(GoRouterState state) =>
+      const MaintenanceRouteData();
+
+  String get location => GoRouteData.$location(
+        '/maintenance',
       );
 
   void go(BuildContext context) => context.go(location);

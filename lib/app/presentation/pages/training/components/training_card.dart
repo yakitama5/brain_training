@@ -1,5 +1,4 @@
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
-import 'package:brain_training/app/presentation/routes/src/routes/home_branch.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/routes.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -118,14 +117,15 @@ class TrainingCard extends StatelessWidget {
   }
 
   void onTraining(BuildContext context) {
+    // TODO(yakitama5): 全てが完成するまではswitch分で独自制御
     switch (trainingType) {
       case TrainingType.coloredWord:
-      case TrainingType.fillInTheBlankCalc:
         TutorialRouteData(trainingType).push<void>(context);
         return;
+      case TrainingType.fillInTheBlankCalc:
       case TrainingType.themeShiritori:
-        // TODO(yakitama5): 未着手
-        const SampleRouteData().go(context);
+        // TODO(yakitama5): メンテナンス中表示
+        const MaintenanceRouteData().push(context);
         return;
     }
   }

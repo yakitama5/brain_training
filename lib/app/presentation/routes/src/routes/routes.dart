@@ -1,5 +1,6 @@
 import 'package:brain_training/app/domain/training/value_object/answer_type.dart';
 import 'package:brain_training/app/domain/training/value_object/training_type.dart';
+import 'package:brain_training/app/presentation/pages/settings/maintenance_page.dart';
 import 'package:brain_training/app/presentation/pages/training/colored_word_page.dart';
 import 'package:brain_training/app/presentation/pages/training/fill_in_the_blank_calc_page.dart';
 import 'package:brain_training/app/presentation/routes/src/routes/analytics_branch.dart';
@@ -41,6 +42,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
         ),
       ],
     ),
+    TypedGoRoute<MaintenanceRouteData>(path: MaintenanceRouteData.path),
     TypedGoRoute<TrainingResultRouteData>(
       path: TrainingResultRouteData.path,
     ),
@@ -180,4 +182,17 @@ class OnboardRouteData extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const OnboardPage();
+}
+
+class MaintenanceRouteData extends GoRouteData {
+  const MaintenanceRouteData();
+
+  static const path = '/maintenance';
+
+  @override
+  Page<void> buildPage(BuildContext context, GoRouterState state) =>
+      const MaterialPage(
+        child: MaintenancePage(),
+        fullscreenDialog: true,
+      );
 }
