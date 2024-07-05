@@ -76,6 +76,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      fontFamily: 'Murecho',
       brightness: brightness,
       colorScheme: colorScheme,
       platform: platform,

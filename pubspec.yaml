@@ -106,13 +106,31 @@ flutter:
     # - assets/models/
     - assets/sensitive/
 
+  # コンテスト用、リリース時にはGoogleFontsを利用すること
   fonts:
     - family: CustomIcons
       fonts:
         - asset: assets/icons/CustomIcons.ttf
-  #   - family: Murecho
-  #     fonts:
-  #       - asset: assets/fonts/Murecho-VariableFont_wght.ttf
+    - family: Murecho
+      fonts:
+        - asset: assets/fonts/Murecho/Murecho-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Murecho/Murecho-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Murecho/Murecho-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Murecho/Murecho-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Murecho/Murecho-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Murecho/Murecho-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Murecho/Murecho-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Murecho/Murecho-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Murecho/Murecho-Black.ttf
+          weight: 900
 
 flutter_intl:
   enabled: true
