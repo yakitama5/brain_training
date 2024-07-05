@@ -19,7 +19,7 @@ Future<VideoPlayerController> _videoPlayer(_VideoPlayerRef ref,
     {required TrainingType trainingType}) async {
   final asset = switch (trainingType) {
     TrainingType.coloredWord => Assets.movie.tutorialColor,
-    // TODO: Handle this case.
+    // TODO(yakitama5): 未作成
     TrainingType.themeShiritori => throw UnimplementedError(),
     TrainingType.fillInTheBlankCalc => throw UnimplementedError(),
   };
