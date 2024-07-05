@@ -13,6 +13,8 @@ part 'training_tutorial_page.g.dart';
 
 /// dispose管理を容易にするため、当画面内専用のStateとして定義
 @riverpod
+// HACK(yakitama5): 推奨されていない利用方法のため、適用方法を検討する (useFutureでもよい)
+// ignore: unsupported_provider_value
 Future<VideoPlayerController> _videoPlayer(_VideoPlayerRef ref,
     {required TrainingType trainingType}) async {
   final asset = switch (trainingType) {
@@ -45,7 +47,8 @@ class TrainingTutorialPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tt = Theme.of(context).textTheme;
 
-    final snapshot = ref.watch(_videoPlayerProvider);
+    final snapshot =
+        ref.watch(_videoPlayerProvider(trainingType: trainingType));
 
     // UX優先のため、非同期部分だけをローディング表示
     late final Widget videoWidget;
