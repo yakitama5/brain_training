@@ -1,3 +1,4 @@
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/services.dart';
 import 'package:google_speech/config/recognition_config.dart';
 import 'package:google_speech/config/recognition_config_v1.dart';
@@ -14,7 +15,8 @@ part 'stt_recognized_text_provider.g.dart';
 
 // HACK(yakitama5): dirty SpeechToTextServiceとしてドメイン化すること
 @riverpod
-Stream<List<String>> sttRecognizedText(SttRecognizedTextRef ref) async* {
+Stream<String> sttRecognizedText(SttRecognizedTextRef ref,
+    {required AppLocale locale}) async* {
   final recorder = RecorderStream();
   await recorder.initialize();
 
@@ -27,10 +29,13 @@ Stream<List<String>> sttRecognizedText(SttRecognizedTextRef ref) async* {
     await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
   );
   final speechToText = SpeechToText.viaServiceAccount(serviceAccount);
-  final config = _getConfig();
+  final config = _getConfig(locale);
 
   final responseStream = speechToText.streamingRecognize(
-    StreamingRecognitionConfig(config: config, interimResults: true),
+    StreamingRecognitionConfig(
+      config: config,
+      interimResults: true,
+    ),
     audioStream,
   );
 
@@ -41,17 +46,49 @@ Stream<List<String>> sttRecognizedText(SttRecognizedTextRef ref) async* {
     audioStream.close();
   });
 
+  // 最後の単語だけを検出するための試作
+  // HACK(yakitama5): application層とinfra層に分ける
+  var prevLength = 0;
   yield* responseStream.map((snapshot) {
     return snapshot.results
         .map((e) => e.alternatives.first.transcript)
-        .toList();
+        .join('');
+  }).where((joinWord) {
+    if (joinWord.length <= prevLength) {
+      return false;
+    }
+    return true;
+  }).map((joinWord) {
+    final word = joinWord.substring(prevLength);
+    prevLength = joinWord.length;
+    return word;
   });
 }
 
-RecognitionConfig _getConfig() => RecognitionConfig(
+RecognitionConfig _getConfig(AppLocale locale) => RecognitionConfig(
       encoding: AudioEncoding.LINEAR16,
-      model: RecognitionModel.latest_short,
+      model: RecognitionModel.command_and_search,
       enableAutomaticPunctuation: false,
       sampleRateHertz: 16000,
-      languageCode: 'ja-JP',
+      speechContexts: [
+        // HACK(yakitama5): 言語に応じた単語リストをコンフィグ化
+        SpeechContext([
+          '青',
+          '赤',
+          '黒',
+          '緑',
+          '青色',
+          '赤色',
+          '黒色',
+          '緑色',
+          'Blue',
+          'Red',
+          'Black',
+          'Green'
+        ])
+      ],
+      languageCode: switch (locale) {
+        AppLocale.ja => 'ja-JP',
+        AppLocale.en => 'en-US',
+      },
     );

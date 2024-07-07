@@ -1,4 +1,4 @@
-import 'package:brain_training/utils/logger.dart';
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,10 +20,13 @@ class VoiceAnswer<T> extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final ts = Theme.of(context).textTheme;
-    final recognizedText = ref.watch(sttRecognizedTextProvider).value?.last;
-    ref.listen(sttRecognizedTextProvider, (p, c) {
-      logger.d(c.value?.join('、'));
-      final lastAnswer = c.value?.last;
+    final recognizedText =
+        ref.watch(sttRecognizedTextProvider(locale: i18n.$meta.locale)).value;
+    ref.listen(sttRecognizedTextProvider(locale: i18n.$meta.locale), (p, c) {
+      final lastAnswer = c.value;
+      if (lastAnswer == null) {
+        return;
+      }
 
       final answer = toAnswer(lastAnswer);
       if (answer != null) {
