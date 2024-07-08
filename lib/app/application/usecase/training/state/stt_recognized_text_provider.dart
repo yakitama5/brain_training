@@ -1,3 +1,5 @@
+import 'package:brain_training/app/application/config/app_build_config_provider.dart';
+import 'package:brain_training/app/application/model/flavor.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/services.dart';
 import 'package:google_speech/config/recognition_config.dart';
@@ -17,6 +19,7 @@ part 'stt_recognized_text_provider.g.dart';
 @riverpod
 Stream<String> sttRecognizedText(SttRecognizedTextRef ref,
     {required AppLocale locale}) async* {
+  final flavor = ref.watch(appBuildConfigProvider.select((e) => e.flavor));
   final recorder = RecorderStream();
   await recorder.initialize();
 
@@ -25,8 +28,12 @@ Stream<String> sttRecognizedText(SttRecognizedTextRef ref,
 
   await recorder.start();
 
+  final json = switch (flavor) {
+    Flavor.dev => Assets.json.speechToTextDev,
+    Flavor.prod => Assets.json.speechToText,
+  };
   final serviceAccount = ServiceAccount.fromString(
-    await rootBundle.loadString(Assets.sensitive.googleSpeechToTextKey),
+    await rootBundle.loadString(json),
   );
   final speechToText = SpeechToText.viaServiceAccount(serviceAccount);
   final config = _getConfig(locale);

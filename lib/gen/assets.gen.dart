@@ -40,6 +40,19 @@ class $AssetsImagesGen {
   List<dynamic> get values => [google, i1, i2, i3, i4, i5, i6, welcomeCats];
 }
 
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+
+  /// File path: assets/json/speech-to-text-dev.json
+  String get speechToTextDev => 'assets/json/speech-to-text-dev.json';
+
+  /// File path: assets/json/speech-to-text.json
+  String get speechToText => 'assets/json/speech-to-text.json';
+
+  /// List of all assets
+  List<String> get values => [speechToTextDev, speechToText];
+}
+
 class $AssetsLottieGen {
   const $AssetsLottieGen();
 
@@ -61,17 +74,6 @@ class $AssetsMovieGen {
 
   /// List of all assets
   List<String> get values => [tutorialColor];
-}
-
-class $AssetsSensitiveGen {
-  const $AssetsSensitiveGen();
-
-  /// File path: assets/sensitive/google-speech-to-text-key.json
-  String get googleSpeechToTextKey =>
-      'assets/sensitive/google-speech-to-text-key.json';
-
-  /// List of all assets
-  List<String> get values => [googleSpeechToTextKey];
 }
 
 class $AssetsSoundsGen {
@@ -101,9 +103,9 @@ class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsMovieGen movie = $AssetsMovieGen();
-  static const $AssetsSensitiveGen sensitive = $AssetsSensitiveGen();
   static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }
 

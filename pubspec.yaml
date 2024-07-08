@@ -100,12 +100,11 @@ flutter:
   # Assets & Fonts
   assets:
     - assets/sounds/
-    # - assets/json/
+    - assets/json/
     - assets/images/
     - assets/movie/
     - assets/lottie/
     # - assets/models/
-    - assets/sensitive/
 
   # コンテスト用、リリース時にはGoogleFontsを利用すること
   fonts:

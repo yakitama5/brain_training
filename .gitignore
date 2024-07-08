@@ -65,6 +65,7 @@ firebase_options.dart
 firebase_options_dev.dart
 firebase_app_id_file.json
 assets/sensitive/**
+speech-to-text*.json
 
 # FVM Version Cache
 .fvm/

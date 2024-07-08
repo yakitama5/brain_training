@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 26 (13 per locale)
+/// Strings: 2 (1 per locale)
 ///
-/// Built on 2024-07-05 at 13:44 UTC
+/// Built on 2024-07-08 at 06:43 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -148,49 +148,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
-	String get save => 'Save';
-	late final _StringsNavigationDestinationEn navigationDestination = _StringsNavigationDestinationEn._(_root);
-	String get start => 'Start!';
-	String get end => 'End';
-	late final _StringsPermissionEn permission = _StringsPermissionEn._(_root);
-	String get camera => 'Camera';
-	String get microphone => 'Microphone';
-}
-
-// Path: navigationDestination
-class _StringsNavigationDestinationEn {
-	_StringsNavigationDestinationEn._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String get home => 'Home';
-	String get analytics => 'Analytics';
-	String get training => 'Training';
-	String get coffeBreak => 'Break';
-	String get settings => 'Settings';
-}
-
-// Path: permission
-class _StringsPermissionEn {
-	_StringsPermissionEn._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	late final _StringsPermissionOpenSettingsDialogEn openSettingsDialog = _StringsPermissionOpenSettingsDialogEn._(_root);
-}
-
-// Path: permission.openSettingsDialog
-class _StringsPermissionOpenSettingsDialogEn {
-	_StringsPermissionOpenSettingsDialogEn._(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-	String get title => 'Request for permission settings';
-	String message({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
-	String get okLabel => 'Open Settings';
+	String get title => 'Analytics';
 }
 
 // Path: <root>
@@ -217,49 +175,7 @@ class _StringsJa implements Translations {
 	@override late final _StringsJa _root = this; // ignore: unused_field
 
 	// Translations
-	@override String get save => '保存';
-	@override late final _StringsNavigationDestinationJa navigationDestination = _StringsNavigationDestinationJa._(_root);
-	@override String get start => 'スタート！';
-	@override String get end => '終了';
-	@override late final _StringsPermissionJa permission = _StringsPermissionJa._(_root);
-	@override String get camera => 'カメラ';
-	@override String get microphone => 'マイク';
-}
-
-// Path: navigationDestination
-class _StringsNavigationDestinationJa implements _StringsNavigationDestinationEn {
-	_StringsNavigationDestinationJa._(this._root);
-
-	@override final _StringsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get home => 'ホーム';
-	@override String get analytics => '振り返り';
-	@override String get training => '脳トレ';
-	@override String get coffeBreak => '息抜き';
-	@override String get settings => '設定';
-}
-
-// Path: permission
-class _StringsPermissionJa implements _StringsPermissionEn {
-	_StringsPermissionJa._(this._root);
-
-	@override final _StringsJa _root; // ignore: unused_field
-
-	// Translations
-	@override late final _StringsPermissionOpenSettingsDialogJa openSettingsDialog = _StringsPermissionOpenSettingsDialogJa._(_root);
-}
-
-// Path: permission.openSettingsDialog
-class _StringsPermissionOpenSettingsDialogJa implements _StringsPermissionOpenSettingsDialogEn {
-	_StringsPermissionOpenSettingsDialogJa._(this._root);
-
-	@override final _StringsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '権限設定のお願い';
-	@override String message({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
-	@override String get okLabel => '設定アプリを開く';
+	@override String get title => '振り返り';
 }
 
 /// Flat map(s) containing all translations.
@@ -268,19 +184,7 @@ class _StringsPermissionOpenSettingsDialogJa implements _StringsPermissionOpenSe
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'save': return 'Save';
-			case 'navigationDestination.home': return 'Home';
-			case 'navigationDestination.analytics': return 'Analytics';
-			case 'navigationDestination.training': return 'Training';
-			case 'navigationDestination.coffeBreak': return 'Break';
-			case 'navigationDestination.settings': return 'Settings';
-			case 'start': return 'Start!';
-			case 'end': return 'End';
-			case 'permission.openSettingsDialog.title': return 'Request for permission settings';
-			case 'permission.openSettingsDialog.message': return ({required String operation}) => 'To use this feature, open the Settings app and allow access to the ${operation}.';
-			case 'permission.openSettingsDialog.okLabel': return 'Open Settings';
-			case 'camera': return 'Camera';
-			case 'microphone': return 'Microphone';
+			case 'title': return 'Analytics';
 			default: return null;
 		}
 	}
@@ -289,19 +193,7 @@ extension on Translations {
 extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
-			case 'save': return '保存';
-			case 'navigationDestination.home': return 'ホーム';
-			case 'navigationDestination.analytics': return '振り返り';
-			case 'navigationDestination.training': return '脳トレ';
-			case 'navigationDestination.coffeBreak': return '息抜き';
-			case 'navigationDestination.settings': return '設定';
-			case 'start': return 'スタート！';
-			case 'end': return '終了';
-			case 'permission.openSettingsDialog.title': return '権限設定のお願い';
-			case 'permission.openSettingsDialog.message': return ({required String operation}) => 'この機能を利用するためには、設定アプリを開いて${operation}へのアクセスを許可して下さい。.';
-			case 'permission.openSettingsDialog.okLabel': return '設定アプリを開く';
-			case 'camera': return 'カメラ';
-			case 'microphone': return 'マイク';
+			case 'title': return '振り返り';
 			default: return null;
 		}
 	}
