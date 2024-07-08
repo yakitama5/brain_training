@@ -100,6 +100,8 @@ class TrainingTutorialPage extends HookConsumerWidget {
               WidthFillBox(
                 child: FilledButton(
                   child: Text(i18n.common.start),
+
+                  // チュートリアル画面をContainerTransitionにするため、`push`を採用
                   onPressed: () =>
                       AnswerSelectRouteData(trainingType).push<void>(context),
                 ),
