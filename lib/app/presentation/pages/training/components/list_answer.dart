@@ -15,6 +15,7 @@ class ListAnswer<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: values
           .map(
             (e) => Padding(

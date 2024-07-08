@@ -35,6 +35,7 @@ class VoiceAnswer<T> extends HookConsumerWidget {
     });
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Icon(
           Icons.mic,

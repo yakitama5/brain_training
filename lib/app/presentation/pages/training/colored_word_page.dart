@@ -14,7 +14,6 @@ import 'package:brain_training/i18n/strings.g.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:nested/nested.dart';
@@ -74,39 +73,47 @@ class PlayPage extends HookConsumerWidget {
       limit: TrainingType.coloredWord.limitMillSecond,
       builder: (context) {
         return Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             // 正誤表示
             AnswerResultWidget(result: answerResult.value),
 
             // 色付き文字
             MixedColoredWordText(coloredWord: word.value),
-            const Gap(48),
 
             // 回答方法
-            AdaptiveAnswerWidget(
-              answerType: answerType,
-              values: ColoredWord.values,
-              titleBuilder: (value) => Text(
-                i18n.training.coloredWord.displayWord(context: value),
-              ),
-              toAnswer: (value) {
-                if (value == null) {
-                  return null;
-                }
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: AdaptiveAnswerWidget(
+                    answerType: answerType,
+                    values: ColoredWord.values,
+                    titleBuilder: (value) => Text(
+                      i18n.training.coloredWord.displayWord(context: value),
+                    ),
+                    toAnswer: (value) {
+                      if (value == null) {
+                        return null;
+                      }
 
-                return ColoredWord.values.singleWhereOrNull((type) {
-                  final readValue =
-                      i18n.training.coloredWord.readWord(context: type);
-                  return value == readValue;
-                });
-              },
-              onAnswered: (answer) => onAnswered(
-                answer,
-                word,
-                questions,
-                correct,
-                answerResult,
-                appSoundPlayers,
+                      return ColoredWord.values.singleWhereOrNull((type) {
+                        final readValue =
+                            i18n.training.coloredWord.readWord(context: type);
+                        return value == readValue;
+                      });
+                    },
+                    onAnswered: (answer) => onAnswered(
+                      answer,
+                      word,
+                      questions,
+                      correct,
+                      answerResult,
+                      appSoundPlayers,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
