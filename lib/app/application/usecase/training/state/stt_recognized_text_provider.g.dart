@@ -6,7 +6,7 @@ part of 'stt_recognized_text_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sttRecognizedTextHash() => r'b46bfa75d75840f420dbcbc8805813bca6c0dafa';
+String _$sttRecognizedTextHash() => r'5c1656b64e9e395c4ffa1953817cdce6e09e5a6f';
 
 /// Copied from Dart SDK
 class _SystemHash {

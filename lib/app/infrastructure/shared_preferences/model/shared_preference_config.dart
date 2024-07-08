@@ -10,5 +10,6 @@ class SharedPreferenceConfig with _$SharedPreferenceConfig {
     required String themeModeKey,
     required String colorStyleKey,
     required String firstResultKey,
+    required String firstLaunchKey,
   }) = _SharedPreferenceConfig;
 }

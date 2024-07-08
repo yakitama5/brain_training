@@ -119,10 +119,18 @@ class SharedPreferencesSettingsService implements SettingsService {
   }
 
   @override
+  bool isFirstLaunch() =>
+      _sp.getBool(sharedPreferenceConfig.firstLaunchKey) ?? false;
+
+  @override
+  Future<bool> doneLaunch() =>
+      _sp.setBool(sharedPreferenceConfig.firstLaunchKey, true);
+
+  @override
   bool isFirstResult() =>
       _sp.getBool(sharedPreferenceConfig.firstResultKey) ?? false;
 
   @override
-  Future<bool> doneFirstResult() =>
+  Future<bool> doneTraining() =>
       _sp.setBool(sharedPreferenceConfig.firstResultKey, true);
 }

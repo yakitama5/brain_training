@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 322 (161 per locale)
+/// Strings: 326 (163 per locale)
 ///
-/// Built on 2024-07-08 at 09:16 UTC
+/// Built on 2024-07-08 at 09:46 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -225,6 +225,7 @@ class _StringsHomeEn {
 	String get thisWeekStatus => 'Weekly';
 	String get dailyTraining => 'Daily';
 	String get completed => 'Comp';
+	late final _StringsHomeTutorialEn tutorial = _StringsHomeTutorialEn._(_root);
 }
 
 // Path: introduction
@@ -306,6 +307,17 @@ class _StringsCommonPermissionEn {
 
 	// Translations
 	late final _StringsCommonPermissionOpenSettingsDialogEn openSettingsDialog = _StringsCommonPermissionOpenSettingsDialogEn._(_root);
+}
+
+// Path: home.tutorial
+class _StringsHomeTutorialEn {
+	_StringsHomeTutorialEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Welcome!';
+	String get body => 'Tap "Start" to start training right away';
 }
 
 // Path: settings.list
@@ -887,6 +899,7 @@ class _StringsHomeJa extends _StringsHomeEn {
 	@override String get thisWeekStatus => '今週の状況';
 	@override String get dailyTraining => '毎日のトレーニング';
 	@override String get completed => '達成';
+	@override late final _StringsHomeTutorialJa tutorial = _StringsHomeTutorialJa._(_root);
 }
 
 // Path: introduction
@@ -968,6 +981,17 @@ class _StringsCommonPermissionJa extends _StringsCommonPermissionEn {
 
 	// Translations
 	@override late final _StringsCommonPermissionOpenSettingsDialogJa openSettingsDialog = _StringsCommonPermissionOpenSettingsDialogJa._(_root);
+}
+
+// Path: home.tutorial
+class _StringsHomeTutorialJa extends _StringsHomeTutorialEn {
+	_StringsHomeTutorialJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ようこそ！';
+	@override String get body => '「測定」をタップして早速トレーニングを開始しましょう';
 }
 
 // Path: settings.list
@@ -1481,6 +1505,8 @@ extension on Translations {
 			case 'home.thisWeekStatus': return 'Weekly';
 			case 'home.dailyTraining': return 'Daily';
 			case 'home.completed': return 'Comp';
+			case 'home.tutorial.title': return 'Welcome!';
+			case 'home.tutorial.body': return 'Tap "Start" to start training right away';
 			case 'introduction.start': return 'はじめる';
 			case 'introduction.forFirstUser': return 'はじめての方はこちら';
 			case 'introduction.signInWithGoogle': return 'Googleアカウントでログイン';
@@ -1811,6 +1837,8 @@ extension on _StringsJa {
 			case 'home.thisWeekStatus': return '今週の状況';
 			case 'home.dailyTraining': return '毎日のトレーニング';
 			case 'home.completed': return '達成';
+			case 'home.tutorial.title': return 'ようこそ！';
+			case 'home.tutorial.body': return '「測定」をタップして早速トレーニングを開始しましょう';
 			case 'introduction.start': return 'はじめる';
 			case 'introduction.forFirstUser': return 'はじめての方はこちら';
 			case 'introduction.signInWithGoogle': return 'Googleアカウントを使う';

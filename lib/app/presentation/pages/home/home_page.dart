@@ -1,12 +1,15 @@
+import 'package:brain_training/app/application/usecase/settings/state/done_first_launch_provider.dart';
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/training_weekly_summary_provider.dart';
 import 'package:brain_training/app/presentation/components/importer.dart';
 import 'package:brain_training/utils/date_time_extension.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 import '../../../../i18n/strings.g.dart';
 import '../../../application/usecase/training/state/training_result_provider.dart';
@@ -28,7 +31,7 @@ class HomePage extends HookConsumerWidget {
       children: [
         Callender(dateTime: DateTime.now()),
         const Gap(24),
-        const _TrainingCardsPane(),
+        _TrainingCardsPane(),
         const Gap(32),
         const _WeeklyTrainingPane(),
         const Gap(32),
@@ -63,25 +66,45 @@ class _PageContentsColumn extends StatelessWidget {
 }
 
 class _TrainingCardsPane extends HookConsumerWidget {
-  const _TrainingCardsPane();
+  _TrainingCardsPane();
+
+  final GlobalKey _firstCardKeys = GlobalKey();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isFirstLaunch = !ref.watch(doneFirstLaunchProvider);
+    final nowDate = DateTime.now().dayStart;
+
+    ref.listen(
+        trainingResultProvider(
+          trainingType: TrainingType.values.first,
+          dateTime: nowDate,
+        ), (p, c) {
+      if (!isFirstLaunch || c is! AsyncData) {
+        return;
+      }
+
+      _showTutorial(context, ref);
+    });
+
     return HeadlinePane(
       label: i18n.home.todayStatus,
       child: Column(
-        children: TrainingType.values.map((type) {
+        children: TrainingType.values.mapIndexed((i, type) {
           final rankCategory = ref.watch(rankCategoryProvider);
           final result = ref.watch(
             trainingResultProvider(
               trainingType: type,
-              dateTime: DateTime.now().dayStart,
+              dateTime: nowDate,
             ),
           );
 
           return result.when(
             data: (resultData) => OpenContainerCardWrapper(
               closedBuilder: (context, action) => TrainingCard(
+                // チュートリアルのため、先頭要素だけキーを発番する
+                key: i <= 0 ? _firstCardKeys : null,
+
                 trainingType: type,
                 result: resultData,
                 rankCategory: rankCategory,
@@ -106,6 +129,51 @@ class _TrainingCardsPane extends HookConsumerWidget {
         }).toList(),
       ),
     );
+  }
+
+  Future<void> _showTutorial(BuildContext context, WidgetRef ref) async {
+    final theme = Theme.of(context);
+    final cs = theme.colorScheme;
+    final tt = theme.textTheme;
+    final tsOnPrimary = TextStyle(color: cs.onPrimary);
+
+    final tutorial = TutorialCoachMark(targets: [
+      TargetFocus(
+        identify: 'firstTraining',
+        keyTarget: _firstCardKeys,
+        alignSkip: Alignment.bottomRight,
+        enableOverlayTab: true,
+        shape: ShapeLightFocus.RRect,
+        color: cs.primary,
+        contents: [
+          TargetContent(
+            align: ContentAlign.bottom,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    i18n.home.tutorial.title,
+                    style: tt.headlineMedium?.merge(tsOnPrimary),
+                  ),
+                  const Gap(16),
+                  Text(
+                    i18n.home.tutorial.body,
+                    style: tsOnPrimary,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      )
+    ]);
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      tutorial.show(context: context);
+      ref.read(doneFirstLaunchProvider.notifier).done();
+    });
   }
 }
 

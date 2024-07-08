@@ -3,5 +3,9 @@
     "todayNews": "今日のニュース",
     "thisWeekStatus": "今週の状況",
     "dailyTraining": "毎日のトレーニング",
-    "completed": "達成"
+    "completed": "達成",
+    "tutorial": {
+        "title": "ようこそ！",
+        "body": "「測定」をタップして早速トレーニングを開始しましょう"
+    }
 }

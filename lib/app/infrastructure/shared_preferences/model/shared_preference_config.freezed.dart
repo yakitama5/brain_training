@@ -21,6 +21,7 @@ mixin _$SharedPreferenceConfig {
   String get themeModeKey => throw _privateConstructorUsedError;
   String get colorStyleKey => throw _privateConstructorUsedError;
   String get firstResultKey => throw _privateConstructorUsedError;
+  String get firstLaunchKey => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SharedPreferenceConfigCopyWith<SharedPreferenceConfig> get copyWith =>
@@ -38,7 +39,8 @@ abstract class $SharedPreferenceConfigCopyWith<$Res> {
       String uiStyleKey,
       String themeModeKey,
       String colorStyleKey,
-      String firstResultKey});
+      String firstResultKey,
+      String firstLaunchKey});
 }
 
 /// @nodoc
@@ -60,6 +62,7 @@ class _$SharedPreferenceConfigCopyWithImpl<$Res,
     Object? themeModeKey = null,
     Object? colorStyleKey = null,
     Object? firstResultKey = null,
+    Object? firstLaunchKey = null,
   }) {
     return _then(_value.copyWith(
       rankCategoryKey: null == rankCategoryKey
@@ -82,6 +85,10 @@ class _$SharedPreferenceConfigCopyWithImpl<$Res,
           ? _value.firstResultKey
           : firstResultKey // ignore: cast_nullable_to_non_nullable
               as String,
+      firstLaunchKey: null == firstLaunchKey
+          ? _value.firstLaunchKey
+          : firstLaunchKey // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -100,7 +107,8 @@ abstract class _$$SharedPreferenceConfigImplCopyWith<$Res>
       String uiStyleKey,
       String themeModeKey,
       String colorStyleKey,
-      String firstResultKey});
+      String firstResultKey,
+      String firstLaunchKey});
 }
 
 /// @nodoc
@@ -121,6 +129,7 @@ class __$$SharedPreferenceConfigImplCopyWithImpl<$Res>
     Object? themeModeKey = null,
     Object? colorStyleKey = null,
     Object? firstResultKey = null,
+    Object? firstLaunchKey = null,
   }) {
     return _then(_$SharedPreferenceConfigImpl(
       rankCategoryKey: null == rankCategoryKey
@@ -143,6 +152,10 @@ class __$$SharedPreferenceConfigImplCopyWithImpl<$Res>
           ? _value.firstResultKey
           : firstResultKey // ignore: cast_nullable_to_non_nullable
               as String,
+      firstLaunchKey: null == firstLaunchKey
+          ? _value.firstLaunchKey
+          : firstLaunchKey // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -155,7 +168,8 @@ class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
       required this.uiStyleKey,
       required this.themeModeKey,
       required this.colorStyleKey,
-      required this.firstResultKey});
+      required this.firstResultKey,
+      required this.firstLaunchKey});
 
   @override
   final String rankCategoryKey;
@@ -167,10 +181,12 @@ class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
   final String colorStyleKey;
   @override
   final String firstResultKey;
+  @override
+  final String firstLaunchKey;
 
   @override
   String toString() {
-    return 'SharedPreferenceConfig(rankCategoryKey: $rankCategoryKey, uiStyleKey: $uiStyleKey, themeModeKey: $themeModeKey, colorStyleKey: $colorStyleKey, firstResultKey: $firstResultKey)';
+    return 'SharedPreferenceConfig(rankCategoryKey: $rankCategoryKey, uiStyleKey: $uiStyleKey, themeModeKey: $themeModeKey, colorStyleKey: $colorStyleKey, firstResultKey: $firstResultKey, firstLaunchKey: $firstLaunchKey)';
   }
 
   @override
@@ -187,12 +203,14 @@ class _$SharedPreferenceConfigImpl implements _SharedPreferenceConfig {
             (identical(other.colorStyleKey, colorStyleKey) ||
                 other.colorStyleKey == colorStyleKey) &&
             (identical(other.firstResultKey, firstResultKey) ||
-                other.firstResultKey == firstResultKey));
+                other.firstResultKey == firstResultKey) &&
+            (identical(other.firstLaunchKey, firstLaunchKey) ||
+                other.firstLaunchKey == firstLaunchKey));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, rankCategoryKey, uiStyleKey,
-      themeModeKey, colorStyleKey, firstResultKey);
+      themeModeKey, colorStyleKey, firstResultKey, firstLaunchKey);
 
   @JsonKey(ignore: true)
   @override
@@ -208,7 +226,8 @@ abstract class _SharedPreferenceConfig implements SharedPreferenceConfig {
       required final String uiStyleKey,
       required final String themeModeKey,
       required final String colorStyleKey,
-      required final String firstResultKey}) = _$SharedPreferenceConfigImpl;
+      required final String firstResultKey,
+      required final String firstLaunchKey}) = _$SharedPreferenceConfigImpl;
 
   @override
   String get rankCategoryKey;
@@ -220,6 +239,8 @@ abstract class _SharedPreferenceConfig implements SharedPreferenceConfig {
   String get colorStyleKey;
   @override
   String get firstResultKey;
+  @override
+  String get firstLaunchKey;
   @override
   @JsonKey(ignore: true)
   _$$SharedPreferenceConfigImplCopyWith<_$SharedPreferenceConfigImpl>

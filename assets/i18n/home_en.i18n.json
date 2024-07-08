@@ -3,5 +3,9 @@
     "todayNews": "News",
     "thisWeekStatus": "Weekly",
     "dailyTraining": "Daily",
-    "completed": "Comp"
+    "completed": "Comp",
+    "tutorial": {
+        "title": "Welcome!",
+        "body": "Tap \"Start\" to start training right away"
+    }
 }
