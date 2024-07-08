@@ -102,8 +102,18 @@ class TrainingTutorialPage extends HookConsumerWidget {
                   child: Text(i18n.common.start),
 
                   // チュートリアル画面をContainerTransitionにするため、`push`を採用
-                  onPressed: () =>
-                      AnswerSelectRouteData(trainingType).push<void>(context),
+                  onPressed: () {
+                    switch (trainingType) {
+                      case TrainingType.coloredWord:
+                        AnswerSelectRouteData(trainingType).push<void>(context);
+                        return;
+                      case TrainingType.themeShiritori:
+                      case TrainingType.fillInTheBlankCalc:
+                        // TODO(yakitama5): コンテスト用
+                        MaintenanceSnackbar.showByContext(context);
+                        return;
+                    }
+                  },
                 ),
               )
             ],
