@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:brain_training/app/application/usecase/settings/state/rank_category_provider.dart';
 import 'package:brain_training/app/application/usecase/training/state/first_result_provider.dart';
 import 'package:brain_training/app/application/usecase/training/training_usecase.dart';
@@ -183,10 +184,11 @@ class ScoreCard extends HookConsumerWidget {
               size: 92,
             ),
             const Gap(8),
-            Text(
+            AutoSizeText(
               // ignore: avoid_dynamic_calls
               i18n.training.result.rank[rankCategory.name](context: rank),
               style: ts.displayMedium,
+              maxLines: 1,
             ),
           ],
         ),

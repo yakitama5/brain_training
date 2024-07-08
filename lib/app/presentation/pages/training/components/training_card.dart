@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:brain_training/app/domain/training/value_object/rank_category.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -142,9 +143,10 @@ class _IconWithLabel extends StatelessWidget {
           size: 32,
         ),
         const Gap(16),
-        Text(
+        AutoSizeText(
           label,
           style: ts.titleLarge,
+          maxLines: 1,
         ),
       ],
     );
@@ -174,18 +176,25 @@ class _Score extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _IconWithLabel(
-            iconData: rankCategory.iconData,
-            // ignore: avoid_dynamic_calls
-            label: i18n.training.result.rank[rankCategory.name](
-              context: result.rank,
+          Expanded(
+            child: Center(
+              child: _IconWithLabel(
+                iconData: rankCategory.iconData,
+                // ignore: avoid_dynamic_calls
+                label: i18n.training.result.rank[rankCategory.name](
+                  context: result.rank,
+                ),
+              ),
             ),
           ),
-          _IconWithLabel(
-            iconData: Icons.sports_score,
-            label: i18n.training.result.score(points: result.score),
+          Expanded(
+            child: Center(
+              child: _IconWithLabel(
+                iconData: Icons.sports_score,
+                label: i18n.training.result.score(points: result.score),
+              ),
+            ),
           ),
         ],
       );

@@ -10,6 +10,7 @@ environment:
 dependencies:
   adaptive_dialog:
   animations: 
+  auto_size_text: 
   cached_network_image:
   carousel_slider:
   cloud_firestore:
