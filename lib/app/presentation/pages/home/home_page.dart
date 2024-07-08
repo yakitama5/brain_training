@@ -15,6 +15,7 @@ import '../../../domain/training/value_object/training_type.dart';
 import '../error/components/error_view.dart';
 import '../news/components/news_pane.dart';
 import '../training/components/training_card.dart';
+import '../training/training_tutorial_page.dart';
 import 'components/callender.dart';
 import 'components/headline_pane.dart';
 
@@ -79,10 +80,16 @@ class _TrainingCardsPane extends HookConsumerWidget {
           );
 
           return result.when(
-            data: (resultData) => TrainingCard(
-              trainingType: type,
-              result: resultData,
-              rankCategory: rankCategory,
+            data: (resultData) => OpenContainerCardWrapper(
+              closedBuilder: (context, action) => TrainingCard(
+                trainingType: type,
+                result: resultData,
+                rankCategory: rankCategory,
+                onStart: action,
+              ),
+              openBuilder: (context, action) => TrainingTutorialPage(
+                trainingType: type,
+              ),
             ),
             error: ErrorView.new,
             loading: () => Padding(

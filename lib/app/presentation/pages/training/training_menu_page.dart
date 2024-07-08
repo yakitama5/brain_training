@@ -11,6 +11,7 @@ import '../../../application/usecase/training/state/training_result_provider.dar
 import '../../components/importer.dart';
 import '../error/components/error_view.dart';
 import '../home/components/headline_pane.dart';
+import 'training_tutorial_page.dart';
 
 class TrainingMenuPage extends HookConsumerWidget {
   const TrainingMenuPage({super.key});
@@ -36,10 +37,16 @@ class TrainingMenuPage extends HookConsumerWidget {
       (result) => result.$2.when(
         data: (resultData) => resultData == null
             ? const SizedBox.shrink()
-            : TrainingCard.detail(
-                trainingType: result.$1,
-                result: resultData,
-                rankCategory: rankCategory,
+            : OpenContainerCardWrapper(
+                closedBuilder: (_, action) => TrainingCard.detail(
+                  trainingType: result.$1,
+                  result: resultData,
+                  rankCategory: rankCategory,
+                  onStart: action,
+                ),
+                openBuilder: (_, __) => TrainingTutorialPage(
+                  trainingType: result.$1,
+                ),
               ),
         error: ErrorView.new,
         loading: _Shimmer.new,
@@ -50,9 +57,15 @@ class TrainingMenuPage extends HookConsumerWidget {
       (result) => result.$2.when(
         data: (resultData) => resultData != null
             ? const SizedBox.shrink()
-            : TrainingCard.detail(
-                trainingType: result.$1,
-                rankCategory: rankCategory,
+            : OpenContainerCardWrapper(
+                closedBuilder: (_, action) => TrainingCard.detail(
+                  trainingType: result.$1,
+                  rankCategory: rankCategory,
+                  onStart: action,
+                ),
+                openBuilder: (_, __) => TrainingTutorialPage(
+                  trainingType: result.$1,
+                ),
               ),
         error: ErrorView.new,
         loading: _Shimmer.new,

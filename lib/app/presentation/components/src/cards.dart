@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:nested/nested.dart';
 
@@ -102,6 +103,36 @@ class OutlinedCard extends SingleChildCard {
           child: child,
         ),
       ),
+    );
+  }
+}
+
+class OpenContainerCardWrapper<T> extends StatelessWidget {
+  const OpenContainerCardWrapper({
+    super.key,
+    required this.closedBuilder,
+    required this.openBuilder,
+  });
+
+  final CloseContainerBuilder closedBuilder;
+  final OpenContainerBuilder<T> openBuilder;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return OpenContainer(
+      closedBuilder: closedBuilder,
+      openBuilder: openBuilder,
+
+      // ClosedBuilderが表示されてしまう対応
+      closedShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide.none,
+      ),
+      closedColor: cs.surface,
+      closedElevation: 0,
+      tappable: false,
     );
   }
 }
