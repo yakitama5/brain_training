@@ -63,60 +63,63 @@ class TrainingTutorialPage extends HookConsumerWidget {
         title: Text(i18n.training.tutorial),
       ),
       body: PagePadding(
-        child: FilledCard(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 360),
-                    child: AspectRatio(
-                      aspectRatio: 9 / 16,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(32),
-                        child: videoWidget,
+        child: SingleChildScrollView(
+          child: FilledCard(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 360),
+                      child: AspectRatio(
+                        aspectRatio: 9 / 16,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(32),
+                          child: videoWidget,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                i18n.training.trainingType.descriptionTitleLarge,
-                style: tt.titleLarge,
-              ),
-              Text(i18n.training.trainingType
-                  .description(context: trainingType)),
-              const Gap(8),
-              Text(
-                i18n.training.trainingType.howToPlayTitleLarge,
-                style: tt.titleLarge,
-              ),
-              Text(i18n.training.trainingType
-                  .howToPlayBody(context: trainingType)),
-              const Gap(16),
-              WidthFillBox(
-                child: FilledButton(
-                  child: Text(i18n.common.start),
-
-                  // チュートリアル画面をContainerTransitionにするため、`push`を採用
-                  onPressed: () {
-                    switch (trainingType) {
-                      case TrainingType.coloredWord:
-                        AnswerSelectRouteData(trainingType).push<void>(context);
-                        return;
-                      case TrainingType.themeShiritori:
-                      case TrainingType.fillInTheBlankCalc:
-                        // TODO(yakitama5): コンテスト用
-                        MaintenanceSnackbar.showByContext(context);
-                        return;
-                    }
-                  },
+                Text(
+                  i18n.training.trainingType.descriptionTitleLarge,
+                  style: tt.titleLarge,
                 ),
-              )
-            ],
+                Text(i18n.training.trainingType
+                    .description(context: trainingType)),
+                const Gap(8),
+                Text(
+                  i18n.training.trainingType.howToPlayTitleLarge,
+                  style: tt.titleLarge,
+                ),
+                Text(i18n.training.trainingType
+                    .howToPlayBody(context: trainingType)),
+                const Gap(16),
+                WidthFillBox(
+                  child: FilledButton(
+                    child: Text(i18n.common.start),
+
+                    // チュートリアル画面をContainerTransitionにするため、`push`を採用
+                    onPressed: () {
+                      switch (trainingType) {
+                        case TrainingType.coloredWord:
+                          AnswerSelectRouteData(trainingType)
+                              .push<void>(context);
+                          return;
+                        case TrainingType.themeShiritori:
+                        case TrainingType.fillInTheBlankCalc:
+                          // TODO(yakitama5): コンテスト用
+                          MaintenanceSnackbar.showByContext(context);
+                          return;
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
