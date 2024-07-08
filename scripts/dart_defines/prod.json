@@ -1,6 +1,6 @@
 {
     "flavor": "prod",
-    "appName": "スマート脳トレ",
+    "appName": "わたしの脳トレ",
     "androidPackageName": "com.yakuran.brain_training",
     "iosBundleId": "com.yakuran.brainTraining"
 }
