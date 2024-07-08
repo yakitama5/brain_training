@@ -1,6 +1,7 @@
 import 'package:brain_training/app/application/config/app_build_config_provider.dart';
 import 'package:brain_training/app/application/model/flavor.dart';
 import 'package:brain_training/i18n/strings.g.dart';
+import 'package:brain_training/utils/logger.dart';
 import 'package:flutter/services.dart';
 import 'package:google_speech/config/recognition_config.dart';
 import 'package:google_speech/config/recognition_config_v1.dart';
@@ -57,17 +58,20 @@ Stream<String> sttRecognizedText(SttRecognizedTextRef ref,
   // HACK(yakitama5): application層とinfra層に分ける
   var prevLength = 0;
   yield* responseStream.map((snapshot) {
+    logger.d('Listen');
     return snapshot.results
-        .map((e) => e.alternatives.first.transcript)
+        .map((e) => e.alternatives.first.transcript.replaceAll(' ', ''))
         .join('');
   }).where((joinWord) {
+    logger.d('JoinWord: $joinWord');
     if (joinWord.length <= prevLength) {
       return false;
     }
     return true;
   }).map((joinWord) {
-    final word = joinWord.substring(prevLength);
+    final word = joinWord.substring(prevLength).trim().split(' ').last;
     prevLength = joinWord.length;
+    logger.d('Word: $word');
     return word;
   });
 }
