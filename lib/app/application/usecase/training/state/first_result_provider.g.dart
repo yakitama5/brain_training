@@ -6,7 +6,7 @@ part of 'first_result_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$trainingFirstDoneHash() => r'24e40e67952766d8df8467b911f8949273c6acd8';
+String _$trainingFirstDoneHash() => r'ac1bc003c9ba224ce2bf8ab02ae0ad0b963e9bb2';
 
 /// See also [TrainingFirstDone].
 @ProviderFor(TrainingFirstDone)

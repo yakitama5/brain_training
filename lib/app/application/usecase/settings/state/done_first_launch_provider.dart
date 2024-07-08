@@ -7,9 +7,7 @@ part 'done_first_launch_provider.g.dart';
 @riverpod
 class DoneFirstLaunch extends _$DoneFirstLaunch {
   @override
-  bool build() {
-    return false;
-  }
+  bool build() => ref.read(settingsServiceProvider).isFirstLaunch();
 
   Future<void> done() async {
     await ref.read(settingsServiceProvider).doneLaunch();

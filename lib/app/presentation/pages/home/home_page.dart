@@ -80,11 +80,9 @@ class _TrainingCardsPane extends HookConsumerWidget {
           trainingType: TrainingType.values.first,
           dateTime: nowDate,
         ), (p, c) {
-      if (!isFirstLaunch || c is! AsyncData) {
-        return;
+      if (isFirstLaunch && c is AsyncData) {
+        _showTutorial(context, ref);
       }
-
-      _showTutorial(context, ref);
     });
 
     return HeadlinePane(

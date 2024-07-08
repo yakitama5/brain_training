@@ -6,7 +6,7 @@ part of 'done_first_launch_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$doneFirstLaunchHash() => r'33c9f025a9820f767ea913b10baf14b400f1619f';
+String _$doneFirstLaunchHash() => r'238bcd2d284c6f1bf0ec5a8f4d82428132ddc28e';
 
 /// See also [DoneFirstLaunch].
 @ProviderFor(DoneFirstLaunch)

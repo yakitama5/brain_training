@@ -9,7 +9,7 @@ class TrainingFirstDone extends _$TrainingFirstDone {
   bool build() => ref.read(settingsServiceProvider).isFirstResult();
 
   Future<void> done() async {
-    await ref.read(settingsServiceProvider).doneTraining();
+    await ref.read(settingsServiceProvider).doneLaunch();
     state = true;
   }
 }
