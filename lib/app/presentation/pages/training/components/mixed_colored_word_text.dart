@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:brain_training/app/domain/read_color/entity/mixed_colored_word.dart';
 import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,10 @@ class MixedColoredWordText extends HookWidget {
       ),
     );
 
-    return Text(
+    return AutoSizeText(
       word,
       style: style,
+      maxLines: 1,
     );
   }
 }

@@ -6,7 +6,7 @@ import '../../../../domain/training/value_object/answer_result.dart';
 class AnswerResultWidget extends StatelessWidget {
   const AnswerResultWidget({super.key, required this.result});
 
-  static const _size = 80.0;
+  static const _size = 64.0;
 
   final AnswerResult? result;
 

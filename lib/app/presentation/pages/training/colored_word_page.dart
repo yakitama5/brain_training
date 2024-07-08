@@ -80,7 +80,7 @@ class PlayPage extends HookConsumerWidget {
 
             // 色付き文字
             MixedColoredWordText(coloredWord: word.value),
-            const Gap(80),
+            const Gap(48),
 
             // 回答方法
             AdaptiveAnswerWidget(
