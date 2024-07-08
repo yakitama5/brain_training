@@ -94,6 +94,13 @@
                 "good": "Police Inspector",
                 "average": "Sergeant",
                 "poor": "Constable"
+            },
+            "human(context=ResultRank)": {
+                "excellent": "Homo sapiens",
+                "great": "Homo neanderthalensis",
+                "good": "Homo erectus",
+                "average": "Homo habilis",
+                "poor": "Australopithecus"
             }
         },
         "category(context=RankCategory)": {
@@ -103,7 +110,8 @@
             "royal": "Royal",
             "planet": "Planet",
             "police": "Police",
-            "stagBeetle": "StagBeetle"
+            "stagBeetle": "StagBeetle",
+            "human": "Human race"
         },
         "questions": "${qeustions: int} qeustions",
         "score": "${points: int} points",

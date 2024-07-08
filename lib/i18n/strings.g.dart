@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 310 (155 per locale)
+/// Strings: 322 (161 per locale)
 ///
-/// Built on 2024-07-08 at 02:22 UTC
+/// Built on 2024-07-08 at 09:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -598,6 +598,20 @@ class _StringsTrainingResultEn {
 					return 'Constable';
 			}
 		},
+		'human': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'Homo sapiens';
+				case ResultRank.great:
+					return 'Homo neanderthalensis';
+				case ResultRank.good:
+					return 'Homo erectus';
+				case ResultRank.average:
+					return 'Homo habilis';
+				case ResultRank.poor:
+					return 'Australopithecus';
+			}
+		},
 	};
 	String category({required RankCategory context}) {
 		switch (context) {
@@ -615,6 +629,8 @@ class _StringsTrainingResultEn {
 				return 'Police';
 			case RankCategory.stagBeetle:
 				return 'StagBeetle';
+			case RankCategory.human:
+				return 'Human race';
 		}
 	}
 	String questions({required int qeustions}) => '${qeustions} qeustions';
@@ -1244,6 +1260,20 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 					return '巡査';
 			}
 		},
+		'human': ({required ResultRank context}) {
+			switch (context) {
+				case ResultRank.excellent:
+					return 'ホモ・サピエンス';
+				case ResultRank.great:
+					return 'ホモ・ネアンデルターレンシス';
+				case ResultRank.good:
+					return 'ホモ・エレクトス';
+				case ResultRank.average:
+					return 'ホモ・ハビリス';
+				case ResultRank.poor:
+					return 'アウストラロピテクス';
+			}
+		},
 	};
 	@override String category({required RankCategory context}) {
 		switch (context) {
@@ -1261,6 +1291,8 @@ class _StringsTrainingResultJa extends _StringsTrainingResultEn {
 				return '警察';
 			case RankCategory.stagBeetle:
 				return 'クワガタ';
+			case RankCategory.human:
+				return '人類';
 		}
 	}
 	@override String questions({required int qeustions}) => '${qeustions}問';
@@ -1679,6 +1711,20 @@ extension on Translations {
 						return 'Constable';
 				}
 			};
+			case 'training.result.rank.human': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'Homo sapiens';
+					case ResultRank.great:
+						return 'Homo neanderthalensis';
+					case ResultRank.good:
+						return 'Homo erectus';
+					case ResultRank.average:
+						return 'Homo habilis';
+					case ResultRank.poor:
+						return 'Australopithecus';
+				}
+			};
 			case 'training.result.category': return ({required RankCategory context}) {
 				switch (context) {
 					case RankCategory.normal:
@@ -1695,6 +1741,8 @@ extension on Translations {
 						return 'Police';
 					case RankCategory.stagBeetle:
 						return 'StagBeetle';
+					case RankCategory.human:
+						return 'Human race';
 				}
 			};
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions} qeustions';
@@ -1993,6 +2041,20 @@ extension on _StringsJa {
 						return '巡査';
 				}
 			};
+			case 'training.result.rank.human': return ({required ResultRank context}) {
+				switch (context) {
+					case ResultRank.excellent:
+						return 'ホモ・サピエンス';
+					case ResultRank.great:
+						return 'ホモ・ネアンデルターレンシス';
+					case ResultRank.good:
+						return 'ホモ・エレクトス';
+					case ResultRank.average:
+						return 'ホモ・ハビリス';
+					case ResultRank.poor:
+						return 'アウストラロピテクス';
+				}
+			};
 			case 'training.result.category': return ({required RankCategory context}) {
 				switch (context) {
 					case RankCategory.normal:
@@ -2009,6 +2071,8 @@ extension on _StringsJa {
 						return '警察';
 					case RankCategory.stagBeetle:
 						return 'クワガタ';
+					case RankCategory.human:
+						return '人類';
 				}
 			};
 			case 'training.result.questions': return ({required int qeustions}) => '${qeustions}問';

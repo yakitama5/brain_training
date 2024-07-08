@@ -7,6 +7,7 @@ enum RankCategory {
   sumo,
   planet,
   police,
+  human,
   beetle,
   stagBeetle,
   royal;
@@ -22,5 +23,6 @@ extension RankCategoryX on RankCategory {
         RankCategory.planet => CustomIcons.planet,
         RankCategory.police => CustomIcons.police,
         RankCategory.stagBeetle => CustomIcons.stag_beetle,
+        RankCategory.human => MdiIcons.human,
       };
 }

@@ -94,6 +94,13 @@
                 "good": "警部",
                 "average": "巡査部長",
                 "poor": "巡査"
+            },
+            "human(context=ResultRank)": {
+                "excellent": "ホモ・サピエンス",
+                "great": "ホモ・ネアンデルターレンシス",
+                "good": "ホモ・エレクトス",
+                "average": "ホモ・ハビリス",
+                "poor": "アウストラロピテクス"
             }
         },
         "category(context=RankCategory)": {
@@ -103,7 +110,8 @@
             "royal": "爵位",
             "planet": "惑星",
             "police": "警察",
-            "stagBeetle": "クワガタ"
+            "stagBeetle": "クワガタ",
+            "human": "人類"
         },
         "questions": "${qeustions: int}問",
         "score": "${points: int}点",
