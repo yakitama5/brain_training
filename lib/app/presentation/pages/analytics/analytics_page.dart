@@ -1,3 +1,4 @@
+import 'package:brain_training/i18n/strings.g.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/importer.dart';
@@ -8,7 +9,9 @@ class AnalyticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(i18n.analytics.title),
+      ),
       body: const MaintenanceView(),
     );
   }

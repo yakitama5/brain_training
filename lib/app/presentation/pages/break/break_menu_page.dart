@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../i18n/strings.g.dart';
+import '../../components/importer.dart';
+
 class BreakMenuPage extends StatelessWidget {
   const BreakMenuPage({super.key});
 
@@ -7,8 +10,9 @@ class BreakMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('いきぬき'),
+        title: Text(i18n.breather.title),
       ),
+      body: const MaintenanceView(),
     );
   }
 }

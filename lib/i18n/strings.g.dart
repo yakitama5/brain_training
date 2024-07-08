@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 306 (153 per locale)
+/// Strings: 310 (155 per locale)
 ///
-/// Built on 2024-07-05 at 09:27 UTC
+/// Built on 2024-07-08 at 02:22 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -156,6 +156,8 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
+	late final _StringsAnalyticsEn analytics = _StringsAnalyticsEn._(_root);
+	late final _StringsBreatherEn breather = _StringsBreatherEn._(_root);
 	late final _StringsCommonEn common = _StringsCommonEn._(_root);
 	late final _StringsErrorEn error = _StringsErrorEn._(_root);
 	late final _StringsHomeEn home = _StringsHomeEn._(_root);
@@ -163,6 +165,26 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final _StringsMaintenanceEn maintenance = _StringsMaintenanceEn._(_root);
 	late final _StringsSettingsEn settings = _StringsSettingsEn._(_root);
 	late final _StringsTrainingEn training = _StringsTrainingEn._(_root);
+}
+
+// Path: analytics
+class _StringsAnalyticsEn {
+	_StringsAnalyticsEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Analytics';
+}
+
+// Path: breather
+class _StringsBreatherEn {
+	_StringsBreatherEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Break';
 }
 
 // Path: common
@@ -780,6 +802,8 @@ class _StringsJa extends Translations {
 	@override late final _StringsJa _root = this; // ignore: unused_field
 
 	// Translations
+	@override late final _StringsAnalyticsJa analytics = _StringsAnalyticsJa._(_root);
+	@override late final _StringsBreatherJa breather = _StringsBreatherJa._(_root);
 	@override late final _StringsCommonJa common = _StringsCommonJa._(_root);
 	@override late final _StringsErrorJa error = _StringsErrorJa._(_root);
 	@override late final _StringsHomeJa home = _StringsHomeJa._(_root);
@@ -787,6 +811,26 @@ class _StringsJa extends Translations {
 	@override late final _StringsMaintenanceJa maintenance = _StringsMaintenanceJa._(_root);
 	@override late final _StringsSettingsJa settings = _StringsSettingsJa._(_root);
 	@override late final _StringsTrainingJa training = _StringsTrainingJa._(_root);
+}
+
+// Path: analytics
+class _StringsAnalyticsJa extends _StringsAnalyticsEn {
+	_StringsAnalyticsJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '振り返り';
+}
+
+// Path: breather
+class _StringsBreatherJa extends _StringsBreatherEn {
+	_StringsBreatherJa._(_StringsJa root) : this._root = root, super._(root);
+
+	@override final _StringsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '息抜き';
 }
 
 // Path: common
@@ -1384,6 +1428,8 @@ class _StringsTrainingResultTutorialShareJa extends _StringsTrainingResultTutori
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'analytics.title': return 'Analytics';
+			case 'breather.title': return 'Break';
 			case 'common.save': return 'Save';
 			case 'common.navigationDestination.home': return 'Home';
 			case 'common.navigationDestination.analytics': return 'Analytics';
@@ -1696,6 +1742,8 @@ extension on Translations {
 extension on _StringsJa {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'analytics.title': return '振り返り';
+			case 'breather.title': return '息抜き';
 			case 'common.save': return '保存';
 			case 'common.navigationDestination.home': return 'ホーム';
 			case 'common.navigationDestination.analytics': return '振り返り';
