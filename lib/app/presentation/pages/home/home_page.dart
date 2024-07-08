@@ -75,6 +75,7 @@ class _TrainingCardsPane extends HookConsumerWidget {
     final isFirstLaunch = !ref.watch(doneFirstLaunchProvider);
     final nowDate = DateTime.now().dayStart;
 
+    // HACK(yakitama5): チュートリアルを表示するか否かという状態にマージして定義すること
     ref.listen(
         trainingResultProvider(
           trainingType: TrainingType.values.first,
