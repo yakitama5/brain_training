@@ -1,4 +1,4 @@
-# 👶これほしい！
+# 🧓わたしの脳トレ
 
 <img src="https://github.com/yakitama5/yakitama5/assets/14286444/350677dc-270d-4ff5-ae5a-eeed775cc503" alt="アプリの紹介画像">
 
