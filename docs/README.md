@@ -1,6 +1,6 @@
 # 👶これほしい！
 
-<img src="https://github.com/yakitama5/yakitama5/assets/14286444/09519ca1-d527-4c3c-b960-6b4c7999d1ac" alt="アプリの紹介画像">
+<img src="https://github.com/yakitama5/yakitama5/assets/14286444/350677dc-270d-4ff5-ae5a-eeed775cc503" alt="アプリの紹介画像">
 
 シンプルなデザインの脳トレアプリです。
 
