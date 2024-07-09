@@ -8,8 +8,8 @@
 
 ### バックエンド
 
-- [Firebase](https://firebase.google.com/?hl=ja) (App Check, Auth, Crashlytics, Dynamic Links, Firestore, Functions, Hosting, Remote Config, Storage)の利用
-- [Revenue Cat](https://www.revenuecat.com)を利用したアプリ内課金
+- [Firebase](https://firebase.google.com/?hl=ja) (App Check, Auth, Crashlytics, Firestore, Functions, Remote Config)の利用
+- [GCP](https://console.cloud.google.com/?hl=ja) (Speech-To-Text-API)の利用
 
 ### フロントエンド
 
@@ -21,7 +21,6 @@
   - [Themed App Icons](https://developer.android.com/about/versions/13/features?hl=ja&authuser=1#themed-app-icons) 対応
 - [dart-define](https://zenn.dev/altiveinc/articles/separating-environments-in-flutter)を利用した環境別構成
 - [envied](https://pub.dev/packages/envied)を利用した機密情報の難読化
-- [qr_flutter](https://pub.dev/packages/qr_flutter) を利用したQRコード生成
 - [responsive_framework](https://pub.dev/packages/responsive_framework) を利用したレスポンシブ対応
 - [custom_lint](https://pub.dev/packages/custom_lint)を利用した静的解析のカスタマイズ
 

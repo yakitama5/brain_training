@@ -18,13 +18,13 @@
 - 開発
 
   ```sh
-  flutterfire configure --out=lib/firebase_options_dev.dart -p [Develop Project ID] --platforms=android,ios,web -i com.yakuran.brainTraining.dev -a com.yakuran.brain_training.dev
+  flutterfire configure --out=lib/firebase_options_dev.dart -p [Develop Project ID] --platforms=android,ios -i com.yakuran.brainTraining.dev -a com.yakuran.brain_training.dev
   ```
 
 - 本番
 
   ```sh
-  flutterfire configure --out=lib/firebase_options.dart -p [Project ID] --platforms=android,ios,web -i com.yakuran.brainTraining -a com.yakuran.brain_training
+  flutterfire configure --out=lib/firebase_options.dart -p [Project ID] --platforms=android,ios -i com.yakuran.brainTraining -a com.yakuran.brain_training
   ```
 
 生成されるファイルの内、`GoogleService-Info.plist`, `google-services.json`は出力先を変更出来ないため、
@@ -49,14 +49,8 @@
    {
        "flavor": "dev or prod",
        "appName": "(dev)アプリ名",
-       "appIdSuffix": ".dev",
-       "appWebUrl": "https://XXXXX.com",
-       "appWebDomain": "XXXXX.com",
        "androidPackageName": "com.example.xxxxx.dev",
-       "iosBundleId": "com.example.xxxxx.dev",
-       "reversedClientId": "xxxxx",
-       "appStoreId": "xxxxx",
-       "dynamicLinkUriPrefix": "https://xxxxx.link"
+       "iosBundleId": "com.example.xxxxx.dev"
    }
    ```
 
@@ -65,11 +59,8 @@
 1. 下記の形式で`scripts/env/`配下に`.env`, `.env.dev` を作成する
 
    ```ini
-   GOOGLE_REVERSED_CLIENT_ID=XXXXX
-   GOOGLE_CLIENT_ID=XXXXX
-   REVENUE_CAT_KEY_APPLE_STORE=XXXXX
-   REVENUE_CAT_KEY_PLAY_STORE=XXXXX
-   RECPTCHA_SITE_KEY=XXXXX
+   OPEN_WEATHER_API_KEY=XXXXX
+   NEWS_API_KEY=XXXXX
    ```
 
 2. 下記のコマンドを実行して、`env.g.dart`ファイルを生成する
@@ -81,25 +72,6 @@
 #### AppStoreリリース用
 
 1. XCodeでビルドした際に作成される`ExportOptions.plist`をプロジェクトルート配下に配置する
-
-## ▶️実行手順
-
-### デバッグ
-
-- Web
-
-  ```sh
-  # 開発環境
-  flutter run -d web-server --web-port=5000 --web-renderer html --dart-define-from-file=dart_defines/dev.json
-  
-  # 本番環境
-  flutter run -d web-server --web-port=5000 --web-renderer html --dart-define-from-file=dart_defines/prod.json
-  ```
-
-  ```sh
-  fvm flutter build appbundle --dart-define-from-file=dart_defines/prod.json
-  fvm flutter build ipa --export-options-plist=ExportOptions.plist --dart-define-from-file=dart_defines/prod.json
-  ```
 
 ## 📋開発中に多用するコマンド
 
@@ -131,18 +103,4 @@
    firebase deploy --only functions
    # ファンクション名指定
    firebase deploy --only functions:[Function Name]
-   ```
-
-### Firebase Hostingのデプロイ
-
-1. Web資産のビルドを行う
-
-   ```sh
-   flutter build web --web-renderer html --dart-define-from-file=dart_defines/prod.json
-   ```
-
-2. Firebase Hostingへのデプロイを行う
-
-   ```sh
-   firebase deploy --only hosting
    ```
